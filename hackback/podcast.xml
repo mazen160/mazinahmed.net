@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xml:lang="en-us">
+
+    <channel>
+		<atom:link href="https://mazinahmed.net/podcast.rss" rel="self" type="application/rss+xml" />
+		<title>HackBack</title>
+		<link>https://mazinahmed.net/hackback</link>
+		<language>en-us</language>
+        <copyright>&#xA9; 2020 HackBack</copyright>
+		<itunes:subtitle>Offensive Security Podcast.</itunes:subtitle>
+        <itunes:author>Mazin Ahmed</itunes:author>
+		<itunes:summary>HackBack is an offensive security podcast that discusses security highlights and insights. Each week we talk about the highlights for cybersecurity as well as exploring interesting security topics.</itunes:summary>
+        <description>HackBack is an offensive security podcast that discusses security highlights and insights. Each week we talk about the highlights for cybersecurity as well as exploring interesting security topics.</description>
+		<webMaster>mazin@mazinahmed.net (Mazin Ahmed)</webMaster>
+        <itunes:owner>
+			<itunes:name>Mazin Ahmed</itunes:name>
+			<itunes:email>mazin@mazinahmed.net</itunes:email>
+		</itunes:owner>
+        <itunes:image href="https://mazinahmed.net/hackback/images/itunes.png" />
+        <itunes:category text="Technology" />
+        <itunes:category text="Society &amp; Culture" />
+        <itunes:category text="Education"/>
+        <itunes:category text="News"/>
+          <itunes:category text="Tech News"/>
+
+        <itunes:explicit>no</itunes:explicit>
+
+
+
+        <item>
+            <title>The Start</title>
+            <itunes:author>Mazin Ahmed</itunes:author>
+            <itunes:subtitle>HackBack: The Start</itunes:subtitle>
+            <itunes:summary>Episode 1 - The Start. This is the first episode of HackBack podcast. The podcast talks about Empire Framework, Python 2.X EOL, Github Critical Vulnerability, NGINX HTTP Request Smuggling, Citrix ADP RCE, OWASP API Security Top 10 2019, and the biggest cloud-related hacks of 2019</itunes:summary>
+            <itunes:image href="https://mazinahmed.net/images/itunes.png" />
+            <enclosure url="https://raw.githubusercontent.com/mazen160/public/master/static/hackback-podcast/hackback-episode-1-en.mp3" length="1492" type="audio/mp3"/>
+            <guid isPermaLink="true">https://mazinahmed.net/hackback/2020/episode-1.html</guid>
+            <pubDate>Sun, 05 Jan 2020 04:00:00 +0400</pubDate>
+            <itunes:duration>24:52</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <description>Episode 1 - The Start. This is the first episode of HackBack podcast. The podcast talks about Empire Framework, Python 2.X EOL, Github Critical Vulnerability, NGINX HTTP Request Smuggling, Citrix ADP RCE, OWASP API Security Top 10 2019, and the biggest cloud-related hacks of 2019 This is the first episode of HackBack podcast. The podcast talks about Empire Framework, Python 2.X EOL, Github Critical Vulnerability, NGINX HTTP Request Smuggling, Citrix ADP RCE, OWASP API Security Top 10 2019, and the biggest cloud-related hacks of 2019 Show Notes Available at https://mazinahmed.net/hackback/2020/episode-1.html.</description>
+            <itunes:keywords>cybersecurity, offensive security, technology</itunes:keywords>
+            <itunes:block>no</itunes:block>
+		</item>
+
+	</channel>
+</rss>
