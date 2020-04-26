@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-04-22T16:51:06-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Specialist / Penetration Tester</subtitle><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-04-25T20:30:24-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Specialist / Penetration Tester</subtitle><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/static/930cf461-8dc4-4a43-9f98-3519cdda7004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
@@ -74,7 +74,7 @@
 
 &lt;h2 id=&quot;option-4-downgrading-urllib3&quot;&gt;Option 4: Downgrading urllib3&lt;/h2&gt;
 
-&lt;p&gt;It’s possible to use &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3&lt;/code&gt; module to test passing.&lt;/p&gt;
+&lt;p&gt;It’s possible to use previous versions of &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The option for current tools that use requests or urllib3 is to revert to &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3==1.24.3&lt;/code&gt;. However, this may not be the best option from an engineering perspective.&lt;/p&gt;
 
