@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Specialist / Penetration Tester">
+    <meta name=description content="Cyber Security Engineer (Offensive Security)">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"headline":"OhMyZsh dotenv Remote Code Execution","dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"},"url":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/","author":{"@type":"Person","name":"mazinahmed"},"description":"OhMyZsh dotenv RCE","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"OhMyZsh dotenv Remote Code Execution","dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"},"url":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/","author":{"@type":"Person","name":"mazinahmed"},"description":"OhMyZsh dotenv RCE","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1601,7 +1601,7 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 <h1 id="fix">Fix</h1>
 
-<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="highlighter-rouge">source</code> command to the <code class="highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
+<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="highlighter-rouge">source</code> command to the <code class="highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
 
 <p><br></p>
 
