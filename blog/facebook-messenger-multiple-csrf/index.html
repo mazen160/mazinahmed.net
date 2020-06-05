@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Facebook Messenger Multiple CSRF Vulnerabilities | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Facebook Messenger Multiple CSRF Vulnerabilities" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -44,7 +44,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Facebook Messenger Multiple CSRF Vulnerabilities","dateModified":"2015-06-09T00:00:00-05:00","datePublished":"2015-06-09T00:00:00-05:00","image":"https://mazinahmed.net/assets/static/a23e12e9-5fd1-499a-92c6-174a8089bc05.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/"},"url":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/","author":{"@type":"Person","name":"mazinahmed"},"description":"Facebook Messenger Multiple CSRF Vulnerabilities","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","image":"https://mazinahmed.net/assets/static/a23e12e9-5fd1-499a-92c6-174a8089bc05.png","headline":"Facebook Messenger Multiple CSRF Vulnerabilities","dateModified":"2015-06-09T00:00:00-05:00","datePublished":"2015-06-09T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/"},"url":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/","author":{"@type":"Person","name":"mazinahmed"},"description":"Facebook Messenger Multiple CSRF Vulnerabilities","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -602,19 +602,19 @@ h1, h2, h3, h4 {
   text-rendering: optimizeLegibility; }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   letter-spacing: -1px;
   color: #222;
   font-weight: 700; }
 
 h2 {
-  font-size: 2.2rem; }
+  font-size: 2.7rem; }
 
 h3 {
-  font-size: 2rem; }
+  font-size: 2.5rem; }
 
 h4 {
-  font-size: 1.6rem; }
+  font-size: 2.1rem; }
 
 a {
   color: #4b0082;
@@ -622,10 +622,12 @@ a {
 
 p {
   line-height: 1.7;
-  color: #666;
+  color: #353535;
   font-weight: 300;
   margin-bottom: 20px;
-  letter-spacing: 0.4px; }
+  letter-spacing: 0.4px;
+  word-wrap: break-word;
+  font-size: 1.25em; }
   @media only screen and (max-width: 400px) {
     p {
       letter-spacing: 0.2px; } }
@@ -636,9 +638,11 @@ strong {
 
 ul li,
 ol li {
-  line-height: 2.4rem;
+  line-height: 3.3rem;
   font-weight: 300;
-  color: #666; }
+  color: #353535;
+  word-wrap: break-word;
+  font-size: 1.25em; }
 
 img,
 pre,
@@ -683,11 +687,14 @@ code,
 tt {
   padding: 1px 0;
   font-family: "Consolas", Liberation Mono, Menlo, Courier, monospace;
-  font-size: 12px;
+  font-size: 1.1em;
   line-height: 20px;
   background: #fff;
   border-radius: 2px;
   border-radius: 2px; }
+
+.highlighter-rouge {
+  font-size: 0.9em; }
 
 pre {
   box-sizing: border-box;
@@ -717,7 +724,7 @@ pre {
       width: 88%; } }
 
 .wrapper-normal {
-  max-width: 560px; }
+  max-width: 600px; }
 
 .wrapper-large {
   max-width: 810px; }
@@ -1147,7 +1154,7 @@ pre {
       margin: 0;
       border-radius: 4%;
       transition: all 0.4s ease-in-out;
-      width: 70px; }
+      width: auto; }
       .nav-home > .list > .item > .link:hover {
         color: #666; }
 
