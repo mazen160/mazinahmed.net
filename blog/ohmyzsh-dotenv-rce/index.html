@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>OhMyZsh dotenv Remote Code Execution | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="OhMyZsh dotenv Remote Code Execution" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -1543,7 +1543,7 @@ pre {
 
 <p>According to the documentation:</p>
 <blockquote>
-  <p>[OhMyZsh - dotenv plugin] automatically load your project ENV variables from <code class="highlighter-rouge">.env</code> file when you <code class="highlighter-rouge">cd</code> into project root directory.</p>
+  <p>[OhMyZsh - dotenv plugin] automatically load your project ENV variables from <code class="language-plaintext highlighter-rouge">.env</code> file when you <code class="language-plaintext highlighter-rouge">cd</code> into project root directory.</p>
 </blockquote>
 
 <p>Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past 3 years.</p>
@@ -1580,11 +1580,11 @@ add-zsh-hook chpwd source_env
 <span class="k">fi</span>
 </code></pre></div></div>
 
-<p>The method used in the dotenv plugin to set the environment variables makes use of the <code class="highlighter-rouge">source</code> built-in command.</p>
+<p>The method used in the dotenv plugin to set the environment variables makes use of the <code class="language-plaintext highlighter-rouge">source</code> built-in command.</p>
 
-<p>Although the command is typically seen when loading environment variables, <code class="highlighter-rouge">source</code> <strong>executes the provided input in Shell</strong> - (within the same existing shell, that’s why the variables are loaded within the session).</p>
+<p>Although the command is typically seen when loading environment variables, <code class="language-plaintext highlighter-rouge">source</code> <strong>executes the provided input in Shell</strong> - (within the same existing shell, that’s why the variables are loaded within the session).</p>
 
-<p>In our case, whenever a user <code class="highlighter-rouge">cd</code> into a project directory, and that directory has a <code class="highlighter-rouge">.env</code> file, the file is passed to <code class="highlighter-rouge">source</code>, to load the variables - and <em>potentially more</em>.</p>
+<p>In our case, whenever a user <code class="language-plaintext highlighter-rouge">cd</code> into a project directory, and that directory has a <code class="language-plaintext highlighter-rouge">.env</code> file, the file is passed to <code class="language-plaintext highlighter-rouge">source</code>, to load the variables - and <em>potentially more</em>.</p>
 
 <h3 id="if-the-user-downloads-a-malicious-repository-or-compressed-file-then-working-with-this-material-leads-to-a-remote-code-execution-when-using-ohmyzsh">If the user downloads a malicious repository or compressed file, then working with this material leads to a remote code execution when using OhMyZsh.</h3>
 
@@ -1609,7 +1609,7 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 <h1 id="fix">Fix</h1>
 
-<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="highlighter-rouge">source</code> command to the <code class="highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
+<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="language-plaintext highlighter-rouge">source</code> command to the <code class="language-plaintext highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
 
 <p><br></p>
 
@@ -1650,57 +1650,87 @@ root:x:0:0:root:/root:/usr/bin/zsh
         
             
                 
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
                     
                     <h4>Related Posts</h4>
                     <ul>
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/hacking-zoom/">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
                     
                     <li class="relatedPost">
                         <a href="https://mazinahmed.net/blog/wasec-book-review/">Book Review: WASEC By Alessandro Nadalin
@@ -1796,15 +1826,6 @@ root:x:0:0:root:/root:/usr/bin/zsh
         
         
             
-                
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/">Practical Protection Against DNS Rebinding Attacks
-                        
-                        </a>
-                    </li>
-                    
-                    
                 
             
                 

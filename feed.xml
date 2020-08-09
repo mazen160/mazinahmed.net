@@ -1,4 +1,530 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-06-05T15:57:25-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-08-09T09:56:13-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link href="https://mazinahmed.net/blog/hacking-zoom/" rel="alternate" type="text/html" title="Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom" /><published>2020-08-09T00:00:00-05:00</published><updated>2020-08-09T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/hacking-zoom</id><content type="html" xml:base="https://mazinahmed.net/blog/hacking-zoom/">&lt;hr /&gt;
+
+&lt;h1 id=&quot;hacking-zoom&quot;&gt;Hacking Zoom&lt;/h1&gt;
+
+&lt;h2 id=&quot;uncovering-tales-of-security-vulnerabilities-in-zoom&quot;&gt;Uncovering Tales of Security Vulnerabilities in Zoom&lt;/h2&gt;
+
+&lt;p&gt;This blog post discusses my experiments in testing and hacking Zoom.&lt;/p&gt;
+
+&lt;p&gt;Zoom has become one of the most high-performing tech companies of 2020. Zoom is a digital video conferencing software that went public in IPO last year&lt;a href=&quot;https://www.cnbc.com/2019/04/18/zoom-ipo-stock-begins-trading-on-nasdaq.html&quot;&gt;1&lt;/a&gt;, a few months before the global pandemic.&lt;/p&gt;
+
+&lt;p&gt;Zoom grew rapidly over the past year going from 10M active users in early 2019 to over 200M by mid-2020.&lt;/p&gt;
+
+&lt;p&gt;The popularity of Zoom has made it a high-profile target for hackers, nefarious actors, and the security community. Organizations worldwide are using Zoom to enable remote work. The UK government even used Zoom for cabinet meetings&lt;a href=&quot;https://www.infosecurity-magazine.com/news/uk-government-zoom-despite-mod/&quot;&gt;2&lt;/a&gt;. Simply put, we can see Zoom in every part of our lives today.&lt;/p&gt;
+
+&lt;p&gt;This post shares my research and experiments in testing and hacking Zoom.&lt;/p&gt;
+
+&lt;h1 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h1&gt;
+
+&lt;p&gt;My research focused on identifying security vulnerabilities in Zoom. The result of the research revealed several severe security vulnerabilities that affect the Zoom production and development infrastructure, the Zoom Linux app, and Zoom’s implementation of end-to-end encryption implementation.&lt;/p&gt;
+
+&lt;p&gt;My experience with Zoom’s security and its VDP (vulnerability disclosure program) did not match what I had seen in the public media. I assume this is because Zoom focused on the security incidents that had generated the most negative public PR. This is also likely due to Zoom implementing a last-minute bug bounty program after its user base boomed during the global pandemic.&lt;/p&gt;
+
+&lt;p&gt;The first finding that I identified in April 2020 has been not patched. The first time I received a conclusive response regarding the finding was on July 14, 2020, after 4 months of reporting the vulnerability and numerous follow-ups from my side.&lt;/p&gt;
+
+&lt;p&gt;When I submitted my CFP to DEFCON 2020, I conducted another round of experiments on Zoom, where I identified new security vulnerabilities that affected different Zoom products. All discovered vulnerabilities were responsibly disclosed to Zoom.&lt;/p&gt;
+
+&lt;p&gt;I would also like to note that all of my research was self-funded. I have also not received any bounty/reward for my efforts by Zoom.&lt;/p&gt;
+
+&lt;h2 id=&quot;list-of-identified-vulnerabilities&quot;&gt;List of Identified Vulnerabilities&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Zoom Exposed Public Kerberos Authentication Server&lt;/li&gt;
+  &lt;li&gt;Memory Leak on Zoom Production Server&lt;/li&gt;
+  &lt;li&gt;Unexploitable RCE on Zoom Production Server&lt;/li&gt;
+  &lt;li&gt;Shadow IT Issues on accessible Zoom servers&lt;/li&gt;
+  &lt;li&gt;Zoom App for Linux:
+    &lt;ul&gt;
+      &lt;li&gt;Bad Design Practise on TLS/SSL implementation&lt;/li&gt;
+      &lt;li&gt;A Really Bad Design Practice on Zoom Launcher Implementation.&lt;/li&gt;
+      &lt;li&gt;End-to-End encrypted messages between Zoom users are stored on-disk in plain-text.&lt;/li&gt;
+      &lt;li&gt;Zoom Local Database accessible by all local users, including private end-to-end encrypted messages (stored in plain-text), and access tokens.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The responsible disclosure section discusses the process I have been through in conducting a responsible disclosure with Zoom. It was a painful experience with a lack of communication from Zoom for most of the time. There are many things that could have been done to improve the Zoom VDP.&lt;/p&gt;
+
+&lt;p&gt;I can see that Zoom had difficulties building their bug bounty program. As a result,  I’m also listing suggestions to help enhance the program at the end of the post.&lt;/p&gt;
+
+&lt;h1 id=&quot;who-am-i&quot;&gt;Who Am I?&lt;/h1&gt;
+
+&lt;p&gt;I’m a cyber security engineer that specializes in offensive security and AppSec. Read more about my previous work at https://mazinahmed.net/.&lt;/p&gt;
+
+&lt;h1 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Introduction&lt;/li&gt;
+  &lt;li&gt;Identifying Attack Surface&lt;/li&gt;
+  &lt;li&gt;Findings
+    &lt;ul&gt;
+      &lt;li&gt;Zoom Public Kerberos Authentication
+        &lt;ul&gt;
+          &lt;li&gt;Attacking Kerberos&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Discovery of a Memory Leak on a Zoom Production Server
+        &lt;ul&gt;
+          &lt;li&gt;Automating the Exploitation&lt;/li&gt;
+          &lt;li&gt;A Memory Leak is not the end…&lt;/li&gt;
+          &lt;li&gt;Zoom’s Prevention&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Shadow IT &amp;amp; Zoom&lt;/li&gt;
+      &lt;li&gt;Zoom App for Linux
+        &lt;ul&gt;
+          &lt;li&gt;Zoom TLS/SSL is Broken By Design on Linux&lt;/li&gt;
+          &lt;li&gt;Zoom Launcher Implementation: What’s a badly-designed application launcher? Zoom Launcher for Linux.&lt;/li&gt;
+          &lt;li&gt;Zoom is End-to-End Encrypted? Not fully.&lt;/li&gt;
+          &lt;li&gt;Zoom Local Database Implementation: Bad practice for Linux security.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Responsible Disclosure
+    &lt;ul&gt;
+      &lt;li&gt;Timeline&lt;/li&gt;
+      &lt;li&gt;Zoom’s analysis &amp;amp; my response to the analysis.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Conclusion&lt;/li&gt;
+  &lt;li&gt;Acknowledgment&lt;/li&gt;
+  &lt;li&gt;References&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;recorded-conference-talk&quot;&gt;Recorded Conference Talk&lt;/h2&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/PUR7sk4mjLo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;I started my first round of tests on Zoom in April 2020. My goal was to find an impactful security vulnerability that affects Zoom infrastructure and users. I identified a memory leak vulnerability that affects an API belonging to Zoom production infrastructure - the details of the finding, as well as other findings, are discussed later in the article.&lt;/p&gt;
+
+&lt;p&gt;Once I confirmed the presence of the vulnerability, I reported it directly to security@zoom.us per their security page at zoom.us/security.&lt;/p&gt;
+
+&lt;p&gt;I expected I would be receiving a quick responsible confirmation, followed by a patch, and probably a reward. Instead, I have been in a continuous circle of follow-ups with no response regarding my finding - the responsible disclosure.&lt;/p&gt;
+
+&lt;p&gt;I also contacted Luta Security, which was a contractor to Zoom to set up their VDP during Q1-Q2 2020, but there was no luck either in getting a fix or a detailed analysis for the responsible disclosure.&lt;/p&gt;
+
+&lt;p&gt;After all of the confusion about the attempts of responsible disclosure, I decided to take my research to DEFCON 2020. I submitted my CFP and notified Zoom regarding my intentions of disclosing my finding in Zoom on June 05, 2020. I still haven’t received a conclusive response after that.&lt;/p&gt;
+
+&lt;p&gt;When my CFP was accepted, I started conducting further security research on Zoom and found new vulnerabilities that were affecting their infrastructure, the Zoom Linux app, and their end-to-end encryption implementation.&lt;/p&gt;
+
+&lt;p&gt;I reported all of the new findings to Zoom on July 11, 2020, repeating my intentions of disclosing all of my research in DEFCON 2020. This was where I received the first conclusive response from Zoom.&lt;/p&gt;
+
+&lt;h1 id=&quot;identifying-attack-surface&quot;&gt;Identifying Attack Surface&lt;/h1&gt;
+
+&lt;p&gt;My first step when testing on targets is the attack surface identification. It’s a step where I do the reconnaissance phase to understand the running systems, exposed APIs, (un)maintained services, and everything that can be interesting from an adversary point of view.&lt;/p&gt;
+
+&lt;p&gt;Before attacking Zoom, I wasn’t aware of the attack surface; I had to learn it during this research.&lt;/p&gt;
+
+&lt;h2 id=&quot;domains-discovery&quot;&gt;Domains Discovery&lt;/h2&gt;
+
+&lt;p&gt;Luckily for me, I run &lt;a href=&quot;https://FullHunt.io&quot;&gt;FullHunt.io&lt;/a&gt;, a vulnerability intelligence platform that aids in the attack surface discovery, monitoring, and automating security.&lt;/p&gt;
+
+&lt;p&gt;There is an internal FullHunt API that allows querying domains owned by organizations. I ran a query that returned more than 13 domains.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/aa2beb87-a08b-4dcd-b1a3-6c24f4cde22b.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I added them to my FullHunt account to automate the discovery process. While I collected a tremendous amount of data I didn’t have the time to test everything, as this research is a personal non-funded experiment I was doing in my free time. I focused on a portion of the attack surface. I will be show-casing various findings I identified.&lt;/p&gt;
+
+&lt;h1 id=&quot;findings&quot;&gt;Findings&lt;/h1&gt;
+
+&lt;h1 id=&quot;zoom-public-kerberos-authentication&quot;&gt;Zoom Public Kerberos Authentication&lt;/h1&gt;
+
+&lt;p&gt;While port-scanning different assets, an asset grabbed my attention.&lt;/p&gt;
+
+&lt;p&gt;Targets: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ca01.idm.meetzoom.us&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/bec0ea6b-1fee-43c2-9d68-edff0569089c.png&quot; alt=&quot;Nmap port scan on ca01.idm.meetzoom.us&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I noticed a running Kerberos service that is externally accessible. Kerberos is a network authentication protocol designed to secure authentication for client/server applications.&lt;/p&gt;
+
+&lt;p&gt;The naming convention for the asset indicates that it’s running an identity management solution or a PKI (public-key infrastructure).&lt;/p&gt;
+
+&lt;p&gt;While checking what was running on port 80, I found that the host was running FreeIPA&lt;a href=&quot;https://www.freeipa.org/page/Main_Page&quot;&gt;3&lt;/a&gt;. This is an open-source identity management solution developed by RedHat.&lt;/p&gt;
+
+&lt;p&gt;There are no known severe public vulnerabilities reported previously. Researching for a zero-day within FreeIPA is an option, but I didn’t have the time to focus on it. Another option was to review Zoom’s implementation of Kerberos and FreeIPA setup.&lt;/p&gt;
+
+&lt;p&gt;I also found that another asset that runs the exact setup.&lt;/p&gt;
+
+&lt;p&gt;Target: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;va01.idm.meetzoom.us&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Practically speaking, &lt;strong&gt;Kerberos allows a great size of attack surface once we have an authenticated account&lt;/strong&gt;. While not being within the internal network, the initial entry for Kerberos is more difficult.&lt;/p&gt;
+
+&lt;p&gt;The HTTP interface is quite verbose in terms of error messages, however, these are the default responses in FreeIPA.&lt;/p&gt;
+
+&lt;p&gt;It’s possible to enumerate users from the [/ipa/session/login_password] API as shown in the next screenshots: &lt;a href=&quot;https://www.infosecurity-magazine.com/news/uk-government-zoom-despite-mod/&quot;&gt;2&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;invalid-account&quot;&gt;Invalid account&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/a63a1dd6-2f8a-4366-91b2-31e46f8db25c.png&quot; alt=&quot;Invalid account&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;valid-account&quot;&gt;Valid account&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/f6517f5b-aca4-402f-83a5-052e92592dbb.png&quot; alt=&quot;Valid account&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However, there is a lockout policy within the HTTP API to lock accounts that exceed the number of invalid authentication attempts.&lt;/p&gt;
+
+&lt;p&gt;After triggering the policy, I revisited the asset once the lockout period had timed out.&lt;/p&gt;
+
+&lt;p&gt;It seemed that attacking this functionality from the HTTP interface was the best idea. I moved my attack into the Kerberos service directly.&lt;/p&gt;
+
+&lt;h2 id=&quot;attacking-kerberos&quot;&gt;Attacking Kerberos&lt;/h2&gt;
+
+&lt;p&gt;I tried enumerating users using the public Kerberos service running on UDP/88.&lt;/p&gt;
+
+&lt;p&gt;One of the advantages of authenticating in UDP is the ability to craft packets with different source IPs. This can help a lot in evading IP blacklisting on the service-level. I didn’t need to jump into that part, as there were no security controls that were triggered within my tests on this service. Both user enumeration and user password brute-forcing were not blocked.&lt;/p&gt;
+
+&lt;h3 id=&quot;building-wordlists&quot;&gt;Building Wordlists&lt;/h3&gt;
+
+&lt;p&gt;Based on my background knowledge on Zoom, I understood the email and account profile pattern on Zoom follows: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{firstName}.{lastName}@zoom.us&lt;/code&gt;. We can get a start initializing the naming from Zoom.us/team page:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/d68240c3-d577-4931-97b4-6d1853458611.png&quot; alt=&quot;zoom.us/team page&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also enumerated email addresses using OSINT. This will be used to enumerate valid user accounts on the Kerberos service that is publicly accessible.&lt;/p&gt;
+
+&lt;p&gt;All of the generated names were not valid users on the Kerberos service - perhaps the two assets were Shadow IT assets that were mistakenly exposed publicly by Zoom.&lt;/p&gt;
+
+&lt;p&gt;User enumeration yielded me with a single valid user, “admin”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/6e2be3cd-0ac6-4a8a-a3e1-9ace84e7d693.png&quot; alt=&quot;Valid users&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also brute-forced the account password, as there was no lockout policy for user accounts. It seemed like a dead-end for the timespan.&lt;/p&gt;
+
+&lt;h1 id=&quot;discovery-of-a-memory-leak-on-a-zoom-production-server&quot;&gt;Discovery of a Memory Leak on a Zoom Production Server&lt;/h1&gt;
+
+&lt;p&gt;Zoom allows uploading profile pictures on accounts. I’m always interested in image parsers as the attack surface on image parsers is wide, and can open doors for different attack vectors.&lt;/p&gt;
+
+&lt;p&gt;I fuzzed the image parsing on Zoom with a range of techniques. Based on my analysis of what was happening in the background:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;A user uploads a profile image.&lt;/li&gt;
+  &lt;li&gt;Only JPEG, GIF, and PNG are allowed.&lt;/li&gt;
+  &lt;li&gt;If the image is PNG or GIF, it is converted to JPEG.&lt;/li&gt;
+  &lt;li&gt;If the image is in JPEG, then image conversion is not triggered.&lt;/li&gt;
+  &lt;li&gt;If the image contains an invalid image header, the updating profile API aborts the process.&lt;/li&gt;
+  &lt;li&gt;The check for validating images is done by checking the magic bytes &lt;a href=&quot;https://en.wikipedia.org/wiki/File_format#Magic_number&quot;&gt;4&lt;/a&gt;. This means we can’t control the first bytes of the file.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Based on my fingerprinting, I had a confident assumption that Zoom is using ImageMagick as a backend to their image conversion on their server-side. The common pattern on the deployment of image conversion microservices is they barely receive required updates and security controls once the microservice reaches a stable state. This happens as it is not as vital to the business as other functionalities within the infrastructure.&lt;/p&gt;
+
+&lt;p&gt;One popular vulnerability for ImageMagick is CVE-2016–3714, a remote code execution vulnerability.&lt;/p&gt;
+
+&lt;p&gt;I tested the functionality with the CVE-2016–3714 and it seemed to be patched.&lt;/p&gt;
+
+&lt;p&gt;Another less popular vulnerability that ImageMagick was vulnerable to was a memory leak vulnerability that occurs because of the uninitialization of the memory space on the GIF parser of ImageMagick. As a result, we can leak portions of the memory in a “Heartbleed” approach.&lt;/p&gt;
+
+&lt;p&gt;All versions of ImageMagick builds before &lt;a href=&quot;https://github.com/ImageMagick/ImageMagick/commit/9fd10cf630832b36a588c1545d8736539b2f1fb5&quot;&gt;https://github.com/ImageMagick/ImageMagick/commit/9fd10cf630832b36a588c1545d8736539b2f1fb5&lt;/a&gt; are vulnerable.&lt;/p&gt;
+
+&lt;p&gt;The vulnerability is not commonly known. It also has a registered CVE of CVE-2017-15277.&lt;/p&gt;
+
+&lt;p&gt;I generated a payload using the exploit&lt;a href=&quot;https://github.com/neex/gifoeb&quot;&gt;5&lt;/a&gt; for the vulnerability. When uploading the payload, the converted images were rendered in a way that indicated successful exploitation.&lt;/p&gt;
+
+&lt;h4 id=&quot;original-payload&quot;&gt;Original Payload&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0e356db4-3354-4354-91fe-e3048949f352.png&quot; alt=&quot;Payload&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When rendered by Zoom APIs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/697b9388-39bb-419f-98b9-9e98fdf718fd.png&quot; alt=&quot;Exploit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I further confirmed that this is not a rendering bug on the ImageMagick implementation at Zoom, by generating a typical black image by ImageMagick with the same specs of the payload:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ convert -size 300x300 xc:black black.gif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;normal-view&quot;&gt;Normal view&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/62474d8f-fc8e-458c-87d9-29ca4b972200.png&quot; alt=&quot;Normal view&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;after-a-normal-gif-image-is-rendered-by-zoom-rendering-a-normal-image&quot;&gt;After a normal GIF image is rendered by Zoom: Rendering a normal image.&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/64174465-50a6-408c-b47d-4407626d3b52.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The result showed that this image is rendering normally when supplying a normal GIF image with the same specifications of the payload, confirming the existence of the security vulnerability, and illuminating the part where there is a rendering issue on the ImageMagick setup is at Zoom.Us.&lt;/p&gt;
+
+&lt;h2 id=&quot;automating-the-exploitation&quot;&gt;Automating the Exploitation&lt;/h2&gt;
+
+&lt;p&gt;To plan the automation of the exploitation of the memory leak at Zoom, I need to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Generate a new unique payload&lt;/li&gt;
+  &lt;li&gt;Upload it to Zoom&lt;/li&gt;
+  &lt;li&gt;Download the rendered file.&lt;/li&gt;
+  &lt;li&gt;Extract the data from the corrupted file rendered by Zoom.&lt;/li&gt;
+  &lt;li&gt;Repeat, and store leaked memory portions.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;proof-of-concept&quot;&gt;Proof of Concept&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/cb5f0502-5603-46fc-aefa-b2a315493822.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;video&quot;&gt;Video&lt;/h4&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/hQV1ggCLsWk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;a-memory-leak-on-zoom-production-is-not-the-end&quot;&gt;A Memory Leak on Zoom production is not the end…&lt;/h2&gt;
+
+&lt;p&gt;After a week from the time of automating the exploit for the memory leak, I remembered that Tavis Ormandy had researched on the GhostScript engine&lt;a href=&quot;https://bugs.chromium.org/p/project-zero/issues/detail?id=1640&quot;&gt;6&lt;/a&gt;. GhostScript is an interpreter for the PostScript language, and is also used in ImageMagick.&lt;/p&gt;
+
+&lt;p&gt;Tavis’s research disclosed a remote command execution on GhostScript. This research is vital to this functionality since if we’re able to exploit GhostScript on the ImageMagick, we can achieve remote command execution.&lt;/p&gt;
+
+&lt;p&gt;I confirmed this vulnerability existed on Zoom’s build with the timeline of ImageMagick patches. In July 2017, the memory leak vulnerability was discovered and patched. In August 2018, GhostScript and ImageMagick patched the remote command execution vulnerability. This meant that if the memory leak was present at Zoom production, then the GhostScript RCE was also present at Zoom production.&lt;/p&gt;
+
+&lt;p&gt;I replicated this vulnerability locally in my environment based on the environment of Zoom.&lt;/p&gt;
+
+&lt;h4 id=&quot;proof-of-concept-payload&quot;&gt;Proof of Concept Payload&lt;/h4&gt;
+
+&lt;h5 id=&quot;proof-of-concept-payload-1&quot;&gt;Proof of Concept Payload&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/210bb2b8-2b02-4103-8b0d-bd525de8dd58.png&quot; alt=&quot;Proof of Concept Payload&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;local-replication-of-the-rce-vulnerability&quot;&gt;Local replication of the RCE vulnerability&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/f1674931-f60b-43aa-8ab2-2b27c37c47f8.png&quot; alt=&quot;Local replication of the RCE vulnerability&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;zooms-prevention&quot;&gt;Zoom’s Prevention&lt;/h3&gt;
+
+&lt;p&gt;There is a check on the magic bytes on uploaded images within the Zoom API [&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/p/upload&lt;/code&gt;], otherwise, full exploitation of the vulnerability is possible. If the microservice is called in other places, then it may be still exploitable there.&lt;/p&gt;
+
+&lt;h1 id=&quot;shadow-it--zoom&quot;&gt;Shadow IT &amp;amp; Zoom&lt;/h1&gt;
+
+&lt;p&gt;Shadow IT is a pattern of public services at Zoom. Some instances don’t receive frequent updates and are publicly accessible. I found a development instance that has not been updated for at least 10 months, and although I’m not sure, I think it was pushed to a Zoom customer. This meant that if there is a vulnerability that was patched on production, it may be exploitable on these Shadow IT instances. The way I confirmed this is because Zoom left a version build file on the instance.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/ade2863a-8c6d-4795-9d1c-959f42968461.png&quot; alt=&quot;Instance age&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This screenshot was taken on July 4th, 2020. The build time was September 10th, 2019.&lt;/p&gt;
+
+&lt;p&gt;Another addition to complete the hacking puzzle is:
+https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/eb54c7a6-fdf2-4215-b4f4-e2b2e82287b0.png&quot; alt=&quot;Nginx status on the ShadowIT asset&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Nginx status page is enabled due to a backend misconfiguration in the development instance, allowing me to have a confident guess that this instance is not heavily used, and potentially have lesser logging triggers compared to the Zoom.us production web-app.&lt;/p&gt;
+
+&lt;p&gt;It’s showing 9 active connections on the instance, making it an excellent fit to test, while not triggering alerts.&lt;/p&gt;
+
+&lt;h1 id=&quot;zoom-app-for-linux&quot;&gt;Zoom App for Linux&lt;/h1&gt;
+
+&lt;p&gt;I also had a testing session on the Zoom App for Linux. The security community has not put a focus on the Zoom client for Linux in terms of security research. I thought of initiating this part.&lt;/p&gt;
+
+&lt;h2 id=&quot;zoom-tlsssl-is-broken-by-design-on-linux&quot;&gt;Zoom TLS/SSL is Broken By Design on Linux&lt;/h2&gt;
+
+&lt;p&gt;Whenever traffic is intercepted with a custom TLS/SSL certificate, Zoom prompts users with this message:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/e5148440-d78e-458e-b62e-194edc5caa10.png&quot; alt=&quot;Zoom: Untrusted Server certificate&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once users click “Trust anyway”, the certificate is added to a local Zoom database with the fingerprints of the certificate. When the next request occurs, the whitelisted certificate is permitted as expected.&lt;/p&gt;
+
+&lt;p&gt;The catch here is, all TLS/SSL certificates can be directly “accepted” by malware to the local Zoom database without additional permissions. The custom implementation of the Zoom certificate database does not solely rely on system CA certificate DB. System CA certificate DB requires root access in normal cases to whitelist a new SSL/TLS certificate.&lt;/p&gt;
+
+&lt;p&gt;I wrote a Proof of concept in Golang that injects TLS/SSL certificate fingerprints into the local Zoom database. Once this code is executed on a user machine, all injected certificates will be accepted without errors on Zoom.&lt;/p&gt;
+
+&lt;p&gt;Code:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/443e885a-bafd-4c7d-9619-dd40d3d1a745.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;zoom-launcher-implementation-whats-a-bad-design-for-an-application-launcher-zoom-launcher-for-linux&quot;&gt;Zoom Launcher Implementation: What’s a bad design for an application launcher? Zoom Launcher for Linux&lt;/h1&gt;
+
+&lt;h4 id=&quot;launching-zoom&quot;&gt;Launching Zoom&lt;/h4&gt;
+
+&lt;p&gt;[&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/bin/zoom&lt;/code&gt;] is a symlink of [&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/opt/zoom/ZoomLauncher&lt;/code&gt;]. When Zoom is called:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;zoom
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The following occurs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/0d628519-e589-473e-9dfd-187ab10cc02b.png&quot; alt=&quot;Launching Zoom&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This sounded interesting already.&lt;/p&gt;
+
+&lt;p&gt;Apparently, Zoom is checking if there is a file on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$PWD&lt;/code&gt; directory that is for Zoom, and it executes it, otherwise it navigates to the Zoom installation directory and executes another binary, Zoom executable.&lt;/p&gt;
+
+&lt;p&gt;This sounds bad already. But still, the next part is the surprising part. &lt;strong&gt;if there is an executable called “zoom” on the $PWD directory, it will execute it as a child process for /usr/bin/zoom&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;proof-of-concept-1&quot;&gt;Proof of Concept&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/1f5041ba-8308-4cd5-951e-b46fd51ca1b4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This breaks all of the protection of application whitelisting, allows malware to run as a subprocess of a trusted vendor (Zoom), and is a bad design/security practice by all means.&lt;/p&gt;
+
+&lt;p&gt;I had thoughts on why it was designed this way, but I simply didn’t find a good reason.&lt;/p&gt;
+
+&lt;h1 id=&quot;zoom-local-database-implementation-bad-practice-for-linux-security&quot;&gt;Zoom Local Database Implementation: Bad practice for Linux security.&lt;/h1&gt;
+
+&lt;p&gt;I noticed another interesting issue in Zoom local database implementation. Zoom local database allows Zoom to store custom configurations and user data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Assuming there is access to the user machine, by any level of permissions, anyone can read and exfiltrate Zoom user data and configuration&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/7a465929-5406-4005-8701-ab4048827f99.png&quot; alt=&quot;Zoomus.db local database permissions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The customer data and main PII details are obfuscated, which is good, however, there is still data that is exposed and is important.&lt;/p&gt;
+
+&lt;h1 id=&quot;zoom-is-end-to-end-encrypted-not-fully&quot;&gt;Zoom is End-to-End Encrypted? Not fully.&lt;/h1&gt;
+
+&lt;p&gt;Zoom announced that it’s now supporting end to end encryption, and has pushed additional security updates to protect users in May 2020&lt;a href=&quot;https://blog.zoom.us/end-to-end-encryption-update/&quot;&gt;7&lt;/a&gt;. It has been everywhere in the news.&lt;/p&gt;
+
+&lt;p&gt;During my tests, I also tested Zoom Chat, a feature on Zoom that allows group chats. It allows teams to collaborate, share files, and of course, send messages.&lt;/p&gt;
+
+&lt;p&gt;I have noticed that the &lt;strong&gt;chat logs of Zoom are stored on-disk in plain-text&lt;/strong&gt;. Combining this with the Linux file permissions bad practice, it means that any process can unrestrictedly access all of the Zoom chats.&lt;/p&gt;
+
+&lt;h3 id=&quot;video-1&quot;&gt;Video&lt;/h3&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/PELPPZMzwgg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h1 id=&quot;responsible-disclosure&quot;&gt;Responsible Disclosure&lt;/h1&gt;
+
+&lt;h2 id=&quot;timeline&quot;&gt;Timeline&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;[April 15, 2020] Started the experiment.&lt;/li&gt;
+  &lt;li&gt;[April 18, 2020] I reported the Memory Leak at Zoom via security@zoom.us.&lt;/li&gt;
+  &lt;li&gt;[April 23, 2020] I Contacted Luta Security (the contractor for the Zoom VDP) via Twitter.&lt;/li&gt;
+  &lt;li&gt;[April 26, 2020] I followed-up regarding the vulnerability disclosure. Haven’t received a response.&lt;/li&gt;
+  &lt;li&gt;[May 05, 2020] Received: “[Request Closed] Memory Leak at zoom.us”&lt;/li&gt;
+  &lt;li&gt;[May 06, 2020] Tweeted about it: https://twitter.com/mazen160/status/1257785071278477312. Zoom support asked me to send it through Hackerone.&lt;/li&gt;
+  &lt;li&gt;[May 06, 2020] Forwarded the original report via Hackerone.&lt;/li&gt;
+  &lt;li&gt;[May 06, 2020] Vulnerability triaged on Hackerone.&lt;/li&gt;
+  &lt;li&gt;[May 06, 2020 –&amp;gt; June 05, 2020] Internal communication about running my automated exploit.&lt;/li&gt;
+  &lt;li&gt;[June 05, 2020] Informed Zoom that I’m planning to present my ongoing research at DEF CON.&lt;/li&gt;
+  &lt;li&gt;[June 05, 2020] Zoom can’t assess the issue, as there was no “sensitive data” seen, despite the reproducibility of the vulnerability and the provided exploit.&lt;/li&gt;
+  &lt;li&gt;[June 08, 2020] Report closed as “Not Applicable”.&lt;/li&gt;
+  &lt;li&gt;[July 11, 2020] Sent my new research results, reporting 7 new vulnerabilities and security issues to Zoom.&lt;/li&gt;
+  &lt;li&gt;[July 14, 2020] Acknowledgment about receiving the report, and first conclusive response regarding the memory leak issue.&lt;/li&gt;
+  &lt;li&gt;[July 24, 2020] Further explanation from Zoom regarding the findings.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;zooms-analysis--my-response-to-the-analysis&quot;&gt;Zoom’s Analysis &amp;amp; my response to the analysis&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Zoom Public Kerberos Authentication”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: These were development servers with no access to any production data. Moreover authentication required 2FA, so brute forcing a password, though not demonstrated in your report, would have been insufficient to gain access to the system.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While I agree it may be a forgotten development server that was mistakenly exposed, I haven’t seen any references or indications or having 2FA implemented. In all cases, it’s down now, which is great.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Discovery of a Memory Leak on a Zoom Production Server”:&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: After an internal investigation, we’ve concluded that the behavior you found was not a memory leak but just our image utility’s best effort at converting a malformed gif into a jpeg.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the &lt;strong&gt;exact&lt;/strong&gt; same behavior that is expected from valid exploitation of the CVE-2017-15277 as analyzed in the original report on ImageMagick &lt;a href=&quot;https://github.com/ImageMagick/ImageMagick/issues/592&quot;&gt;8&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The observed behavior that occurs in ImageMagick is ImageMagick’s effort in converting a malformed a gif, leaking a portion of the system memory when providing a malformed gif that has an uninitialized palette in the gif file; this is where the vulnerability is there.&lt;/p&gt;
+
+&lt;p&gt;From https://github.com/ImageMagick/ImageMagick/issues/592.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Gif coder leaves the palette uninitialized if neither global nor local palette is present in a gif file. If ImageMagick is used as a library loaded into a process that operates on interesting data, this can cause security consequences.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Having a malformed gif rendered this way confirms the presence of the vulnerability.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Zoom: we did check and confirmed that ImageMagick is not used for image conversions here.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;However, the same vulnerability is reproduced, maybe a fork of ImageMagick? an image processing software that is vulnerable to the same CVE? In all cases, it’s clear that something is wrong.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Shadow IT &amp;amp; Zoom”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: These are non-sensitive information disclosures from a shared development environment. Information hygiene is important to us and we appreciate you reporting this finding.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Great! FullHunt.io can help here. Probably the best product out there for mitigating Shadow IT risks.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Zoom TLS/SSL is Broken By Design on Linux”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: This is per user certificate pinning and intentionally allows for the user to allow custom certificates. The user can write to their own database, but no other non-root users can. It’s common best practice to have user applications run at their privilege level, as requiring Zoom to run as root would introduce unnecessary security risks to Zoom and our customers.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Zoom Launcher Implementation”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: This will be resolved in version 5.2.0 to be released on August 2nd. Note that to exploit this finding, an attacker would need to have compromised the victim’s computer by other means, and only if it was running the Linux operating system. Further, this attack also only works if the victim is running Zoom for the first time.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Zoom local database implementation”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: This will be resolved in version 5.2.0 to be released on August 2nd. Note that, as you stated, to be able to read this data the attacker would need to have already compromised the victim’s computer by other means, and only if that computer is running a Linux operating system.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’m not sure if the same vulnerability is also reproduced on macOS. It may be worth checking.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Zoom is End-to-End Encrypted?”&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;Zoom: We’re working on remediation for this finding. Note to be able to read this data, an attacker would need to have already compromised the victim’s device by other means.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;i-appreciate-the-detailed-analysis-done-by-zoom-security&quot;&gt;I appreciate the detailed analysis done by Zoom security.&lt;/h4&gt;
+
+&lt;h3 id=&quot;zoom-linux-app-update&quot;&gt;Zoom Linux App Update&lt;/h3&gt;
+
+&lt;p&gt;On August 3rd, 2020, the Zoom 5.2.4 was released, without mentioning the security patches at all. Zoom issued a silent fix to patch the reported security vulnerabilities without informing users about the fixes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/2db018c6-2228-44f6-b775-0f4733098f14.png&quot; alt=&quot;Zoom release notes for Zoom 5.2.4&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Zoom stated that they’re planning to patch the reported vulnerabilities, and there will be a security fix for the Zoom Linux client on August 2nd.&lt;/p&gt;
+
+&lt;p&gt;Zoom has massively grown during the global pandemic. As with any company building their security program, there are many challenges that Zoom appears to be facing, despite the large budget for security.&lt;/p&gt;
+
+&lt;p&gt;Coordinating the security disclosure has been a difficult experience from a security researcher’s perspective, despite all of the effort done by Zoom to hire top-class security firms to aid in building the program. The main reason this is happening is because of the “last-minute” implementation of their vulnerability disclosure program. I would be surprised if I’m the only researcher in the world that had this experience.&lt;/p&gt;
+
+&lt;p&gt;I would also like to note that all of the research was self-funded. I have also not received a bounty/reward for my efforts by Zoom.&lt;/p&gt;
+
+&lt;p&gt;Building a security program is not easy, there are many aspects to consider and processes to follow. A budget can “aid” in hiring great talents, but cannot build the program alone. It’s always important to start building the security program from an early point; it takes time and effort from different teams within the organization. It has never been an easy initiative to build a security program. A vulnerability disclosure program is only a single aspect in a larger cycle that should be there and should be done correctly.&lt;/p&gt;
+
+&lt;p&gt;I was also surprised that my experience with Zoom did not match the expectations. I have been seeing in the media a lot of great impressions about the Zoom vulnerability disclosure program. However, what I have experienced was different. I hope this is not because my research was not media-focused with public media involvement.&lt;/p&gt;
+
+&lt;h1 id=&quot;acknowledgment&quot;&gt;Acknowledgment&lt;/h1&gt;
+
+&lt;p&gt;I would like to thank &lt;a href=&quot;https://twitter.com/msuiche&quot;&gt;Matt Suiche&lt;/a&gt; of Comae Technologies for his help in having this research available.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.cnbc.com/2019/04/18/zoom-ipo-stock-begins-trading-on-nasdaq.html&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.infosecurity-magazine.com/news/uk-government-zoom-despite-mod/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.freeipa.org/page/Main_Page&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://en.wikipedia.org/wiki/File_format#Magic_number&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://github.com/neex/gifoeb&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://bugs.chromium.org/p/project-zero/issues/detail?id=1640&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://blog.zoom.us/end-to-end-encryption-update/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://github.com/ImageMagick/ImageMagick/issues/592&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="zoom" /><summary type="html"></summary></entry><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/static/930cf461-8dc4-4a43-9f98-3519cdda7004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
@@ -13,13 +539,13 @@
 
 &lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">The Path for Testing Path Traversal Vulnerabilities with Python</title><link href="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/" rel="alternate" type="text/html" title="The Path for Testing Path Traversal Vulnerabilities with Python" /><published>2020-04-12T00:00:00-05:00</published><updated>2020-04-12T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python</id><content type="html" xml:base="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/">&lt;hr /&gt;
 
-&lt;p&gt;I have noticed an odd behavior in &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.&lt;/p&gt;
+&lt;p&gt;I have noticed an odd behavior in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://127.0.0.1/../../../../doing/certain/check&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Which should typically send the request to the following path: &lt;code class=&quot;highlighter-rouge&quot;&gt;/../../../doing/certain/check&lt;/code&gt;. Instead, it’s requesting &lt;code class=&quot;highlighter-rouge&quot;&gt;/doing/certain/check&lt;/code&gt; and modifying the specified input.&lt;/p&gt;
+&lt;p&gt;Which should typically send the request to the following path: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/../../../doing/certain/check&lt;/code&gt;. Instead, it’s requesting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/doing/certain/check&lt;/code&gt; and modifying the specified input.&lt;/p&gt;
 
 &lt;p&gt;The reason is, dot segments escaping, following RFC3986.&lt;/p&gt;
 
@@ -74,9 +600,9 @@
 
 &lt;h2 id=&quot;option-4-downgrading-urllib3&quot;&gt;Option 4: Downgrading urllib3&lt;/h2&gt;
 
-&lt;p&gt;It’s possible to use previous versions of &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It’s possible to use previous versions of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urllib3&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;The option for current tools that use requests or urllib3 is to revert to &lt;code class=&quot;highlighter-rouge&quot;&gt;urllib3==1.24.3&lt;/code&gt;. However, this may not be the best option from an engineering perspective.&lt;/p&gt;
+&lt;p&gt;The option for current tools that use requests or urllib3 is to revert to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urllib3==1.24.3&lt;/code&gt;. However, this may not be the best option from an engineering perspective.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -125,7 +651,7 @@ Mazin&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term=
 
 &lt;p&gt;According to the documentation:&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;[OhMyZsh - dotenv plugin] automatically load your project ENV variables from &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file when you &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; into project root directory.&lt;/p&gt;
+  &lt;p&gt;[OhMyZsh - dotenv plugin] automatically load your project ENV variables from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file when you &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; into project root directory.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past 3 years.&lt;/p&gt;
@@ -162,11 +688,11 @@ add-zsh-hook chpwd source_env
 &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The method used in the dotenv plugin to set the environment variables makes use of the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; built-in command.&lt;/p&gt;
+&lt;p&gt;The method used in the dotenv plugin to set the environment variables makes use of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; built-in command.&lt;/p&gt;
 
-&lt;p&gt;Although the command is typically seen when loading environment variables, &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; &lt;strong&gt;executes the provided input in Shell&lt;/strong&gt; - (within the same existing shell, that’s why the variables are loaded within the session).&lt;/p&gt;
+&lt;p&gt;Although the command is typically seen when loading environment variables, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; &lt;strong&gt;executes the provided input in Shell&lt;/strong&gt; - (within the same existing shell, that’s why the variables are loaded within the session).&lt;/p&gt;
 
-&lt;p&gt;In our case, whenever a user &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; into a project directory, and that directory has a &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file, the file is passed to &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;, to load the variables - and &lt;em&gt;potentially more&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In our case, whenever a user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; into a project directory, and that directory has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file, the file is passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt;, to load the variables - and &lt;em&gt;potentially more&lt;/em&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;if-the-user-downloads-a-malicious-repository-or-compressed-file-then-working-with-this-material-leads-to-a-remote-code-execution-when-using-ohmyzsh&quot;&gt;If the user downloads a malicious repository or compressed file, then working with this material leads to a remote code execution when using OhMyZsh.&lt;/h3&gt;
 
@@ -191,7 +717,7 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 &lt;h1 id=&quot;fix&quot;&gt;Fix&lt;/h1&gt;
 
-&lt;p&gt;I made a PR to fix the vulnerability at &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;ohmyzsh - PR #8606&lt;/a&gt;. The simple fix to the issue is to prompt the user to confirm the issuance of the &lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt; command to the &lt;code class=&quot;highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.&lt;/p&gt;
+&lt;p&gt;I made a PR to fix the vulnerability at &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;ohmyzsh - PR #8606&lt;/a&gt;. The simple fix to the issue is to prompt the user to confirm the issuance of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; command to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -577,35 +1103,4 @@ Firefox: v64.0&lt;/p&gt;
 
 &lt;p&gt;Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.&lt;/p&gt;
 
-&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Creating an Emojis PHP WebShell</title><link href="https://mazinahmed.net/blog/creating-emojis-php-webshell/" rel="alternate" type="text/html" title="Creating an Emojis PHP WebShell" /><published>2018-07-23T00:00:00-05:00</published><updated>2018-07-23T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/creating-emojis-php-webshell</id><content type="html" xml:base="https://mazinahmed.net/blog/creating-emojis-php-webshell/">&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/a276f6eb-bfeb-443e-b6c7-dccfec992f53.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I recently came across an interesting behaviour on PHP. Apparently, PHP permits the usage of Unicode characters as variable names. Therefore, friendly emojis can be used as a PHP variable.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;output&quot;&gt;Output:&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt; Hello World!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Which is valid.&lt;/p&gt;
-
-&lt;p&gt;I thought about making a fancy example of a PHP Web-Shell using emojis. This is made for entertainment purposes, no real advantage is gained by using Emojis webshell. It may disturb/confuse a WAF or back-end parser, but it’s not confirmed against a real-world environment.&lt;/p&gt;
-
-&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Usage can be as:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://example.com/emojis-webshell.php?👽=pwd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can create a CLI for it to do more; I am only publishing it as a proof of concept.&lt;/p&gt;
-
-&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
-
-&lt;h3 id=&quot;download-emojis-web-shell-link&quot;&gt;[Download] Emojis web-shell: &lt;a href=&quot;https://github.com/mazen160/public/tree/master/Proof-of-Concepts/emojis-webshell&quot;&gt;Link&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>

@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Using HTML Attribute Separators for Bypassing WAF XSS Filters | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Using HTML Attribute Separators for Bypassing WAF XSS Filters" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -1538,7 +1538,7 @@ pre {
 
 <p>We will be using this vector as a baseline for the demonstration in this experiment.</p>
 
-<p>An image is requested at <code class="highlighter-rouge">./x</code>. If the image does not exist or invalid, the JavaScript event handler executes the JavaScript code as instructed. The space ` ` value is what is separating the attributes.</p>
+<p>An image is requested at <code class="language-plaintext highlighter-rouge">./x</code>. If the image does not exist or invalid, the JavaScript event handler executes the JavaScript code as instructed. The space ` ` value is what is separating the attributes.</p>
 
 <p>A typical XSS regular expression that blocks this example vector checks for whitespaces.
 This can be bypassed via the exact vector by using the slash “/” character as an attribute separator (a well-known payload):</p>
@@ -1556,16 +1556,16 @@ This can be bypassed via the exact vector by using the slash “/” character a
 
 <ol>
   <li>
-    <p>Carriage-Return (<code class="highlighter-rouge">0x0D</code>)</p>
+    <p>Carriage-Return (<code class="language-plaintext highlighter-rouge">0x0D</code>)</p>
   </li>
   <li>
-    <p>Line-Feed (<code class="highlighter-rouge">0x0A</code>)</p>
+    <p>Line-Feed (<code class="language-plaintext highlighter-rouge">0x0A</code>)</p>
   </li>
   <li>
-    <p>Horizontal Tab (<code class="highlighter-rouge">0x09</code>)</p>
+    <p>Horizontal Tab (<code class="language-plaintext highlighter-rouge">0x09</code>)</p>
   </li>
   <li>
-    <p>Form-Feed (<code class="highlighter-rouge">0x0C</code>)</p>
+    <p>Form-Feed (<code class="language-plaintext highlighter-rouge">0x0C</code>)</p>
   </li>
 </ol>
 
@@ -1573,7 +1573,7 @@ This can be bypassed via the exact vector by using the slash “/” character a
 
 <h3 id="notes-on-bypassing-wafs-using-identified-attributes-separators">Notes on Bypassing WAFs Using Identified Attributes Separators</h3>
 
-<p>In general, WAF rule sets are strict on blocking certain inputs. By utilizing odd attribute separators, it’s possible to bypass weakly written WAF rules. This is an aid to construct a valid XSS vector; I do not expect a vanilla <code class="highlighter-rouge">&lt;img(attribute-separator)src=x(attribute-separator)onerror=alert(1)&gt;</code> would be a straight payload that bypasses a WAF rule set directly. Instead, tweaking the payload can increase the potentials in writing a valid vector that bypass the WAF XSS filters.</p>
+<p>In general, WAF rule sets are strict on blocking certain inputs. By utilizing odd attribute separators, it’s possible to bypass weakly written WAF rules. This is an aid to construct a valid XSS vector; I do not expect a vanilla <code class="language-plaintext highlighter-rouge">&lt;img(attribute-separator)src=x(attribute-separator)onerror=alert(1)&gt;</code> would be a straight payload that bypasses a WAF rule set directly. Instead, tweaking the payload can increase the potentials in writing a valid vector that bypass the WAF XSS filters.</p>
 
 <p>Furthermore, I have demonstrated a number of payloads previously that utilizes attribute separators implicitly to bypass XSS filters of popular WAFs. You can read about my previous research at <a href="http://blog.mazinahmed.net/2015/09/evading-all-web-application-firewalls.html">Link</a>.</p>
 
@@ -1608,42 +1608,72 @@ I would like to thank Dr. Christian Folini for testing it against ModSecurity CR
         
             
                 
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
                     
                     <h4>Related Posts</h4>
                     <ul>
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/hacking-zoom/">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
                     
                     <li class="relatedPost">
                         <a href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">OhMyZsh dotenv Remote Code Execution
@@ -1739,15 +1769,6 @@ I would like to thank Dr. Christian Folini for testing it against ModSecurity CR
         
         
             
-                
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/">Backchannel Leaks on Strict Content-Security Policy
-                        
-                        </a>
-                    </li>
-                    
-                    
                 
             
                 

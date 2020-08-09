@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>My Experience with Ebay Bug Bounty Program | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="My Experience with Ebay Bug Bounty Program" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -44,7 +44,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"https://mazinahmed.net/assets/static/604be088-6603-451f-b810-eb09fccf03ff.jpeg","headline":"My Experience with Ebay Bug Bounty Program","dateModified":"2015-04-24T00:00:00-05:00","datePublished":"2015-04-24T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"},"url":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/","author":{"@type":"Person","name":"mazinahmed"},"description":"My Experience with Ebay Bug Bounty Program","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"My Experience with Ebay Bug Bounty Program","dateModified":"2015-04-24T00:00:00-05:00","datePublished":"2015-04-24T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"},"url":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/","image":"https://mazinahmed.net/assets/static/604be088-6603-451f-b810-eb09fccf03ff.jpeg","author":{"@type":"Person","name":"mazinahmed"},"description":"My Experience with Ebay Bug Bounty Program","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1534,7 +1534,7 @@ pre {
 
 <p>After quick searches, I have found a subdomain called ebaycommercenetwork.com. I have then started testing it for common flaws.</p>
 
-<p>I have noticed a Cross ­Site Scripting issue on <code class="highlighter-rouge">http://ebaycommercenetwork.com/kb/[Payload]</code>. It only filters the slash character <code class="highlighter-rouge">/</code>. The bypass for it was just by Hex encoding it. So <code class="highlighter-rouge">“/” == %2F</code>. Using the bypass, I have generated a pop-­up alert to indicate the existence of the XSS issue, as the following screenshot:</p>
+<p>I have noticed a Cross ­Site Scripting issue on <code class="language-plaintext highlighter-rouge">http://ebaycommercenetwork.com/kb/[Payload]</code>. It only filters the slash character <code class="language-plaintext highlighter-rouge">/</code>. The bypass for it was just by Hex encoding it. So <code class="language-plaintext highlighter-rouge">“/” == %2F</code>. Using the bypass, I have generated a pop-­up alert to indicate the existence of the XSS issue, as the following screenshot:</p>
 
 <p><img src="/assets/static/c27f7686-3d9f-4373-a015-7ea90706842c.png" alt="" /></p>
 
@@ -1587,6 +1587,21 @@ pre {
 
     <div class="related">
     
+    
+        
+        
+            
+                
+            
+        
+            
+                
+            
+        
+            
+                
+            
+        
     
         
         

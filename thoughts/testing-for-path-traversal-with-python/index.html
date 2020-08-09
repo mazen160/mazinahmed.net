@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>The Path for Testing Path Traversal Vulnerabilities with Python | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="The Path for Testing Path Traversal Vulnerabilities with Python" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -1525,13 +1525,13 @@ pre {
 
 <hr />
 
-<p>I have noticed an odd behavior in <code class="highlighter-rouge">requests</code> module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.</p>
+<p>I have noticed an odd behavior in <code class="language-plaintext highlighter-rouge">requests</code> module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"http://127.0.0.1/../../../../doing/certain/check"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Which should typically send the request to the following path: <code class="highlighter-rouge">/../../../doing/certain/check</code>. Instead, it’s requesting <code class="highlighter-rouge">/doing/certain/check</code> and modifying the specified input.</p>
+<p>Which should typically send the request to the following path: <code class="language-plaintext highlighter-rouge">/../../../doing/certain/check</code>. Instead, it’s requesting <code class="language-plaintext highlighter-rouge">/doing/certain/check</code> and modifying the specified input.</p>
 
 <p>The reason is, dot segments escaping, following RFC3986.</p>
 
@@ -1586,9 +1586,9 @@ pre {
 
 <h2 id="option-4-downgrading-urllib3">Option 4: Downgrading urllib3</h2>
 
-<p>It’s possible to use previous versions of <code class="highlighter-rouge">requests</code> or <code class="highlighter-rouge">urllib3</code>.</p>
+<p>It’s possible to use previous versions of <code class="language-plaintext highlighter-rouge">requests</code> or <code class="language-plaintext highlighter-rouge">urllib3</code>.</p>
 
-<p>The option for current tools that use requests or urllib3 is to revert to <code class="highlighter-rouge">urllib3==1.24.3</code>. However, this may not be the best option from an engineering perspective.</p>
+<p>The option for current tools that use requests or urllib3 is to revert to <code class="language-plaintext highlighter-rouge">urllib3==1.24.3</code>. However, this may not be the best option from an engineering perspective.</p>
 
 <p><br /></p>
 
@@ -1615,6 +1615,27 @@ pre {
 
     <div class="related">
     
+    
+        
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
     
         
         

