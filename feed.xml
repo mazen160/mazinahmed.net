@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2020-09-05T10:54:47-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link href="https://mazinahmed.net/blog/hacking-zoom/" rel="alternate" type="text/html" title="Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom" /><published>2020-08-09T00:00:00-05:00</published><updated>2020-08-09T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/hacking-zoom</id><content type="html" xml:base="https://mazinahmed.net/blog/hacking-zoom/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-03-22T10:43:45-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link href="https://mazinahmed.net/blog/hacking-zoom/" rel="alternate" type="text/html" title="Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom" /><published>2020-08-09T00:00:00-05:00</published><updated>2020-08-09T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/hacking-zoom</id><content type="html" xml:base="https://mazinahmed.net/blog/hacking-zoom/">&lt;hr /&gt;
 
 &lt;h1 id=&quot;hacking-zoom&quot;&gt;Hacking Zoom&lt;/h1&gt;
 
@@ -524,7 +524,7 @@ https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;https://github.com/ImageMagick/ImageMagick/issues/592&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="zoom" /><summary type="html"></summary></entry><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/thoughts/covid19-and-cybersecurity/">&lt;hr /&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="zoom" /><summary type="html"></summary></entry><entry><title type="html">Bad Marketing: COVID-19 and Cyber Security</title><link href="https://mazinahmed.net/blog/covid19-and-cybersecurity/" rel="alternate" type="text/html" title="Bad Marketing: COVID-19 and Cyber Security" /><published>2020-04-14T00:00:00-05:00</published><updated>2020-04-14T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/covid19-and-cybersecurity</id><content type="html" xml:base="https://mazinahmed.net/blog/covid19-and-cybersecurity/">&lt;hr /&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/static/930cf461-8dc4-4a43-9f98-3519cdda7004.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
@@ -537,7 +537,7 @@ https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
 
 &lt;p&gt;What should be required is public sharing of technical threat intelligence reports for related confirmed incidents.&lt;/p&gt;
 
-&lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">The Path for Testing Path Traversal Vulnerabilities with Python</title><link href="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/" rel="alternate" type="text/html" title="The Path for Testing Path Traversal Vulnerabilities with Python" /><published>2020-04-12T00:00:00-05:00</published><updated>2020-04-12T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python</id><content type="html" xml:base="https://mazinahmed.net/thoughts/testing-for-path-traversal-with-python/">&lt;hr /&gt;
+&lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">The Path for Testing Path Traversal Vulnerabilities with Python</title><link href="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/" rel="alternate" type="text/html" title="The Path for Testing Path Traversal Vulnerabilities with Python" /><published>2020-04-12T00:00:00-05:00</published><updated>2020-04-12T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/testing-for-path-traversal-with-python</id><content type="html" xml:base="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/">&lt;hr /&gt;
 
 &lt;p&gt;I have noticed an odd behavior in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.&lt;/p&gt;
 
@@ -621,17 +621,7 @@ https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
   &lt;li&gt;RFC3986 - Section 5.2.4 - Remove Dot Segments: &lt;a href=&quot;http://tools.ietf.org/html/rfc3986#section-5.2.4&quot;&gt;http://tools.ietf.org/html/rfc3986#section-5.2.4&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/issues/13&quot;&gt;https://github.com/trustedsec/cve-2019-19781/issues/13&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&quot;&gt;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry><entry><title type="html">Hello World: New Space in The Website</title><link href="https://mazinahmed.net/thoughts/hello-world/" rel="alternate" type="text/html" title="Hello World: New Space in The Website" /><published>2020-04-11T00:00:00-05:00</published><updated>2020-04-11T00:00:00-05:00</updated><id>https://mazinahmed.net/thoughts/hello-world</id><content type="html" xml:base="https://mazinahmed.net/thoughts/hello-world/">&lt;hr /&gt;
-
-&lt;p&gt;I always wanted to write relatively short blog posts on my website to discuss security and to express thoughts on different incidents. However, I didn’t want to mix longer researches and articles with shorter posts.&lt;/p&gt;
-
-&lt;p&gt;Therefore, I created a new space on my website to freely talk while having lengthy blog posts in their own space. In this space, I will be writing 1-3-paragraph blog posts for different topics.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hello World!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Best Regards,
-&lt;br /&gt;
-Mazin&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="thoughts" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">OhMyZsh dotenv Remote Code Execution</title><link href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" rel="alternate" type="text/html" title="OhMyZsh dotenv Remote Code Execution" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce</id><content type="html" xml:base="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">&lt;hr /&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry><entry><title type="html">OhMyZsh dotenv Remote Code Execution</title><link href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" rel="alternate" type="text/html" title="OhMyZsh dotenv Remote Code Execution" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce</id><content type="html" xml:base="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/91389496-77d3-4dbe-941b-180403841f58.png&quot; alt=&quot;&quot; class=&quot;bigger-image&quot; /&gt;&lt;/p&gt;
 
@@ -1103,4 +1093,35 @@ Firefox: v64.0&lt;/p&gt;
 
 &lt;p&gt;Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.&lt;/p&gt;
 
-&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Creating an Emojis PHP WebShell</title><link href="https://mazinahmed.net/blog/creating-emojis-php-webshell/" rel="alternate" type="text/html" title="Creating an Emojis PHP WebShell" /><published>2018-07-23T00:00:00-05:00</published><updated>2018-07-23T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/creating-emojis-php-webshell</id><content type="html" xml:base="https://mazinahmed.net/blog/creating-emojis-php-webshell/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/a276f6eb-bfeb-443e-b6c7-dccfec992f53.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently came across an interesting behaviour on PHP. Apparently, PHP permits the usage of Unicode characters as variable names. Therefore, friendly emojis can be used as a PHP variable.&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;output&quot;&gt;Output:&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt; Hello World!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which is valid.&lt;/p&gt;
+
+&lt;p&gt;I thought about making a fancy example of a PHP Web-Shell using emojis. This is made for entertainment purposes, no real advantage is gained by using Emojis webshell. It may disturb/confuse a WAF or back-end parser, but it’s not confirmed against a real-world environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;/h3&gt;
+
+&lt;p&gt;Usage can be as:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://example.com/emojis-webshell.php?👽=pwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can create a CLI for it to do more; I am only publishing it as a proof of concept.&lt;/p&gt;
+
+&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
+
+&lt;h3 id=&quot;download-emojis-web-shell-link&quot;&gt;[Download] Emojis web-shell: &lt;a href=&quot;https://github.com/mazen160/public/tree/master/Proof-of-Concepts/emojis-webshell&quot;&gt;Link&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
