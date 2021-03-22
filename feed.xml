@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-03-22T10:43:45-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link href="https://mazinahmed.net/blog/hacking-zoom/" rel="alternate" type="text/html" title="Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom" /><published>2020-08-09T00:00:00-05:00</published><updated>2020-08-09T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/hacking-zoom</id><content type="html" xml:base="https://mazinahmed.net/blog/hacking-zoom/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-03-22T11:12:22-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region</title><link href="https://mazinahmed.net/blog/interview-with-sectastic-podcast/" rel="alternate" type="text/html" title="Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-sectastic-podcast</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-sectastic-podcast/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/739a0909-9cc2-47d1-896d-2c727121881f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I did an interview with &lt;a href=&quot;https://www.linkedin.com/in/miladca/&quot;&gt;Milad Aslaner&lt;/a&gt; about how I started in cyber security, what I have been building at FullHunt, the concept of assets discovery and continuous security, and how I started on of the first cyber security startups in the GCC region.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/qJjERXwM5wo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&quot;watch-on-youtube&quot;&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=qJjERXwM5wo&quot;&gt;Watch on YouTube&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;listen-on-spotify&quot;&gt;&lt;a href=&quot;https://open.spotify.com/episode/5wFfNabozVKdwNfVpMNTm3&quot;&gt;Listen on Spotify&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="interview" /><category term="podcast" /><summary type="html"></summary></entry><entry><title type="html">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link href="https://mazinahmed.net/blog/hacking-zoom/" rel="alternate" type="text/html" title="Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom" /><published>2020-08-09T00:00:00-05:00</published><updated>2020-08-09T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/hacking-zoom</id><content type="html" xml:base="https://mazinahmed.net/blog/hacking-zoom/">&lt;hr /&gt;
 
 &lt;h1 id=&quot;hacking-zoom&quot;&gt;Hacking Zoom&lt;/h1&gt;
 
@@ -1093,35 +1103,4 @@ Firefox: v64.0&lt;/p&gt;
 
 &lt;p&gt;Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.&lt;/p&gt;
 
-&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Creating an Emojis PHP WebShell</title><link href="https://mazinahmed.net/blog/creating-emojis-php-webshell/" rel="alternate" type="text/html" title="Creating an Emojis PHP WebShell" /><published>2018-07-23T00:00:00-05:00</published><updated>2018-07-23T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/creating-emojis-php-webshell</id><content type="html" xml:base="https://mazinahmed.net/blog/creating-emojis-php-webshell/">&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/a276f6eb-bfeb-443e-b6c7-dccfec992f53.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I recently came across an interesting behaviour on PHP. Apparently, PHP permits the usage of Unicode characters as variable names. Therefore, friendly emojis can be used as a PHP variable.&lt;/p&gt;
-
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$😶&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;output&quot;&gt;Output:&lt;/h3&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt; Hello World!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Which is valid.&lt;/p&gt;
-
-&lt;p&gt;I thought about making a fancy example of a PHP Web-Shell using emojis. This is made for entertainment purposes, no real advantage is gained by using Emojis webshell. It may disturb/confuse a WAF or back-end parser, but it’s not confirmed against a real-world environment.&lt;/p&gt;
-
-&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;/h3&gt;
-
-&lt;p&gt;Usage can be as:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://example.com/emojis-webshell.php?👽=pwd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can create a CLI for it to do more; I am only publishing it as a proof of concept.&lt;/p&gt;
-
-&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
-
-&lt;h3 id=&quot;download-emojis-web-shell-link&quot;&gt;[Download] Emojis web-shell: &lt;a href=&quot;https://github.com/mazen160/public/tree/master/Proof-of-Concepts/emojis-webshell&quot;&gt;Link&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
