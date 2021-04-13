@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-04-12T08:55:54-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region</title><link href="https://mazinahmed.net/blog/interview-with-sectastic-podcast/" rel="alternate" type="text/html" title="Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-sectastic-podcast</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-sectastic-podcast/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-04-13T07:46:39-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">DDoS is not Dead: Building a Scalable DDoS Framework</title><link href="https://mazinahmed.net/blog/stressful-ddos-framework/" rel="alternate" type="text/html" title="DDoS is not Dead: Building a Scalable DDoS Framework" /><published>2021-04-13T00:00:00-05:00</published><updated>2021-04-13T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/stressful-ddos-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/stressful-ddos-framework/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+
+&lt;p&gt;I’m releasing my latest project, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet, your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a real concern that needs to be put on the organization’s radar, not on a postmortem after an attack happens.&lt;/p&gt;
+
+&lt;h2 id=&quot;time-is-money-especially-on-downtime&quot;&gt;Time is Money, Especially on Downtime&lt;/h2&gt;
+
+&lt;p&gt;The cost of downtime is high and expensive for businesses, and it varies from one industry to another. A payment gateway processor downtime can affect many customers that solely rely on the payment gateway to operate. An hour’s downtime costs millions of dollars in losses.&lt;/p&gt;
+
+&lt;p&gt;The same goes for an E-Commerce website, some E-Commerces have more than 30% of their revenue coming from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause major losses for the E-commerce business.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives around the world. Think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs that I’m using to write this blog post.&lt;/p&gt;
+
+&lt;h2 id=&quot;protonmail-ddos-attack-changed-my-perspective&quot;&gt;ProtonMail DDoS Attack Changed My Perspective&lt;/h2&gt;
+
+&lt;p&gt;Back when I was working at ProtonMail, I had the opportunity to witness one of the largest attacks that happened in Europe in 2015 &lt;a href=&quot;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&quot;&gt;1&lt;/a&gt; and 2018 &lt;a href=&quot;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&quot;&gt;2&lt;/a&gt;. These attacks were devastating and changed my perspective on DDoS attacks and their effectiveness.&lt;/p&gt;
+
+&lt;p&gt;ProtonMail security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of all the amazing ProtonMail team.&lt;/p&gt;
+
+&lt;p&gt;We had built up awesome technologies to prevent attacks that could breach the data of ProtonMail, yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack is not capable of risking the security nor the privacy of ProtonMail, but it was effective to put us in a stressful situation to fight back and return the services back to normal.&lt;/p&gt;
+
+&lt;p&gt;If there is a main lesson I learned from this experience is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and possibly more ready to handle an attack with this size. Putting DDoS and availability risks on the map became important for me when building a security program of any size.&lt;/p&gt;
+
+&lt;h1 id=&quot;building-the-dream-product-stressful-framework&quot;&gt;Building the Dream Product: Stressful Framework&lt;/h1&gt;
+
+&lt;p&gt;I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My vision is clear: as a customer, I want to have a trusted platform where I can consult for verifying the existing DDoS defenses, to show me what’s wrong based on research and proven tests, and to show me how to patch weaknesses.&lt;/p&gt;
+
+&lt;p&gt;Trusting a security vendor blindly is always a bad idea, companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product in preventing attacks.&lt;/p&gt;
+
+&lt;h3 id=&quot;when-i-didnt-find-a-solution-i-started-the-journey-of-building-stressfulio&quot;&gt;When I didn’t find a solution, I started the journey of building Stressful.io.&lt;/h3&gt;
+
+&lt;h2 id=&quot;researching-ttps&quot;&gt;Researching TTPs&lt;/h2&gt;
+
+&lt;p&gt;The most difficult part in having this project come to reality was the research part. I started collecting repositories and historical archives for attacks that have been witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate researches and techniques I have been seeing.&lt;/p&gt;
+
+&lt;p&gt;I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge-base for everything related to DDoS attacks.&lt;/p&gt;
+
+&lt;p&gt;This was majorly a side project that I have been imagining over the years, and in 2020, I took serious focus to complete the product.&lt;/p&gt;
+
+&lt;h2 id=&quot;quality-vs-quantity-attacks&quot;&gt;Quality vs. Quantity Attacks&lt;/h2&gt;
+
+&lt;p&gt;One factor that the market is fully relying on measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. A 50 GBPS DDoS attack today is much easier to generate than 10 years ago, where the cloud era wasn’t as huge as before. Infrastructure deployment 10 years ago wasn’t as accessible as today. Today, Infrastructure-as-code became the de-facto for deploying a fully scalable infrastructure within minutes. The same goes for defense, mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.&lt;/p&gt;
+
+&lt;p&gt;On the other side, DDoS attacks that focus on Application-layer exploitation were being dismissed by most deployments I have personally reviewed over the years. Additionally, DoS vectors that exploits and abuses a security vulnerability of a given product or application are patterns that I have been seeing.&lt;/p&gt;
+
+&lt;p&gt;Application-layer DDoS attacks are harder to defend, much difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt; framework.&lt;/p&gt;
+
+&lt;h2 id=&quot;stressfulio-architecture&quot;&gt;Stressful.io Architecture&lt;/h2&gt;
+
+&lt;p&gt;I’m planning to release technical documentation in the future about the architecture I built for &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt; that fully relies on being cloud-native to scale.&lt;/p&gt;
+
+&lt;p&gt;After building the app on &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, I integrated the CD pipeline with Terraform to deploy the infrastructure used in simulations. I have built the integration with Microsoft Azure, Amazon AWS, and there will be an integration with Google Cloud soon.&lt;/p&gt;
+
+&lt;h3 id=&quot;engine&quot;&gt;Engine&lt;/h3&gt;
+
+&lt;h4 id=&quot;language-of-choice&quot;&gt;Language of Choice?&lt;/h4&gt;
+
+&lt;p&gt;I wrote the framework in Golang as I have been seeing great potential for DDoS in Golang. The networking API in Golang is much reliable, and the concurrency and state management in projects are much promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by various features Golang allows and provides.&lt;/p&gt;
+
+&lt;h3 id=&quot;modules&quot;&gt;Modules&lt;/h3&gt;
+
+&lt;p&gt;I have built modules to support attacks for different vectors.&lt;/p&gt;
+
+&lt;p&gt;This is an example of modules I have been building in the framework:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP SlowPost Attack&lt;/li&gt;
+  &lt;li&gt;HTTP Slowloris attack (GET)&lt;/li&gt;
+  &lt;li&gt;HTTP Web Cache-Poisoning Attack&lt;/li&gt;
+  &lt;li&gt;HTTP SlowLoris (Infinite Headers)&lt;/li&gt;
+  &lt;li&gt;Amazon AWS Denial of Wallet Attacks&lt;/li&gt;
+  &lt;li&gt;Microsoft Azure Denial of Wallet Attacks&lt;/li&gt;
+  &lt;li&gt;HTTP/2 DoS Attacks&lt;/li&gt;
+  &lt;li&gt;HTTP DoS via Headless Browsers&lt;/li&gt;
+  &lt;li&gt;WordPress Resource Exhaustion&lt;/li&gt;
+  &lt;li&gt;HTTP Hash Collision Attack&lt;/li&gt;
+  &lt;li&gt;HTTP Memory Exhaustion&lt;/li&gt;
+  &lt;li&gt;Xerxes Attack&lt;/li&gt;
+  &lt;li&gt;SOAP XML Quadratic Blowup Attack&lt;/li&gt;
+  &lt;li&gt;SOAP XML Billion Laughs Attack&lt;/li&gt;
+  &lt;li&gt;HTTP Keep-Alive Flood Attack&lt;/li&gt;
+  &lt;li&gt;HTTP Unlimited Downloads&lt;/li&gt;
+  &lt;li&gt;HTTP GET Flood&lt;/li&gt;
+  &lt;li&gt;HTTP SlowPost (Infinite Uploads)&lt;/li&gt;
+  &lt;li&gt;HTTP HULK Attack&lt;/li&gt;
+  &lt;li&gt;MySQL Resource Exhaustion&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is just part of the modules I have developed. I also develop modules based on specific use-cases and scenarios. Lastly, I will be also keeping an up-to-date arsenal for DoS attacks and modules on the framework.&lt;/p&gt;
+
+&lt;h1 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h1&gt;
+
+&lt;p&gt;Contact me on &lt;a href=&quot;mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query&quot;&gt;info@Stressful.io&lt;/a&gt; to get a free consultation demo for your organization. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!&lt;/p&gt;
+
+&lt;h3 id=&quot;are-you-a-researcher-interested-in-the-ddos-market-and-ddos-defenses&quot;&gt;Are you a researcher interested in the DDoS market and DDoS defenses?&lt;/h3&gt;
+
+&lt;p&gt;Let’s connect and share thoughts. My contact details are available on the website.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&quot;&gt;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&quot;&gt;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="project" /><category term="stressful" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" /><media:content medium="image" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region</title><link href="https://mazinahmed.net/blog/interview-with-sectastic-podcast/" rel="alternate" type="text/html" title="Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-sectastic-podcast</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-sectastic-podcast/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/739a0909-9cc2-47d1-896d-2c727121881f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1026,81 +1139,4 @@ Firefox: v64.0&lt;/p&gt;
 
 &lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
 
-&lt;p&gt;These payloads can be good for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where Content-Security Policy is blocking outbound requests to untrusted hosts.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Practical Protection Against DNS Rebinding Attacks</title><link href="https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/" rel="alternate" type="text/html" title="Practical Protection Against DNS Rebinding Attacks" /><published>2018-07-31T00:00:00-05:00</published><updated>2018-07-31T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks</id><content type="html" xml:base="https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/">&lt;hr /&gt;
-
-&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;DNS rebinding is a known attack against the same origin policy of modern browsers.&lt;/p&gt;
-
-&lt;p&gt;The attack works by abusing DNS where a request with a small TTL is set. After the TTL is reached, another query that resolves to another IP address (a local or internal IP address in typical cases). This way, an unauthorized party is capable to bypass the same origin policy by loading malicious code on browsers, then executing it against local or internal networks. Theoretically speaking, SOP prevents this from happening, however, DNS rebinding can bypass this protection on certain circumstances.&lt;/p&gt;
-
-&lt;p&gt;There has been a large amount of research on exploiting DNS rebinding attacks in the previous years.&lt;/p&gt;
-
-&lt;h1 id=&quot;problem&quot;&gt;Problem&lt;/h1&gt;
-
-&lt;p&gt;Although that this attack is known for years, securing an environment against DNS rebinding is normally done on application level only.&lt;/p&gt;
-
-&lt;p&gt;I don’t find this to be the best approach, as there is a larger surface that we can control to block these attacks.&lt;/p&gt;
-
-&lt;h1 id=&quot;proposed-solution&quot;&gt;Proposed Solution&lt;/h1&gt;
-
-&lt;p&gt;A DNS rebinding attack that exploits a local service shows that the domain name is pointing to a loopback address. Similarly, if it’s exploiting a service in the internal network, the domain name will be shown to be pointing to a private address.&lt;/p&gt;
-
-&lt;p&gt;In a well-structured environment, we should not rely on public DNS records to point to a loopback or private address; there is no reason to do so.&lt;/p&gt;
-
-&lt;h1 id=&quot;idea&quot;&gt;Idea&lt;/h1&gt;
-
-&lt;p&gt;If the DNS query response is a record that points to a loopback address, then this is a potential DNS rebinding attack. This should be blocked.&lt;/p&gt;
-
-&lt;p&gt;If done correctly, this will effectively block DNS rebinding attacks against local addresses.&lt;/p&gt;
-
-&lt;h1 id=&quot;implementation&quot;&gt;Implementation&lt;/h1&gt;
-
-&lt;p&gt;DNS resolvers have this feature built-in. For example, you can configure BIND to block a query where the DNS record is on the IP range.&lt;/p&gt;
-
-&lt;p&gt;IPtables can help with applying a patch too. The problem that there is no direct way to apply it.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt; INPUT  &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; udp &lt;span class=&quot;nt&quot;&gt;--sport&lt;/span&gt; 53 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; string &lt;span class=&quot;nt&quot;&gt;--algo&lt;/span&gt; bm &lt;span class=&quot;nt&quot;&gt;--hex-string&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'|7f000001|'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; DROP
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This will block any DNS UDP inbound traffic on port 53 that holds “127”.&lt;/p&gt;
-
-&lt;h3 id=&quot;why-not-127001&quot;&gt;Why not “&lt;em&gt;127.0.0.1&lt;/em&gt;”?&lt;/h3&gt;
-
-&lt;p&gt;The internal loopback is /8 range. Any IP address on the range is pointing to the associated local machine.&lt;/p&gt;
-
-&lt;h3 id=&quot;will-this-iptable-rule-100-mitigate-against-the-attack&quot;&gt;Will this IPtable rule 100% mitigate against the attack?&lt;/h3&gt;
-
-&lt;p&gt;This is a starting point for a research on protecting against DNS rebinding attacks. It initiates a starting point for security vendors and endpoint security solution vendors to apply it for customers.&lt;/p&gt;
-
-&lt;p&gt;All IANA-private IP ranges should be blocked within local network using the same approach discussed above.&lt;/p&gt;
-
-&lt;p&gt;This is of course in addition to IPV6 address that points to the internal loopback.&lt;/p&gt;
-
-&lt;p&gt;The IPtable command is a simple proof of concept.&lt;/p&gt;
-
-&lt;h2 id=&quot;blocking-dns-queries-that-resolves-to-private-ip-addresses-via-dns-resolvers&quot;&gt;Blocking DNS queries that resolves to Private IP addresses via DNS resolvers&lt;/h2&gt;
-
-&lt;p&gt;DNS resolvers have the ability to block this attack. For example, BIND9’s RPZ (Response Policy Zone) can be configured to block responses of queries resolving to specific IP addresses via “Policy Trigger - IP Trigger”.&lt;/p&gt;
-
-&lt;p&gt;This can be a stable solution for production environments.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-about-quad9-secure-dns-resolver&quot;&gt;How about QUAD9 Secure DNS Resolver?&lt;/h2&gt;
-
-&lt;p&gt;I have tested QUAD9 Secure DNS resolver, and they apparently do not provide protection to DNS Rebinding attacks.&lt;/p&gt;
-
-&lt;p&gt;Other DNS resolvers are assumed to not provide protection, as this is not their goal. However, QUAD9 should block attempts of DNS rebinding attacks.&lt;/p&gt;
-
-&lt;h1 id=&quot;acknowledgment&quot;&gt;Acknowledgment&lt;/h1&gt;
-
-&lt;p&gt;I would like to thank Andzej Valcik for his contribution to the research.&lt;/p&gt;
-
-&lt;h1 id=&quot;update-september-16th-2018&quot;&gt;Update (September 16th, 2018):&lt;/h1&gt;
-
-&lt;p&gt;NCC Group released a research regarding DNS rebinding attacks along with a tool called “Singularity”.&lt;/p&gt;
-
-&lt;p&gt;An interesting bypass that NCC group demonstrated in the research is the usage of a CNAME that points to “localhost”. Since “localhost” is already registered in the typical local resolver (at hosts file for example) as 127.0.0.1, this will be also required to be blocked using the same approach mentioned in my research.&lt;/p&gt;
-
-&lt;p&gt;Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.&lt;/p&gt;
-
-&lt;p&gt;Link to NCC group research: &lt;a href=&quot;https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;These payloads can be good for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where Content-Security Policy is blocking outbound requests to untrusted hosts.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>

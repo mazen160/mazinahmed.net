@@ -25,24 +25,26 @@
     <meta property="og:type" content="profile">
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>SQL Injection and Cross-site Scripting at the website of the University of Calgary | Mazin Ahmed</title>
+<title>DDoS is not Dead: Building a Scalable DDoS Framework | Mazin Ahmed</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="SQL Injection and Cross-site Scripting at the website of the University of Calgary" />
+<meta property="og:title" content="DDoS is not Dead: Building a Scalable DDoS Framework" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="SQL Injection and Cross-site Scripting at the website of the University of Calgary" />
-<meta property="og:description" content="SQL Injection and Cross-site Scripting at the website of the University of Calgary" />
-<link rel="canonical" href="https://mazinahmed.net/blog/university-of-calgary/" />
-<meta property="og:url" content="https://mazinahmed.net/blog/university-of-calgary/" />
+<meta name="description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights." />
+<meta property="og:description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights." />
+<link rel="canonical" href="https://mazinahmed.net/blog/stressful-ddos-framework/" />
+<meta property="og:url" content="https://mazinahmed.net/blog/stressful-ddos-framework/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
+<meta property="og:image" content="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2014-02-06T00:00:00-06:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="SQL Injection and Cross-site Scripting at the website of the University of Calgary" />
+<meta property="article:published_time" content="2021-04-13T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" />
+<meta property="twitter:title" content="DDoS is not Dead: Building a Scalable DDoS Framework" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/university-of-calgary/"},"author":{"@type":"Person","name":"mazinahmed"},"description":"SQL Injection and Cross-site Scripting at the website of the University of Calgary","@type":"BlogPosting","headline":"SQL Injection and Cross-site Scripting at the website of the University of Calgary","dateModified":"2014-02-06T00:00:00-06:00","datePublished":"2014-02-06T00:00:00-06:00","url":"https://mazinahmed.net/blog/university-of-calgary/","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/stressful-ddos-framework/"},"author":{"@type":"Person","name":"mazinahmed"},"description":"I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights.","@type":"BlogPosting","headline":"DDoS is not Dead: Building a Scalable DDoS Framework","dateModified":"2021-04-13T00:00:00-05:00","datePublished":"2021-04-13T00:00:00-05:00","image":"https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg","url":"https://mazinahmed.net/blog/stressful-ddos-framework/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -68,7 +70,7 @@
 <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
 
-    <link rel="canonical" href="https://mazinahmed.net/blog/university-of-calgary/">
+    <link rel="canonical" href="https://mazinahmed.net/blog/stressful-ddos-framework/">
     <link rel="alternate" type="application/rss+xml" title="" href="https://mazinahmed.net/feed.xml" />
 
     <style>
@@ -1503,15 +1505,15 @@ pre {
 
 
 
-<h1 class="title">SQL Injection and Cross-site Scripting at the website of the University of Calgary</h1>
+<h1 class="title">DDoS is not Dead: Building a Scalable DDoS Framework</h1>
 
 <span class="date">
-    <time datetime="06-02-2014">Thursday. February 06, 2014</time>
+    <time datetime="13-04-2021">Tuesday. April 13, 2021</time>
      - <span class="reading-time" title="Estimated read time">
     
 
     
-        1 min
+        8 mins
     
 </span>
 
@@ -1521,9 +1523,119 @@ pre {
 
 <hr />
 
-<p>I have reported several critical vulnerabilities, such as SQL Injection and Cross-site Scripting to the IT support center of the University of Calgary. The university have fixed the issues successfully.</p>
+<p><img src="/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" alt="" /></p>
 
-<p><img src="/assets/static/b038fefc-1ecf-442d-b1f3-fbe4ca625f5f.jpg" alt="" /></p>
+<h1 id="abstract">Abstract</h1>
+
+<p>I’m releasing my latest project, <a href="https://stressful.io">Stressful.io</a>, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
+
+<hr />
+
+<p>I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet, your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a real concern that needs to be put on the organization’s radar, not on a postmortem after an attack happens.</p>
+
+<h2 id="time-is-money-especially-on-downtime">Time is Money, Especially on Downtime</h2>
+
+<p>The cost of downtime is high and expensive for businesses, and it varies from one industry to another. A payment gateway processor downtime can affect many customers that solely rely on the payment gateway to operate. An hour’s downtime costs millions of dollars in losses.</p>
+
+<p>The same goes for an E-Commerce website, some E-Commerces have more than 30% of their revenue coming from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause major losses for the E-commerce business.</p>
+
+<p>Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives around the world. Think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs that I’m using to write this blog post.</p>
+
+<h2 id="protonmail-ddos-attack-changed-my-perspective">ProtonMail DDoS Attack Changed My Perspective</h2>
+
+<p>Back when I was working at ProtonMail, I had the opportunity to witness one of the largest attacks that happened in Europe in 2015 <a href="https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/">1</a> and 2018 <a href="https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/">2</a>. These attacks were devastating and changed my perspective on DDoS attacks and their effectiveness.</p>
+
+<p>ProtonMail security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of all the amazing ProtonMail team.</p>
+
+<p>We had built up awesome technologies to prevent attacks that could breach the data of ProtonMail, yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack is not capable of risking the security nor the privacy of ProtonMail, but it was effective to put us in a stressful situation to fight back and return the services back to normal.</p>
+
+<p>If there is a main lesson I learned from this experience is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and possibly more ready to handle an attack with this size. Putting DDoS and availability risks on the map became important for me when building a security program of any size.</p>
+
+<h1 id="building-the-dream-product-stressful-framework">Building the Dream Product: Stressful Framework</h1>
+
+<p>I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My vision is clear: as a customer, I want to have a trusted platform where I can consult for verifying the existing DDoS defenses, to show me what’s wrong based on research and proven tests, and to show me how to patch weaknesses.</p>
+
+<p>Trusting a security vendor blindly is always a bad idea, companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product in preventing attacks.</p>
+
+<h3 id="when-i-didnt-find-a-solution-i-started-the-journey-of-building-stressfulio">When I didn’t find a solution, I started the journey of building Stressful.io.</h3>
+
+<h2 id="researching-ttps">Researching TTPs</h2>
+
+<p>The most difficult part in having this project come to reality was the research part. I started collecting repositories and historical archives for attacks that have been witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate researches and techniques I have been seeing.</p>
+
+<p>I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge-base for everything related to DDoS attacks.</p>
+
+<p>This was majorly a side project that I have been imagining over the years, and in 2020, I took serious focus to complete the product.</p>
+
+<h2 id="quality-vs-quantity-attacks">Quality vs. Quantity Attacks</h2>
+
+<p>One factor that the market is fully relying on measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. A 50 GBPS DDoS attack today is much easier to generate than 10 years ago, where the cloud era wasn’t as huge as before. Infrastructure deployment 10 years ago wasn’t as accessible as today. Today, Infrastructure-as-code became the de-facto for deploying a fully scalable infrastructure within minutes. The same goes for defense, mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.</p>
+
+<p>On the other side, DDoS attacks that focus on Application-layer exploitation were being dismissed by most deployments I have personally reviewed over the years. Additionally, DoS vectors that exploits and abuses a security vulnerability of a given product or application are patterns that I have been seeing.</p>
+
+<p>Application-layer DDoS attacks are harder to defend, much difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the <a href="https://stressful.io">Stressful.io</a> framework.</p>
+
+<h2 id="stressfulio-architecture">Stressful.io Architecture</h2>
+
+<p>I’m planning to release technical documentation in the future about the architecture I built for <a href="https://stressful.io">Stressful.io</a> that fully relies on being cloud-native to scale.</p>
+
+<p>After building the app on <a href="https://stressful.io">Stressful.io</a>, I integrated the CD pipeline with Terraform to deploy the infrastructure used in simulations. I have built the integration with Microsoft Azure, Amazon AWS, and there will be an integration with Google Cloud soon.</p>
+
+<h3 id="engine">Engine</h3>
+
+<h4 id="language-of-choice">Language of Choice?</h4>
+
+<p>I wrote the framework in Golang as I have been seeing great potential for DDoS in Golang. The networking API in Golang is much reliable, and the concurrency and state management in projects are much promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by various features Golang allows and provides.</p>
+
+<h3 id="modules">Modules</h3>
+
+<p>I have built modules to support attacks for different vectors.</p>
+
+<p>This is an example of modules I have been building in the framework:</p>
+
+<ul>
+  <li>HTTP SlowPost Attack</li>
+  <li>HTTP Slowloris attack (GET)</li>
+  <li>HTTP Web Cache-Poisoning Attack</li>
+  <li>HTTP SlowLoris (Infinite Headers)</li>
+  <li>Amazon AWS Denial of Wallet Attacks</li>
+  <li>Microsoft Azure Denial of Wallet Attacks</li>
+  <li>HTTP/2 DoS Attacks</li>
+  <li>HTTP DoS via Headless Browsers</li>
+  <li>WordPress Resource Exhaustion</li>
+  <li>HTTP Hash Collision Attack</li>
+  <li>HTTP Memory Exhaustion</li>
+  <li>Xerxes Attack</li>
+  <li>SOAP XML Quadratic Blowup Attack</li>
+  <li>SOAP XML Billion Laughs Attack</li>
+  <li>HTTP Keep-Alive Flood Attack</li>
+  <li>HTTP Unlimited Downloads</li>
+  <li>HTTP GET Flood</li>
+  <li>HTTP SlowPost (Infinite Uploads)</li>
+  <li>HTTP HULK Attack</li>
+  <li>MySQL Resource Exhaustion</li>
+</ul>
+
+<p>This is just part of the modules I have developed. I also develop modules based on specific use-cases and scenarios. Lastly, I will be also keeping an up-to-date arsenal for DoS attacks and modules on the framework.</p>
+
+<h1 id="whats-next">What’s next?</h1>
+
+<p>Contact me on <a href="mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query">info@Stressful.io</a> to get a free consultation demo for your organization. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
+
+<p><br />
+Interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!</p>
+
+<h3 id="are-you-a-researcher-interested-in-the-ddos-market-and-ddos-defenses">Are you a researcher interested in the DDoS market and DDoS defenses?</h3>
+
+<p>Let’s connect and share thoughts. My contact details are available on the website.</p>
+
+<hr />
+
+<ol>
+  <li><a href="https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/">https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/</a></li>
+  <li><a href="https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/">https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/</a></li>
+</ol>
+
 
 
 
@@ -1544,7 +1656,7 @@ pre {
             
                 
             
-        
+                
             
                 
             
@@ -1552,10 +1664,7 @@ pre {
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -1563,315 +1672,7 @@ pre {
             
                 
             
-        
-            
                 
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-        
-            
-                
-            
-        
             
                 
             
@@ -1886,7 +1687,7 @@ pre {
                     <ul>
                     
                     <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/my-story-with-onavo/">My Story with Onavo (a Facebook's Acquisition)
+                        <a href="https://mazinahmed.net/blog/interview-with-sectastic-podcast/">Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region
                         
                         </a>
                     </li>
@@ -1894,7 +1695,23 @@ pre {
                     
                 
             
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
             
                 
             
@@ -1906,12 +1723,62 @@ pre {
                 
                     
                     <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/">Cross-Site Scripting on Wikileaks
+                        <a href="https://mazinahmed.net/blog/hacking-zoom/">Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom
                         
                         </a>
                     </li>
                     
                     
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
                 
             
         
@@ -1922,7 +1789,7 @@ pre {
                 
                     
                     <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/code-execution-on-bugcrowd/">PHP Code Execution on Bugcrowd
+                        <a href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">OhMyZsh dotenv Remote Code Execution
                         
                         </a>
                     </li>
@@ -1930,10 +1797,43 @@ pre {
                     
                 
             
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
         
     
         
         
+            
+                
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/wasec-book-review/">Book Review: WASEC By Alessandro Nadalin
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
             
                 
             
@@ -1945,12 +1845,24 @@ pre {
                 
                     
                     <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/open-redirector-on-google/">Open Redirector on Google.com
+                        <a href="https://mazinahmed.net/blog/breaking-jwt/">Practical Approaches for Testing and Breaking JWT Authentication
                         
                         </a>
                     </li>
                     
                     
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
                 
             
         
@@ -1959,14 +1871,490 @@ pre {
         
             
                 
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/acknowledged-by-oracle/">Acknowledged By Oracle
-                        
-                        </a>
-                    </li>
-                    
-                    
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
                 
             
         
@@ -1991,7 +2379,7 @@ pre {
         <div class="share">
             <!-- Note: Only use three share links if your site width is set to large -->
             <!-- If site width is set to normal, you may choose any two share links -->
-            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/university-of-calgary/ - SQL Injection and Cross-site Scripting at the website of the University of Calgary by @mazen160">
+            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/stressful-ddos-framework/ - DDoS is not Dead: Building a Scalable DDoS Framework by @mazen160">
                 <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg><span class="icon-twitter">Tweet</span>
             </a>
 
@@ -1999,15 +2387,15 @@ pre {
                 <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg><span class="icon-facebook-rect">Share</span>
             </a>
 
-            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/university-of-calgary/" target="_blank">
+            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/stressful-ddos-framework/" target="_blank">
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/university-of-calgary/&amp;title=SQL Injection and Cross-site Scripting at the website of the University of Calgary&amp;summary=SQL Injection and Cross-site Scripting at the website of the University of Calgary&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/stressful-ddos-framework/&amp;title=DDoS is not Dead: Building a Scalable DDoS Framework&amp;summary=I’m releasing my latest project, [Stressful.io](https://stressful.io), an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 
-            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/university-of-calgary/&amp;title=SQL Injection and Cross-site Scripting at the website of the University of Calgary" target="_blank">
+            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/stressful-ddos-framework/&amp;title=DDoS is not Dead: Building a Scalable DDoS Framework" target="_blank">
                 <svg class="icon icon-reddit"><use xlink:href="#icon-reddit"></use></svg><span class="icon-reddit">Share</span>
             </a> -->
         </div>
