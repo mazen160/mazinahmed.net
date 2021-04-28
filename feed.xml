@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-04-13T07:46:39-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">DDoS is not Dead: Building a Scalable DDoS Framework</title><link href="https://mazinahmed.net/blog/stressful-ddos-framework/" rel="alternate" type="text/html" title="DDoS is not Dead: Building a Scalable DDoS Framework" /><published>2021-04-13T00:00:00-05:00</published><updated>2021-04-13T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/stressful-ddos-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/stressful-ddos-framework/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-04-28T04:48:14-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">tfquery: Run SQL queries on your Terraform infrastructure</title><link href="https://mazinahmed.net/blog/tfquery-project-release/" rel="alternate" type="text/html" title="tfquery: Run SQL queries on your Terraform infrastructure" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfquery-project-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfquery-project-release/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Have you ever tried analyzing Terraform environment with thousands of cloud resources for security and DevOps? It’s used to be hard, until now!&lt;/p&gt;
+
+&lt;p&gt;I’m open-sourcing my newest project, tfquery: a framework that allows running SQL queries on Terraform code. It saved me dozens of hours in analysis.&lt;/p&gt;
+
+&lt;p&gt;Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing its configuration using a SQL-powered framework.&lt;/p&gt;
+
+&lt;p&gt;I built it out of a real-world problem where I need to understand an extremely large Terraform environment. Has been highly helpful in making work easier.&lt;/p&gt;
+
+&lt;p&gt;This is a starting point for an awesome project. Feel free to read more at the Github repository.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-repository-httpsgithubcommazen160tfquery&quot;&gt;Github Repository: &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;https://github.com/mazen160/tfquery&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="project" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary></entry><entry><title type="html">DDoS is not Dead: Building a Scalable DDoS Framework</title><link href="https://mazinahmed.net/blog/stressful-ddos-framework/" rel="alternate" type="text/html" title="DDoS is not Dead: Building a Scalable DDoS Framework" /><published>2021-04-13T00:00:00-05:00</published><updated>2021-04-13T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/stressful-ddos-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/stressful-ddos-framework/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1084,59 +1098,4 @@ root:x:0:0:root:/root:/usr/bin/zsh
 &lt;p&gt;Download: &lt;a href=&quot;https://mazinahmed.net/uploads/Overview%20of%20the%20Application-Level%20Security%20of%20the%20Swiss%20Evoting%20System.pdf&quot;&gt;Overview of the Application-Level Security of the Swiss Evoting System&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Best Regards,&lt;br /&gt;
-Mazin Ahmed&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Backchannel Leaks on Strict Content-Security Policy</title><link href="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/" rel="alternate" type="text/html" title="Backchannel Leaks on Strict Content-Security Policy" /><published>2019-01-18T00:00:00-06:00</published><updated>2019-01-18T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy</id><content type="html" xml:base="https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/">&lt;hr /&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;Content-Security Policy (CSP) is one of the most vital protection layers in client-side web security. A strict policy should not allow external communications to non-permitted hosts. This blog post demonstrates a bypass I found in Chrome and Firefox that permits backchannel communication leaks by requesting non-permitted domains.&lt;/p&gt;
-
-&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;I recently had a discussion on how CSP can secure web-applications against backchannel leaks. The concept sounded reasonable from the first sight; CSP is designed to block unauthorized content from loading, which generically blocks XSS attacks, unsafe loading of remote JavaScript (and various resources and contents) from unauthorized origins.&lt;/p&gt;
-
-&lt;p&gt;This discussion led me to conduct research on methods for issuing backchannel communications with non-permitted hosts.&lt;/p&gt;
-
-&lt;h1 id=&quot;research&quot;&gt;Research&lt;/h1&gt;
-
-&lt;p&gt;The first step for the research is to set up the testing bed. I prepared an application with a strict Content-Security Policy. The policy is:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Content-Security-Policy: default-src 'self'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This should block all requests (outbound connections) from unauthorized origins and hosts.&lt;/p&gt;
-
-&lt;p&gt;The tests were focused on the latest versions of Chrome and Firefox as of January 18th, 2019.
-Chrome: v72.0
-Firefox: v64.0&lt;/p&gt;
-
-&lt;h1 id=&quot;result&quot;&gt;Result&lt;/h1&gt;
-
-&lt;h3 id=&quot;chrome&quot;&gt;Chrome&lt;/h3&gt;
-
-&lt;p&gt;Chrome has an interesting bypass that does not follow the CSP policy by utilizing the “link prerendering”.&lt;/p&gt;
-
-&lt;p&gt;The following payload leaks an HTTP request from the client’s agent.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;prerender&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://mazinahmed.net/&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This loads resources within a URL in the background. It appears that Chrome is not enforcing CSP on the link prerendering process.&lt;/p&gt;
-
-&lt;h3 id=&quot;firefox&quot;&gt;Firefox&lt;/h3&gt;
-
-&lt;p&gt;Firefox is much better in protecting against backchannel communication leaks. However, after further testing, I have found that this payload bypasses this protection:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;refresh&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1; url=https://mazinahmed.net&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Redirection using the Meta tag is possible on CSP, and it can not be blocked. Therefore, I can redirect users to other sites without the involvement of JavaScript and typical active content. It’s also working on Chrome. Once a client is redirected, we will receive a connection back to our server.&lt;/p&gt;
-
-&lt;h3 id=&quot;update-safari-is-vulnerable-too-to-the-meta-refresh-vector&quot;&gt;Update: Safari is vulnerable too to the Meta refresh vector.&lt;/h3&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;While having CSP to fundamentally protect against backchannel communication leaks sounds generally true, it appears that the CSP implementation on browsers does not provide this sort of protection. The bypasses I stated on the post is currently working against the latest versions of modern browsers.&lt;/p&gt;
-
-&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
-
-&lt;p&gt;These payloads can be good for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where Content-Security Policy is blocking outbound requests to untrusted hosts.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+Mazin Ahmed&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
