@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-04-28T04:48:14-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">tfquery: Run SQL queries on your Terraform infrastructure</title><link href="https://mazinahmed.net/blog/tfquery-project-release/" rel="alternate" type="text/html" title="tfquery: Run SQL queries on your Terraform infrastructure" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfquery-project-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfquery-project-release/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-10-17T07:16:17-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Interview With the AppSec Podcast: Terraform Security</title><link href="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/" rel="alternate" type="text/html" title="Interview With the AppSec Podcast: Terraform Security" /><published>2021-10-17T00:00:00-05:00</published><updated>2021-10-17T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/dd31ccbf-b8e2-4d56-9c5b-ae3a2d2bd65a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I did an interview with the AppSec Podcast to talk about IAC and Terraform. We discussed Terraform, why IAAC is important to your organization, technical risks brought when running Terraform on your environment, and few discussions related to my &lt;a href=&quot;https://www.youtube.com/watch?v=d4V75rrVrL4&quot;&gt;DEFCON talk about Attack Vectors on Terraform Environments&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/static/81b656d7-20eb-41c9-9fd1-0338125186a6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/jdh-yHKLAWU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;listen-to-the-podcast&quot;&gt;Listen to the Podcast&lt;/h2&gt;
+
+&lt;h3 id=&quot;watch-on-youtube&quot;&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=jdh-yHKLAWU&quot;&gt;Watch on Youtube&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;listen-on-spotify&quot;&gt;&lt;a href=&quot;https://open.spotify.com/episode/0bojnJd6kyBOomojMFXKgX?si=d394stezSfWAfsSwy3MKNA&quot;&gt;Listen on Spotify&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;listen-on-apple-podcast&quot;&gt;&lt;a href=&quot;https://podcasts.apple.com/us/podcast/mazin-ahmed-terraform-security/id1154351685?i=1000537757479&quot;&gt;Listen on Apple Podcast&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="interview" /><category term="podcast" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary></entry><entry><title type="html">tfquery: Run SQL queries on your Terraform infrastructure</title><link href="https://mazinahmed.net/blog/tfquery-project-release/" rel="alternate" type="text/html" title="tfquery: Run SQL queries on your Terraform infrastructure" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfquery-project-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfquery-project-release/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1089,13 +1105,4 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 &lt;h1 id=&quot;jwt-pwn-homepage&quot;&gt;Jwt-pwn Homepage&lt;/h1&gt;
 
-&lt;h2 id=&quot;httpsgithubcommazen160jwt-pwn&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/jwt-pwn&quot;&gt;https://github.com/mazen160/jwt-pwn&lt;/a&gt;&lt;/h2&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">[Research] Overview of the Application-Level Security of the Swiss Evoting System</title><link href="https://mazinahmed.net/blog/swiss-evoting-system-security/" rel="alternate" type="text/html" title="[Research] Overview of the Application-Level Security of the Swiss Evoting System" /><published>2019-04-16T00:00:00-05:00</published><updated>2019-04-16T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/swiss-evoting-system-security</id><content type="html" xml:base="https://mazinahmed.net/blog/swiss-evoting-system-security/">&lt;hr /&gt;
-
-&lt;p&gt;I’m publishing my security research on the overview of the application-level security of the Swiss E-voting system.&lt;/p&gt;
-
-&lt;p&gt;You can find the download the report at the following link:&lt;/p&gt;
-
-&lt;p&gt;Download: &lt;a href=&quot;https://mazinahmed.net/uploads/Overview%20of%20the%20Application-Level%20Security%20of%20the%20Swiss%20Evoting%20System.pdf&quot;&gt;Overview of the Application-Level Security of the Swiss Evoting System&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Best Regards,&lt;br /&gt;
-Mazin Ahmed&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;h2 id=&quot;httpsgithubcommazen160jwt-pwn&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/jwt-pwn&quot;&gt;https://github.com/mazen160/jwt-pwn&lt;/a&gt;&lt;/h2&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
