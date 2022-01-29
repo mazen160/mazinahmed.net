@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2021-10-17T07:16:17-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Interview With the AppSec Podcast: Terraform Security</title><link href="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/" rel="alternate" type="text/html" title="Interview With the AppSec Podcast: Terraform Security" /><published>2021-10-17T00:00:00-05:00</published><updated>2021-10-17T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-01-28T23:53:29-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Attacking Modern Environments Series: Attack Vectors on Terraform Environments</title><link href="https://mazinahmed.net/blog/attacking-terraform-environments/" rel="alternate" type="text/html" title="Attacking Modern Environments Series: Attack Vectors on Terraform Environments" /><published>2022-01-29T00:00:00-06:00</published><updated>2022-01-29T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/attacking-terraform-environments</id><content type="html" xml:base="https://mazinahmed.net/blog/attacking-terraform-environments/">&lt;hr /&gt;
+
+&lt;p&gt;I have given a talk about my latest research, “Attack Vectors on Terraform Environments”.&lt;/p&gt;
+
+&lt;h2 id=&quot;about-the-talk&quot;&gt;About the talk&lt;/h2&gt;
+&lt;p&gt;Ever come across an environment in an engagement that uses Terraform for IAAC (infrastructure-as-code) management?
+Almost every modern company does now.&lt;/p&gt;
+
+&lt;p&gt;In this talk, I will be sharing techniques and attack vectors to exploit and compromise Terraform environments in engagements, as well as patterns that I have seen that achieve successful infrastructure takeover against companies.
+I will be also covering detection and prevention methods for each attack vector discussed in my talk.&lt;/p&gt;
+
+&lt;p&gt;This is part of my work-in-progress research in cloud security and attacking modern environments.&lt;/p&gt;
+
+&lt;h2 id=&quot;recorded-talk&quot;&gt;Recorded Talk&lt;/h2&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/8fnbkZwZsRg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&quot;watch-on-youtube&quot;&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=8fnbkZwZsRg&quot;&gt;Watch on Youtube&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;download-slides-pdf&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/public/raw/master/documents/Attacking%20Modern%20Environments%20Series%20-%20Attacking%20Terraform%20Environments.pdf&quot;&gt;Download: Slides (PDF)&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;download-slides-pptx&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/public/raw/master/documents/Attacking%20Modern%20Environments%20Series%20-%20Attacking%20Terraform%20Environments.pptx&quot;&gt;Download: Slides (PPTX)&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary></entry><entry><title type="html">Interview With the AppSec Podcast: Terraform Security</title><link href="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/" rel="alternate" type="text/html" title="Interview With the AppSec Podcast: Terraform Security" /><published>2021-10-17T00:00:00-05:00</published><updated>2021-10-17T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/dd31ccbf-b8e2-4d56-9c5b-ae3a2d2bd65a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -914,195 +934,4 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 &lt;h3 id=&quot;book-link-httpsleanpubcomwasec&quot;&gt;&lt;strong&gt;Book link&lt;/strong&gt;: &lt;a href=&quot;https://leanpub.com/wasec&quot;&gt;https://leanpub.com/wasec&lt;/a&gt;&lt;/h3&gt;
 
-&lt;h3 id=&quot;book-release-blog-post-by-alessandro-httpsodinoorgwasec-a-book-about-web-application-security-is-now-available-for-sale&quot;&gt;&lt;strong&gt;Book release blog post by Alessandro&lt;/strong&gt;: &lt;a href=&quot;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&quot;&gt;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="book-review" /><summary type="html"></summary></entry><entry><title type="html">Practical Approaches for Testing and Breaking JWT Authentication</title><link href="https://mazinahmed.net/blog/breaking-jwt/" rel="alternate" type="text/html" title="Practical Approaches for Testing and Breaking JWT Authentication" /><published>2019-10-25T00:00:00-05:00</published><updated>2019-10-25T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/breaking-jwt</id><content type="html" xml:base="https://mazinahmed.net/blog/breaking-jwt/">&lt;hr /&gt;
-
-&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;JWT (JSON Web Token) is a popular authentication/authorization protocol. It integrates cryptographic signatures into JSON objects to verify the integrity of the object.&lt;/p&gt;
-
-&lt;p&gt;The approach of JWT is systematic and fairly simple. There were several pieces of research done to cover the security aspects of JWT authentication.&lt;/p&gt;
-
-&lt;p&gt;Several tools were also previously developed. However, after assessing the quality of the public tools, I concluded that we need better tools to perform testing against JWT. I have developed a set of scripts I call it “jwt-pwn” that aims to test JWT authentication with stability, simplicity, and efficiency in mind. The scripts set are very simple, as it integrates directly with the JWT Python library.&lt;/p&gt;
-
-&lt;p&gt;This article will cover the background of JWT, wrong implementations, and practical approaches to test and break JWT. It will also cover a section of constructive criticism, where I will be discussing each known public tool for testing JWT, and the issues I faced with it where I had come to the idea of developing jwt-pwn.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;The following figure explains the fundamental approach in JWT generation&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/35fa32b3-3c31-4843-9e39-f7d83c612e96.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Source: https://jwt.io&lt;/p&gt;
-
-&lt;p&gt;JWT is structured by three parts:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Header&lt;/strong&gt;: Acts as a guide on how to operate. The header holds the JWT algorithm used in generating the signature.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Payload&lt;/strong&gt;: Holds the JSON object, along with the preserved claims if any.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Signature&lt;/strong&gt;: The Base64 encoded representation of the header and the payload. The secret is optionally added to the signature.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;testing-the-implementation&quot;&gt;Testing the Implementation&lt;/h1&gt;
-
-&lt;h2 id=&quot;1-brute-forcing-secret-keys&quot;&gt;1. Brute-forcing secret keys&lt;/h2&gt;
-
-&lt;p&gt;JSON web tokens are typically signed with a secret key. A secret key is simply a password or digital key. If we were able to find the secret key, then we will be able to generate valid tokens with any value we specify.&lt;/p&gt;
-
-&lt;p&gt;This test is done for any token generated with a password; the attack does not apply to the key-based signing of the token.&lt;/p&gt;
-
-&lt;p&gt;An interesting point to mention that it’s an offline password attack, so no noise would be made to the target’s backend. We only require a valid JWT provided by the backend when authentication or similar situations.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-signing-a-new-token-with-the-none-algorithm&quot;&gt;2. Signing a new token with the “none” algorithm&lt;/h2&gt;
-
-&lt;p&gt;This test is quite straightforward. We would decode the value of the JWT without validating the signature. From there, we will generate a new token with the “none” algorithm.&lt;/p&gt;
-
-&lt;p&gt;After this, we will replace the original JWT in the authentication with the newly generated token. If it’s accepted, and the same response of the original token is given, then the authentication functionality is arbitrarily accepting the “none” algorithm, where we explicitly “ask” the JWT validator on the backend to not validate the token.&lt;/p&gt;
-
-&lt;p&gt;If it works, replay attacks can be done. I’m referring to the “replay attacks” term by the act of replaying a valid token to the authentication controller, without focusing on the source of obtaining the token. In our case here, it will be signing a new token that is valid for the another user (or admin).&lt;/p&gt;
-
-&lt;h2 id=&quot;3-changing-the-signing-algorithm-of-the-token-for-fuzzing-purposes&quot;&gt;3. Changing the signing algorithm of the token (for fuzzing purposes)&lt;/h2&gt;
-
-&lt;p&gt;Let’s say a backend returns a JSON Web Token signed with RSA256. The validation test would aim to check whether the JWT validator enforces RSA256 in this case.&lt;/p&gt;
-
-&lt;p&gt;We will decode the value of the original JWT, then we will generate a newly signed token with our secret key, using HS256 for example.&lt;/p&gt;
-
-&lt;p&gt;This test may not fully break the JWT authentication system in typical cases. However, it can be a good practice to test it against and inspect its response for fuzzing purposes.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-signing-the-asymmetrically-signed-token-to-its-symmetric-algorithm-match-when-you-have-the-original-public-key&quot;&gt;4. Signing the asymmetrically-signed token to its symmetric algorithm match (when you have the original public key)&lt;/h2&gt;
-
-&lt;p&gt;When a token is asymmetrically signed (e.g. RSA256), and you obtained the public key that is used for verifying the signature, then an attack that can be applied is to generate a new token with the same payload, and with symmetric signing algorithm (e.g. HS256), while using the public key as the password.&lt;/p&gt;
-
-&lt;p&gt;If it works, then this means that the validator is not whitelisting the signing algorithm for the JWT, and we can generate arbitrary tokens that will be accepted by the JWT validator.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;public-tools&quot;&gt;Public Tools&lt;/h1&gt;
-
-&lt;p&gt;Several tools aim to assess JWT authentication. The tested tools for doing JWT assessments faces different engineering issues.&lt;/p&gt;
-
-&lt;h2 id=&quot;jwt_tool---httpsgithubcomticarpijwt_tool&quot;&gt;jwt_tool - (https://github.com/ticarpi/jwt_tool)&lt;/h2&gt;
-
-&lt;p&gt;jwt_tool does various tests for JWT. However, the custom implementation of parsing and generating JWT causes errors and false-positives. Jwt_tool uses a custom method of decoding and encoding Base64 instead of using the default JWT library. Although the JWT protocol is public and documented, Base64 varies from implementation to another. For instance, multiple Base64 encoded strings can represent the same value.&lt;/p&gt;
-
-&lt;h4 id=&quot;note-jwt_tool-released-a-new-update-as-of-october-2019-that-should-be-fixing-the-majority-of-the-issues-that-was-encountered&quot;&gt;Note: Jwt_tool released a new update (as of October 2019) that should be fixing the majority of the issues that was encountered.&lt;/h4&gt;
-
-&lt;h2 id=&quot;c-jwt-cracker---httpsgithubcombrendan-riusc-jwt-cracker&quot;&gt;c-jwt-cracker - (https://github.com/brendan-rius/c-jwt-cracker)&lt;/h2&gt;
-
-&lt;p&gt;C-jwt-cracker is a tool to brute-force the private key of JWT. Besides it uses its implementation of JWT, the Base64 library used by c-jwt-cracker is proven to be buggy and delivers invalid results.&lt;/p&gt;
-
-&lt;p&gt;Quoting from the c-jwt-cracker Github page:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;“The base64 implementation I use (from Apple) is sometimes buggy because not every Base64 implementation is the same. So sometimes, decrypting of your Base64 token will only work partially and thus you will be able to find a secret to your token that is not the correct one”.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Source: https://github.com/brendan-rius/c-jwt-cracker&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;jwt-cracker---httpsgithubcomlmamminojwt-cracker&quot;&gt;jwt-cracker - https://github.com/lmammino/jwt-cracker&lt;/h2&gt;
-
-&lt;p&gt;This tool is limited to a single signing algorithm (HS256), which makes it unable to operate if a different signing algorithm is provided.&lt;/p&gt;
-
-&lt;h4 id=&quot;additional-issue&quot;&gt;Additional issue&lt;/h4&gt;
-
-&lt;p&gt;Besides, all tools discussed in the experiment are using a linear approach to crack the password.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;introducing-jwt-pwn&quot;&gt;Introducing jwt-pwn&lt;/h1&gt;
-
-&lt;p&gt;The scripts take every test and approach to break JSON web tokens and apply it systematically. Everything is also done using the primary JWT library for Python, “pyjwt”. Pyjwt is heavily used in real-world applications. It’s stable, tested, and maintained.&lt;/p&gt;
-
-&lt;p&gt;I find using Pyjwt instead of writing a custom library as many did is much better for stability wise. There are known tools that give wrong results due to the failure of parsing JWT tokens correctly. Usage of Pyjwt would generate the same results the backend parser would get in most cases.&lt;/p&gt;
-
-&lt;h2 id=&quot;first-script-jwt-crackerpy&quot;&gt;First script: jwt-cracker.py&lt;/h2&gt;
-
-&lt;p&gt;This script performs brute-force attacks via a provided wordlist against a JSON web token.&lt;/p&gt;
-
-&lt;p&gt;I had two prototypes for the brute-forcing algorithm part.&lt;/p&gt;
-
-&lt;h3 id=&quot;first-approach&quot;&gt;First approach&lt;/h3&gt;
-&lt;p&gt;1- Load all the wordlist in a queue&lt;/p&gt;
-
-&lt;p&gt;2- spawn a new thread once an available thread is available  (there is a thread lock that controls this part).&lt;/p&gt;
-
-&lt;p&gt;After analysis, I found this to better not as good as needed. The reason is: Besides the actual brute-forcing, the problems are:&lt;/p&gt;
-
-&lt;p&gt;1- There should be a thread constantly unloading from the queue&lt;/p&gt;
-
-&lt;p&gt;2- Checker for threads availability.&lt;/p&gt;
-
-&lt;p&gt;3- Locker for threads from being spawned until an available thread is there.&lt;/p&gt;
-
-&lt;p&gt;4- Have the queue unloaded linearly.&lt;/p&gt;
-
-&lt;p&gt;Many factors are involved in this part that approached the algorithm not the most efficient one to use.&lt;/p&gt;
-
-&lt;h3 id=&quot;second-approach&quot;&gt;Second approach&lt;/h3&gt;
-
-&lt;p&gt;I find this to be the correct method.&lt;/p&gt;
-
-&lt;p&gt;1- Split the entire wordlist into smaller queues.&lt;/p&gt;
-
-&lt;p&gt;2- Spawn new threads, and then feed every queue to a unique thread.&lt;/p&gt;
-
-&lt;p&gt;3- The thread is treated as a “worker”, and all the functions are synchronized with a global checker that checks if the key is found by other workers.&lt;/p&gt;
-
-&lt;p&gt;4- While the key is not found, all threads test values in the assigned queue.&lt;/p&gt;
-
-&lt;p&gt;5- If the key is found, all threads are joined, and the application terminates.&lt;/p&gt;
-
-&lt;p&gt;6- The application terminates when all values in every child queue are tested.&lt;/p&gt;
-
-&lt;h4 id=&quot;problem&quot;&gt;Problem&lt;/h4&gt;
-
-&lt;p&gt;After implementing this design in Python, The GIL (Global Interpreter Lock) in Python has caused the app to be relatively slower than needed.&lt;/p&gt;
-
-&lt;h3 id=&quot;second-script-jwt-cracker-go&quot;&gt;Second Script: jwt-cracker-go&lt;/h3&gt;
-
-&lt;p&gt;The script is a linear implementation of the jwt-cracker in Golang. It’s really fast compared to other tools, although it’s using a linear approach for password cracking, and reliable as it’s using the official Golang library for JWT in the process of validating tokens. This library should be relatively the same library being used by developers in real-world environments.&lt;/p&gt;
-
-&lt;p&gt;I have also written another variant that uses goroutines which should be faster. The code for the multi-threaded variant is available in the project repository.&lt;/p&gt;
-
-&lt;h3 id=&quot;third-script-jwt-decoderpy&quot;&gt;Third script: jwt-decoder.py&lt;/h3&gt;
-
-&lt;p&gt;This is a simple script that decodes the values of JSON web tokens. It should be handy for testing JWT.&lt;/p&gt;
-
-&lt;h3 id=&quot;fourth-script-jwt-mimickerpy&quot;&gt;Fourth script: jwt-mimicker.py&lt;/h3&gt;
-
-&lt;p&gt;This script creates an unsigned token from the JSON web tokens. This script applies the “none” attack discussed previously.&lt;/p&gt;
-
-&lt;h3 id=&quot;fifth-script-jwt-key_based_token-to-hs256py&quot;&gt;Fifth script: jwt-key_based_token-to-hs256.py&lt;/h3&gt;
-
-&lt;p&gt;This script creates a signed JWT from a key-based JWT. This applies to the attack mentioned previously.&lt;/p&gt;
-
-&lt;p&gt;The script works on every key-based signing algorithm, thanks to the powerful pyjwt library.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;what-to-do&quot;&gt;What to Do?&lt;/h1&gt;
-
-&lt;h2 id=&quot;penetration-testers-and-security-researchers&quot;&gt;Penetration Testers and Security Researchers&lt;/h2&gt;
-
-&lt;p&gt;Test your organization’s JWT implementation via jwt-pwn, and report any weaknesses identified.&lt;/p&gt;
-
-&lt;h2 id=&quot;developers-and-defenders&quot;&gt;Developers and Defenders&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Make sure you’re enforcing the algorithm used in the JWT validator.&lt;/li&gt;
-  &lt;li&gt;Disallow unused algorithm (via whitelisting approach).&lt;/li&gt;
-  &lt;li&gt;Always verify the JWT header, and verify the JWT “alg” key in the JWT header.&lt;/li&gt;
-  &lt;li&gt;Never trust the “none” algorithm for signing.&lt;/li&gt;
-  &lt;li&gt;Use a long and extremely difficult to recover secret keys. If the secret key is identified, the entire authentication will be broken.&lt;/li&gt;
-  &lt;li&gt;Rotate your signing keys periodically.&lt;/li&gt;
-  &lt;li&gt;Don’t expose important client-data in JWT; it can be decoded. If there is sensitive data shared in the payload, any party that obtains the token would be able to see it.&lt;/li&gt;
-  &lt;li&gt;Add a claim for “Expiration” to overcome the non-expiration issue in the stateless protocol.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;jwt-pwn-homepage&quot;&gt;Jwt-pwn Homepage&lt;/h1&gt;
-
-&lt;h2 id=&quot;httpsgithubcommazen160jwt-pwn&quot;&gt;&lt;a href=&quot;https://github.com/mazen160/jwt-pwn&quot;&gt;https://github.com/mazen160/jwt-pwn&lt;/a&gt;&lt;/h2&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;h3 id=&quot;book-release-blog-post-by-alessandro-httpsodinoorgwasec-a-book-about-web-application-security-is-now-available-for-sale&quot;&gt;&lt;strong&gt;Book release blog post by Alessandro&lt;/strong&gt;: &lt;a href=&quot;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&quot;&gt;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="book-review" /><summary type="html"></summary></entry></feed>
