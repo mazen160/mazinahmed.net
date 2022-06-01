@@ -1,4 +1,1192 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-03-28T07:47:37-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Attacking Modern Environments Series: Attack Vectors on Terraform Environments</title><link href="https://mazinahmed.net/blog/attacking-terraform-environments/" rel="alternate" type="text/html" title="Attacking Modern Environments Series: Attack Vectors on Terraform Environments" /><published>2022-01-29T00:00:00-06:00</published><updated>2022-01-29T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/attacking-terraform-environments</id><content type="html" xml:base="https://mazinahmed.net/blog/attacking-terraform-environments/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-06-01T09:20:07-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/" rel="alternate" type="text/html" title="Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools" /><published>2022-05-31T00:00:00-05:00</published><updated>2022-05-31T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools</id><content type="html" xml:base="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/banner%20-%20Twitch%20Internal%20Security%20Tools%20blog%20post.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+
+&lt;p&gt;How Twitch was hacked? What security controls did Twitch build?&lt;/p&gt;
+
+&lt;p&gt;The Twitch breach revealed more than 120 internal security tools developed by the Twitch security team.&lt;/p&gt;
+
+&lt;p&gt;I analyzed all the leaked security tools that were developed by Twitch Security. Check out the full research.&lt;/p&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+&lt;p&gt;Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted live-streaming from home.&lt;/p&gt;
+
+&lt;p&gt;On October 6, 2021, it was announced that Twitch suffered a massive data breach that leaked their source-code, internal databases, revenue documents, and payouts documents of their members.&lt;/p&gt;
+
+&lt;p&gt;The security tools of Twitch were leaked during the breach. Twitch Security has clearly invested a lot of time and effort in building its security program. This can be seen from the tools published on the Internet; the majority of companies with mature security programs today do not have 50% of what Twitch security internally built over the years.&lt;/p&gt;
+
+&lt;p&gt;I analyzed all the security tools written by Twitch security. I thoroughly reviewed the source code, configurations, build config process, and everything that has been leaked and became public knowledge on the Internet within the breach.&lt;/p&gt;
+
+&lt;p&gt;In this blog post, I’m analyzing all the security tools that Twitch security built within their security program. I’m also tagging them based on the use case, services, and categories. This research should act as a reference to learn how modern security teams build their programs, and to hopefully get inspired into enhancing currently-running security programs.&lt;/p&gt;
+
+&lt;p&gt;At the end of the blog post, I will share my thoughts on the breach, how I feel about it, and what could have been done by Twitch to handle this breach in better ways.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;table-of-content&quot;&gt;Table of Content&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Background&lt;/li&gt;
+  &lt;li&gt;Leaked Tools&lt;/li&gt;
+  &lt;li&gt;Final Thoughts&lt;/li&gt;
+  &lt;li&gt;References&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;who-am-i&quot;&gt;Who Am I?&lt;/h1&gt;
+
+&lt;p&gt;I’m a cyber security engineer that specializes in AppSec, InfraSec and building security programs. Read more about my previous work at &lt;a href=&quot;https://mazinahmed.net&quot;&gt;mazinahmed.net&lt;/a&gt;. I also built &lt;a href=&quot;https://fullhunt.io&quot;&gt;FullHunt.io&lt;/a&gt;, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;tfquery&lt;/a&gt;, and few open-source security tools.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;leaked-tools&quot;&gt;Leaked Tools&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;1) Tool&lt;/strong&gt;: agentconn&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A simple Go package to open an ssh-agent socket.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;script&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;2) Tool&lt;/strong&gt;: apache-pf-deb-build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Apache PingFederate Module Deb Package Builder.&lt;/p&gt;
+
+&lt;p&gt;PingFederate is an enterprise federation server that enables user authentication and single sign-on. It serves as a global authentication authority that allows employees, customers, and partners to securely access all the applications they need from any device.&lt;/p&gt;
+
+&lt;p&gt;This module is a builder for integrating PingFederate with Apache.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apache&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;authentication&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;authorization&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pingfederate&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;3) Tool&lt;/strong&gt;: AWS-Cloudtrail-Security-Configs&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Miscellaneous scripts for configuring AWS cloudtrails&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudtrails&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;4) Tool&lt;/strong&gt;: AWS-Cloudtrail-Security-tform&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is the terraform version of the configuration at AWS-Cloudtrail-Security-Configs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudtrails&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;5) Tool&lt;/strong&gt;: bastion-squid-build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A patch file for Squid config that is used on “Bastions” service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;squid&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;6) Tool&lt;/strong&gt;: bastionmetrics&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An old script that pushes logs from a service called “Bastions”.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;7) Tool&lt;/strong&gt;: beholder&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An internal Python Flask app for Security to run reports against Jira and Google Sheets to get team program reports and metrics.&lt;/p&gt;
+
+&lt;p&gt;It also has a script to login to ECR using AWS aws role-assume with the duration of 900 seconds, and stores secrets within AWS Secrets Manager.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reporting&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google-spreadsheets&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;8) Tool&lt;/strong&gt;: beholder-terraform&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Configuration for deploying “beholder” project through Terraform.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;9) Tool&lt;/strong&gt;: cdn_finder&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is a script to take zone files / DNS records, pull the CNAME, and determine what CDNs are in use based on the associated CNAME.&lt;/p&gt;
+
+&lt;p&gt;The script has an SSL certificate parser, but the data pulling capability is manual. It has instructions on how to pull DNS records from Infoblox (a cloud product that runs DNS management services), and AWS Route53&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cdn&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;10) Tool&lt;/strong&gt;: cfn-templates&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Incomplete repository for AWS CloudFormation templates&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;11) Tool&lt;/strong&gt;: cloudflare-lambda&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Lambda that continuously hits CloudFlare API, pulls requests logs, and pushes it to S3.&lt;/p&gt;
+
+&lt;p&gt;CloudFlare supports by default automated archiving to S3. It’s not clear why this option was made instead of using the CloudFlare option.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflare&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;12) Tool&lt;/strong&gt;: cloudflare-parsing&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script to parse CloudFlare logs into a format that is easier to read.&lt;/p&gt;
+
+&lt;p&gt;It supports two formats, custom JSON format, and another format that is easier to use with AWS Athena.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;athena&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflare&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;13) Tool&lt;/strong&gt;: cloudflare 2 elasticsearch&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script to push Cloudflare logs from a local machine to Elasticsearch.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflare&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elasticsearch&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;14) Tool&lt;/strong&gt;: codename-generator&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script to generate code names through the “pycorpora” Python package.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miscs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;15) Tool&lt;/strong&gt;: contingent-auth-policies&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A repo that stores a single AWS policy.&lt;/p&gt;
+
+&lt;p&gt;The policy seems to be permissive and allows actions that can be insecure. Also, it’s set to “*” wildcard resources. It’s not clear who has this policy assigned to.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;16) Tool&lt;/strong&gt;: credentialchecker&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A lambda app that checks for leaked credentials against Twitch for risk calculation purposes. Also called “
+Arstotzka”.
+It takes a list of breach lists (email:password, username:password), and runs the data against Twitch users. It runs manually; not when a user-logged in against the hash, so it’s unclear how passwords are stored internally (is it stored in plain text? that’s why this tool is made possible?).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;passwords&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sqs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;17) Tool&lt;/strong&gt;: credentialchecker-vendor&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Vendor packages for credentialchecker build.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miscs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;18) Tool&lt;/strong&gt;: ctfd&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Clone of the CTFd public platform repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctf&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;19) Tool&lt;/strong&gt;: cwijulia-sandbox&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A security experiment to evaluate the accuracy of results provided by AWS ECR vulnerabilities feeds.&lt;/p&gt;
+
+&lt;p&gt;Part 1: Terraform code is made to set up a network on AWS. It sets up EC2, VPC, route tables, and subnets through Terraform modules.
+Part 2: It deploys an ECR image that has a vulnerable Cron package. This image will be ideally scanned by AWS ECR. The goal is to find if AWS ECR will report the vulnerable Cron package through its identified vulnerabilities feeds. This process is automated through different scripts.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;research&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ecr&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vulnerability&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;20) Tool&lt;/strong&gt;: duo_logging&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: CloudFormation configuration to configure a Lambda to write Duo Security logs to S3.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;21) Tool&lt;/strong&gt;: duoauthproxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Duo Security Authentication proxy - Empty repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;22) Tool&lt;/strong&gt;: duoauthproxy_build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Duo Authentication Security - Build package.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;23) Tool&lt;/strong&gt;: duoauthproxy-build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Duo Authentication Security - Build package, made for Ubuntu.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;24) Tool&lt;/strong&gt;: ephemeral cert&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Golang package to generate self-signed TLS certificates and return tls.Certificate object with a default common name to “localhost”.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tls&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certificate&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;25) Tool&lt;/strong&gt;: fluxo&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A tool to fetch data from an Amazon service that seems to be for threat intelligence, and stores it on Jira and Dynamodb.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-intel&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amazon&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dynamo&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;26) Tool&lt;/strong&gt;: go-audit&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Clone of the public go-audit repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miscs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;27) Tool&lt;/strong&gt;: go-audit-build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Build package for go-audit.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miscs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;28) Tool&lt;/strong&gt;: go-sirtbot&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Slack bot written in Golang - seems incomplete.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slack&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;29) Tool&lt;/strong&gt;: go-squid-duoauth&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Squid Go Authentication Helper. Deprecated project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo-security&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;squid&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;30) Tool&lt;/strong&gt;: go-ykpiv&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An internal fork of go-ykpiv. go-ykpiv is a Golang interface to manage Yubikeys, including a crypto.Signer &amp;amp; crypto.Decrypter interface.&lt;/p&gt;
+
+&lt;p&gt;The changes related to this package are within the build process.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yubi-keys&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crypto&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;31) Tool&lt;/strong&gt;: golang-x-crypto&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A clone of Golang crypto libraries.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crypto&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;32) Tool&lt;/strong&gt;: gophish-config&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Minimal configurations for GoPhish server.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gophish&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;33) Tool&lt;/strong&gt;: gravitational-teleport&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Clone for Gravitational Teleport, Certificate authority and access plane for SSH, Kubernetes, web applications, and databases.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rbac&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;34) Tool&lt;/strong&gt;: gsuite-hourly&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script that pulls logs from Google Gsuite every hour, and store it into AWS S3.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gsuite&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;35) Tool&lt;/strong&gt;: homebrew&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: a Homebrew repository that hosts macOS software distributed by the
+security team.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macos&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;homebrew&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;36) Tool&lt;/strong&gt;: hunts&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Threat Hunting playbooks. It consists of  write-ups of running threat hunt activities for AWS, Duo Implementation, Command and Control activities, reverse TCP tunneling, and general suspicious activities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-hunting&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;37) Tool&lt;/strong&gt;: Inquisitor&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A well-architectured secrets discovery tool that can identify secrets within JIRA tickets and Git commits. It also has an integration with alerting via modules, including standard screen logging, email alerting, and creating a ticket on Jira.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appsec&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;secret-detection&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;38) Tool&lt;/strong&gt;: jupyterhub&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Shared notebook environment for SIRT.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jupyter&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notebook&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;39) Tool&lt;/strong&gt;: lambda-amazonsg&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Lambda function to manage security groups within AWS.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security-groups&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;40) Tool&lt;/strong&gt;: lambda-athenalert&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An AWS Lambda function that can automatically run an Athena query
+and raise an alert if there are any results. It is most useful when run on a
+cron via CloudWatch events.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;athena&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudwatch&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;41) Tool&lt;/strong&gt;: lambda-autocert&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A lambda function that automates the process of renewing TLS certificates from Let’s Encrypt using Route 53 and the ACME dns-01
+challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lets-encrypt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tls&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;42) Tool&lt;/strong&gt;: lambda-autosg&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An AWS Lambda function that can allow for dynamic security
+group egress rules based on DNS hostnames. It is most useful when invoked as a
+con job at regular intervals (e.g. 1 minute) to update rules when a DNS record
+changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dns&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;43) Tool&lt;/strong&gt;: lambda-dogfish-sg&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An AWS Lambda function that consumes IP prefix information from
+&lt;a href=&quot;https://w.amazon.com/index.php/Dogfish&quot;&gt;Amazon Dogfish&lt;/a&gt; and writes them to
+a specified AWS security group.&lt;/p&gt;
+
+&lt;p&gt;Amazon Dogfish seems to be an internal Amazon service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dns&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security-groups&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;44) Tool&lt;/strong&gt;: lambda-teleportmon&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An internal service called “lambda-teleportmon”. It’s unclear on what the purpose of the service is.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;45) Tool&lt;/strong&gt;: maxmind-backup&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An AWS Lambda function that downloads the latest release of the Maxmind DB, and stores it in S3.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maxmind&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;46) Tool&lt;/strong&gt;: nabu&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Twitch Security internal security scanner. It seems to be a work-in-progress and has not been completed. It’s also unclear what it will cover or detect.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appsec&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security-scanning&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;47) Tool&lt;/strong&gt;: naive&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A repository for collecting Regular expressions that can be useful in different scenarios. The repository seems empty.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;appsec&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;regex&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;48) Tool&lt;/strong&gt;: netscrape&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A repository that hosts Cloudformation config. It’s described as a place to hold source code and other assets for the Netscrape campaign.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;49) Tool&lt;/strong&gt;: nice&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Nice is a suite of security-oriented static analysis tools for Go. It uses go/analysis framework to run static code analysis on Golang code.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sast&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;50) Tool&lt;/strong&gt;: notebook-template&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Notebook template for threat hunting&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-hunting&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;51) Tool&lt;/strong&gt;: notebooks&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Another repository of notebooks for threat hunting. It covers machine-level checks, including device encryption, and checks for unmanaged devices.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-hunting&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;52) Tool&lt;/strong&gt;: nuget-security&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: NuGet Package provided by Twitch Application Security.&lt;/p&gt;
+
+&lt;p&gt;Uses external project https://github.com/security-code-scan/security-code-scan) and the security rules of https://github.com/dotnet/roslyn-analyzers.&lt;/p&gt;
+
+&lt;p&gt;This is a C# and VB.NET static code analyzer that allows the detection of security vulnerabilities, including SQLI, RCE, XSS, etc. It also supports running within the CI pipeline and does its scanning through taint analysis for input data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ci&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vb.net&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c-sharp&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;static-code-analysis&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;53) Tool&lt;/strong&gt;: odds-n-ends&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A general repository for Security snippets. It includes one script that pulls SalesForce event logs and dumps logs into S3.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;salesforce&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;54) Tool&lt;/strong&gt;: opentoken&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is a Go library that can encrypt and decrypt OpenTokens.&lt;/p&gt;
+
+&lt;p&gt;It is based on this RFC: https://tools.ietf.org/html/draft-smith-opentoken-02&lt;/p&gt;
+
+&lt;p&gt;OpenToken used to be a popular protocol for transmitting secure tokens.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opentoken&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;open-token&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;auth&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;55) Tool&lt;/strong&gt;: organizations-guardduty&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;:  A Python script that enables AWS Guardduty, and sends logs into S3, so it can be easily monitored. By default, it’s not a straightforward process to configure this correctly, this script helps automate the majority of steps from enabling the operationalizing of logging for Guarduty.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;guardduty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;continuous-monitoring&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alerting&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;56) Tool&lt;/strong&gt;: osiris&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Osiris is a library for building and deploying serverless web apps on Amazon Web Services, with a focus on simplicity and ease of use. It provides a simple way to build the application and tools to deploy it to AWS.&lt;/p&gt;
+
+&lt;p&gt;An application built with Osiris is deployed to AWS as a Lambda function and an API Gateway API. Configuration is generated for CloudFormation to define the application resources.&lt;/p&gt;
+
+&lt;p&gt;This repository includes configurations for app deployments within Twitch Security.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;57) Tool&lt;/strong&gt;: osiris-admin&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A bash script to automate the management of osiris.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;58) Tool&lt;/strong&gt;: osiris-app&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A deployment configuration for osiris.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;59) Tool&lt;/strong&gt;: osiris-config&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Configuration for deploying Osiris through AWS CloudFormation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;60) Tool&lt;/strong&gt;: osiris-debs3-proxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Empty repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;61) Tool&lt;/strong&gt;: osiris-health&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Osiris health check script.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;62) Tool&lt;/strong&gt;: osiris-pki-server&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Internal PKI server that covers Duo Security, and YubiKey&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;duo-security&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yubi-key&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;63) Tool&lt;/strong&gt;: osiris-registration&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is a Lambda function that automates the registration process for a new
+Osiris stack instance. It primarily manages the DNS delegation process, subject
+to the requisite authorization checks (which are stored in a DynamoDB table).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;64) Tool&lt;/strong&gt;: osiris-selfservice&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Empty repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;65) Tool&lt;/strong&gt;: osiris-static-site&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: CloudFormation template to deploy static sites through Osiris.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;66) Tool&lt;/strong&gt;: osiris-update-stack&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Lambda function for scheduled updates of the Osiris CloudFormation stack.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;67) Tool&lt;/strong&gt;: osiris-v2&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A deprecated repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;68) Tool&lt;/strong&gt;: osiris-yubikey-client&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is the client for the osiris-pki-server, with a focus on issuance of
+certificates for Yubikeys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;osiris&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yubi-key&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;69) Tool&lt;/strong&gt;: ovpnmetrics&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This python script scrapes metrics from OpenVPN Access Server (using the local
+SQLite log database) and writes them to graphite.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openvpn&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;graphite&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;70) Tool&lt;/strong&gt;: pandora-mvp&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An internal project that uses SSM, S3, and EC2 APIs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ec2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssm&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;71) Tool&lt;/strong&gt;: pandora-prototype&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Testing repository with CloudFormation configuration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;72) Tool&lt;/strong&gt;: password-exploration&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An experiment that hosts passwords from 000webhoost, antipublic_combo, exploit.in database leaks. It uses AWS Athena and S3 to store datasets. The playbook shows queries to search compromised accounts that were leaked by Twitch employees.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database-leaks&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;passwords&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;athena&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;73) Tool&lt;/strong&gt;: rpm-s3&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Clone of https://github.com/crohr/rpm-s3 that is made to work with the newer Python boto3 library.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rpm&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;74) Tool&lt;/strong&gt;: secretsurfer&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A secret detection tool that scans for secrets in Git commit history, and reports whenever it finds a secret. It has the capability to validate specific findings for AWS credentials, Slack webhooks, and Twitch 0Auth tokens.&lt;/p&gt;
+
+&lt;p&gt;It seems that Twitch has put major efforts into having multiple tools for preventing secrets at scale. This is not the only tool that does secrets detection that was internally developed by Twitch.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;secret-detection&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;75) Tool&lt;/strong&gt;: securitycenter-jira&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This repository contains Twitch v1.0.0 of the Tenable SecurityCenter-JIRA integration originally written by Tenable Network Security.&lt;/p&gt;
+
+&lt;p&gt;The official release by Tenable was v1.1.1, which has been archived and is available in the security/securitycenter-jira-archive repository for historical knowledge.&lt;/p&gt;
+
+&lt;p&gt;The project ingests findings from Tenable, and stores it into JIRA tickets for tracking vulnerabilities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tenable&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security-scanning&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;76) Tool&lt;/strong&gt;: securitycenter-jira-archive&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An archive of securitycenter-jira.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tenable&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;security-scanning&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;77) Tool&lt;/strong&gt;: shuffle&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Shuffle is a small piece of automation that can make OpenVPN ACL changes. It is
+useful when a service’s IP addresses change.&lt;/p&gt;
+
+&lt;p&gt;It is made of two components:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;An AWS Lambda function that runs in response to an SNS trigger. The message
+from SNS contains details about the service and the change.&lt;/li&gt;
+  &lt;li&gt;A Python script (“shuffle-applier”) that runs on the OpenVPN AS server. It is
+responsible for the low-level ACL changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Lambda function triggers the applier script via Amazon Systems Manager.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openvpn&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;78) Tool&lt;/strong&gt;: sift-aws&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: SIFT AMI for Twitch SIRT. This  is a collection of Ansible playbooks that builds and provisions  a SIFT workstation.&lt;/p&gt;
+
+&lt;p&gt;The SIFT Workstation is a collection of free and open-source incident response and forensic tools designed to perform detailed digital forensic examinations in a variety of settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sift&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forensics&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ansible&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;79) Tool&lt;/strong&gt;: sirt_alerts&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Git repository of SIRT alerts and playbooks. It seems to be categorized according to the MITRE ATT&amp;amp;CK framework. It also covers playbooks for several TTPs on macOS, Windows and AWS.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mitre&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;att&amp;amp;ck&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttps&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macos&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;windows&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incident-response&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;80) Tool&lt;/strong&gt;: sirt_alerts_archive&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Git repository that seems to be an archive of sirt_alerts. It covers a large number of playbooks and incidents detection write-ups.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mitre&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;att&amp;amp;ck&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ttps&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macos&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;windows&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incident-response&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;81) Tool&lt;/strong&gt;: sirt_lookup_tables&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Several CSV files that acts as a lookup table. It includes files for: TOR exit nodes, URLHAUS malicious urls, Pacu User-Agents, malicious Chrome extensions, and low-reputation IPs.&lt;/p&gt;
+
+&lt;p&gt;This seems to be used in threat detection.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-detection&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cti&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tor&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urlhaus&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;82) Tool&lt;/strong&gt;: sirt_range_dev&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Empty repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;empty&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;83) Tool&lt;/strong&gt;: sirt-520&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: sirt-520 contains a single HTML/JavaScript file with no details. Reading the code, it seems to be a malware piece that acts as wormable payloads for pulling contacts from Google Contacts and then sending malware emails. The TTP used here is novel. The URL that is being sent to contacts is an authorization page for Google apps, where the app is authorized to get emails and contacts.&lt;/p&gt;
+
+&lt;p&gt;The concept bypasses Google Safe url checks as the url being shared in the email points to https://accounts.google.com.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phishing&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TTP&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google-apps&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gsuite&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exploit&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;84) Tool&lt;/strong&gt;: sirt-detection-ec2-instances&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This repository contains provisioning scripts that initialize Windows and macOS machines and install detection agents. The detection agents used in the scripts are: CrowdStrike Falcon and Uptycs.&lt;/p&gt;
+
+&lt;p&gt;It uses Terraform to deploy the machine, Bash for macOS machines, and Powershell for Windows machines.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crowdstrike&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uptycs&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ec2&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;85) Tool&lt;/strong&gt;: sirt-dns_report&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This script is made for continuous monitoring purposes of the DNS infrastructure of Twitch. Twitch has a service called “changelog” that contains the DNS records of Twitch, and can be called through a REST API.&lt;/p&gt;
+
+&lt;p&gt;The script pulls all the changelog, and sends an alert for changes to Twitch security email that automatically creates a JIRA ticket based on the email.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;email&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smtp&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dns&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;infrasec&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;86) Tool&lt;/strong&gt;: sirt-gophish&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Re-deployable gophish infra for SIRT to run phishing exercises. It also includes Terraform code for deploying gophish with all the required configuration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gophish&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;phishing&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;golang&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;87) Tool&lt;/strong&gt;: sirt-jira-issue-escalator&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Lambda function that pulls data from JIRA through a JQL query that fetches tickets not marked as “Done”, and then pushes metrics to CloudWatch.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudwatch&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;88) Tool&lt;/strong&gt;: SIRT-JiraBot&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: JiraBot is modeled after Dropbox’s SecurityBot https://github.com/dropbox/securitybot.&lt;/p&gt;
+
+&lt;p&gt;It includes JQL queries, interactive messages for Slack.&lt;/p&gt;
+
+&lt;p&gt;The purpose of the tool is to allow interaction with security projects on JIRA. It runs on AWS Lambda.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;securitybot&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slack&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lambda&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;89) Tool&lt;/strong&gt;: sirt-jirahandler&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An incomplete project. It manages Jira tickets through the Jira Python library.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jria&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;90) Tool&lt;/strong&gt;: sirt-misp-cdk&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: CloudFormation port of a MISP deployment in Pulumi. A work-in-progress project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pulumi&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;91) Tool&lt;/strong&gt;: sirt-pulumi&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A customized version of https://github.com/MISP/misp-docker.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;misp&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pulumi&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;92) Tool&lt;/strong&gt;: sirt-report&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script that pulls open incidents from JIRA and sends it as an email to Twitch security team as a report.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incident-response&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reporting&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;93) Tool&lt;/strong&gt;: sirtbot&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Slack bot that is based off a fork of https://github.com/lins05/slackbot.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slack&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;94) Tool&lt;/strong&gt;: SIRTGuardDutyRole-cloudformation&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A cloudformation config to enable Twitch SIRT to access GuardDuty in the target account.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;guardduty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;95) Tool&lt;/strong&gt;: sirtjira&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Another library to interact with Jira. It has the capability to create issues, manage issues, add comments, and other similar features.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;96) Tool&lt;/strong&gt;: sirtlib&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An automation Python library to interact with Splunk, Uptycs, Amazon Anamoli (Internal Amazon Security service), and Salesforce IDM.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;splunk&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amazon&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;salesforce&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uptycs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;97) Tool&lt;/strong&gt;: slaughter_bot&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An automation bot that can send emails, pull open risks and incidents from Jira, and put them into Spreadsheet.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spreadsheet&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;email&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;98) Tool&lt;/strong&gt;: sonarvet&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A report parser for SonarQube written in Golang.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sonarqube&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;99) Tool&lt;/strong&gt;: spark_from_athena_uptycs&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script to generate queries for AWS Spark and AWS Glue. It seems to use AWS Athena and Uptycs for the queries.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;athena&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws-athena&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws-spark&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws-glue&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uptycs&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;100) Tool&lt;/strong&gt;: splunk-hec-go&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Splunk HEC Golang Library. It’s a forked version of https://github.com/fuyufjh/splunk-hec-go.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;splunk&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;101) Tool&lt;/strong&gt;: splunk-saved-searches&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Repository to manage the configuration for saved searches/alerting in Splunk to be integrated with an automated deployment lambda function.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;splunk&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incident-response&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;102) Tool&lt;/strong&gt;: squidmetrics&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Squid statsd publisher. This python script scrapes metrics from Squid (using the local manager
+interface) and writes them to statsd/statsite.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;squid&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metrics&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;103) Tool&lt;/strong&gt;: ssm-logging-enrollment&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: ssm-logging-enrollment. A simple script to enable CloudWatch logging for SSM session manager.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudwatch&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssm&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;session-manager&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;104) Tool&lt;/strong&gt;: subdomain_checker&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Subdomain Takeover Checker. Check if a list of sites is vulnerable to an S3 Bucket or Cloudfront CNAME Hijack.&lt;/p&gt;
+
+&lt;p&gt;It has a feature to automatically claim vulnerable CloudFront and AWS S3 buckets that are not publicly claimed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subdomain-takeover&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudfront&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;105) Tool&lt;/strong&gt;: tails&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Empty repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;empty&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;106) Tool&lt;/strong&gt;: takeover_check&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: SIRT Takeover DNS Checker. Sweeps across domains to find subdomain takeover vulnerabilities.&lt;/p&gt;
+
+&lt;p&gt;It checks for AWS Beanstalk, CloudFront, S3, and signs of misconfiguration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudfront&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subdomain-takeover&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;107) Tool&lt;/strong&gt;: teleport&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Teleport configuration repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;108) Tool&lt;/strong&gt;: teleport-configuration&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Teleport Configuration. This repository contains configuration files in YAML format for Teleport.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;109) Tool&lt;/strong&gt;: teleport-dashboard&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Teleport dashboard.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;110) Tool&lt;/strong&gt;: teleport-dns-guardian&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Teleport DNS Guardian.
+A small Python utility intended to be run as an AWS Lambda function. It can be used as part of a DNS round robin load balancing setup to keep the list of IPs in the DNS record updated based on Consul. It’s best to run once per minute.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;111) Tool&lt;/strong&gt;: teleport-enterprise-build&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Teleport Enterprise package builder.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;112) Tool&lt;/strong&gt;: teleport-remote&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This includes the components to build and manage remote Teleport clusters.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;113) Tool&lt;/strong&gt;: teleport-util&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This contains utilities used for managing or automating the Teleport deployment at Twitch.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;114) Tool&lt;/strong&gt;: terraform&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Security-related Terraform configuration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;115) Tool&lt;/strong&gt;: tf-asg&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Terraform module to create and manage autoscalling group.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;116) Tool&lt;/strong&gt;: tf-lambda-dogfish-sg&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Terraform module to manage “dogfish” project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;117) Tool&lt;/strong&gt;: tf-teleport&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Terraform module for setting up teleport.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;118) Tool&lt;/strong&gt;: tf-teleport-auth-lb&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Terraform module that creates a network loadbalancer for Teleport auth service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;119) Tool&lt;/strong&gt;: tf-teleport-dns-guardian&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Terraform module for setting up a lambda function to manage Teleport’s DNS round robin records.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;120) Tool&lt;/strong&gt;: threat-modeling&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A repository that hosts a threat-modeling diagram built with PlantUML about a portion of Twitch threat-model.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-modeling&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;121) Tool&lt;/strong&gt;: tshproxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is a shim meant to wrap tsh and ssh for use in a ProxyCommand. It primarily
+exists to automatically install or renew an SSH certificate if it is expired or
+doesn’t exist.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;proxy&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;122) Tool&lt;/strong&gt;: twitch-bastion-util&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This script will automate the client-side configuration steps process for the
+Twitch Bastion (an internal service). Specifically, it will install the Teleport client software and
+configure the ssh client to access production via a bastion host.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;123) Tool&lt;/strong&gt;: twitch-glitch-bot&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Slack bot that interacts with Jira, Slack and PagerDuty.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pagerduty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slack&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;124) Tool&lt;/strong&gt;: twitch-public-s3-bucket&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A CloudFormation template that provisions an internal S3 bucket.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s3&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudformation&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;125) Tool&lt;/strong&gt;: TwitchyOmega&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A forked version of https://github.com/FelisCatus/SwitchyOmega.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;proxy&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SwitchyOmega&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome-extension&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;126) Tool&lt;/strong&gt;: UbuntuVulnData&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A report parser tool that contextualizes vulnerability reports on Ubuntu AMIs that are not enriched with additional vulnerability details.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vulnerability-management&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;127) Tool&lt;/strong&gt;: vacation-calendar&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Google Suite App that syncs team calendar when a member takes a vacation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google-suite&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gsuite&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;productivity&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;128) Tool&lt;/strong&gt;: wireguard-gateway&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Wireguard gateway: a framework to setup a full Wireguard infrastructure on AWS.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wireguard&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;129) Tool&lt;/strong&gt;: yeti-infra&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An incomplete project. It’s a Terraform module for deploying YETI project for threat-intelligence.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;threat-intelligence&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
+
+&lt;p&gt;Twitch Security invested thousands of hours in building its security tools and security program. I consider the tools developed internally to be advanced, well-thought and has done with excellent use-cases. At the time of writing the blog post, Twitch has not released a postmortem yet about the Twitch breach, how it happened, and technical details about the breach.&lt;/p&gt;
+
+&lt;p&gt;Although the leaked security data covers the tools, it doesn’t cover the security architecture and the security program details. It’s hard to come up with a definite conclusion of how the breach could have happened.&lt;/p&gt;
+
+&lt;p&gt;I can see that there is less focus on the tools for Identity Management and Access Control. Also, I can not see tools or references for the Security automation of SAST to scan the CI pipeline. Assets Discovery is done well, but I can not see AWS-related checks for AWS Policies and Role-Based access validation.&lt;/p&gt;
+
+&lt;p&gt;The continuous security scanning from an AppSec perspective seems limited from seeing the developed tools. It’s possible that Twitch is running COTS tools instead of building their tools internally, but this also is not clear, as I haven’t seen ingestion for commercial DAST tools.&lt;/p&gt;
+
+&lt;p&gt;The Twitch breach acts as a reality check on organizations and companies that are building their security program. The possibility of a breach is always there, organizations can take the next step and work in “assume-breach” playbooks and build additional security controls for their security program.&lt;/p&gt;
+
+&lt;h1 id=&quot;about-fullhuntio&quot;&gt;About FullHunt.io&lt;/h1&gt;
+&lt;p&gt;FullHunt is the Next-Generation Attack Surface Management Platform. FullHunt enables companies to discover all of their attack surfaces, monitor them for exposure, and continuously scan them for the latest security vulnerabilities and risks. We help companies around the world in securing their external attack surface using our technologies that are scanning millions of Internet-connected assets and cloud resources.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Are you an enterprise that is looking to build security for their External Attack Surface? Please reach out to us at &lt;a href=&quot;https://fullhunt.io&quot;&gt;fullhunt.io&lt;/a&gt;, and we will be happy to solve your challenges.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;https://www.bbc.com/news/technology-58817658&lt;/li&gt;
+  &lt;li&gt;https://www.theverge.com/2021/10/6/22712365/twitch-data-leak-breach-security-confirmation-comments&lt;/li&gt;
+  &lt;li&gt;https://www.nytimes.com/2021/10/06/technology/twitch-data-breach.html&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="twitch" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary></entry><entry><title type="html">Attacking Modern Environments Series: Attack Vectors on Terraform Environments</title><link href="https://mazinahmed.net/blog/attacking-terraform-environments/" rel="alternate" type="text/html" title="Attacking Modern Environments Series: Attack Vectors on Terraform Environments" /><published>2022-01-29T00:00:00-06:00</published><updated>2022-01-29T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/attacking-terraform-environments</id><content type="html" xml:base="https://mazinahmed.net/blog/attacking-terraform-environments/">&lt;hr /&gt;
 
 &lt;p&gt;I have given a talk about my latest research, “Attack Vectors on Terraform Environments”.&lt;/p&gt;
 
@@ -899,39 +2087,4 @@ root:x:0:0:root:/root:/usr/bin/zsh
 &lt;ol&gt;
   &lt;li&gt;First Release commit (2016): &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://ss64.com/bash/source.html&quot;&gt;https://ss64.com/bash/source.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry><entry><title type="html">Book Review: WASEC By Alessandro Nadalin</title><link href="https://mazinahmed.net/blog/wasec-book-review/" rel="alternate" type="text/html" title="Book Review: WASEC By Alessandro Nadalin" /><published>2020-03-29T00:00:00-05:00</published><updated>2020-03-29T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/wasec-book-review</id><content type="html" xml:base="https://mazinahmed.net/blog/wasec-book-review/">&lt;p&gt;&lt;img src=&quot;/assets/static/ae2ef466-b717-4a53-8a79-e2dafdf54faf.jpeg&quot; style=&quot;margin: 0 auto;display: block;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This blog post is a book review for the WASEC (Web Application Security for the everyday software engineer) book by Alessandro Nadalin.&lt;/p&gt;
-
-&lt;p&gt;First of all, I have worked with Alessandro in building the security program for Namshi (an Emaar-acquired company in Dubai, United Arab Emirates). It was an excellent experience with great talents I had the chance to work with. Alessandro was the CTO of Namshi, with a high record of achievements in the tech industry. Visit &lt;a href=&quot;https://odino.org&quot;&gt;Alessandro’s website&lt;/a&gt; or &lt;a href=&quot;https://tech.namshi.io/&quot;&gt;Namshi blog&lt;/a&gt; to read more.&lt;/p&gt;
-
-&lt;p&gt;The WASEC book is an intro for security engineering for web-based services. If you’re a web developer, a software engineer who works with web technologies, an enthusiast who would like to understand the fundamentals of web security from a security engineering perspective, then this book is an excellent intro and a must-read.&lt;/p&gt;
-
-&lt;p&gt;The book focuses on browser security features and utilizing them in building secure web-apps. WASEC also dives into explaining the HTTP protocol, and the differences between HTTP vs. HTTPS vs. HTTP/2 in a simple way.&lt;/p&gt;
-
-&lt;p&gt;The 7th chapter discusses DDoS attacks in a general manner, and how it is like to be in the middle of a DDoS attack.&lt;/p&gt;
-
-&lt;p&gt;Bug Bounty Programs are also covered from the perspective of companies. Namshi has a bug bounty program with one of the highest-paid rewards in the Middle East. Check the bug bounty program at &lt;a href=&quot;https://en-ae.namshi.com/security/&quot;&gt;Namshi Security&lt;/a&gt;. Alessandro shared some of his experience in running the program for the past few years.&lt;/p&gt;
-
-&lt;p&gt;One of the topics I enjoyed reading was “Logging Secrets”. It’s something that it’s not extensively discussed typically, and should be put in mind when integrating logging systems into applications.&lt;/p&gt;
-
-&lt;p&gt;I liked the language that the book is written by; a very simple, yet informative one that would encourage anyone to recommend the book to students and starters.&lt;/p&gt;
-
-&lt;p&gt;Another point I liked that WASEC is discussing new/modern security technologies and standards. I will list some here:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Same-Site Cookies&lt;/li&gt;
-  &lt;li&gt;Security.txt&lt;/li&gt;
-  &lt;li&gt;HPKP (HTTP Public Key Pinning) - it’s now dead. It’s discussing why, and the replacements.&lt;/li&gt;
-  &lt;li&gt;CSP (Content Security Policy)&lt;/li&gt;
-  &lt;li&gt;Stateful vs. Stateless Authentication&lt;/li&gt;
-  &lt;li&gt;JWT&lt;/li&gt;
-  &lt;li&gt;Dependencies security&lt;/li&gt;
-  &lt;li&gt;CDNs (Content Delivery Networks) and how to validate and SRI (Sub-Resource Integrity)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;book-link-httpsleanpubcomwasec&quot;&gt;&lt;strong&gt;Book link&lt;/strong&gt;: &lt;a href=&quot;https://leanpub.com/wasec&quot;&gt;https://leanpub.com/wasec&lt;/a&gt;&lt;/h3&gt;
-
-&lt;h3 id=&quot;book-release-blog-post-by-alessandro-httpsodinoorgwasec-a-book-about-web-application-security-is-now-available-for-sale&quot;&gt;&lt;strong&gt;Book release blog post by Alessandro&lt;/strong&gt;: &lt;a href=&quot;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&quot;&gt;https://odino.org/wasec-a-book-about-web-application-security-is-now-available-for-sale/&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="book-review" /><summary type="html"></summary></entry></feed>
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
