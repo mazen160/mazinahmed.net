@@ -1527,7 +1527,7 @@ pre {
 
 <p>Tfquery is a framework that allows running SQL queries on Terraform code. It’s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.</p>
 
-<p>I developed it to solve an existing problem I’m facing: understanding large infrastructures quickly.</p>
+<p>I developed it to solve an existing problem I’m facing: <strong>understanding large infrastructure quickly</strong>.</p>
 
 <p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/36c7dd81-4f6e-49f7-942f-14a90ead3db6.png" alt="" /></p>
 
@@ -1537,7 +1537,7 @@ pre {
 
 <p>Tfquery support was specific to tfstate. It was able to run SQL queries on the current Terraform workspace state - and also supports multi-workspaces when importing state files.</p>
 
-<p>I aimed to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This will allow engineers to write Terraform misconfiguration checks as SQL checks.</p>
+<p>My plan is to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This allows engineers to write Terraform misconfiguration checks as SQL queries.</p>
 
 <h3 id="semgrep-hcl-support-vs-tfquery">semgrep HCL support vs. tfquery</h3>
 
@@ -1547,14 +1547,17 @@ pre {
 
 <h1 id="tfquery-approach-for-terraform-plan-scanning">tfquery approach for Terraform Plan scanning</h1>
 
-<p>The idea is, that whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.</p>
+<p>Whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.</p>
 
-<p>You can now write SQL queries that are much more elegant to:
-Check for providers if not matching an allowed list.
-Check for wildcard AWS Policies.
-Check for new IAM users.
-Check for an S3 bucket with versioning not being enabled.
-etc…</p>
+<p>You can now write SQL queries that are much more elegant to:</p>
+
+<ul>
+  <li>Check for providers if not matching an allowed list.</li>
+  <li>Check for wildcard AWS Policies.</li>
+  <li>Check for new IAM users.</li>
+  <li>Check for an S3 bucket with versioning not being enabled.</li>
+  <li>etc…</li>
+</ul>
 
 <p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png" alt="" /></p>
 

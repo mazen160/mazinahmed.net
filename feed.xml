@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-10-27T06:19:21-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-10-27T06:29:01-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
 
 &lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/5d76d6e7-536c-4f78-bf16-752d62914d53.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
@@ -6,7 +6,7 @@
 
 &lt;p&gt;Tfquery is a framework that allows running SQL queries on Terraform code. It’s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.&lt;/p&gt;
 
-&lt;p&gt;I developed it to solve an existing problem I’m facing: understanding large infrastructures quickly.&lt;/p&gt;
+&lt;p&gt;I developed it to solve an existing problem I’m facing: &lt;strong&gt;understanding large infrastructure quickly&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/36c7dd81-4f6e-49f7-942f-14a90ead3db6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 
 &lt;p&gt;Tfquery support was specific to tfstate. It was able to run SQL queries on the current Terraform workspace state - and also supports multi-workspaces when importing state files.&lt;/p&gt;
 
-&lt;p&gt;I aimed to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This will allow engineers to write Terraform misconfiguration checks as SQL checks.&lt;/p&gt;
+&lt;p&gt;My plan is to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This allows engineers to write Terraform misconfiguration checks as SQL queries.&lt;/p&gt;
 
 &lt;h3 id=&quot;semgrep-hcl-support-vs-tfquery&quot;&gt;semgrep HCL support vs. tfquery&lt;/h3&gt;
 
@@ -26,14 +26,17 @@
 
 &lt;h1 id=&quot;tfquery-approach-for-terraform-plan-scanning&quot;&gt;tfquery approach for Terraform Plan scanning&lt;/h1&gt;
 
-&lt;p&gt;The idea is, that whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.&lt;/p&gt;
+&lt;p&gt;Whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.&lt;/p&gt;
 
-&lt;p&gt;You can now write SQL queries that are much more elegant to:
-Check for providers if not matching an allowed list.
-Check for wildcard AWS Policies.
-Check for new IAM users.
-Check for an S3 bucket with versioning not being enabled.
-etc…&lt;/p&gt;
+&lt;p&gt;You can now write SQL queries that are much more elegant to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Check for providers if not matching an allowed list.&lt;/li&gt;
+  &lt;li&gt;Check for wildcard AWS Policies.&lt;/li&gt;
+  &lt;li&gt;Check for new IAM users.&lt;/li&gt;
+  &lt;li&gt;Check for an S3 bucket with versioning not being enabled.&lt;/li&gt;
+  &lt;li&gt;etc…&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
