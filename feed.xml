@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-10-27T06:10:03-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-10-27T06:19:21-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
 
-&lt;h2&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/29433340-4215-4e2e-a22b-27fe98b03e07/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/5d76d6e7-536c-4f78-bf16-752d62914d53.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
 &lt;p&gt;In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.&lt;/p&gt;
 
@@ -8,7 +8,7 @@
 
 &lt;p&gt;I developed it to solve an existing problem I’m facing: understanding large infrastructures quickly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/177d639e-7af5-489a-893c-fef9cf05b500/image2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/36c7dd81-4f6e-49f7-942f-14a90ead3db6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments, and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.&lt;/p&gt;
 
@@ -35,9 +35,9 @@ Check for new IAM users.
 Check for an S3 bucket with versioning not being enabled.
 etc…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/30564d22-28e4-43cf-b069-16c92b1a853d/image3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/4cfb96bb-fcc7-4714-84e8-15cf4d53b846/image4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/703f76c6-8f49-416a-8c7d-473be4e49f61.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;try-tfquery-at-githubcommazen160tfquery&quot;&gt;Try tfquery at: &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;github.com/mazen160/tfquery&lt;/a&gt;&lt;/h3&gt;
 
