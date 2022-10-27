@@ -25,24 +25,24 @@
     <meta property="og:type" content="profile">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Exploiting Misconfigured Apache server-status Instances with server-status_PWN | Mazin Ahmed</title>
+<title>Scan Terraform plans and changes with tfquery via SQL-powered framework | Mazin Ahmed</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Exploiting Misconfigured Apache server-status Instances with server-status_PWN" />
+<meta property="og:title" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Exploiting Misconfigured Apache server-status Instances with server-status_PWN" />
-<meta property="og:description" content="Exploiting Misconfigured Apache server-status Instances with server-status_PWN" />
-<link rel="canonical" href="https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/" />
-<meta property="og:url" content="https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/" />
+<meta name="description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
+<meta property="og:description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
+<link rel="canonical" href="https://mazinahmed.net/blog/tfplan-release/" />
+<meta property="og:url" content="https://mazinahmed.net/blog/tfplan-release/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-01-13T00:00:00-06:00" />
+<meta property="article:published_time" content="2022-10-27T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Exploiting Misconfigured Apache server-status Instances with server-status_PWN" />
+<meta property="twitter:title" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2017-01-13T00:00:00-06:00","datePublished":"2017-01-13T00:00:00-06:00","description":"Exploiting Misconfigured Apache server-status Instances with server-status_PWN","headline":"Exploiting Misconfigured Apache server-status Instances with server-status_PWN","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/"},"url":"https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2022-10-27T00:00:00-05:00","datePublished":"2022-10-27T00:00:00-05:00","description":"Scan Terraform plans and changes with tfquery via SQL-powered framework","headline":"Scan Terraform plans and changes with tfquery via SQL-powered framework","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/tfplan-release/"},"url":"https://mazinahmed.net/blog/tfplan-release/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -68,7 +68,7 @@
 <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
 
-    <link rel="canonical" href="https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/">
+    <link rel="canonical" href="https://mazinahmed.net/blog/tfplan-release/">
     <link rel="alternate" type="application/rss+xml" title="" href="https://mazinahmed.net/feed.xml" />
 
     <style>
@@ -1503,10 +1503,10 @@ pre {
 
 
 
-<h1 class="title">Exploiting Misconfigured Apache server-status Instances with server-status_PWN</h1>
+<h1 class="title">Scan Terraform plans and changes with tfquery via SQL-powered framework</h1>
 
 <span class="date">
-    <time datetime="13-01-2017">Friday. January 13, 2017</time>
+    <time datetime="27-10-2022">Thursday. October 27, 2022</time>
      - <span class="reading-time" title="Estimated read time">
     
 
@@ -1519,70 +1519,52 @@ pre {
 
 
 
-<hr />
+<p>New Release: tfquery now supports SQL queries for Terraform Plan Scanning</p>
 
-<p><img src="/assets/static/f0694bab-0351-4288-a5ff-085730be33b3.png" alt="" /></p>
+<h2><img src="https://mazin.s3.amazonaws.com/public/29433340-4215-4e2e-a22b-27fe98b03e07/image1.png" alt="" /></h2>
 
-<p>One of the things that my clients like in my work that I always like to do my best in providing technical Proof of Concepts in findings I discover. This makes it easier for technical departments to reproduce the issues, and also a nice way to show how bugs and issues can be actually exploited.</p>
+<p>In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.</p>
 
-<p>I recently had an assessment where I discovered a number of publicly exposed Apache server-status instances. In case you are not familiar with Apache server-status, feel free to read this <a href="https://httpd.apache.org/docs/2.4/mod/mod_status.html">document</a>.</p>
+<p>Tfquery is a framework that allows running SQL queries on Terraform code. It’s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.</p>
 
-<p>When I report it initially to the company, the team thought that it would be an acceptable risk to leave it there.</p>
+<p>I developed it to solve an existing problem I’m facing: understanding large infrastructures quickly.</p>
 
-<p>I believe Apache server-status should not be accessible, as it pose a major privacy and security risk.</p>
+<p><img src="https://mazin.s3.amazonaws.com/public/177d639e-7af5-489a-893c-fef9cf05b500/image2.png" alt="" /></p>
 
-<h2 id="what-information-can-be-exposed">What Information can be exposed?</h2>
+<p>Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments, and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.</p>
 
-<ul>
-  <li>
-    <p>All requested URLs by all Hosts/VHosts on the Apache server.
-This includes:</p>
-  </li>
-  <li>
-    <p>Hidden and obscure files and directories.</p>
-  </li>
-  <li>
-    <p>Session Tokens on GET REQUEST_URI (eg.. https://example.com/?token=123). If tokens are passed through GET HTTP method, it will be exposed, no matter what SSL encryption is used.</p>
-  </li>
-  <li>
-    <p>All clients’ IP addresses along with URLs the clients have requested.</p>
-  </li>
-</ul>
+<p>There was no patch or workaround released by HashiCorp to limit external providers or prevent local-exec data sources.</p>
 
-<h2 id="what-do-we-need-as-attackers">What do we need as attackers?</h2>
+<p>Tfquery support was specific to tfstate. It was able to run SQL queries on the current Terraform workspace state - and also supports multi-workspaces when importing state files.</p>
 
-<p>We need a script that constantly monitors the exposed Apache server-status, and extracts all new URLs, and save them for later testing.</p>
+<p>I aimed to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This will allow engineers to write Terraform misconfiguration checks as SQL checks.</p>
 
-<p>Also, if we are performing an intelligence engagement, we would need all IPs that interacts with the Apache server that hosts our target website, along with requested URLs. Then we need to constantly monitor the service on the hour.</p>
+<h3 id="semgrep-hcl-support-vs-tfquery">semgrep HCL support vs. tfquery</h3>
 
-<h2 id="what-have-i-done-to-solve-the-issue">What have I done to solve the issue?</h2>
+<p>Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.</p>
 
-<p>As a penetration tester, I believe that without an actual PoC, the attack would be theoretical, simple as that. <code class="language-plaintext highlighter-rouge">PoC || GO</code> is the rule of the game.</p>
+<p>Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace, otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.</p>
 
-<p>So, I wrote server-status PWN.</p>
+<h1 id="tfquery-approach-for-terraform-plan-scanning">tfquery approach for Terraform Plan scanning</h1>
 
-<h1 id="introducing-server-status-pwn">Introducing server-status PWN</h1>
+<p>The idea is, that whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.</p>
 
-<p>server-status PWN constantly requests and parses Apache server-status pages for any new event. Whenever a new URL is requested or a new client IP address is used, it will be logged and reported. It outputs the logs in a SQLITE3 database.</p>
+<p>You can now write SQL queries that are much more elegant to:
+Check for providers if not matching an allowed list.
+Check for wildcard AWS Policies.
+Check for new IAM users.
+Check for an S3 bucket with versioning not being enabled.
+etc…</p>
 
-<h3 id="example-tool-output">Example Tool Output:</h3>
+<p><img src="https://mazin.s3.amazonaws.com/public/30564d22-28e4-43cf-b069-16c92b1a853d/image3.png" alt="" /></p>
 
-<p><img src="/assets/static/f0694bab-0351-4288-a5ff-085730be33b3.png" alt="" /></p>
+<p><img src="https://mazin.s3.amazonaws.com/public/4cfb96bb-fcc7-4714-84e8-15cf4d53b846/image4.png" alt="" /></p>
 
-<p>The tool basically did exactly what I needed, if anyone have additional ideas that would like to push it into server-status_PWN, let me know and I will be happy to implement it.</p>
+<h3 id="try-tfquery-at-githubcommazen160tfquery">Try tfquery at: <a href="https://github.com/mazen160/tfquery">github.com/mazen160/tfquery</a></h3>
 
-<h4 id="server-status_pwn-homepage-httpsgithubcommazen160server-status_pwn">server-status_PWN Homepage: <a href="https://github.com/mazen160/server-status_PWN">https://github.com/mazen160/server-status_PWN</a></h4>
+<p>Find my DEFCON talk: <a href="https://mazinahmed.net/blog/attacking-terraform-environments/">mazinahmed.net/blog/attacking-terraform-environments</a></p>
 
-<p>If you have a project or would like your application/network to be tested, I provide freelancing penetration testing services. Feel free to email me at <Mazin AT="" MazinAhmed="" DOT="" net="">, and check the Hire Me page.</Mazin></p>
-
-<h2 id="february-20-2017-update">[February 20, 2017] Update:</h2>
-<p>The Apache Foundation has made changes to their official Apache server-status instance, which was made available at: https://www.apache.org/server-status</p>
-
-<p>Initially, it was publicly and intentionally accessible. Now, it shows a large notice stating that the data is “static data” and do not hold any users’ data or information. Great job as always by Apache Foundation in protecting the user’s security and privacy.</p>
-
-<h4 id="screenshot">Screenshot</h4>
-
-<p><img src="/assets/static/ec940d76-6ff8-4edb-96fd-bae06fd8968e.png" alt="" /></p>
+<p>Thanks for reading!</p>
 
 
 
@@ -1602,28 +1584,14 @@ This includes:</p>
         
             
                 
-                    
-                    <h4>Related Posts</h4>
-                    <ul>
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/tfplan-release/">Scan Terraform plans and changes with tfquery via SQL-powered framework
-                        
-                        </a>
-                    </li>
-                    
-                    
-                
-            
-                
-            
-        
             
                 
             
                 
             
-        
+                
+            
+                
             
                 
             
@@ -1635,19 +1603,91 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
             
                 
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
             
                 
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -1660,6 +1700,9 @@ This includes:</p>
             
                 
                     
+                    <h4>Related Posts</h4>
+                    <ul>
+                    
                     <li class="relatedPost">
                         <a href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools
                         
@@ -1671,19 +1714,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -1695,7 +1730,75 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -1719,19 +1822,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -1743,7 +1838,75 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -1767,19 +1930,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -1791,13 +1946,91 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
             
                 
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -1821,19 +2054,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -1845,7 +2070,135 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/stressful-ddos-framework/">DDoS is not Dead: Building a Scalable DDoS Framework
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -1860,22 +2213,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
-    
-        
-        
             
                 
             
@@ -1887,16 +2229,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -1908,7 +2245,11 @@ This includes:</p>
             
                 
             
-        
+                
+            
+                
+            
+                
             
                 
             
@@ -1923,25 +2264,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
-    
-        
-        
             
                 
             
@@ -1953,16 +2280,27 @@ This includes:</p>
             
                 
             
-        
-    
-        
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
             
                 
             
                 
             
-        
+                
+            
+                
+            
+                
             
                 
             
@@ -1977,22 +2315,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -2007,16 +2334,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -2028,16 +2350,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
@@ -2052,16 +2369,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -2073,22 +2385,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -2103,31 +2404,27 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
                 
             
         
-    
-        
-        
             
                 
             
                 
             
-        
+                
+            
+                
+            
+                
             
                 
             
@@ -2142,31 +2439,27 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
                 
             
         
-    
-        
-        
             
                 
             
                 
             
-        
+                
+            
+                
+            
+                
             
                 
             
@@ -2181,16 +2474,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -2202,16 +2490,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
@@ -2226,16 +2509,11 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
@@ -2247,16 +2525,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
@@ -2271,16 +2544,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
+                
             
                 
             
@@ -2292,22 +2560,11 @@ This includes:</p>
             
                 
             
-        
-    
-        
-        
-            
                 
             
                 
             
-        
-            
                 
-            
-                
-            
-        
             
                 
             
@@ -2322,34 +2579,27 @@ This includes:</p>
             
                 
             
-        
-            
                 
             
                 
             
-        
-    
-        
-        
+                
             
                 
             
                 
             
         
-    
-        
-        
             
                 
             
                 
             
-        
-    
-        
-        
+                
+            
+                
+            
+                
             
                 
             
@@ -2364,10 +2614,752 @@ This includes:</p>
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
         
     
         
         
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
             
                 
             
@@ -2395,7 +3387,7 @@ This includes:</p>
         <div class="share">
             <!-- Note: Only use three share links if your site width is set to large -->
             <!-- If site width is set to normal, you may choose any two share links -->
-            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/ - Exploiting Misconfigured Apache server-status Instances with server-status_PWN by @mazen160">
+            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/tfplan-release/ - Scan Terraform plans and changes with tfquery via SQL-powered framework by @mazen160">
                 <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg><span class="icon-twitter">Tweet</span>
             </a>
 
@@ -2403,15 +3395,15 @@ This includes:</p>
                 <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg><span class="icon-facebook-rect">Share</span>
             </a>
 
-            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/" target="_blank">
+            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/tfplan-release/" target="_blank">
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/&amp;title=Exploiting Misconfigured Apache server-status Instances with server-status_PWN&amp;summary=Exploiting Misconfigured Apache server-status Instances with server-status_PWN&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;summary=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 
-            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/&amp;title=Exploiting Misconfigured Apache server-status Instances with server-status_PWN" target="_blank">
+            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework" target="_blank">
                 <svg class="icon icon-reddit"><use xlink:href="#icon-reddit"></use></svg><span class="icon-reddit">Share</span>
             </a> -->
         </div>
