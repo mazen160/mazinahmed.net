@@ -1,89 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-11-08T02:11:41-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Shennina Framework - Automating Host Exploitation with AI</title><link href="https://mazinahmed.net/blog/shennina-exploitation-framework/" rel="alternate" type="text/html" title="Shennina Framework - Automating Host Exploitation with AI" /><published>2022-11-03T00:00:00-05:00</published><updated>2022-11-03T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/shennina-exploitation-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/shennina-exploitation-framework/">&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0e77a1c3-5aa9-4683-9dc6-4b83d221b5ca.png&quot; alt=&quot;Banner&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In 2019, &lt;a href=&quot;https://www.linkedin.com/in/khaledfarah/&quot;&gt;Khaled Farah&lt;/a&gt; and I participated in a security competition for developing offensive security tools.&lt;/p&gt;
-
-&lt;p&gt;I enjoy building security tools, and this competition was funded by HITB (Hack-in-the-Box) with a reward of $100,000 for the winners. I thought it would be an interesting challenge to work on as a side project.&lt;/p&gt;
-
-&lt;p&gt;I met my friend Khalid, he was also interested in winning this competition. We signed up, and once accepted, we started meeting regularly to build this project.&lt;/p&gt;
-
-&lt;h1 id=&quot;goals&quot;&gt;Goals&lt;/h1&gt;
-
-&lt;p&gt;The HITB CyberWeek AI Challenge had two categories:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Host Exploitation&lt;/li&gt;
-  &lt;li&gt;Malware Evasion&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/82ca0a48-1b0a-4a95-885f-a1052ad7ce4e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Host exploitation sounds more relevant to our experience. The goal was to build a host exploitation framework using AI, and based on the concept of DeepExploit. The winning team should ideally prove the accuracy of the model, the improvement of the training and execution speed, and the technical features that have been added to the framework.&lt;/p&gt;
-
-&lt;p&gt;We started experimenting with DeepExploit, and how it works, and we decided to start a new project based on the ideas we had on how to improve the tool.&lt;/p&gt;
-
-&lt;p&gt;This eventually ended up having us develop Shennina, a host exploitation framework that does:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Automatically self-learning reliable exploits&lt;/li&gt;
-  &lt;li&gt;Out-of-Band technique testing for exploitation checks.&lt;/li&gt;
-  &lt;li&gt;Exploits clustering.&lt;/li&gt;
-  &lt;li&gt;Scriptable attack method within the post-exploitation phase.&lt;/li&gt;
-  &lt;li&gt;Automated exfiltration of important data on compromised servers.&lt;/li&gt;
-  &lt;li&gt;Reporting capabilities.&lt;/li&gt;
-  &lt;li&gt;Deception capabilities.&lt;/li&gt;
-  &lt;li&gt;Ransomware simulation capabilities for Windows, macOS, and Linux.&lt;/li&gt;
-  &lt;li&gt;Post exploitation capabilities&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The project is &lt;strong&gt;4 times faster than DeepExploit&lt;/strong&gt;. We were excited about the results.&lt;/p&gt;
-
-&lt;h1 id=&quot;demo&quot;&gt;Demo&lt;/h1&gt;
-
-&lt;h2 id=&quot;running-exploitation-mode&quot;&gt;Running Exploitation Mode&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/69f27b4e-ef87-4484-b85b-6828c6edd96a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;running-vulnerability-scanning-mode&quot;&gt;Running Vulnerability Scanning mode&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/4685c03f-fd4e-48c2-8074-decc443556de.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;deception-detection-as-a-part-of-post-exploitation&quot;&gt;Deception Detection as a part of Post Exploitation&lt;/h2&gt;
-
-&lt;p&gt;Shennina comes with a deception detection capability that detects if the machine being exploited is a Virtual Machine or Container, and then terminates post-exploitation once it’s detected. This feature is powered by Metasploit modules.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/a999c881-3fb1-4193-b899-f5fe907469d1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The Shenina Framework has qualified for the top 5 projects (out of 40 projects). We worked on developing the tool further to prepare for our final demo that will be live at HITB Abu Dhabi 2019.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, the rules of the competition and the judging criteria changed during the demo day.&lt;/p&gt;
-
-&lt;p&gt;We enjoyed HITB CyberWeek 2019. It was an amazing journey, and I enjoyed building the Shennina Framework. I also presented my research on JWT hacking at that time - it was a busy week :)&lt;/p&gt;
-
-&lt;h1 id=&quot;future-of-shennina&quot;&gt;Future of Shennina?&lt;/h1&gt;
-
-&lt;p&gt;We are planning to open-source the project and the experiment. There are no plans for further maintaining Shennina in the near future.&lt;/p&gt;
-
-&lt;h1 id=&quot;special-thanks&quot;&gt;Special Thanks&lt;/h1&gt;
-
-&lt;p&gt;I would like to thank Chris P, Chris Roberts, Rami Shaath, and the 971Sec community for their feedback.&lt;/p&gt;
-
-&lt;p&gt;I also would like to thank the judges of HITB Cyber Week Abu Dhabi.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/isao-takaesu-47485a77&quot;&gt;Isao Takaesu&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/zanero/&quot;&gt;Dr. Stefano Zanero&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/bushra-alblooshi-63953a80&quot;&gt;Dr. Bushra Al Belooshi&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/hoda-a-alkhzaimi-b36a3910b&quot;&gt;Dr. Hoda Alkhzaimi&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/ericcamellini/&quot;&gt;Eric Camellini&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/fadi-aloul-phd-cissp-2a718b1/&quot;&gt;Dr. Fadi Aloul&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.linkedin.com/in/cgivre/&quot;&gt;Charles Givre&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Of course, I can’t forget to thank &lt;a href=&quot;https://www.linkedin.com/in/l33tdawg&quot;&gt;Dhillon Kannabhiran&lt;/a&gt; for organizing another excellent HITB conference.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="shennina" /><category term="exploitation" /><category term="post-exploitation" /><category term="host-exploitation" /><summary type="html"></summary></entry><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-11-08T02:16:24-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
 
 &lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/5d76d6e7-536c-4f78-bf16-752d62914d53.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
@@ -2031,4 +1946,88 @@ https://bscdev.meetzoom.us/nginx_status&lt;/p&gt;
 
 &lt;p&gt;What should be required is public sharing of technical threat intelligence reports for related confirmed incidents.&lt;/p&gt;
 
-&lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="thoughts" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;To conclude, we should never overtake and abuse as a pandemic for solely marketing purposes.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="thoughts" /><summary type="html"></summary></entry><entry><title type="html">The Path for Testing Path Traversal Vulnerabilities with Python</title><link href="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/" rel="alternate" type="text/html" title="The Path for Testing Path Traversal Vulnerabilities with Python" /><published>2020-04-12T00:00:00-05:00</published><updated>2020-04-12T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/testing-for-path-traversal-with-python</id><content type="html" xml:base="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/">&lt;hr /&gt;
+
+&lt;p&gt;I have noticed an odd behavior in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://127.0.0.1/../../../../doing/certain/check&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which should typically send the request to the following path: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/../../../doing/certain/check&lt;/code&gt;. Instead, it’s requesting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/doing/certain/check&lt;/code&gt; and modifying the specified input.&lt;/p&gt;
+
+&lt;p&gt;The reason is, dot segments escaping, following RFC3986.&lt;/p&gt;
+
+&lt;p&gt;The change to normalize URIs was introduced in this commit[1] to follow RFC3986[2]. The change is based on the “Remove Dot Segments” at the RFC.&lt;/p&gt;
+
+&lt;p&gt;This breaks a lot of security tools that are performing fuzzing for path traversal vulnerabilities in web-applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I have compiled a number of solutions for this issue.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;solutions&quot;&gt;Solutions&lt;/h1&gt;
+
+&lt;h2 id=&quot;option-1-urllibrequest&quot;&gt;Option 1: urllib.request&lt;/h2&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;urllib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-2-requestsrequest&quot;&gt;Option 2: requests.Request&lt;/h2&gt;
+
+&lt;p&gt;Credit: &lt;a href=&quot;https://twitter.com/buffaloverflow&quot;&gt;Rich Warren&lt;/a&gt; - [3] and [4].&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prepare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://example.com/../../../etc/passwd&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prepare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;prep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-3-using-urllib3httpconnectionpool&quot;&gt;Option 3: Using urllib3.HTTPConnectionPool&lt;/h2&gt;
+
+&lt;p&gt;Credit: &lt;a href=&quot;https://twitter.com/quentinpradet&quot;&gt;Quentin Pradet&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib3&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTPConnectionPool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/../../../../doing/certain/check&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;option-4-downgrading-urllib3&quot;&gt;Option 4: Downgrading urllib3&lt;/h2&gt;
+
+&lt;p&gt;It’s possible to use previous versions of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urllib3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The option for current tools that use requests or urllib3 is to revert to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urllib3==1.24.3&lt;/code&gt;. However, this may not be the best option from an engineering perspective.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;final-additions&quot;&gt;Final Additions&lt;/h1&gt;
+
+&lt;p&gt;I started a discussion on Python Urllib3 Issue tracker on Github: &lt;a href=&quot;https://github.com/urllib3/urllib3/issues/1790&quot;&gt;https://github.com/urllib3/urllib3/issues/1790&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to thank &lt;a href=&quot;https://twitter.com/sethmlarson&quot;&gt;Seth Michael Larson&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/quentinpradet&quot;&gt;Quentin Pradet&lt;/a&gt;, and &lt;a href=&quot;https://github.com/hodbn&quot;&gt;https://github.com/hodbn&lt;/a&gt;, for all their work on urllib3 and with the Python community!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Commit to support the removal of dot-segments: &lt;a href=&quot;https://github.com/urllib3/urllib3/commit/5b047b645f5f93900d5e2fc31230848c25eb1f5f&quot;&gt;https://github.com/urllib3/urllib3/commit/5b047b645f5f93900d5e2fc31230848c25eb1f5f&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;RFC3986 - Section 5.2.4 - Remove Dot Segments: &lt;a href=&quot;http://tools.ietf.org/html/rfc3986#section-5.2.4&quot;&gt;http://tools.ietf.org/html/rfc3986#section-5.2.4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/issues/13&quot;&gt;https://github.com/trustedsec/cve-2019-19781/issues/13&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&quot;&gt;https://github.com/trustedsec/cve-2019-19781/blob/master/citrixmash.py#L140&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="web-security" /><category term="automation" /><summary type="html"></summary></entry></feed>
