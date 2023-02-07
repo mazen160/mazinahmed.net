@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2022-12-05T00:35:17-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Speaking at BlakcHat MEA 2022</title><link href="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/" rel="alternate" type="text/html" title="Speaking at BlakcHat MEA 2022" /><published>2022-12-05T00:00:00-06:00</published><updated>2022-12-05T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022</id><content type="html" xml:base="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2023-02-07T10:03:11-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection</title><link href="https://mazinahmed.net/blog/secrets-patterns-db/" rel="alternate" type="text/html" title="Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection" /><published>2023-02-07T00:00:00-06:00</published><updated>2023-02-07T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/secrets-patterns-db</id><content type="html" xml:base="https://mazinahmed.net/blog/secrets-patterns-db/">&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ensuring the security of your organization’s sensitive information is critical for any security team, and detecting secrets within your AppSec program is a crucial part of this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.&lt;/p&gt;
+
+&lt;p&gt;Detecting secrets is possible and can be automated. There are open-source tools for it that do a good job of analyzing the Git tree for potential secrets through two approaches:&lt;/p&gt;
+
+&lt;h2 id=&quot;regular-expressions&quot;&gt;Regular Expressions&lt;/h2&gt;
+
+&lt;p&gt;A dataset of regular expressions (Regex) rules that point to valid and known patterns of passwords, API keys, API Tokens, and Cloud API Keys.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;If written correctly, it provides high-confidence findings and limited false-positive alerts.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It can only see a very limited and small side of the picture: If there’s an API Token, and the rules cover 40-80 patterns that do not cover this particular API Token, it would not be discovered.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;shannons-entropy-checks&quot;&gt;Shannon’s Entropy Checks&lt;/h2&gt;
+
+&lt;p&gt;Shannon’s Entropy is an estimation of the average amount of information stored in a random value. Shannon’s entropy measures the predictable information contained in a message. It has a variety of use cases in Computer Science, including data compression, validating cryptography, and here, finding passwords and secrets.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Context-agnostic: The algorithm can be applied against any language, framework, or codebase, and is trivial to compute.&lt;/li&gt;
+  &lt;li&gt;Does not require the configuration of pre-defined Regular Expressions.&lt;/li&gt;
+  &lt;li&gt;Can find secrets that would have never been found with pre-defined Regular Expressions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The false-positive rate is high: It requires a manual validation of alerts before opening tickets about leaked secrets. Analysts would need to verify what type of secret it is. This will generate overhead in triaging findings.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;were-doing-regex-scanning-wrong-lets-fix-this-together&quot;&gt;We’re doing Regex scanning wrong. Let’s fix this, together&lt;/h1&gt;
+
+&lt;p&gt;While several open-source tools utilize regular expressions to detect secrets in codebases, the number of built-in rules for these tools is limited. TruffleHog v2 offers approximately 40 rules, TruffleHog v3 offers around 790 patterns, and GitLeaks offers approximately 60 rules. While it’s a good start, it’s not enough.&lt;/p&gt;
+
+&lt;p&gt;This project was initially made before TruffleHog v3 was released. At that time, the largest rules database was GitLeaks with 60 rules available. TruffleHog v3 helped a lot in collecting large datasets, but it’s still in a format that can not be ingestible with other tools since the new detector format is placed as Golang modules for each detection rule. This means that we would have to use Trufflehog v3 if we would like to make use of their detection rules.&lt;/p&gt;
+
+&lt;p&gt;I have compiled and curated a database of regular expression patterns for secrets, API tokens, keys, and passwords to improve the detection of secrets in codebases. This project I built, Secrets-Patterns-DB, contains over 1600 patterns and is being open-sourced in the hope that security teams will contribute to and improve it.&lt;/p&gt;
+
+&lt;p&gt;To ensure the quality and effectiveness of these patterns, I have written scripts to validate them against ReDoS attacks and created CI jobs to load and validate the patterns. I have also manually cleaned up any invalid patterns.&lt;/p&gt;
+
+&lt;p&gt;I encourage security teams to use and contribute to Secrets-Patterns-DB to enhance the security of their codebases.&lt;/p&gt;
+
+&lt;p&gt;The project is in Beta. There’s a lot of room for improvement on the project. I’m looking forward to your Pull Requests and Issues on Github to enhance Secrets-Patterns-DB for everyone.
+Unified Pattern Format for all tools&lt;/p&gt;
+
+&lt;p&gt;The Secrets-Patterns-DB has a unified pattern format that can be converted to all tools of choice.
+If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Patterns-DB can be exported to the format that your tool supports.&lt;/p&gt;
+
+&lt;h3 id=&quot;for-trufflehog-v2&quot;&gt;For Trufflehog v2&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$&amp;gt; ./convert-rules.py ./db/rules.yml trufflehog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;for-gitleaks&quot;&gt;For Gitleaks&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$&amp;gt; ./convert-rules.py ./db/rules.yml gitleaks
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And then, you can use the output rules with your tool.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-githubmazen160secrets-patterns-db&quot;&gt;Project: &lt;a href=&quot;https://github.com/mazen160/secrets-patterns-db&quot;&gt;github/mazen160/secrets-patterns-db&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;license&quot;&gt;License&lt;/h3&gt;
+
+&lt;p&gt;This project is licensed under Creative-Common. If you’re building a tool or a product that uses Secrets-Patterns-DB, you should explicitly reference Secrets-Patterns-DB.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="project" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" /><media:content medium="image" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speaking at BlakcHat MEA 2022</title><link href="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/" rel="alternate" type="text/html" title="Speaking at BlakcHat MEA 2022" /><published>2022-12-05T00:00:00-06:00</published><updated>2022-12-05T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022</id><content type="html" xml:base="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/">&lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0e8d0273-9732-4eeb-9c93-65d03a686da1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1589,14 +1665,4 @@ Interested in DDoS capabilities for your company? Let’s have a chat and see ho
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&quot;&gt;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&quot;&gt;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="project" /><category term="stressful" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" /><media:content medium="image" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region</title><link href="https://mazinahmed.net/blog/interview-with-sectastic-podcast/" rel="alternate" type="text/html" title="Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region" /><published>2021-03-22T00:00:00-05:00</published><updated>2021-03-22T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/interview-with-sectastic-podcast</id><content type="html" xml:base="https://mazinahmed.net/blog/interview-with-sectastic-podcast/">&lt;hr /&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/static/739a0909-9cc2-47d1-896d-2c727121881f.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I did an interview with &lt;a href=&quot;https://www.linkedin.com/in/miladca/&quot;&gt;Milad Aslaner&lt;/a&gt; about how I started in cyber security, what I have been building at FullHunt, the concept of assets discovery and continuous security, and how I started on of the first cyber security startups in the GCC region.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;310&quot; src=&quot;https://www.youtube.com/embed/qJjERXwM5wo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;h3 id=&quot;watch-on-youtube&quot;&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=qJjERXwM5wo&quot;&gt;Watch on YouTube&lt;/a&gt;&lt;/h3&gt;
-
-&lt;h3 id=&quot;listen-on-spotify&quot;&gt;&lt;a href=&quot;https://open.spotify.com/episode/5wFfNabozVKdwNfVpMNTm3&quot;&gt;Listen on Spotify&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="interview" /><category term="podcast" /><summary type="html"></summary></entry></feed>
+&lt;/ol&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="project" /><category term="stressful" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" /><media:content medium="image" url="https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
