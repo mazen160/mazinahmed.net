@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -30,8 +30,8 @@
 <meta property="og:title" content="My Story with Onavo (a Facebook’s Acquisition)" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="My Story with Onavo (a Facebook’s Acquisition)" />
-<meta property="og:description" content="My Story with Onavo (a Facebook’s Acquisition)" />
+<meta name="description" content="My Story with Onavo (Acquired by Facebook)" />
+<meta property="og:description" content="My Story with Onavo (Acquired by Facebook)" />
 <link rel="canonical" href="https://mazinahmed.net/blog/my-story-with-onavo/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/my-story-with-onavo/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2014-06-09T00:00:00-05:00","datePublished":"2014-06-09T00:00:00-05:00","description":"My Story with Onavo (a Facebook’s Acquisition)","headline":"My Story with Onavo (a Facebook’s Acquisition)","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-story-with-onavo/"},"url":"https://mazinahmed.net/blog/my-story-with-onavo/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2014-06-09T00:00:00-05:00","datePublished":"2014-06-09T00:00:00-05:00","description":"My Story with Onavo (Acquired by Facebook)","headline":"My Story with Onavo (a Facebook’s Acquisition)","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-story-with-onavo/"},"url":"https://mazinahmed.net/blog/my-story-with-onavo/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1519,27 +1519,27 @@ pre {
 
 <hr />
 
-<p>When I was checking Facebook WhiteHat page, I realized that they added a new target on the scope, which is Onavo.</p>
+<p>When I was checking the Facebook WhiteHat page, I realized that they added a new target to the scope: Onavo.</p>
 
 <p><img src="/assets/static/ea205f89-3c1b-4439-aca1-7f4f7641f0e3.png" alt="" /></p>
 
 <p>I downloaded their apps and started to intercept the links that I found.</p>
 
-<p>One of the links raised an eye-brow. I said to myself that this looks vulnerable.</p>
+<p>One of the links raised an eyebrow. I said to myself that this looks vulnerable.</p>
 
 <p>The link looks something like this:
 <code class="language-plaintext highlighter-rouge">http://cf.onavo.com/iphone/mc/deactivate.html?url=/somethingthatIforget/&amp;seed=1394953248</code></p>
 
 <p><img src="/assets/static/25c568fb-c3a4-4861-bf08-cf46d9a2b63d.png" alt="" /></p>
 
-<p>So it looks like it is vulnerable to Open Redirect.</p>
+<p>It seems vulnerable to Open Redirect.</p>
 
 <p>I executed the link this:
 <code class="language-plaintext highlighter-rouge">http://cf.onavo.com/iphone/mc/deactivate.html?url=http://bing.com&amp;seed=1394953248</code>.</p>
 
 <p>It redirected me to <code class="language-plaintext highlighter-rouge">http://bing.com</code>.</p>
 
-<p>Right now I have an Open Redirect vulnerability, but that’s not enough for me.</p>
+<p>I have an Open Redirect vulnerability right now, but that’s not enough.</p>
 
 <p>After digging up more on the nature of the page, I realized that it redirects me after about 2 seconds. So it looked something like this:</p>
 
@@ -1553,16 +1553,17 @@ pre {
 </figure>
 <figcaption>Reflected XSS</figcaption>
 
-<h3 id="timeline">Timeline:</h3>
+<h3 id="timeline">Timeline</h3>
+
 <ul>
   <li>Mar 16, 2014 - Reported</li>
   <li>Mar 17, 2014 - Email from Saul of Facebook Security acknowledging the issue.</li>
   <li>Apr 30, 2014 -  The issue seems fixed to me. I emailed Facebook asking them about the current status</li>
-  <li>May 1, 2014 -  Email from Saul of Facebook Security saying informing that the issue has been patched</li>
+  <li>May 1, 2014 -  Email from Saul of Facebook Security informing that the issue has been patched</li>
   <li>May 1, 2014 - Received a payment email from Facebook</li>
 </ul>
 
-<h3 id="rewards">Rewards:</h3>
+<h3 id="rewards">Rewards</h3>
 
 <ul>
   <li>Facebook WhiteHat of 2014 <a href="https://www.facebook.com/whitehat/thanks">https://www.facebook.com/whitehat/thanks</a>.</li>
@@ -1570,9 +1571,10 @@ pre {
 </ul>
 
 <h3 id="final-thoughts">Final Thoughts:</h3>
+
 <ul>
-  <li>Participating in bug bounties gives you an experience in different locations, and it helps you building new ideas for security-related issues.</li>
-  <li>If you have an open redirector vulnerability, you should test for XSS too.</li>
+  <li>Participating in bug bounties gives you experience in different locations and helps you build new ideas for security-related issues.</li>
+  <li>If you have an open redirector vulnerability, you should test for XSS, too.</li>
   <li>Never give up.</li>
 </ul>
 
@@ -2513,7 +2515,7 @@ pre {
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/my-story-with-onavo/&amp;title=My Story with Onavo (a Facebook's Acquisition)&amp;summary=My Story with Onavo (a Facebook's Acquisition)&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/my-story-with-onavo/&amp;title=My Story with Onavo (a Facebook's Acquisition)&amp;summary=My Story with Onavo (Acquired by Facebook)&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 

@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -30,8 +30,8 @@
 <meta property="og:title" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
-<meta property="og:description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
+<meta name="description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework." />
+<meta property="og:description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework." />
 <link rel="canonical" href="https://mazinahmed.net/blog/tfplan-release/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/tfplan-release/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2022-10-27T00:00:00-05:00","datePublished":"2022-10-27T00:00:00-05:00","description":"Scan Terraform plans and changes with tfquery via SQL-powered framework","headline":"Scan Terraform plans and changes with tfquery via SQL-powered framework","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/tfplan-release/"},"url":"https://mazinahmed.net/blog/tfplan-release/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2022-10-27T00:00:00-05:00","datePublished":"2022-10-27T00:00:00-05:00","description":"Scan Terraform plans and changes with tfquery via SQL-powered framework.","headline":"Scan Terraform plans and changes with tfquery via SQL-powered framework","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/tfplan-release/"},"url":"https://mazinahmed.net/blog/tfplan-release/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1519,7 +1519,7 @@ pre {
 
 <p>New Release: tfquery now supports SQL queries for Terraform Plan Scanning</p>
 
-<h2><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/5d76d6e7-536c-4f78-bf16-752d62914d53.png" alt="" /></h2>
+<h2><img src="/assets/static/3bceb92e-7fbb-422d-96b1-1c0f3b3e5405.png" alt="" /></h2>
 
 <p>In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.</p>
 
@@ -1527,9 +1527,9 @@ pre {
 
 <p>I developed it to solve an existing problem I’m facing: <strong>understanding large infrastructure quickly</strong>.</p>
 
-<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/36c7dd81-4f6e-49f7-942f-14a90ead3db6.png" alt="" /></p>
+<p><img src="/assets/static/3493b6fd-2b14-4d62-ba3b-ef787a0ab7a0.png" alt="" /></p>
 
-<p>Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments, and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.</p>
+<p>Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.</p>
 
 <p>There was no patch or workaround released by HashiCorp to limit external providers or prevent local-exec data sources.</p>
 
@@ -1539,9 +1539,9 @@ pre {
 
 <h3 id="semgrep-hcl-support-vs-tfquery">semgrep HCL support vs. tfquery</h3>
 
-<p>Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.</p>
+<p>Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex, and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.</p>
 
-<p>Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace, otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.</p>
+<p>Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace. Otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.</p>
 
 <h1 id="tfquery-approach-for-terraform-plan-scanning">tfquery approach for Terraform Plan scanning</h1>
 
@@ -1550,18 +1550,18 @@ pre {
 <p>You can now write SQL queries that are much more elegant to:</p>
 
 <ul>
-  <li>Check for providers if not matching an allowed list.</li>
+  <li>Check for providers if they do not match an allowed list.</li>
   <li>Check for wildcard AWS Policies.</li>
   <li>Check for new IAM users.</li>
   <li>Check for an S3 bucket with versioning not being enabled.</li>
-  <li>etc…</li>
+  <li>etc.</li>
 </ul>
 
-<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png" alt="" /></p>
+<p><img src="/assets/static/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png" alt="" /></p>
 
-<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/703f76c6-8f49-416a-8c7d-473be4e49f61.png" alt="" /></p>
+<p><img src="/assets/static/703f76c6-8f49-416a-8c7d-473be4e49f61.png" alt="" /></p>
 
-<h3 id="try-tfquery-at-githubcommazen160tfquery">Try tfquery at: <a href="https://github.com/mazen160/tfquery">github.com/mazen160/tfquery</a></h3>
+<h3 id="try-tfquery-at-githubcommazen160tfquery">Try tfquery at <a href="https://github.com/mazen160/tfquery">github.com/mazen160/tfquery</a></h3>
 
 <p>Find my DEFCON talk: <a href="https://mazinahmed.net/blog/attacking-terraform-environments/">mazinahmed.net/blog/attacking-terraform-environments</a></p>
 
@@ -3684,7 +3684,7 @@ pre {
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;summary=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;summary=Scan Terraform plans and changes with tfquery via SQL-powered framework.&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 

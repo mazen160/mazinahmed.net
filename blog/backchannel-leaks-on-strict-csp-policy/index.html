@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1525,54 +1525,57 @@ pre {
 
 <h1 id="background">Background</h1>
 
-<p>I recently had a discussion on how CSP can secure web-applications against backchannel leaks. The concept sounded reasonable from the first sight; CSP is designed to block unauthorized content from loading, which generically blocks XSS attacks, unsafe loading of remote JavaScript (and various resources and contents) from unauthorized origins.</p>
+<p>I recently discussed how CSP can secure web applications against backchannel leaks. The concept sounded reasonable at first sight; CSP is designed to block unauthorized content from loading, which generically blocks XSS attacks and unsafe loading of remote JavaScript (and various resources and contents) from unauthorized origins.</p>
 
-<p>This discussion led me to conduct research on methods for issuing backchannel communications with non-permitted hosts.</p>
+<p>This discussion led me to research methods for issuing backchannel communications with non-permitted hosts.</p>
 
 <h1 id="research">Research</h1>
 
 <p>The first step for the research is to set up the testing bed. I prepared an application with a strict Content-Security Policy. The policy is:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Security-Policy: default-src 'self'
-</code></pre></div></div>
+<p>“`html
+Content-Security-Policy: default-src ‘self’</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+This should block all requests (outbound connections) from unauthorized origins and hosts.
 
-<p>This should block all requests (outbound connections) from unauthorized origins and hosts.</p>
-
-<p>The tests were focused on the latest versions of Chrome and Firefox as of January 18th, 2019.
+The tests were focused on the latest versions of Chrome and Firefox as of January 18th, 2019.
 Chrome: v72.0
-Firefox: v64.0</p>
+Firefox: v64.0
 
-<h1 id="result">Result</h1>
+# Result
 
-<h3 id="chrome">Chrome</h3>
+### Chrome
 
-<p>Chrome has an interesting bypass that does not follow the CSP policy by utilizing the “link prerendering”.</p>
+Chrome has an interesting bypass that does not follow the CSP policy by utilizing the "link prerendering".
 
-<p>The following payload leaks an HTTP request from the client’s agent.</p>
+The following payload leaks an HTTP request from the client's agent.
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"prerender"</span> <span class="na">href=</span><span class="s">"https://mazinahmed.net/"</span> <span class="nt">/&gt;</span>
+```html
+&lt;link rel="prerender" href="https://mazinahmed.net/" /&gt;
 </code></pre></div></div>
 
-<p>This loads resources within a URL in the background. It appears that Chrome is not enforcing CSP on the link prerendering process.</p>
+<p>This loads resources within a URL in the background. Chrome is not enforcing CSP on the link prerendering process.</p>
 
 <h3 id="firefox">Firefox</h3>
 
-<p>Firefox is much better in protecting against backchannel communication leaks. However, after further testing, I have found that this payload bypasses this protection:</p>
+<p>Firefox is much better at protecting against backchannel communication leaks. However, after further testing, I have found that this payload bypasses this protection:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"refresh"</span> <span class="na">content=</span><span class="s">"1; url=https://mazinahmed.net"</span><span class="nt">&gt;</span>
-</code></pre></div></div>
+<p>“`html</p>
+<meta http-equiv="refresh" content="1; url=https://mazinahmed.net" />
 
-<p>Redirection using the Meta tag is possible on CSP, and it can not be blocked. Therefore, I can redirect users to other sites without the involvement of JavaScript and typical active content. It’s also working on Chrome. Once a client is redirected, we will receive a connection back to our server.</p>
+<p>```</p>
 
-<h3 id="update-safari-is-vulnerable-too-to-the-meta-refresh-vector">Update: Safari is vulnerable too to the Meta refresh vector.</h3>
+<p>Redirection using the Meta tag is possible on CSP and can not be blocked. Therefore, I can redirect users to other sites without using JavaScript and typical active content. It’s also working on Chrome. Once a client is redirected, we will receive a connection back to our server.</p>
+
+<h3 id="update-safari-is-vulnerable-to-the-meta-refresh-vector">Update: Safari is vulnerable to the Meta refresh vector.</h3>
 
 <h1 id="conclusion">Conclusion</h1>
 
-<p>While having CSP to fundamentally protect against backchannel communication leaks sounds generally true, it appears that the CSP implementation on browsers does not provide this sort of protection. The bypasses I stated on the post is currently working against the latest versions of modern browsers.</p>
+<p>While having CSP to protect against backchannel communication leaks sounds generally true, the CSP implementation on browsers does not provide this protection. The bypasses I stated in the post are currently working against the latest versions of modern browsers.</p>
 
 <h1 id="final-thoughts">Final Thoughts</h1>
 
-<p>These payloads can be good for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where Content-Security Policy is blocking outbound requests to untrusted hosts.</p>
+<p>These payloads can be suitable for testing and exploiting vulnerabilities that rely on OOB (out-of-band) requests, such as blind XSS, in a scenario where the Content-Security Policy blocks outbound requests to untrusted hosts.</p>
 
 
 

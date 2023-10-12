@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1517,21 +1517,22 @@ pre {
 
 
 
-<p>Google Password Alert has became very popular recently. It’s very useful and can be a great defensive way to mitigate phishing damages against Google users.</p>
+<p>Google Password Alert has become very popular recently. It’s practical and a great defensive way to mitigate phishing damages against Google users.</p>
 
-<p>As soon as it arrives, it has been bypassed several times, and Google has patched all the known techniques.
-After I heard that Google has patched all known techniques, I thought about testing it to see how long would it takes for me to bypass it.</p>
+<p>It has been bypassed several times as soon as it arrives, and Google has patched all the known techniques.
+After hearing that Google had patched all known techniques, I thought about testing it to see how long it would take me to bypass it.</p>
 
-<p>The first idea that came to me was to use document.write, encode the phishing page in Unicode, and see the results. The method worked successfully in v1.12.</p>
+<p>My first idea was to use documents.write and encode the phishing page in Unicode, and see the results. The method worked successfully in v1.12.</p>
 
-<p>I have reported the vulnerability to Google via Google VRP page, and the team member asked me to report it to the project’s Github page. I have reported it to Github on June 24, and not received a response from Google about patching the bypass. The next version, v1.13 has been released without patching the issue. Therefore, the bypass currently working on v1.13.</p>
+<p>I reported the vulnerability to Google via the Google VRP page, and the team member asked me to write it to the project’s Github page. I reported it to GitHub on June 24 and did not receive a response from Google about patching the bypass. The next version, v1.13, has been released without fixing the issue. Therefore, the bypass is currently working on v1.13.</p>
 
 <p><strong>Github Report</strong>: <a href="https://github.com/google/password-alert/issues/72">https://github.com/google/password-alert/issues/72</a></p>
 
-<p>A full example would be as the following:</p>
+<p>A complete example would be as the following:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">[PAGE IN UNICODE]</span><span class="dl">"</span><span class="p">);</span><span class="nt">&lt;/script&gt;</span>
-</code></pre></div></div>
+<p>“<code class="language-plaintext highlighter-rouge">html
+&lt;script&gt;document.write("[PAGE IN UNICODE]");&lt;/script&gt;
+</code>``</p>
 
 <h1 id="demonstration-video">Demonstration Video:</h1>
 
@@ -1541,10 +1542,10 @@ After I heard that Google has patched all known techniques, I thought about test
 
 <ul>
   <li>
-    <p>Google Password Alert is a great idea, as it helps preventing phishing attacks, the greatest threat to many companies. I would love to see next updates with new improvements towards it.</p>
+    <p>Google Password Alert is a great idea, as it helps prevent phishing attacks, the greatest threat to many companies. I would love to see the following updates with new improvements towards it.</p>
   </li>
   <li>
-    <p>The whole bypass process took me about five minutes (including thinking), it was not a difficult challenge. I hope that Google puts more efforts into preventing evading techniques.</p>
+    <p>The bypass process took me about five minutes (including thinking); it was not a difficult challenge. I hope that Google puts more effort into preventing evading techniques.</p>
   </li>
 </ul>
 

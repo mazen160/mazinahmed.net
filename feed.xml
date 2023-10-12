@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2023-02-07T10:03:11-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Cyber Security Engineer (Offensive Security)</subtitle><entry><title type="html">Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection</title><link href="https://mazinahmed.net/blog/secrets-patterns-db/" rel="alternate" type="text/html" title="Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection" /><published>2023-02-07T00:00:00-06:00</published><updated>2023-02-07T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/secrets-patterns-db</id><content type="html" xml:base="https://mazinahmed.net/blog/secrets-patterns-db/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2023-10-11T19:02:52-05:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Application and Infrastructure Security Engineering</subtitle><entry><title type="html">Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection</title><link href="https://mazinahmed.net/blog/secrets-patterns-db/" rel="alternate" type="text/html" title="Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection" /><published>2023-02-07T00:00:00-06:00</published><updated>2023-02-07T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/secrets-patterns-db</id><content type="html" xml:base="https://mazinahmed.net/blog/secrets-patterns-db/">&lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Ensuring the security of your organization’s sensitive information is critical for any security team, and detecting secrets within your AppSec program is a crucial part of this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.&lt;/p&gt;
+&lt;p&gt;Ensuring the security of your organization’s sensitive information is critical for any security team, and detecting secrets within your AppSec program is crucial to this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.&lt;/p&gt;
 
-&lt;p&gt;Detecting secrets is possible and can be automated. There are open-source tools for it that do a good job of analyzing the Git tree for potential secrets through two approaches:&lt;/p&gt;
+&lt;p&gt;Detecting secrets is possible and can be automated. There are open-source tools for it that do an excellent job of analyzing the Git tree for potential secrets through two approaches:&lt;/p&gt;
 
 &lt;h2 id=&quot;regular-expressions&quot;&gt;Regular Expressions&lt;/h2&gt;
 
@@ -19,17 +19,17 @@
 &lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;It can only see a very limited and small side of the picture: If there’s an API Token, and the rules cover 40-80 patterns that do not cover this particular API Token, it would not be discovered.&lt;/li&gt;
+  &lt;li&gt;It can only see a minimal side of the picture: If there’s an API Token, and the rules cover 40-80 patterns that do not cover this particular API Token, it would not be discovered.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;shannons-entropy-checks&quot;&gt;Shannon’s Entropy Checks&lt;/h2&gt;
 
-&lt;p&gt;Shannon’s Entropy is an estimation of the average amount of information stored in a random value. Shannon’s entropy measures the predictable information contained in a message. It has a variety of use cases in Computer Science, including data compression, validating cryptography, and here, finding passwords and secrets.&lt;/p&gt;
+&lt;p&gt;Shannon’s Entropy estimates the average amount of information stored in a random value. Shannon’s Entropy measures the predictable information contained in a message. It has a variety of use cases in Computer Science, including data compression, validating cryptography, and, here, finding passwords and secrets.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Pros&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Context-agnostic: The algorithm can be applied against any language, framework, or codebase, and is trivial to compute.&lt;/li&gt;
+  &lt;li&gt;Context-agnostic: The algorithm can be applied against any language, framework, or codebase and is trivial to compute.&lt;/li&gt;
   &lt;li&gt;Does not require the configuration of pre-defined Regular Expressions.&lt;/li&gt;
   &lt;li&gt;Can find secrets that would have never been found with pre-defined Regular Expressions.&lt;/li&gt;
 &lt;/ul&gt;
@@ -37,26 +37,26 @@
 &lt;p&gt;&lt;strong&gt;Cons&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;The false-positive rate is high: It requires a manual validation of alerts before opening tickets about leaked secrets. Analysts would need to verify what type of secret it is. This will generate overhead in triaging findings.&lt;/li&gt;
+  &lt;li&gt;The false-positive rate is high: It requires manually validating alerts before opening tickets about leaked secrets. Analysts would need to verify what type of secret it is. This will generate overhead in triaging findings.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;were-doing-regex-scanning-wrong-lets-fix-this-together&quot;&gt;We’re doing Regex scanning wrong. Let’s fix this, together&lt;/h1&gt;
+&lt;h1 id=&quot;were-doing-regex-scanning-wrong-lets-fix-this-together&quot;&gt;We’re doing Regex scanning wrong. Let’s fix this together&lt;/h1&gt;
 
-&lt;p&gt;While several open-source tools utilize regular expressions to detect secrets in codebases, the number of built-in rules for these tools is limited. TruffleHog v2 offers approximately 40 rules, TruffleHog v3 offers around 790 patterns, and GitLeaks offers approximately 60 rules. While it’s a good start, it’s not enough.&lt;/p&gt;
+&lt;p&gt;While several open-source tools utilize regular expressions to detect secrets in codebases, the number of built-in rules for these tools is limited. TruffleHog v2 offers approximately 40 rules, TruffleHog v3 offers around 790 patterns, and GitLeaks offers about 60 rules. While it’s a good start, more is needed.&lt;/p&gt;
 
-&lt;p&gt;This project was initially made before TruffleHog v3 was released. At that time, the largest rules database was GitLeaks with 60 rules available. TruffleHog v3 helped a lot in collecting large datasets, but it’s still in a format that can not be ingestible with other tools since the new detector format is placed as Golang modules for each detection rule. This means that we would have to use Trufflehog v3 if we would like to make use of their detection rules.&lt;/p&gt;
+&lt;p&gt;This project was initially done before TruffleHog v3 was released. At that time, the largest rules database was GitLeaks, with 60 rules available. TruffleHog v3 helped a lot in collecting large datasets, but it still needs to be in a format that can not be ingestible with other tools since the new detector format is placed as Golang modules for each detection rule. This means we would have to use Trufflehog v3 if we would like to use their detection rules.&lt;/p&gt;
 
-&lt;p&gt;I have compiled and curated a database of regular expression patterns for secrets, API tokens, keys, and passwords to improve the detection of secrets in codebases. This project I built, Secrets-Patterns-DB, contains over 1600 patterns and is being open-sourced in the hope that security teams will contribute to and improve it.&lt;/p&gt;
+&lt;p&gt;I have compiled and curated a database of regular expression patterns for secrets, API tokens, keys, and passwords to improve the detection of secrets in codebases. This project I built, Secrets-Patterns-DB, contains over 1600 patterns and is open-sourced in the hope that security teams will contribute to and improve it.&lt;/p&gt;
 
 &lt;p&gt;To ensure the quality and effectiveness of these patterns, I have written scripts to validate them against ReDoS attacks and created CI jobs to load and validate the patterns. I have also manually cleaned up any invalid patterns.&lt;/p&gt;
 
 &lt;p&gt;I encourage security teams to use and contribute to Secrets-Patterns-DB to enhance the security of their codebases.&lt;/p&gt;
 
-&lt;p&gt;The project is in Beta. There’s a lot of room for improvement on the project. I’m looking forward to your Pull Requests and Issues on Github to enhance Secrets-Patterns-DB for everyone.
+&lt;p&gt;The project is in Beta. There’s a lot of room for improvement on the project. I look forward to your Pull Requests and Issues on Github to enhance Secrets-Patterns-DB for everyone.
 Unified Pattern Format for all tools&lt;/p&gt;
 
 &lt;p&gt;The Secrets-Patterns-DB has a unified pattern format that can be converted to all tools of choice.
-If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Patterns-DB can be exported to the format that your tool supports.&lt;/p&gt;
+If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Patterns-DB can be exported to the format your tool supports.&lt;/p&gt;
 
 &lt;h3 id=&quot;for-trufflehog-v2&quot;&gt;For Trufflehog v2&lt;/h3&gt;
 
@@ -74,35 +74,35 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;h3 id=&quot;license&quot;&gt;License&lt;/h3&gt;
 
-&lt;p&gt;This project is licensed under Creative-Common. If you’re building a tool or a product that uses Secrets-Patterns-DB, you should explicitly reference Secrets-Patterns-DB.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="project" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" /><media:content medium="image" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speaking at BlakcHat MEA 2022</title><link href="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/" rel="alternate" type="text/html" title="Speaking at BlakcHat MEA 2022" /><published>2022-12-05T00:00:00-06:00</published><updated>2022-12-05T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022</id><content type="html" xml:base="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/">&lt;hr /&gt;
+&lt;p&gt;This project is licensed under Creative-Common. If you’re building a tool or a product that uses Secrets-Patterns-DB, you should explicitly reference Secrets-Patterns-DB.&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="project" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazinahmed.net/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" /><media:content medium="image" url="https://mazinahmed.net/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speaking at BlakcHat MEA 2022</title><link href="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/" rel="alternate" type="text/html" title="Speaking at BlakcHat MEA 2022" /><published>2022-12-05T00:00:00-06:00</published><updated>2022-12-05T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022</id><content type="html" xml:base="https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/">&lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0e8d0273-9732-4eeb-9c93-65d03a686da1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0e8d0273-9732-4eeb-9c93-65d03a686da1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Riyadh, Saudi Arabia recently hosted BlackHat MEA (Middle East &amp;amp; Africa), the largest security conference in the Middle East and Africa region.&lt;/p&gt;
+&lt;p&gt;Riyadh, Saudi Arabia, recently hosted BlackHat MEA (Middle East &amp;amp; Africa), the largest security conference in the Middle East and Africa region.&lt;/p&gt;
 
-&lt;p&gt;BlackHat MEA featured a range of events, including an Executive Summit, Technical tracks, a Drone Hacking village, a Car Hacking village, a live Tesla hacking event, and a startup competition..&lt;/p&gt;
+&lt;p&gt;BlackHat MEA featured various events, including an Executive Summit, Technical tracks, a Drone Hacking village, a Car Hacking village, a live Tesla hacking event, and a startup competition.&lt;/p&gt;
 
 &lt;h2 id=&quot;my-talk&quot;&gt;My Talk&lt;/h2&gt;
 
-&lt;p&gt;I have had the opportunity to speak this year at BlackHat, where I presented my latest research, titled “Demystifying Practical DDoS Attacks”.&lt;/p&gt;
+&lt;p&gt;I have had the opportunity to speak this year at BlackHat, where I presented my latest research, “Demystifying Practical DDoS Attacks”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0c5514f9-e535-4678-a082-d2fba612105c.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;what-i-liked-at-blackhat-and-why-you-should-apply-next-year&quot;&gt;What I liked at BlackHat, and why you should apply next year&lt;/h1&gt;
 
-&lt;p&gt;When arriving at the Riyadh airport (King Khalid International Airport), this vehicle was waiting for all speakers.&lt;/p&gt;
+&lt;p&gt;This vehicle awaited all speakers when arriving at the Riyadh Airport (King Khalid International Airport).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/97d44732-e419-43df-914c-fbca2f98bcaa.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/97d44732-e419-43df-914c-fbca2f98bcaa.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This is just one of the nice tokens of hospitality the conference made. It honestly leaves an amazing impression about the conference.&lt;/p&gt;
+&lt;p&gt;This is just one of the lovely tokens of hospitality the conference made. It leaves a fantastic impression about the conference.&lt;/p&gt;
 
-&lt;p&gt;The organization of the conference was impressive. It was clear that a lot of effort had gone into planning and coordinating the event. This was evident in the high quality of the talks, the smooth logistics of the venue, the activities designed for students, and the startup competition. Overall, it was a well-organized and professionally-run conference.&lt;/p&gt;
+&lt;p&gt;The organization of the conference was impressive. Clearly, a lot of effort had gone into planning and coordinating the event. This was evident in the high quality of the talks, the smooth logistics of the venue, the activities designed for students, and the startup competition. Overall, it was a well-organized and professionally run conference.&lt;/p&gt;
 
 &lt;h1 id=&quot;awesome-talks&quot;&gt;Awesome talks&lt;/h1&gt;
 
-&lt;p&gt;I didn’t have the opportunity to see as many talks as I would have liked at BlackHat MEA due to the multiple tracks running simultaneously. However, I was able to catch a few really interesting presentations. I’m looking forward to the release of the conference recordings online so that I can catch up on the talks that I missed. For next year’s conference, I hope that there will be fewer tracks so that attendees can more easily plan which talks to attend.&lt;/p&gt;
+&lt;p&gt;I only saw as many talks as I would have liked at BlackHat MEA due to the multiple tracks running simultaneously. However, I was able to catch a few exciting presentations. I’m looking forward to the release of the conference recordings online to catch up on the talks I missed. For next year’s conference, I hope there will be fewer tracks so attendees can more easily plan which talks to attend.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;“Disrupting Ransomware” By Lance James&lt;/li&gt;
@@ -112,82 +112,82 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
   &lt;li&gt;“Apt Hunting And The Threat Intelligence Dilemma” By Salah Altokhais&lt;/li&gt;
   &lt;li&gt;“Dotdumper: Automatically Unpacking Dotnet Based Malware” By Max Kersten&lt;/li&gt;
   &lt;li&gt;“Wipermania: An All You Can Wipe Buffet” By Max Kersten&lt;/li&gt;
-  &lt;li&gt;“Turbocharging Ioc Validation: Become A More Efficient CTI Analyst” By Arwa Alomari&lt;/li&gt;
+  &lt;li&gt;“Turbocharging IOC Validation: Become A More Efficient CTI Analyst” By Arwa Alomari&lt;/li&gt;
   &lt;li&gt;“So Many Devices, So Little Time” By Joseph Mccray&lt;/li&gt;
   &lt;li&gt;“Abusing Azure Virtual Machines” By Tarek Naja&lt;/li&gt;
   &lt;li&gt;“The Evolution Of Ios Security” By Prateek Gianchandani&lt;/li&gt;
   &lt;li&gt;“What The Waf: Scalable, Multi-cloud, Automated Security Using Waf” By Khaled Farah&lt;/li&gt;
   &lt;li&gt;“An Attacker’s Perspective” By Quinn Carman&lt;/li&gt;
   &lt;li&gt;“Supply Chain Attacks Are The New High Watermark” By Milad Aslaner&lt;/li&gt;
-  &lt;li&gt;“Scaling Soc And Ir Teams To Defend Kubernetes Based Workloads” By Milad Alnaser&lt;/li&gt;
+  &lt;li&gt;“Scaling Soc And Ir Teams To Defend Kubernetes-Based Workloads” By Milad Alnaser&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;photos-for-the-memory-&quot;&gt;Photos for the memory 💚&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/940a40a5-87ca-4f22-9d98-53b9b7d2c581.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Quinn Carman, the former NSA red team chief presented a talk on how adversaries are approaching targets and patterns seen across different engagements. Talk: An Attacker’s Perspective&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/940a40a5-87ca-4f22-9d98-53b9b7d2c581.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Quinn Carman, the former NSA red team chief, talked about how adversaries approach targets and patterns seen across different engagements. Talk: An Attacker’s Perspective&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/5e1702d1-cb0f-4841-a54e-57c7b2d96a5f.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Ira Winkler shared an interesting perspective about today’s industry approach to solving Human Security challenges, and how organizations can improve and address security awareness risks. Talk: Human Security Engineering – A Holistic Approach To Addressing Human Incidents&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/5e1702d1-cb0f-4841-a54e-57c7b2d96a5f.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Ira Winkler shared an interesting perspective about today’s industry approach to solving Human Security challenges and how organizations can improve and address security awareness risks. Talk: Human Security Engineering – A Holistic Approach To Addressing Human Incidents&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/17b0b777-8a8e-4201-9ece-2ec4aa887f06.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Lance James speaking about building a Ransomware remediation system. Talk: Disrupting Ransomware&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/17b0b777-8a8e-4201-9ece-2ec4aa887f06.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Lance James was speaking about building a Ransomware remediation system. Talk: Disrupting Ransomware&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/8cf6e7f9-a166-4941-9893-b407f261b065.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/8cf6e7f9-a166-4941-9893-b407f261b065.jpg&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;Salah Altokhais giving a talk: “Apt Hunting And The Threat Intelligence Dilemma”&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/bd95a5ad-c8e3-4996-b7a9-1c50be4705ff.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Arwa Alomari presented a talk on data enrichment of IOCs, and automating CTI analysis. Talk: Turbocharging Ioc Validation: Become A More Efficient CTI Analyst&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/bd95a5ad-c8e3-4996-b7a9-1c50be4705ff.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Arwa Alomari talked about data enrichment of IOCs and automating CTI analysis. Talk: Turbocharging IOC Validation: Become A More Efficient CTI Analyst&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/f450539f-6f3c-409e-bcee-13bba2046bfd.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Max Kersten presented an analysis of various wipers attacks in the past years, along with similarities in their development and execution. Talk: “Wipermania: An All You Can Wipe Buffet”&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/f450539f-6f3c-409e-bcee-13bba2046bfd.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Max Kersten analyzed various wipers attacks in the past years and similarities in their development and execution. Talk: “Wipermania: An All You Can Wipe Buffet”&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/a03e7c2e-b4b6-4160-948d-ff12099aadd1.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/a03e7c2e-b4b6-4160-948d-ff12099aadd1.jpg&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;With Chris Roberts!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/d2060746-2964-48ea-b205-f527ce9df13b.jpg&quot; alt=&quot;&quot; /&gt;
-&lt;em&gt;Our 971Sec Booth, is a UAE-based cyber security community. My favorite security community of all time.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/d2060746-2964-48ea-b205-f527ce9df13b.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Our 971Sec Booth is a UAE-based cyber security community. My favorite security community of all time.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0d9a196c-a83b-4612-b7ce-30c093904399.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0d9a196c-a83b-4612-b7ce-30c093904399.jpg&quot; alt=&quot;&quot; /&gt;
 &lt;em&gt;BlackHat MEA venue at night.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
 
-&lt;p&gt;I would like to thank the Saudi Federation for Cyber Security, Programming, and Drones for bringing BlackHat to the MENA region, and organizing an excellent event.&lt;/p&gt;
+&lt;p&gt;I thank the Saudi Federation for Cyber Security, Programming, and Drones for bringing BlackHat to the MENA region and organizing an excellent event.&lt;/p&gt;
 
 &lt;p&gt;Till next year!&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="conference" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazin.s3.amazonaws.com/public/1cf59bed-5dc9-4c1a-8c31-c87dde2420df/header.jpg" /><media:content medium="image" url="https://mazin.s3.amazonaws.com/public/1cf59bed-5dc9-4c1a-8c31-c87dde2420df/header.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">DoS Attacks are Dead: Demystifying Practical DoS Attacks</title><link href="https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/" rel="alternate" type="text/html" title="DoS Attacks are Dead: Demystifying Practical DoS Attacks" /><published>2022-12-04T00:00:00-06:00</published><updated>2022-12-04T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk</id><content type="html" xml:base="https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/">&lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0c5514f9-e535-4678-a082-d2fba612105c.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg.1&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I recently had the opportunity to speak at BlackHat MEA 2022, the largest security conference in the Middle East and Africa region. My talk, titled “Demystifying Practical DDoS Attacks”, focused on the increasing threat of DoS attacks and the need for improved defense solutions, and to practically validate current DDoS prevention solutions.&lt;/p&gt;
+&lt;p&gt;I recently spoke at BlackHat MEA 2022, the largest security conference in the Middle East and Africa region. My talk, titled “Demystifying Practical DDoS Attacks”, focused on the increasing threat of DoS attacks and the need for improved defense solutions and to practically validate current DDoS prevention solutions.&lt;/p&gt;
 
-&lt;p&gt;In my presentation, I shared my research on practical DoS attacks, including recent Application-Level DoS attacks and evasion techniques. I also discussed the discovery of unique DoS vectors in modern APIs and demonstrated how to simulate the largest Layer 7 DDoS attack that Google Cloud experienced in August 2022.&lt;/p&gt;
+&lt;p&gt;In my presentation, I shared my research on practical DoS attacks, including recent Application-Level DoS attacks and evasion techniques. I also discussed the discovery of unique DoS vectors in modern APIs and demonstrated how to simulate the most significant Layer 7 DDoS attack that Google Cloud experienced in August 2022.&lt;/p&gt;
 
-&lt;p&gt;One of the key points I emphasized in my talk was the need to go beyond traditional volumetric DDoS attacks and focus on the more sophisticated and stealthy Layer 7 attacks. These attacks, which target the application layer of a network, can be harder to detect and mitigate, and can cause significant disruption to businesses and organizations.&lt;/p&gt;
+&lt;p&gt;One of the critical points I emphasized in my talk was the need to go beyond traditional volumetric DDoS attacks and focus on the more sophisticated and stealthy Layer 7 attacks. These attacks, which target the application layer of a network, can be more complex to detect and mitigate and can cause significant disruption to businesses and organizations.&lt;/p&gt;
 
-&lt;p&gt;I also discussed the importance of developing effective defense solutions and shared some of the techniques and approaches I have been researching in this area. This included discussing the use of machine learning and artificial intelligence to improve the detection and response to DoS attacks.&lt;/p&gt;
+&lt;p&gt;I also discussed the importance of developing effective defense solutions and shared techniques and approaches I have been researching in this area. This included discussing machine learning and artificial intelligence to improve the detection and response to DoS attacks.&lt;/p&gt;
 
 &lt;p&gt;Overall, my talk was well-received by the audience at BlackHat MEA, and I was happy to have the opportunity to share my research on this important topic.&lt;/p&gt;
 
 &lt;h2 id=&quot;talk-abstract&quot;&gt;Talk Abstract&lt;/h2&gt;
 
-&lt;p&gt;DoS attacks have been a nightmare that increases every day. While the news emphasizes notable Volumetric DDoS Attacks, there is much more to that that is not being publicly highlighted.&lt;/p&gt;
+&lt;p&gt;DoS attacks have been a nightmare that increases every day. While the news emphasizes notable Volumetric DDoS Attacks, there is much more to that that needs to be publicly highlighted.&lt;/p&gt;
 
-&lt;p&gt;In my talk, I will share my research on practical DoS Attacks that I have been researching, Layer 7 DoS attacks and TTPs, and evasion of DDoS Defense Solutions. I’m also discussing the discovery approaches of unique DoS vectors in modern APIs. Lastly, I will run a drill on how to simulate the largest Layer 7 DDoS attack that Google Cloud faced in August 2022 (with a peak of 46M requests per second).&lt;/p&gt;
+&lt;p&gt;In my talk, I will share my research on practical DoS Attacks that I have been researching, Layer 7 DoS attacks and TTPs, and evasion of DDoS Defense Solutions. I’m also discussing the discovery approaches of unique DoS vectors in modern APIs. Lastly, I will run a drill on how to simulate the most significant Layer 7 DDoS attack that Google Cloud faced in August 2022 (with a peak of 46M requests per second).&lt;/p&gt;
 
 &lt;h2 id=&quot;slides&quot;&gt;Slides&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;PDF: &lt;a href=&quot;https://github.com/mazen160/public/raw/master/documents/DoS%20Attacks%20are%20Dead%20-%20Demystifying%20Practical%20DoS%20Attacks%20-%20BH%20MEA%202022.pdf&quot;&gt;DoS Attacks are Dead: Demystifying Practical DoS Attacks - BH MEA 2022.pdf&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="conference" /><category term="research" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/0c5514f9-e535-4678-a082-d2fba612105c.jpg" /><media:content medium="image" url="https://raw.githubusercontent.com/mazen160/public/master/static/images/0c5514f9-e535-4678-a082-d2fba612105c.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Shennina Framework - Automating Host Exploitation with AI</title><link href="https://mazinahmed.net/blog/shennina-exploitation-framework/" rel="alternate" type="text/html" title="Shennina Framework - Automating Host Exploitation with AI" /><published>2022-11-08T00:00:00-06:00</published><updated>2022-11-08T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/shennina-exploitation-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/shennina-exploitation-framework/">&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;PDF: &lt;a href=&quot;https://github.com/mazen160/public/raw/master/documents/DoS%20Attacks%20are%20Dead%20-%20Demystifying%20Practical%20DoS%20Attacks%20-%20BH%20MEA%202022.pdf&quot;&gt;DoS Attacks are Dead: Demystifying Practical DoS Attacks - BH MEA 2022.pdf&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="conference" /><category term="research" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mazinahmed.net/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg" /><media:content medium="image" url="https://mazinahmed.net/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Shennina Framework - Automating Host Exploitation with AI</title><link href="https://mazinahmed.net/blog/shennina-exploitation-framework/" rel="alternate" type="text/html" title="Shennina Framework - Automating Host Exploitation with AI" /><published>2022-11-08T00:00:00-06:00</published><updated>2022-11-08T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/shennina-exploitation-framework</id><content type="html" xml:base="https://mazinahmed.net/blog/shennina-exploitation-framework/">&lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/0e77a1c3-5aa9-4683-9dc6-4b83d221b5ca.png&quot; alt=&quot;Banner&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/0e77a1c3-5aa9-4683-9dc6-4b83d221b5ca.png&quot; alt=&quot;Banner&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In 2019, &lt;a href=&quot;https://www.linkedin.com/in/khaledfarah/&quot;&gt;Khaled Farah&lt;/a&gt; and I participated in a security competition for developing offensive security tools.&lt;/p&gt;
 
-&lt;p&gt;I enjoy building security tools, and this competition was funded by HITB (Hack-in-the-Box) with a reward of $100,000 for the winners. I thought it would be an interesting challenge to work on as a side project.&lt;/p&gt;
+&lt;p&gt;I enjoy building security tools, and this competition was funded by HITB (Hack-in-the-Box) with a reward of $100,000 for the winners. It would be an exciting challenge to work on as a side project.&lt;/p&gt;
 
-&lt;p&gt;I met my friend Khalid, he was also interested in winning this competition. We signed up, and once accepted, we started meeting regularly to build this project.&lt;/p&gt;
+&lt;p&gt;I met my friend, Khalid, he was also interested in winning this competition. We signed up, and once accepted, we started meeting regularly to build this project.&lt;/p&gt;
 
 &lt;h1 id=&quot;goals&quot;&gt;Goals&lt;/h1&gt;
 
@@ -198,17 +198,17 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
   &lt;li&gt;Malware Evasion&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/82ca0a48-1b0a-4a95-885f-a1052ad7ce4e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/82ca0a48-1b0a-4a95-885f-a1052ad7ce4e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Host exploitation sounds more relevant to our experience. The goal was to build a host exploitation framework using AI, and based on the concept of DeepExploit. The winning team should ideally prove the accuracy of the model, the improvement of the training and execution speed, and the technical features that have been added to the framework.&lt;/p&gt;
+&lt;p&gt;Host exploitation sounds more relevant to our experience. The goal was to build a host exploitation framework using AI based on the DeepExploit concept. The winning team should prove the model’s accuracy, the improvement of the training and execution speed, and the technical features added to the framework.&lt;/p&gt;
 
-&lt;p&gt;We started experimenting with DeepExploit, and how it works, and we decided to start a new project based on the ideas we had on how to improve the tool.&lt;/p&gt;
+&lt;p&gt;We started experimenting with DeepExploit and how it works, and we decided to start a new project based on our ideas for improving the tool.&lt;/p&gt;
 
-&lt;p&gt;This eventually ended up having us develop Shennina, a host exploitation framework that does:&lt;/p&gt;
+&lt;p&gt;This eventually ended up having us develop Shennina, a host exploitation framework that does the following:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Automatically self-learning reliable exploits&lt;/li&gt;
-  &lt;li&gt;Out-of-Band technique testing for exploitation checks.&lt;/li&gt;
+  &lt;li&gt;Out-of-band technique testing for exploitation checks.&lt;/li&gt;
   &lt;li&gt;Exploits clustering.&lt;/li&gt;
   &lt;li&gt;Scriptable attack method within the post-exploitation phase.&lt;/li&gt;
   &lt;li&gt;Automated exfiltration of important data on compromised servers.&lt;/li&gt;
@@ -218,23 +218,23 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
   &lt;li&gt;Post exploitation capabilities&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The project is &lt;strong&gt;4 times faster than DeepExploit&lt;/strong&gt;. We were excited about the results.&lt;/p&gt;
+&lt;p&gt;The project is &lt;strong&gt;four times faster than DeepExploit&lt;/strong&gt;. We were excited about the results.&lt;/p&gt;
 
 &lt;h1 id=&quot;demo&quot;&gt;Demo&lt;/h1&gt;
 
 &lt;h2 id=&quot;running-exploitation-mode&quot;&gt;Running Exploitation Mode&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/69f27b4e-ef87-4484-b85b-6828c6edd96a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/69f27b4e-ef87-4484-b85b-6828c6edd96a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;running-vulnerability-scanning-mode&quot;&gt;Running Vulnerability Scanning mode&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/4685c03f-fd4e-48c2-8074-decc443556de.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/4685c03f-fd4e-48c2-8074-decc443556de.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;deception-detection-as-a-part-of-post-exploitation&quot;&gt;Deception Detection as a part of Post Exploitation&lt;/h2&gt;
 
-&lt;p&gt;Shennina comes with a deception detection capability that detects if the machine being exploited is a Virtual Machine or Container, and then terminates post-exploitation once it’s detected. This feature is powered by Metasploit modules.&lt;/p&gt;
+&lt;p&gt;Shennina comes with a deception detection capability that detects if the machine being exploited is a Virtual Machine or Container and then terminates post-exploitation once detected. This feature is powered by Metasploit modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/a999c881-3fb1-4193-b899-f5fe907469d1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/a999c881-3fb1-4193-b899-f5fe907469d1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The Shenina Framework has qualified for the top 5 projects (out of 40 projects). We worked on developing the tool further to prepare for our final demo that will be live at HITB Abu Dhabi 2019.&lt;/p&gt;
 
@@ -248,7 +248,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;h1 id=&quot;special-thanks&quot;&gt;Special Thanks&lt;/h1&gt;
 
-&lt;p&gt;I would like to thank Chris P, Chris Roberts, Rami Shaath, and the 971Sec community for their feedback.&lt;/p&gt;
+&lt;p&gt;I thank Chris P., Chris Roberts, Rami Shaath, and the 971Sec community for their feedback.&lt;/p&gt;
 
 &lt;p&gt;I also would like to thank the judges of HITB Cyber Week Abu Dhabi.&lt;/p&gt;
 
@@ -268,7 +268,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;h3 id=&quot;github-repository-githubcommazen160shennina&quot;&gt;Github Repository: &lt;a href=&quot;https://github.com/mazen160/shennina&quot;&gt;github.com/mazen160/shennina&lt;/a&gt;&lt;/h3&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="shennina" /><category term="exploitation" /><category term="post-exploitation" /><category term="host-exploitation" /><summary type="html"></summary></entry><entry><title type="html">Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link href="https://mazinahmed.net/blog/tfplan-release/" rel="alternate" type="text/html" title="Scan Terraform plans and changes with tfquery via SQL-powered framework" /><published>2022-10-27T00:00:00-05:00</published><updated>2022-10-27T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfplan-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfplan-release/">&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
 
-&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/5d76d6e7-536c-4f78-bf16-752d62914d53.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;img src=&quot;/assets/static/3bceb92e-7fbb-422d-96b1-1c0f3b3e5405.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
 &lt;p&gt;In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.&lt;/p&gt;
 
@@ -276,9 +276,9 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;I developed it to solve an existing problem I’m facing: &lt;strong&gt;understanding large infrastructure quickly&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/36c7dd81-4f6e-49f7-942f-14a90ead3db6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/3493b6fd-2b14-4d62-ba3b-ef787a0ab7a0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments, and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.&lt;/p&gt;
+&lt;p&gt;Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.&lt;/p&gt;
 
 &lt;p&gt;There was no patch or workaround released by HashiCorp to limit external providers or prevent local-exec data sources.&lt;/p&gt;
 
@@ -288,9 +288,9 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;h3 id=&quot;semgrep-hcl-support-vs-tfquery&quot;&gt;semgrep HCL support vs. tfquery&lt;/h3&gt;
 
-&lt;p&gt;Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.&lt;/p&gt;
+&lt;p&gt;Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex, and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.&lt;/p&gt;
 
-&lt;p&gt;Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace, otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.&lt;/p&gt;
+&lt;p&gt;Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace. Otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.&lt;/p&gt;
 
 &lt;h1 id=&quot;tfquery-approach-for-terraform-plan-scanning&quot;&gt;tfquery approach for Terraform Plan scanning&lt;/h1&gt;
 
@@ -299,39 +299,39 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 &lt;p&gt;You can now write SQL queries that are much more elegant to:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Check for providers if not matching an allowed list.&lt;/li&gt;
+  &lt;li&gt;Check for providers if they do not match an allowed list.&lt;/li&gt;
   &lt;li&gt;Check for wildcard AWS Policies.&lt;/li&gt;
   &lt;li&gt;Check for new IAM users.&lt;/li&gt;
   &lt;li&gt;Check for an S3 bucket with versioning not being enabled.&lt;/li&gt;
-  &lt;li&gt;etc…&lt;/li&gt;
+  &lt;li&gt;etc.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/703f76c6-8f49-416a-8c7d-473be4e49f61.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/static/703f76c6-8f49-416a-8c7d-473be4e49f61.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;try-tfquery-at-githubcommazen160tfquery&quot;&gt;Try tfquery at: &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;github.com/mazen160/tfquery&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;try-tfquery-at-githubcommazen160tfquery&quot;&gt;Try tfquery at &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;github.com/mazen160/tfquery&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;Find my DEFCON talk: &lt;a href=&quot;https://mazinahmed.net/blog/attacking-terraform-environments/&quot;&gt;mazinahmed.net/blog/attacking-terraform-environments&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="tfquery" /><category term="terraform" /><category term="tfplan" /><category term="devsecops" /><category term="devops" /><category term="cloudsecurity" /><summary type="html">New Release: tfquery now supports SQL queries for Terraform Plan Scanning</summary></entry><entry><title type="html">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/" rel="alternate" type="text/html" title="Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools</id><content type="html" xml:base="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">&lt;h2&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mazen160/public/master/static/images/banner%20-%20Twitch%20Internal%20Security%20Tools%20blog%20post.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="tfquery" /><category term="terraform" /><category term="tfplan" /><category term="devsecops" /><category term="devops" /><category term="cloudsecurity" /><summary type="html">New Release: tfquery now supports SQL queries for Terraform Plan Scanning</summary></entry><entry><title type="html">Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link href="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/" rel="alternate" type="text/html" title="Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools" /><published>2022-06-01T00:00:00-05:00</published><updated>2022-06-01T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools</id><content type="html" xml:base="https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/">&lt;h2&gt;&lt;img src=&quot;/assets/static/142c86db-2f34-4d6a-86fb-da11da640ed5.png&quot; alt=&quot;&quot; /&gt;&lt;/h2&gt;
 
-&lt;p&gt;How Twitch was hacked? What security controls did Twitch build?&lt;/p&gt;
+&lt;p&gt;How was Twitch hacked? What security controls did Twitch build?&lt;/p&gt;
 
-&lt;p&gt;The Twitch breach revealed more than 120 internal security tools developed by the Twitch security team.&lt;/p&gt;
+&lt;p&gt;The Twitch breach revealed more than 120 internal security tools developed by the Twitch Security team.&lt;/p&gt;
 
 &lt;p&gt;I analyzed all the leaked security tools that were developed by Twitch Security. Check out the full research.&lt;/p&gt;
 
 &lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
-&lt;p&gt;Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted live-streaming from home.&lt;/p&gt;
+&lt;p&gt;Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted to live-streaming from home.&lt;/p&gt;
 
-&lt;p&gt;On October 6, 2021, it was announced that Twitch suffered a massive data breach that leaked their source-code, internal databases, revenue documents, and payouts documents of their members.&lt;/p&gt;
+&lt;p&gt;On October 6, 2021, it was announced that Twitch suffered a massive data breach that leaked the source code, internal databases, revenue documents, and payout documents of their members.&lt;/p&gt;
 
-&lt;p&gt;The security tools of Twitch were leaked during the breach. Twitch Security has clearly invested a lot of time and effort in building its security program. This can be seen from the tools published on the Internet; the majority of companies with mature security programs today do not have 50% of what Twitch security internally built over the years.&lt;/p&gt;
+&lt;p&gt;The security tools of Twitch were leaked during the breach. Twitch Security has clearly invested a lot of time and effort in building its security program. This can be seen from the tools published on the Internet; the majority of companies with mature security programs today have less than 50% of what Twitch Security has internally built over the years.&lt;/p&gt;
 
-&lt;p&gt;I analyzed all the security tools written by Twitch security. I thoroughly reviewed the source code, configurations, build config process, and everything that has been leaked and became public knowledge on the Internet within the breach.&lt;/p&gt;
+&lt;p&gt;I analyzed all the security tools written by Twitch Security. I thoroughly reviewed the source code, configurations, build config process, and everything that has been leaked and became public knowledge on the Internet within the breach.&lt;/p&gt;
 
-&lt;p&gt;In this blog post, I’m analyzing all the security tools that Twitch security built within their security program. I’m also tagging them based on the use case, services, and categories. This research should act as a reference to learn how modern security teams build their programs, and to hopefully get inspired into enhancing currently-running security programs.&lt;/p&gt;
+&lt;p&gt;In this blog post, I’m analyzing all the security tools that Twitch Security built within its security program. I’m also tagging them based on the use case, services, and categories. This research should act as a reference to learn how modern security teams build their programs and to get inspired into enhancing currently-running security programs.&lt;/p&gt;
 
 &lt;p&gt;At the end of the blog post, I will share my thoughts on the breach, how I feel about it, and what could have been done by Twitch to handle this breach in better ways.&lt;/p&gt;
 
@@ -350,7 +350,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;h1 id=&quot;who-am-i&quot;&gt;Who Am I?&lt;/h1&gt;
 
-&lt;p&gt;I’m a cyber security engineer that specializes in AppSec, InfraSec and building security programs. Read more about my previous work at &lt;a href=&quot;https://mazinahmed.net&quot;&gt;mazinahmed.net&lt;/a&gt;. I also built &lt;a href=&quot;https://fullhunt.io&quot;&gt;FullHunt.io&lt;/a&gt;, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;tfquery&lt;/a&gt;, and few open-source security tools.&lt;/p&gt;
+&lt;p&gt;I’m a cyber security engineer who specializes in AppSec, InfraSec, and building security programs. Read more about my previous work at &lt;a href=&quot;https://mazinahmed.net&quot;&gt;mazinahmed.net&lt;/a&gt;. I also built &lt;a href=&quot;https://fullhunt.io&quot;&gt;FullHunt.io&lt;/a&gt;, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, &lt;a href=&quot;https://github.com/mazen160/tfquery&quot;&gt;tfquery&lt;/a&gt;, and few open-source security tools.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -368,7 +368,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: Apache PingFederate Module Deb Package Builder.&lt;/p&gt;
 
-&lt;p&gt;PingFederate is an enterprise federation server that enables user authentication and single sign-on. It serves as a global authentication authority that allows employees, customers, and partners to securely access all the applications they need from any device.&lt;/p&gt;
+&lt;p&gt;PingFederate is an enterprise federation server that enables user authentication and single sign-on. It serves as a global authentication authority that allows employees, customers, and partners to access all the applications they need from any device securely.&lt;/p&gt;
 
 &lt;p&gt;This module is a builder for integrating PingFederate with Apache.&lt;/p&gt;
 
@@ -412,7 +412,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: An internal Python Flask app for Security to run reports against Jira and Google Sheets to get team program reports and metrics.&lt;/p&gt;
 
-&lt;p&gt;It also has a script to login to ECR using AWS aws role-assume with the duration of 900 seconds, and stores secrets within AWS Secrets Manager.&lt;/p&gt;
+&lt;p&gt;It also has a script to login to ECR using AWS aws role-assume with a duration of 900 seconds, and stores secrets within AWS Secrets Manager.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reporting&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google-spreadsheets&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;&lt;/p&gt;
 
@@ -430,7 +430,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This is a script to take zone files / DNS records, pull the CNAME, and determine what CDNs are in use based on the associated CNAME.&lt;/p&gt;
 
-&lt;p&gt;The script has an SSL certificate parser, but the data pulling capability is manual. It has instructions on how to pull DNS records from Infoblox (a cloud product that runs DNS management services), and AWS Route53&lt;/p&gt;
+&lt;p&gt;The script has an SSL certificate parser, but the data-pulling capability is manual. It has instructions on how to pull DNS records from Infoblox (a cloud product that runs DNS management services), and AWS Route53&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cdn&lt;/code&gt;&lt;/p&gt;
 
@@ -448,7 +448,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A Lambda that continuously hits CloudFlare API, pulls requests logs, and pushes it to S3.&lt;/p&gt;
 
-&lt;p&gt;CloudFlare supports by default automated archiving to S3. It’s not clear why this option was made instead of using the CloudFlare option.&lt;/p&gt;
+&lt;p&gt;CloudFlare supports, by default, automated archiving to S3. It’s not clear why this option was made instead of using the CloudFlare option.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflare&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logging&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automation&lt;/code&gt;&lt;/p&gt;
 
@@ -484,7 +484,7 @@ If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Pa
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A repo that stores a single AWS policy.&lt;/p&gt;
 
-&lt;p&gt;The policy seems to be permissive and allows actions that can be insecure. Also, it’s set to “*” wildcard resources. It’s not clear who has this policy assigned to.&lt;/p&gt;
+&lt;p&gt;The policy seems to be permissive and allows actions that can be insecure. Also, it’s set to “*” wildcard resources. It’s not clear who this policy has assigned to.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aws&lt;/code&gt;&lt;/p&gt;
 
@@ -1105,7 +1105,7 @@ responsible for the low-level ACL changes.&lt;/li&gt;
 
 &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: This script is made for continuous monitoring purposes of the DNS infrastructure of Twitch. Twitch has a service called “changelog” that contains the DNS records of Twitch, and can be called through a REST API.&lt;/p&gt;
 
-&lt;p&gt;The script pulls all the changelog, and sends an alert for changes to Twitch security email that automatically creates a JIRA ticket based on the email.&lt;/p&gt;
+&lt;p&gt;The script pulls all the changelog, and sends an alert for changes to Twitch Security email that automatically creates a JIRA ticket based on the email.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;email&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smtp&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dns&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;infrasec&lt;/code&gt;&lt;/p&gt;
 
@@ -1165,7 +1165,7 @@ responsible for the low-level ACL changes.&lt;/li&gt;
 
 &lt;p&gt;&lt;strong&gt;92) Tool&lt;/strong&gt;: sirt-report&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script that pulls open incidents from JIRA and sends it as an email to Twitch security team as a report.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: A script that pulls open incidents from JIRA and sends it as an email to Twitch Security team as a report.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jira&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;incident-response&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reporting&lt;/code&gt;&lt;/p&gt;
 
@@ -1481,7 +1481,7 @@ configure the ssh client to access production via a bastion host.&lt;/p&gt;
 
 &lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
 
-&lt;p&gt;Twitch Security invested thousands of hours in building its security tools and security program. I consider the tools developed internally to be advanced, well-thought and has done with excellent use-cases. At the time of writing the blog post, Twitch has not released a postmortem yet about the Twitch breach, how it happened, and technical details about the breach.&lt;/p&gt;
+&lt;p&gt;Twitch Security invested thousands of hours in building its security tools and security program. I consider the tools developed internally to be advanced, well-thought, and have done with excellent use cases. At the time of writing the blog post, Twitch has not released a postmortem yet about the Twitch breach, how it happened, and technical details about the breach.&lt;/p&gt;
 
 &lt;p&gt;Although the leaked security data covers the tools, it doesn’t cover the security architecture and the security program details. It’s hard to come up with a definite conclusion of how the breach could have happened.&lt;/p&gt;
 
@@ -1489,12 +1489,12 @@ configure the ssh client to access production via a bastion host.&lt;/p&gt;
 
 &lt;p&gt;The continuous security scanning from an AppSec perspective seems limited from seeing the developed tools. It’s possible that Twitch is running COTS tools instead of building their tools internally, but this also is not clear, as I haven’t seen ingestion for commercial DAST tools.&lt;/p&gt;
 
-&lt;p&gt;The Twitch breach acts as a reality check on organizations and companies that are building their security program. The possibility of a breach is always there, organizations can take the next step and work in “assume-breach” playbooks and build additional security controls for their security program.&lt;/p&gt;
+&lt;p&gt;The Twitch breach acts as a reality check on organizations and companies that are building their security program. The possibility of a breach is always there, and organizations can take the next step and work in “assume-breach” playbooks and build additional security controls for their security program.&lt;/p&gt;
 
 &lt;h1 id=&quot;about-fullhuntio&quot;&gt;About FullHunt.io&lt;/h1&gt;
-&lt;p&gt;FullHunt is the Next-Generation Attack Surface Management Platform. FullHunt enables companies to discover all of their attack surfaces, monitor them for exposure, and continuously scan them for the latest security vulnerabilities and risks. We help companies around the world in securing their external attack surface using our technologies that are scanning millions of Internet-connected assets and cloud resources.&lt;/p&gt;
+&lt;p&gt;FullHunt is the Next-Generation Attack Surface Management Platform. FullHunt enables companies to discover all of their attack surfaces, monitor them for exposure, and continuously scan them for the latest security vulnerabilities and risks. We help companies around the world secure their external attack surface using our technologies that are scanning millions of Internet-connected assets and cloud resources.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Are you an enterprise that is looking to build security for their External Attack Surface? Please reach out to us at &lt;a href=&quot;https://fullhunt.io&quot;&gt;fullhunt.io&lt;/a&gt;, and we will be happy to solve your challenges.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Are you an enterprise that is looking to build security for its External Attack Surface? Please reach out to us at &lt;a href=&quot;https://fullhunt.io&quot;&gt;fullhunt.io&lt;/a&gt;, and we will be happy to solve your challenges.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 
@@ -1507,11 +1507,11 @@ configure the ssh client to access production via a bastion host.&lt;/p&gt;
 &lt;p&gt;I have given a talk about my latest research, “Attack Vectors on Terraform Environments”.&lt;/p&gt;
 
 &lt;h2 id=&quot;about-the-talk&quot;&gt;About the talk&lt;/h2&gt;
-&lt;p&gt;Ever come across an environment in an engagement that uses Terraform for IAAC (infrastructure-as-code) management?
+&lt;p&gt;Have you ever encountered an environment in an engagement that uses Terraform for IAAC (infrastructure-as-code) management?
 Almost every modern company does now.&lt;/p&gt;
 
-&lt;p&gt;In this talk, I will be sharing techniques and attack vectors to exploit and compromise Terraform environments in engagements, as well as patterns that I have seen that achieve successful infrastructure takeover against companies.
-I will be also covering detection and prevention methods for each attack vector discussed in my talk.&lt;/p&gt;
+&lt;p&gt;In this talk, I will share techniques and attack vectors to exploit and compromise Terraform environments in engagements and patterns that I have seen that achieve successful infrastructure takeover against companies.
+I will also cover detection and prevention methods for each attack vector discussed in my talk.&lt;/p&gt;
 
 &lt;p&gt;This is part of my work-in-progress research in cloud security and attacking modern environments.&lt;/p&gt;
 
@@ -1526,7 +1526,7 @@ I will be also covering detection and prevention methods for each attack vector 
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/dd31ccbf-b8e2-4d56-9c5b-ae3a2d2bd65a.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I did an interview with the AppSec Podcast to talk about IAC and Terraform. We discussed Terraform, why IAAC is important to your organization, technical risks brought when running Terraform on your environment, and few discussions related to my &lt;a href=&quot;https://www.youtube.com/watch?v=d4V75rrVrL4&quot;&gt;DEFCON talk about Attack Vectors on Terraform Environments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I interviewed with the AppSec Podcast to talk about IAC and Terraform. We discussed Terraform, why IAAC is important to your organization, technical risks brought when running Terraform on your environment, and a few discussions related to my &lt;a href=&quot;https://www.youtube.com/watch?v=d4V75rrVrL4&quot;&gt;DEFCON talk about Attack Vectors on Terraform Environments&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/81b656d7-20eb-41c9-9fd1-0338125186a6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1542,13 +1542,13 @@ I will be also covering detection and prevention methods for each attack vector 
 
 &lt;p&gt;&lt;img src=&quot;/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Have you ever tried analyzing Terraform environment with thousands of cloud resources for security and DevOps? It’s used to be hard, until now!&lt;/p&gt;
+&lt;p&gt;Have you ever tried analyzing the Terraform environment with thousands of cloud resources for security and DevOps? It used to be hard, until now!&lt;/p&gt;
 
 &lt;p&gt;I’m open-sourcing my newest project, tfquery: a framework that allows running SQL queries on Terraform code. It saved me dozens of hours in analysis.&lt;/p&gt;
 
-&lt;p&gt;Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing its configuration using a SQL-powered framework.&lt;/p&gt;
+&lt;p&gt;Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing their configuration using a SQL-powered framework.&lt;/p&gt;
 
-&lt;p&gt;I built it out of a real-world problem where I need to understand an extremely large Terraform environment. Has been highly helpful in making work easier.&lt;/p&gt;
+&lt;p&gt;I built it from a real-world problem where I needed to understand an extremely large Terraform environment. It has been beneficial in making work easier.&lt;/p&gt;
 
 &lt;p&gt;This is a starting point for an awesome project. Feel free to read more at the Github repository.&lt;/p&gt;
 
@@ -1558,53 +1558,53 @@ I will be also covering detection and prevention methods for each attack vector 
 
 &lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
 
-&lt;p&gt;I’m releasing my latest project, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+&lt;p&gt;I’m releasing my latest project, &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet, your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a real concern that needs to be put on the organization’s radar, not on a postmortem after an attack happens.&lt;/p&gt;
+&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a genuine concern that must be put on the organization’s radar, not on a postmortem after an attack.&lt;/p&gt;
 
 &lt;h2 id=&quot;time-is-money-especially-on-downtime&quot;&gt;Time is Money, Especially on Downtime&lt;/h2&gt;
 
-&lt;p&gt;The cost of downtime is high and expensive for businesses, and it varies from one industry to another. A payment gateway processor downtime can affect many customers that solely rely on the payment gateway to operate. An hour’s downtime costs millions of dollars in losses.&lt;/p&gt;
+&lt;p&gt;The cost of downtime is high and expensive for businesses, and it varies from industry to industry. A payment gateway processor downtime can affect many customers who rely solely on the payment gateway. An hour’s downtime costs millions of dollars in losses.&lt;/p&gt;
 
-&lt;p&gt;The same goes for an E-Commerce website, some E-Commerces have more than 30% of their revenue coming from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause major losses for the E-commerce business.&lt;/p&gt;
+&lt;p&gt;The same goes for an E-Commerce website. Some E-commerce have more than 30% of their revenue from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause significant losses for the E-commerce business.&lt;/p&gt;
 
-&lt;p&gt;Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives around the world. Think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs that I’m using to write this blog post.&lt;/p&gt;
+&lt;p&gt;Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives worldwide. Please think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs I’m using to write this blog post.&lt;/p&gt;
 
 &lt;h2 id=&quot;protonmail-ddos-attack-changed-my-perspective&quot;&gt;ProtonMail DDoS Attack Changed My Perspective&lt;/h2&gt;
 
-&lt;p&gt;Back when I was working at ProtonMail, I had the opportunity to witness one of the largest attacks that happened in Europe in 2015 &lt;a href=&quot;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&quot;&gt;1&lt;/a&gt; and 2018 &lt;a href=&quot;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&quot;&gt;2&lt;/a&gt;. These attacks were devastating and changed my perspective on DDoS attacks and their effectiveness.&lt;/p&gt;
+&lt;p&gt;Back when I was working at ProtonMail, I had the opportunity to witness one of the most significant attacks that happened in Europe in 2015 &lt;a href=&quot;https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/&quot;&gt;1&lt;/a&gt; and 2018 &lt;a href=&quot;https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/&quot;&gt;2&lt;/a&gt;. These devastating attacks changed my perspective on DDoS attacks and their effectiveness.&lt;/p&gt;
 
-&lt;p&gt;ProtonMail security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of all the amazing ProtonMail team.&lt;/p&gt;
+&lt;p&gt;ProtonMail Security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of the amazing ProtonMail team.&lt;/p&gt;
 
-&lt;p&gt;We had built up awesome technologies to prevent attacks that could breach the data of ProtonMail, yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack is not capable of risking the security nor the privacy of ProtonMail, but it was effective to put us in a stressful situation to fight back and return the services back to normal.&lt;/p&gt;
+&lt;p&gt;We built up awesome technologies to prevent attacks that could breach the data of ProtonMail. Yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack cannot risk the security or privacy of ProtonMail. Still, it effectively put us in a stressful situation to fight back and return the services to normal.&lt;/p&gt;
 
-&lt;p&gt;If there is a main lesson I learned from this experience is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and possibly more ready to handle an attack with this size. Putting DDoS and availability risks on the map became important for me when building a security program of any size.&lt;/p&gt;
+&lt;p&gt;If there is a primary lesson I learned from this experience, it is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and more ready to handle an attack of this size. Putting DDoS and availability risks on the map became essential when building a security program of any size.&lt;/p&gt;
 
 &lt;h1 id=&quot;building-the-dream-product-stressful-framework&quot;&gt;Building the Dream Product: Stressful Framework&lt;/h1&gt;
 
-&lt;p&gt;I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My vision is clear: as a customer, I want to have a trusted platform where I can consult for verifying the existing DDoS defenses, to show me what’s wrong based on research and proven tests, and to show me how to patch weaknesses.&lt;/p&gt;
+&lt;p&gt;I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My idea is clear: as a customer, I want to have a trusted platform where I can consult to verify the existing DDoS defenses, show me what’s wrong based on research and proven tests, and how to patch weaknesses.&lt;/p&gt;
 
-&lt;p&gt;Trusting a security vendor blindly is always a bad idea, companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product in preventing attacks.&lt;/p&gt;
+&lt;p&gt;Trusting a security vendor blindly is always a bad idea. Companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product to prevent attacks.&lt;/p&gt;
 
-&lt;h3 id=&quot;when-i-didnt-find-a-solution-i-started-the-journey-of-building-stressfulio&quot;&gt;When I didn’t find a solution, I started the journey of building Stressful.io.&lt;/h3&gt;
+&lt;h3 id=&quot;when-i-didnt-find-a-solution-i-started-building-stressfulio&quot;&gt;When I didn’t find a solution, I started building Stressful.io.&lt;/h3&gt;
 
 &lt;h2 id=&quot;researching-ttps&quot;&gt;Researching TTPs&lt;/h2&gt;
 
-&lt;p&gt;The most difficult part in having this project come to reality was the research part. I started collecting repositories and historical archives for attacks that have been witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate researches and techniques I have been seeing.&lt;/p&gt;
+&lt;p&gt;The research was the most challenging part of having this project come to reality. I started collecting repositories and historical archives for attacks witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate research and techniques I have been seeing.&lt;/p&gt;
 
-&lt;p&gt;I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge-base for everything related to DDoS attacks.&lt;/p&gt;
+&lt;p&gt;I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge base for everything related to DDoS attacks.&lt;/p&gt;
 
-&lt;p&gt;This was majorly a side project that I have been imagining over the years, and in 2020, I took serious focus to complete the product.&lt;/p&gt;
+&lt;p&gt;This was majorly a side project that I had been imagining over the years, and in 2020, I took serious focus to complete the product.&lt;/p&gt;
 
 &lt;h2 id=&quot;quality-vs-quantity-attacks&quot;&gt;Quality vs. Quantity Attacks&lt;/h2&gt;
 
-&lt;p&gt;One factor that the market is fully relying on measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. A 50 GBPS DDoS attack today is much easier to generate than 10 years ago, where the cloud era wasn’t as huge as before. Infrastructure deployment 10 years ago wasn’t as accessible as today. Today, Infrastructure-as-code became the de-facto for deploying a fully scalable infrastructure within minutes. The same goes for defense, mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.&lt;/p&gt;
+&lt;p&gt;One factor that the market is entirely relies on in measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. Today, a 50 GBPS DDoS attack is much easier to generate than ten years ago when the cloud era wasn’t as huge as before. Infrastructure deployment ten years ago wasn’t as accessible as today. Infrastructure-as-code has become the de facto for deploying a fully scalable infrastructure within minutes. The same goes for defense. Mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.&lt;/p&gt;
 
-&lt;p&gt;On the other side, DDoS attacks that focus on Application-layer exploitation were being dismissed by most deployments I have personally reviewed over the years. Additionally, DoS vectors that exploits and abuses a security vulnerability of a given product or application are patterns that I have been seeing.&lt;/p&gt;
+&lt;p&gt;On the other side, DDoS attacks that focus on Application-layer exploitation were dismissed by most deployments I reviewed over the years. Additionally, DoS vectors that exploit and abuse a security vulnerability of a given product or application are patterns that I have been seeing.&lt;/p&gt;
 
-&lt;p&gt;Application-layer DDoS attacks are harder to defend, much difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt; framework.&lt;/p&gt;
+&lt;p&gt;Application-layer DDoS attacks are harder to defend and much more difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the &lt;a href=&quot;https://stressful.io&quot;&gt;Stressful.io&lt;/a&gt; framework.&lt;/p&gt;
 
 &lt;h2 id=&quot;stressfulio-architecture&quot;&gt;Stressful.io Architecture&lt;/h2&gt;
 
@@ -1616,7 +1616,7 @@ I will be also covering detection and prevention methods for each attack vector 
 
 &lt;h4 id=&quot;language-of-choice&quot;&gt;Language of Choice?&lt;/h4&gt;
 
-&lt;p&gt;I wrote the framework in Golang as I have been seeing great potential for DDoS in Golang. The networking API in Golang is much reliable, and the concurrency and state management in projects are much promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by various features Golang allows and provides.&lt;/p&gt;
+&lt;p&gt;I wrote the framework in Golang as I have seen great potential for DDoS in Golang. The networking API in Golang is much more reliable, and the concurrency and state management in projects are much more promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by the various features Golang allows and provides.&lt;/p&gt;
 
 &lt;h3 id=&quot;modules&quot;&gt;Modules&lt;/h3&gt;
 
@@ -1647,14 +1647,14 @@ I will be also covering detection and prevention methods for each attack vector 
   &lt;li&gt;MySQL Resource Exhaustion&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This is just part of the modules I have developed. I also develop modules based on specific use-cases and scenarios. Lastly, I will be also keeping an up-to-date arsenal for DoS attacks and modules on the framework.&lt;/p&gt;
+&lt;p&gt;This is just part of the modules I have developed. I also develop modules based on specific use cases and scenarios. Lastly, I will keep an up-to-date arsenal for DoS attacks and modules on the framework.&lt;/p&gt;
 
 &lt;h1 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h1&gt;
 
-&lt;p&gt;Contact me on &lt;a href=&quot;mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query&quot;&gt;info@Stressful.io&lt;/a&gt; to get a free consultation demo for your organization. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+&lt;p&gt;Contact me at &lt;a href=&quot;mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query&quot;&gt;info@Stressful.io&lt;/a&gt; for a free consultation demo for your organization. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-Interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!&lt;/p&gt;
+Are you interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!&lt;/p&gt;
 
 &lt;h3 id=&quot;are-you-a-researcher-interested-in-the-ddos-market-and-ddos-defenses&quot;&gt;Are you a researcher interested in the DDoS market and DDoS defenses?&lt;/h3&gt;
 

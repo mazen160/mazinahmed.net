@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1521,74 +1521,74 @@ pre {
 
 <h1 id="testing-and-exploiting-backup-file-artifacts-with-bfac">Testing and Exploiting Backup-File Artifacts with BFAC</h1>
 
-<p>In August 13th, 2016, I have given a talk about Backup-File Artifacts, an attacking vector that is not commonly known, or being tested by penetration testers, yet, can be critical to the security of the web environment. At the end of the of the talk, I have released BFAC, an automated security tool that tests for Backup-File Artifacts that is missed on web-servers and can discloses the web-application’s source-code.</p>
+<p>On August 13th, 2016, I talked about Backup-File Artifacts. This attacking vector is not commonly known or being tested by penetration testers, yet it can be critical to the security of the web environment. At the end of the talk, I released BFAC, an automated security tool that tests for backup file Artifacts missed on web servers and can disclose the web application’s source code.</p>
 
-<p>This post will discuss different ideas on Backup-File Artifacts, will cover the types of Backup-File Artifacts (BFAs), and ways that it occurs, and how it can be related to web-servers. Also, it will cover the usage of BFAC (Backup-File Artifacts Checker) in finding BFA issues.</p>
+<p>This post will discuss ideas on Backup-File Artifacts and will cover the types of Backup-File Artifacts (BFAs), how they occur, and how they can be related to web servers. Also, it will cover the usage of BFAC (Backup-File Artifacts Checker) in finding BFA issues.</p>
 
-<h2 id="what-is-backup-file-artifacts-that-can-affects-web-applications">What is Backup-File Artifacts that can affects web-applications?</h2>
+<h2 id="what-are-backup-file-artifacts-that-can-affect-web-applications">What are Backup-File Artifacts that can affect web applications?</h2>
 
-<p>Backup-File Artifacts are basically files that was left during a backup process. Offline backup artifacts is a something that I will not discuss, since it does not affect the security of the web, and it’s not related to this research’s point.</p>
+<p>Backup-file artifacts are files that were left during a backup process. Offline backup artifacts are out of the scope of this blog post since it does not affect the security of the web, and it’s not related to this research’s point.</p>
 
-<p>Most developers make a backup file before editing a script (or code editors or other programs), and then push it to the web-server along with the backup file. Also, one of the developers’ behaviours is to edit a script in the webroot of the web-server, and when finished the process, the backup-file is left on the webroot. This eventually  allows any unauthenticated party to retrieve the source-code by downloading the BFA. This is a general explanation of the BFA concept.</p>
+<p>Most developers make a backup file before editing a script (or code editors or other programs), then push it to the web server along with the backup file. Also, one of the developers’ behaviors is to edit a script in the webroot of the web server, and when the process is done, the backup file is left on the webroot. This eventually allows any unauthenticated party to retrieve the source code by downloading the BFA.</p>
 
 <h2 id="types-of-backup-file-artifacts">Types of Backup-File Artifacts</h2>
 
 <h3 id="1-backup-file-artifacts-caused-by-code-editors">1. Backup-File Artifacts Caused by Code-Editors</h3>
 
-<p>Text-Editors and Code-Editors intentionally make a backup file for the file that is being edited. This is done so that developers can recover the files they are editing if they encountered any issues.
-By default, the backup file is made in the same directory of the file that is being edited, also with a pattern based on the original file name.</p>
+<p>Text-Editors and Code-Editors intentionally make a backup file for the file that is being edited. This is done so developers can recover the files they edit if they encounter any issues.
+By default, the backup file is made in the same directory as the file that is being edited, also with a pattern based on the original file name.</p>
 
-<p>For instance, when editing a file called index.php with nano, a backup file will be created with the name “index.php.save”. The same goes to other code editors, each code-editor has its own pattern that it follows when creating a backup file for the file that is being edited.</p>
+<p>For instance, when editing a file called index.php with nano, a backup file will be created with the name “index.php.save”. The same goes for other code editors. Each code editor has a pattern that it follows when creating a backup file for the file that is being edited.</p>
 
-<p>If the backup file was left on the web-server, an attacker can brute-forces the file, until he finds an existent backup file. Since index.php.save will not be executed as index.php, index.php.save will be the response of the request, showing the source-code of the script. Of course, the same goes to all different patterns.</p>
+<p>If the backup file was left on the web server, an attacker can brute-force the file until he finds an existent backup file. Since index.php.save will not be executed as index.php, index.php.save will be the request’s response, showing the script’s source code. Of course, the same goes for all different patterns.</p>
 
 <h3 id="2-backup-file-artifacts-caused-by-missed-vcs-meta-directories-on-the-webroot">2. Backup-File Artifacts Caused by Missed VCS Meta-Directories on The Webroot</h3>
 
-<p>Version Control Systems (VCS) are very popular systems in today’s world. All VCS creates a meta-directory on the same folder of the project. This folder includes tracks and logs for every change is done to the files of the project.</p>
+<p>Version Control Systems (VCS) creates a meta-directory on the same folder of the project. This folder includes tracks and logs for every change done to the project files.</p>
 
-<p>Developers tend to download/clone their project’s repositories on the web-server, without removing the VCS directory. This causes the project to be leaked, since the VCS is publicly accessible for unauthorized parties on the web-server.hg</p>
+<p>Developers download/clone their project’s repositories on the web server without removing the VCS directory. This causes the project to be leaked since the VCS is publicly accessible to unauthorized parties on the web server.hg</p>
 
 <h3 id="3-human-based-missed-backup-file-artifacts">3. Human-Based Missed Backup-File Artifacts</h3>
 
-<p>Developers who are not using Version Control Systems tend to do a manual backup file for scripts that needs to be edited. Also, developers uses similar patterns usually that can be easily guessed and enumerated.</p>
+<p>Developers using something other than Version Control Systems tend to do a manual backup file for scripts that need editing. Also, developers use similar patterns usually that can be easily guessed and enumerated.</p>
 
-<p>For example, when a developer would like to edit index.php, he/she would make an initial copy in case of any errors or issues. The copy can be named with something that is really common.</p>
+<p>For example, when a developer would like to edit index.php, they would make an initial copy in case of any errors or issues. The copy approach can be named with something widespread.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.php → index.php.bak
 index.php → index.old
 index.php → index.php.temp
 </code></pre></div></div>
 
-<p>Since human-based backup patterns can be easily guessed, we can perform the same damage that was mentioned above, which causes the disclosure of the web-application’s source-code.</p>
+<p>Since human-based backup patterns can be easily guessed, we can perform the same damage mentioned above, which causes the disclosure of the web application’s source code.</p>
 
 <h2 id="the-problem">The Problem</h2>
 
-<p>Security Researchers and Penetration Testers who relies solely on web-application vulnerability scanners might not encountered this issues a lot in real-world. The reason is because Most web-application vulnerability scanners does not test against Backup-File Artifacts on web-servers. Also, there are no major tools till the release of this research that is dedicated to test Backup-File Artifacts.</p>
+<p>Security Researchers and Penetration Testers relying solely on web-application vulnerability scanners might not encounter these issues in real-time. The reason is that most web-application vulnerability scanners do not test against Backup-File Artifacts on web servers. Also, only significant tools once this research is released are dedicated to trying Backup-File Artifacts.</p>
 
-<h3 id="examples-of--tested-web-application-vulnerability-scanners-that-does-not-test-perform-backup-file-artifacts-testing">Examples of  tested web-application Vulnerability Scanners that does not test perform Backup-File Artifacts testing</h3>
+<h3 id="examples-of--tested-web-application-vulnerability-scanners-that-do-not-test-perform-backup-file-artifacts-testing">Examples of  tested web-application Vulnerability Scanners that do not test perform Backup-File Artifacts testing</h3>
 
 <ul>
   <li>OWASP ZAP 2.4</li>
   <li>Vega</li>
-  <li>W3AF – There are partial plugins that does basic testing, but it’s disabled by default.</li>
+  <li>W3AF – Some partial plugins do basic testing, but it’s disabled by default.</li>
   <li>Nikto 2.1.6</li>
   <li>Burp Suite Professional 1.7.X</li>
 </ul>
 
-<p>Note: these are the versions that I have tested of the products, future versions are mostly don’t support testing for Backup-File Artifacts too.</p>
+<p>Note: these are the versions that I have tested of the products. Future versions mainly don’t support testing for Backup-File Artifacts, either.</p>
 
-<p>There are very few number of Web-Application Vulnerability Scanners that does test for Backup-File Artifacts. However, those scanners are using really basic testing of Backup-File Artifacts. This testing that are done by these rare portion of web-application vulnerability scanners misses most important checks, and do not satisfy the needs for professional security assessment done by security testers. For that reasons, I wrote BFAC.</p>
+<p>There are very few Web-Application Vulnerability Scanners that do test for Backup-File Artifacts. However, those scanners are using fundamental testing of Backup-File Artifacts. This testing done by this rare portion of web-application vulnerability scanners misses most essential checks and does not satisfy the need for professional security assessment done by security testers. For that reason, I wrote BFAC.</p>
 
 <h2 id="introducing-bfac">Introducing BFAC</h2>
 
-<p>BFAC (Backup-File Artifacts Checker) is an automated tool that checks for backup artifacts that may discloses the web-application’s source code. BFAC goal is to be an all-in-one tool for backup-file artifacts black-box testing.</p>
+<p>BFAC (Backup-File Artifacts Checker) is an automated tool that checks for backup artifacts that may disclose the web application’s source code. BFAC aims to be an all-in-one tool for backup-file artifacts black-box testing.</p>
 
 <h3 id="features">Features</h3>
 
 <ul>
-  <li>Testing all common types of backup-file artifacts patterns, including human-based BFAs, and BFA that can occur via code-editors.</li>
+  <li>Testing all common backup-file artifact patterns, including human-based BFAs and BFAs that can occur via code editors.</li>
   <li>Includes tests for common VCS artifacts, such as GIT, Subversion, Mercurial, and Bazaar.</li>
-  <li>Smart detection techniques; Capable of detecting “Not Found”, and valid pages using different tests.</li>
+  <li>Smart detection techniques; can detect “Not Found”, and valid pages using different tests.</li>
   <li>Stealthy Interaction with Web Servers.</li>
   <li>Easy to edit and customize based on needs; easy to add custom BFA patterns.</li>
   <li>Dynamic and generic; made to be not specified to test a specific environment or server.</li>
@@ -1600,11 +1600,11 @@ index.php → index.php.temp
 
 <h4 id="system-administrations">System Administrations</h4>
 
-<p>Actively scan web-servers for Backup-File Artifacts, and review if anything found should be placed publicly. If it’s not needed, then remove it to a temporary directory for review by developers responsible for it.</p>
+<p>Actively scan web servers for Backup-File Artifacts and review if anything found should be placed publicly. If it’s not needed, remove it to a temporary directory for review by the developers responsible.</p>
 
 <h4 id="developers">Developers</h4>
 
-<p>After doing any edits, check if a backup file exist, and remove it from the webroot if it exists.</p>
+<p>After doing any edits, check if a backup file exists, and remove it from the webroot if it exists.</p>
 
 <h4 id="penetration-testers">Penetration Testers</h4>
 <p>Add testing for Backup-File Artifacts to your testing checklists. Also, you can use BFAC to test for Backup-File Artifacts.</p>

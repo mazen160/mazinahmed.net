@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1525,7 +1525,7 @@ pre {
 
 <h2 id="what-is-csp">What is CSP?</h2>
 
-<p>“<strong>Content Security Policy</strong> (<a href="https://developer.mozilla.org/en-US/docs/Glossary/CSP">CSP</a>) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (<a href="https://developer.mozilla.org/en-US/docs/Glossary/XSS">XSS</a>) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.” — Mozilla Developer Documentations</p>
+<p>“<strong>Content Security Policy</strong> (<a href="https://developer.mozilla.org/en-US/docs/Glossary/CSP">CSP</a>) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (<a href="https://developer.mozilla.org/en-US/docs/Glossary/XSS">XSS</a>) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.” — Mozilla Developer Documentations.</p>
 
 <h2 id="what-is-jsonp">What is JSONP?</h2>
 
@@ -1535,20 +1535,20 @@ pre {
 
 <p><strong>The concept works as the following:</strong></p>
 
-<p>JSONP APIs normally works by having a parameter that sets a callback, so that users of the JSONP API can freely use the API according to their code.</p>
+<p>JSONP APIs typically work by having a parameter that sets a callback so that users of the JSONP API can freely use the API according to their code.</p>
 
-<p>The GET parameter is reflected on the response in the 0 offset. This means that we basically control the start of the response body.
+<p>The GET parameter is reflected in the response in the 0 offset. This means that we control the start of the response body.
 JavaScript Magic</p>
 
-<p>JavaScript is a very dynamic language. It dynamically allows us to do many things we should not do, and are not supposed to do.</p>
+<p>JavaScript is a very dynamic language. It dynamically allows us to do many things we should not do and are not supposed to do.</p>
 
-<p>Let’s use some of JavaScript magic to our side here.</p>
+<p>Let’s use some JavaScript magic on our side here.</p>
 
 <p>What if we enter:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="c1">//</span>
 </code></pre></div></div>
-<p>as our callback?</p>
+<p>As our callback?</p>
 
 <p>If no proper sanitization is done on the JSONP endpoint, it will be reflected as the following:</p>
 
@@ -1557,14 +1557,14 @@ JavaScript Magic</p>
 
 <p>This is technically a correct JavaScript code!</p>
 
-<p>The syntax is correct as the rest of the response of commented out. JS engines would treat the data as a typical JavaScript code instead of a JSONP endpoint.</p>
+<p>The syntax is correct, as the rest of the response is commented. JS engines would treat the data as a typical JavaScript code instead of a JSONP endpoint.</p>
 
-<p>So importing the JSONP callback via a script tag as the following:</p>
+<p>So, importing the JSONP callback via a script tag as the following:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://example.com/jsonp?callback=alert(1);//"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div></div>
 
-<p>will result in the following:</p>
+<p>This will result in the following:</p>
 
 <p><img src="/assets/static/93e9dc53-bfbc-48bf-be0e-5420aa078883.png" alt="" /></p>
 
@@ -1573,21 +1573,21 @@ JavaScript Magic</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Content-Security-Policy: default-src 'self'
 </code></pre></div></div>
 
-<p>This policy basically blocks anything that does not load from within the same origin.</p>
+<p>This policy blocks anything that does not load from within the exact origin.</p>
 
-<p>Since according to the browser, this JavaScript code is hosted on the domain, we can use it to bypass Content Security Policy. We can craft the payload to contain our payload, followed by a comment that comments-out the rest of the response. When importing the URL via <script> tag, it would be treated as the content of the JavaScript code.</script></p>
+<p>Since, according to the browser, this JavaScript code is hosted on the domain, we can use it to bypass the Content Security Policy. We can craft the payload to contain our payload, followed by a comment commenting on the rest of the response. When importing the URL via <script> tag, it would be treated as the content of the JavaScript code.</script></p>
 
-<p>So for example, if twitter.com have an XSS, and there is a white-listed domain on the CSP rule called “example.com”, and this domain holds a JSONP endpoint, then the CSP policy for twitter.com will be bypassed by abusing the JSONP endpoint for example.com.</p>
+<p>So, for example, if twitter.com has an XSS, and there is a white-listed domain on the CSP rule called “example.com”, and this domain holds a JSONP endpoint, then the CSP policy for twitter.com will be bypassed by abusing the JSONP endpoint for example.com.</p>
 
 <h1 id="what-to-do">What to Do?</h1>
 
 <h2 id="developers-that-are-responsible-for-jsonp-endpoints">Developers That are Responsible for JSONP endpoints</h2>
 
-<p>Restricts the callback name to certain keywords, or disallow non alphanumeric from returning within the response. Furthermore, you should think about protecting against the Rosetta Flash exploit.</p>
+<p>Restricts the callback name to specific keywords or disallows non-alphanumeric from returning within the response. Furthermore, it would be best to consider protecting against the Rosetta Flash exploit.</p>
 
 <h2 id="penetration-testers">Penetration Testers</h2>
 
-<p>Whenever you face a Content Security Policy on an application, review all white-listed domains, and search for JSONP endpoints.</p>
+<p>Whenever you face a Content Security Policy on an application, review all white-listed domains and search for JSONP endpoints.</p>
 
 <h2 id="blue-teams">Blue Teams</h2>
 

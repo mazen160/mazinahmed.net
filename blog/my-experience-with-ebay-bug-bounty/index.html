@@ -19,19 +19,19 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>My Experience with Ebay Bug Bounty Program | Mazin Ahmed</title>
+<title>My Experience with eBay Bug Bounty Program | Mazin Ahmed</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="My Experience with Ebay Bug Bounty Program" />
+<meta property="og:title" content="My Experience with eBay Bug Bounty Program" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="My Experience with Ebay Bug Bounty Program" />
-<meta property="og:description" content="My Experience with Ebay Bug Bounty Program" />
+<meta name="description" content="My Experience with eBay Bug Bounty Program" />
+<meta property="og:description" content="My Experience with eBay Bug Bounty Program" />
 <link rel="canonical" href="https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -40,11 +40,11 @@
 <meta property="article:published_time" content="2015-04-24T00:00:00-05:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://mazinahmed.net/assets/static/604be088-6603-451f-b810-eb09fccf03ff.jpeg" />
-<meta property="twitter:title" content="My Experience with Ebay Bug Bounty Program" />
+<meta property="twitter:title" content="My Experience with eBay Bug Bounty Program" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2015-04-24T00:00:00-05:00","datePublished":"2015-04-24T00:00:00-05:00","description":"My Experience with Ebay Bug Bounty Program","headline":"My Experience with Ebay Bug Bounty Program","image":"https://mazinahmed.net/assets/static/604be088-6603-451f-b810-eb09fccf03ff.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"},"url":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2015-04-24T00:00:00-05:00","datePublished":"2015-04-24T00:00:00-05:00","description":"My Experience with eBay Bug Bounty Program","headline":"My Experience with eBay Bug Bounty Program","image":"https://mazinahmed.net/assets/static/604be088-6603-451f-b810-eb09fccf03ff.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"},"url":"https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1493,17 +1493,17 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
 
 
 
-<h1 class="title">My Experience with Ebay Bug Bounty Program</h1>
+<h1 class="title">My Experience with eBay Bug Bounty Program</h1>
 
 <span class="date">
     <time datetime="24-04-2015">Friday. April 24, 2015</time>
@@ -1520,47 +1520,47 @@ pre {
 
 
 <hr />
-<p>On January 2015, I have participated on Ebay bug bounty program. On that time, bug bounty programs were not as the same as now. The bug bounty programs industry today has increased by almost %100 than last year, and every week, a new bug bounty program starts on bug bounty platforms.</p>
+<p>In January 2015, I participated in the eBay bug bounty program. At that time, bug bounty programs were not the same as now. The bug bounty programs industry has increased by almost %100 to last year, and every week, a new bug bounty program starts on bug bounty platforms.</p>
 
-<p>I thought it will be a good idea to participate on their bug bounty program, report a single issue (the first finding), and then decide if I would like to test deeply further into their services.</p>
+<p>I typically report a single issue (the first finding), and based on the bug bounty program communication,  I then decide if I would like to test their services further.</p>
 
 <p>After quick searches, I have found a subdomain called ebaycommercenetwork.com. I have then started testing it for common flaws.</p>
 
-<p>I have noticed a Cross ­Site Scripting issue on <code class="language-plaintext highlighter-rouge">http://ebaycommercenetwork.com/kb/[Payload]</code>. It only filters the slash character <code class="language-plaintext highlighter-rouge">/</code>. The bypass for it was just by Hex encoding it. So <code class="language-plaintext highlighter-rouge">“/” == %2F</code>. Using the bypass, I have generated a pop-­up alert to indicate the existence of the XSS issue, as the following screenshot:</p>
+<p>I have noticed a Cross ­Site Scripting issue on <code class="language-plaintext highlighter-rouge">http://ebaycommercenetwork.com/kb/[Payload]</code>. It only filters the slash character <code class="language-plaintext highlighter-rouge">/</code>. The bypass for it was just by Hex encoding it. So ` “/” == %2F`. Using the bypass, I have generated a pop-­up alert to indicate the existence of the XSS issue, as shown in the following screenshot:</p>
 
 <p><img src="/assets/static/c27f7686-3d9f-4373-a015-7ea90706842c.png" alt="" /></p>
 
-<p>I guess you can imagine how much damage can be done with the above issue.</p>
+<p>You can imagine how much damage can be done with the above issue.</p>
 
-<p>Then, I have reported the vulnerability to Ebay via their bug bounty program contact. After few clarifications from me, they have acknowledged the existence of the vulnerability and files a report regarding it. At that moment, I was glad about it, and waited for their act to fix the issue.</p>
+<p>Then, I reported the vulnerability to eBay via their bug bounty program contact. After a few clarifications from me, they acknowledged the existence of the vulnerability and filed a report regarding it. At that moment, I was glad about it and waited for their act to fix the issue.</p>
 
-<p>On February 2015, I have contacted them to ask about the date of shipping a fix. Each time I contact them about when the fix will be shipped, they respond with non­-informative template email.</p>
+<p>In February 2015, I contacted them to ask about the date of shipping a fix. Whenever I ask them when the fix will be shipped, they respond with a non­-informative template email.</p>
 
-<p>I had two options, the first option is to wait until the issue is fully fixed, and the second option was to disclose it after 45 days, which is a reasonable duration for companies to patch their application according to the ​<a href="http://www.cert.org/vulnerability-analysis/vul-disclosure.cfm">US CERT​</a>.</p>
+<p>I had two options: the first option was to wait until the issue was fully fixed, and the second option was to disclose it after 45 days, which is a reasonable duration for companies to patch their application according to the ​<a href="http://www.cert.org/vulnerability-analysis/vul-disclosure.cfm">US CERT​</a>.</p>
 
-<p>I have chosen the first option for the following reasons. This is the best option for customers to stay more secure, as public disclosure might put users in risk by using this issue via malicious users. Also, it will be better for Ebay’s reputation. Breaches, public valid vulnerabilities, and full disclosures might affects the company’s reputation. Furthermore, I wanted to know how seriously they will put in effort to patch the issue, although I fully understand it’s an easy ­to ­patch XSS issue that can be fixed with one line of code.</p>
+<p>I have chosen the first option for the following reasons. The choice is best for customers to stay secure, as public disclosure might put users at risk by using this issue via malicious users. Also, it will be better for eBay’s reputation. Breaches, valid public vulnerabilities, and complete disclosures might affect the company’s reputation. Furthermore, I wanted to know how seriously they will try to patch the issue, although I fully understand it’s an easy ­to ­patch XSS issue that can be fixed with one line of code.</p>
 
-<p>Each month, I check the existence of the issue without finding any changes by the company. After couple months I have contacted them multiple times again to understand the delay of shipping the patch, and they always respond with the same template email.</p>
+<p>Each month, I check the issue’s existence without finding any changes by the company. After a couple of months, I contacted them multiple times again to understand the delay in shipping the patch, and they always responded with the same template email.</p>
 
-<p>I didn’t bother testing further for more flaws, as I knew at the moment that it won’t be fixed in a reasonable time­-frame (or perhaps, it won’t be fixed at all).</p>
+<p>I didn’t bother testing further for more flaws, as I knew at the moment that it wouldn’t be fixed in a reasonable time­-frame (or perhaps, it won’t be fixed at all).</p>
 
-<p>On December 2014, the issue still exists. Then I checked it on February 2015. Ebay has delivered a complete new web interface, and then I can say that the issue has been “fixed”.</p>
+<p>In December 2014, the issue still exists. Then, I checked it in February 2015. EBay has delivered a completely new web interface, and then I can say that the issue has been fixed.</p>
 
-<p>I contacted them, informing Ebay Security that the issue has been patched, and asking for my place on Ebay researchers acknowledgement page. They have not responded to my email, so I send another email 2 weeks later, and nothing has been heard from them.</p>
+<p>I contacted them, informing Ebay Security that the issue had been patched and asking for my place on the Ebay researchers acknowledgment page. They have not responded to my email, so I sent another email two weeks later, and nothing has been heard from them.</p>
 
-<p>After checking the researcher’s page, they have not include my name in the company’s researchers acknowledgement page, although I have waited 13 months to have them patching the issue.</p>
+<p>After checking the researcher’s page, ebay has not included my name in the company’s researchers’ acknowledgment page, although I have waited 13 months to have them patch the issue.</p>
 
 <h3 id="final-thoughts">Final Thoughts:</h3>
 
-<p>What you have read happens to many researchers. I believe I have chosen the right thing  to do with the vulnerability by reporting it right away to the company, but some companies  may have an official bug bounty program, and don’t follow the right steps in handling a private disclosure.</p>
+<p>What you have read happens to many researchers. I have chosen the right thing to do with the vulnerability by reporting it immediately to the company. Still, some companies may have an official bug bounty program and don’t follow the proper steps in handling a private disclosure.</p>
 
-<p>If you haven’t done it yet, you should read <a href="https://blog.bugcrowd.com/">​Bugcrowd’s blog</a>​. It has a lot of educational contents for companies and researchers.</p>
+<p>If you haven’t done it, you should read <a href="https://blog.bugcrowd.com/">​Bugcrowd’s blog</a>​. It has a lot of educational content for companies and researchers.</p>
 
-<p>If you are planning to start a bug bounty program, or already have a running program, it will be better for both the company and the researcher to handle a security issue in a  better and quicker way. I might be patient when reporting vulnerabilities to bug bounty programs, but you do not know how would others react on a similar situation.</p>
+<p>If you are planning to start a bug bounty program or already have a running program, it will be better for both the company and the researcher to handle a security issue better and quicker. I might be patient when reporting vulnerabilities to bug bounty programs, but I do not know how others would react in a similar situation.</p>
 
-<p>Ebay is a well­-reputable company, I am glad to participate in their program although what happened. I hope they plan to change their bug bounty programs steps in handling a private disclosure to the better.</p>
+<p>Despite what happened, Ebay is a well­-reputable company; I am glad to participate in their program. I hope they plan to change their bug bounty program steps in handling a private disclosure for the better.</p>
 
-<p><strong>Update [June 12th, 2015 ]</strong>: Ebay contacted me after publishing the article, and they acknowledged me by listing my name in the Responsible Disclosure Acknowledgement Page.</p>
+<p><strong>Update [June 12th, 2015 ]</strong>: eBay contacted me after publishing the article, and they acknowledged me by listing my name on the Responsible Disclosure Acknowledgement Page.</p>
 
 <p>Link: <a href="http://ebay.com/securitycenter/ResearchersAcknowledgement.html">http://ebay.com/securitycenter/ResearchersAcknowledgement.html</a></p>
 
@@ -2205,7 +2205,7 @@ pre {
         <div class="share">
             <!-- Note: Only use three share links if your site width is set to large -->
             <!-- If site width is set to normal, you may choose any two share links -->
-            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/ - My Experience with Ebay Bug Bounty Program by @mazen160">
+            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/ - My Experience with eBay Bug Bounty Program by @mazen160">
                 <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg><span class="icon-twitter">Tweet</span>
             </a>
 
@@ -2217,11 +2217,11 @@ pre {
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/&amp;title=My Experience with Ebay Bug Bounty Program&amp;summary=My Experience with Ebay Bug Bounty Program&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/&amp;title=My Experience with eBay Bug Bounty Program&amp;summary=My Experience with eBay Bug Bounty Program&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 
-            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/&amp;title=My Experience with Ebay Bug Bounty Program" target="_blank">
+            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/&amp;title=My Experience with eBay Bug Bounty Program" target="_blank">
                 <svg class="icon icon-reddit"><use xlink:href="#icon-reddit"></use></svg><span class="icon-reddit">Share</span>
             </a> -->
         </div>

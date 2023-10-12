@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1523,15 +1523,15 @@ pre {
 
 <p>DNS rebinding is a known attack against the same origin policy of modern browsers.</p>
 
-<p>The attack works by abusing DNS where a request with a small TTL is set. After the TTL is reached, another query that resolves to another IP address (a local or internal IP address in typical cases). This way, an unauthorized party is capable to bypass the same origin policy by loading malicious code on browsers, then executing it against local or internal networks. Theoretically speaking, SOP prevents this from happening, however, DNS rebinding can bypass this protection on certain circumstances.</p>
+<p>The attack abuses DNS, where a request with a small TTL is set. After the TTL is reached, another query resolves to another IP address (a local or internal IP address in typical cases). This way, an unauthorized party can bypass the same origin policy by loading malicious code on browsers and executing it against local or internal networks. Theoretically speaking, SOP prevents this from happening. However, DNS rebinding can bypass this protection in certain circumstances.</p>
 
-<p>There has been a large amount of research on exploiting DNS rebinding attacks in the previous years.</p>
+<p>There has been much research on exploiting DNS rebinding attacks in the previous years.</p>
 
 <h1 id="problem">Problem</h1>
 
-<p>Although that this attack is known for years, securing an environment against DNS rebinding is normally done on application level only.</p>
+<p>Although this attack has been known for years, securing an environment against DNS rebinding is typically done on the application level only.</p>
 
-<p>I don’t find this to be the best approach, as there is a larger surface that we can control to block these attacks.</p>
+<p>This is not the best approach, as there is a larger surface that we can control to block these attacks.</p>
 
 <h1 id="proposed-solution">Proposed Solution</h1>
 
@@ -1543,16 +1543,17 @@ pre {
 
 <p>If the DNS query response is a record that points to a loopback address, then this is a potential DNS rebinding attack. This should be blocked.</p>
 
-<p>If done correctly, this will effectively block DNS rebinding attacks against local addresses.</p>
+<p>This will effectively block DNS rebinding attacks against local addresses if done correctly.</p>
 
 <h1 id="implementation">Implementation</h1>
 
 <p>DNS resolvers have this feature built-in. For example, you can configure BIND to block a query where the DNS record is on the IP range.</p>
 
-<p>IPtables can help with applying a patch too. The problem that there is no direct way to apply it.</p>
+<p>IPtables can help with applying a patch, too. The problem is that there is no direct way to use it.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>iptables <span class="nt">-I</span> INPUT  <span class="nt">-p</span> udp <span class="nt">--sport</span> 53 <span class="nt">-m</span> string <span class="nt">--algo</span> bm <span class="nt">--hex-string</span> <span class="s1">'|7f000001|'</span> <span class="nt">-j</span> DROP
-</code></pre></div></div>
+<p>“<code class="language-plaintext highlighter-rouge">bash
+$ iptables -I INPUT  -p udp --sport 53 -m string --algo bm --hex-string '|7f000001|' -j DROP
+</code>``</p>
 
 <p>This will block any DNS UDP inbound traffic on port 53 that holds “127”.</p>
 
@@ -1562,37 +1563,37 @@ pre {
 
 <h3 id="will-this-iptable-rule-100-mitigate-against-the-attack">Will this IPtable rule 100% mitigate against the attack?</h3>
 
-<p>This is a starting point for a research on protecting against DNS rebinding attacks. It initiates a starting point for security vendors and endpoint security solution vendors to apply it for customers.</p>
+<p>This is a starting point for research on protecting against DNS rebinding attacks. It initiates a starting point for security vendors and endpoint security solution vendors to apply it to customers.</p>
 
-<p>All IANA-private IP ranges should be blocked within local network using the same approach discussed above.</p>
+<p>All IANA-private IP ranges should be blocked within the local network using the abovementioned approach.</p>
 
-<p>This is of course in addition to IPV6 address that points to the internal loopback.</p>
+<p>This is, of course, in addition to the IPV6 address that points to the internal loopback.</p>
 
 <p>The IPtable command is a simple proof of concept.</p>
 
 <h2 id="blocking-dns-queries-that-resolves-to-private-ip-addresses-via-dns-resolvers">Blocking DNS queries that resolves to Private IP addresses via DNS resolvers</h2>
 
-<p>DNS resolvers have the ability to block this attack. For example, BIND9’s RPZ (Response Policy Zone) can be configured to block responses of queries resolving to specific IP addresses via “Policy Trigger - IP Trigger”.</p>
+<p>DNS resolvers can block this attack. For example, BIND9’s RPZ (Response Policy Zone) can be configured to block responses of queries resolving to specific IP addresses via “Policy Trigger - IP Trigger”.</p>
 
 <p>This can be a stable solution for production environments.</p>
 
 <h2 id="how-about-quad9-secure-dns-resolver">How about QUAD9 Secure DNS Resolver?</h2>
 
-<p>I have tested QUAD9 Secure DNS resolver, and they apparently do not provide protection to DNS Rebinding attacks.</p>
+<p>I have tested QUAD9 Secure DNS resolver, and they do not protect DNS Rebinding attacks.</p>
 
-<p>Other DNS resolvers are assumed to not provide protection, as this is not their goal. However, QUAD9 should block attempts of DNS rebinding attacks.</p>
+<p>Other DNS resolvers are assumed not to provide protection, as this is not their goal. However, QUAD9 should block attempts of DNS rebinding attacks.</p>
 
 <h1 id="acknowledgment">Acknowledgment</h1>
 
-<p>I would like to thank Andzej Valcik for his contribution to the research.</p>
+<p>I want to thank Andzej Valcik for his contribution to the research.</p>
 
 <h1 id="update-september-16th-2018">Update (September 16th, 2018):</h1>
 
-<p>NCC Group released a research regarding DNS rebinding attacks along with a tool called “Singularity”.</p>
+<p>NCC Group released research regarding DNS rebinding attacks and a “ Singularity” tool.</p>
 
-<p>An interesting bypass that NCC group demonstrated in the research is the usage of a CNAME that points to “localhost”. Since “localhost” is already registered in the typical local resolver (at hosts file for example) as 127.0.0.1, this will be also required to be blocked using the same approach mentioned in my research.</p>
+<p>An interesting bypass that NCC group demonstrated in the research is the usage of a CNAME that points to “localhost”. Since “localhost” is already registered in the typical local resolver (at hosts file, for example) as 127.0.0.1, this will also be required to be blocked using the same approach mentioned in my research.</p>
 
-<p>Blocking this bypass will be straightforward. The rule should block/drop any DNS query that responds with a CNAME of “localhost”.</p>
+<p>Blocking this bypass will be straightforward. The rule should block any DNS query that responds with a CNAME of “localhost”.</p>
 
 <p>Link to NCC group research: <a href="https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2018/august/singularity-of-origin-a-dns-rebinding-attack-framework/">Link</a></p>
 

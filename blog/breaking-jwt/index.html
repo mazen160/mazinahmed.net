@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1509,7 +1509,7 @@ pre {
     
 
     
-        9 mins
+        8 mins
     
 </span>
 
@@ -1521,29 +1521,29 @@ pre {
 
 <h1 id="introduction">Introduction</h1>
 
-<p>JWT (JSON Web Token) is a popular authentication/authorization protocol. It integrates cryptographic signatures into JSON objects to verify the integrity of the object.</p>
+<p>JWT (JSON Web Token) is a popular authentication/authorization protocol. It integrates cryptographic signatures into JSON objects to verify the object’s integrity.</p>
 
-<p>The approach of JWT is systematic and fairly simple. There were several pieces of research done to cover the security aspects of JWT authentication.</p>
+<p>The approach of JWT is systematic and relatively simple. Several pieces of research covered the security aspects of JWT authentication.</p>
 
-<p>Several tools were also previously developed. However, after assessing the quality of the public tools, I concluded that we need better tools to perform testing against JWT. I have developed a set of scripts I call it “jwt-pwn” that aims to test JWT authentication with stability, simplicity, and efficiency in mind. The scripts set are very simple, as it integrates directly with the JWT Python library.</p>
+<p>Several tools were also previously developed. However, after assessing the quality of the public tools, I concluded that we need better tools to perform testing against JWT. I have developed a set of scripts I call “jwt-pwn” that aims to test JWT authentication with stability, simplicity, and efficiency in mind. The script set is straightforward, integrating directly with the JWT Python library.</p>
 
-<p>This article will cover the background of JWT, wrong implementations, and practical approaches to test and break JWT. It will also cover a section of constructive criticism, where I will be discussing each known public tool for testing JWT, and the issues I faced with it where I had come to the idea of developing jwt-pwn.</p>
+<p>This article will cover the background of JWT, wrong implementations, and practical approaches to testing and breaking JWT. It will also cover a section of constructive criticism, where I will discuss each known public tool for testing JWT and the issues I faced when I came to the idea of developing jwt-pwn.</p>
 
 <hr />
 
 <h1 id="background">Background</h1>
 
-<p>The following figure explains the fundamental approach in JWT generation</p>
+<p>The following figure explains the fundamental approach to JWT generation.</p>
 
 <p><img src="/assets/static/35fa32b3-3c31-4843-9e39-f7d83c612e96.png" alt="" /></p>
 
 <p>Source: https://jwt.io</p>
 
-<p>JWT is structured by three parts:</p>
+<p>Three parts structure JWT:</p>
 
 <ul>
   <li><strong>Header</strong>: Acts as a guide on how to operate. The header holds the JWT algorithm used in generating the signature.</li>
-  <li><strong>Payload</strong>: Holds the JSON object, along with the preserved claims if any.</li>
+  <li><strong>Payload</strong>: Holds the JSON object and the preserved claims, if any.</li>
   <li><strong>Signature</strong>: The Base64 encoded representation of the header and the payload. The secret is optionally added to the signature.</li>
 </ul>
 
@@ -1553,45 +1553,45 @@ pre {
 
 <h2 id="1-brute-forcing-secret-keys">1. Brute-forcing secret keys</h2>
 
-<p>JSON web tokens are typically signed with a secret key. A secret key is simply a password or digital key. If we were able to find the secret key, then we will be able to generate valid tokens with any value we specify.</p>
+<p>JSON web tokens are typically signed with a secret key. A secret key is simply a password or digital key. If we can find the secret key, we can generate valid tokens on behalf of the targe application.</p>
 
 <p>This test is done for any token generated with a password; the attack does not apply to the key-based signing of the token.</p>
 
-<p>An interesting point to mention that it’s an offline password attack, so no noise would be made to the target’s backend. We only require a valid JWT provided by the backend when authentication or similar situations.</p>
+<p>The interesting point is that it’s an offline password attack, so no noise would be made to the target’s backend. We only require a valid JWT the backend provides when authentication or similar situations.</p>
 
 <h2 id="2-signing-a-new-token-with-the-none-algorithm">2. Signing a new token with the “none” algorithm</h2>
 
-<p>This test is quite straightforward. We would decode the value of the JWT without validating the signature. From there, we will generate a new token with the “none” algorithm.</p>
+<p>This test is relatively straightforward. We would decode the value of the JWT without validating the signature. We will generate a new token with the “none” algorithm.</p>
 
-<p>After this, we will replace the original JWT in the authentication with the newly generated token. If it’s accepted, and the same response of the original token is given, then the authentication functionality is arbitrarily accepting the “none” algorithm, where we explicitly “ask” the JWT validator on the backend to not validate the token.</p>
+<p>After this, we will replace the original JWT in the authentication with the newly generated token. Suppose it’s accepted, and the same response of the original token is given. In that case, the authentication functionality arbitrarily accepts the “none” algorithm, where we explicitly “ask” the JWT validator on the backend not to validate the token.</p>
 
-<p>If it works, replay attacks can be done. I’m referring to the “replay attacks” term by the act of replaying a valid token to the authentication controller, without focusing on the source of obtaining the token. In our case here, it will be signing a new token that is valid for the another user (or admin).</p>
+<p>If it works, replay attacks can be done. I’m referring to the “replay attacks” term by replaying a valid token to the authentication controller without focusing on the source of obtaining the token. In our case, it will be signing a new token valid for another user (or admin).</p>
 
 <h2 id="3-changing-the-signing-algorithm-of-the-token-for-fuzzing-purposes">3. Changing the signing algorithm of the token (for fuzzing purposes)</h2>
 
 <p>Let’s say a backend returns a JSON Web Token signed with RSA256. The validation test would aim to check whether the JWT validator enforces RSA256 in this case.</p>
 
-<p>We will decode the value of the original JWT, then we will generate a newly signed token with our secret key, using HS256 for example.</p>
+<p>We will decode the value of the original JWT. Then, we will generate a newly signed token with our secret key using HS256.</p>
 
-<p>This test may not fully break the JWT authentication system in typical cases. However, it can be a good practice to test it against and inspect its response for fuzzing purposes.</p>
+<p>This test may only partially break the JWT authentication system in typical cases. However, it can be a good practice to test it against and inspect its response for fuzzing purposes.</p>
 
 <h2 id="4-signing-the-asymmetrically-signed-token-to-its-symmetric-algorithm-match-when-you-have-the-original-public-key">4. Signing the asymmetrically-signed token to its symmetric algorithm match (when you have the original public key)</h2>
 
-<p>When a token is asymmetrically signed (e.g. RSA256), and you obtained the public key that is used for verifying the signature, then an attack that can be applied is to generate a new token with the same payload, and with symmetric signing algorithm (e.g. HS256), while using the public key as the password.</p>
+<p>When a token is asymmetrically signed (e.g., RSA256), and you obtained the public key that is used for verifying the signature, then an attack that can be applied is to generate a new token with the same payload and with a symmetric signing algorithm (e.g., HS256), while using the public key as the password.</p>
 
-<p>If it works, then this means that the validator is not whitelisting the signing algorithm for the JWT, and we can generate arbitrary tokens that will be accepted by the JWT validator.</p>
+<p>If it works, then this means that the validator is not allowing the signing algorithm for the JWT, and we can generate arbitrary tokens that the JWT validator will accept.</p>
 
 <hr />
 
 <h1 id="public-tools">Public Tools</h1>
 
-<p>Several tools aim to assess JWT authentication. The tested tools for doing JWT assessments faces different engineering issues.</p>
+<p>Several tools aim to assess JWT authentication. The tested tools for doing JWT assessments face different engineering issues.</p>
 
 <h2 id="jwt_tool---httpsgithubcomticarpijwt_tool">jwt_tool - (https://github.com/ticarpi/jwt_tool)</h2>
 
-<p>jwt_tool does various tests for JWT. However, the custom implementation of parsing and generating JWT causes errors and false-positives. Jwt_tool uses a custom method of decoding and encoding Base64 instead of using the default JWT library. Although the JWT protocol is public and documented, Base64 varies from implementation to another. For instance, multiple Base64 encoded strings can represent the same value.</p>
+<p>jwt_tool does various tests for JWT. However, the custom implementation of parsing and generating JWT causes errors and false positives. Jwt_tool uses a custom decoding method and encoding Base64 instead of the default JWT library. Although the JWT protocol is public and documented, Base64 varies from one implementation to another. For instance, multiple Base64 encoded strings can represent the same value.</p>
 
-<h4 id="note-jwt_tool-released-a-new-update-as-of-october-2019-that-should-be-fixing-the-majority-of-the-issues-that-was-encountered">Note: Jwt_tool released a new update (as of October 2019) that should be fixing the majority of the issues that was encountered.</h4>
+<h4 id="note-jwt_tool-released-a-new-update-as-of-october-2019-that-should-fix-most-of-the-issues-encountered">Note: Jwt_tool released a new update (as of October 2019) that should fix most of the issues encountered.</h4>
 
 <h2 id="c-jwt-cracker---httpsgithubcombrendan-riusc-jwt-cracker">c-jwt-cracker - (https://github.com/brendan-rius/c-jwt-cracker)</h2>
 
@@ -1599,7 +1599,7 @@ pre {
 
 <p>Quoting from the c-jwt-cracker Github page:</p>
 <blockquote>
-  <p>“The base64 implementation I use (from Apple) is sometimes buggy because not every Base64 implementation is the same. So sometimes, decrypting of your Base64 token will only work partially and thus you will be able to find a secret to your token that is not the correct one”.</p>
+  <p>“The base64 implementation I use (from Apple) is sometimes buggy because not every Base64 implementation is the same. So sometimes, decrypting of your Base64 token will only work partially, and thus you can find an incorrect secret to your token”.</p>
 </blockquote>
 
 <ul>
@@ -1612,15 +1612,15 @@ pre {
 
 <h4 id="additional-issue">Additional issue</h4>
 
-<p>Besides, all tools discussed in the experiment are using a linear approach to crack the password.</p>
+<p>Besides, all tools discussed in the experiment use a linear approach to crack the password.</p>
 
 <hr />
 
 <h1 id="introducing-jwt-pwn">Introducing jwt-pwn</h1>
 
-<p>The scripts take every test and approach to break JSON web tokens and apply it systematically. Everything is also done using the primary JWT library for Python, “pyjwt”. Pyjwt is heavily used in real-world applications. It’s stable, tested, and maintained.</p>
+<p>The scripts take every test and approach to break JSON web tokens and apply them systematically. Everything is also done using the primary JWT library for Python, “pyjwt”. Pyjwt is heavily used in real-world applications. It’s stable, tested, and maintained.</p>
 
-<p>I find using Pyjwt instead of writing a custom library as many did is much better for stability wise. There are known tools that give wrong results due to the failure of parsing JWT tokens correctly. Usage of Pyjwt would generate the same results the backend parser would get in most cases.</p>
+<p>Using Pyjwt instead of writing a custom library, as many did, is much better stability-wise. Some known tools give wrong results due to failing to parse JWT tokens correctly. Usage of Pyjwt would generate the same results the backend parser would get in most cases.</p>
 
 <h2 id="first-script-jwt-crackerpy">First script: jwt-cracker.py</h2>
 
@@ -1631,29 +1631,29 @@ pre {
 <h3 id="first-approach">First approach</h3>
 <p>1- Load all the wordlist in a queue</p>
 
-<p>2- spawn a new thread once an available thread is available  (there is a thread lock that controls this part).</p>
+<p>2- spawn a new thread once an available thread is available  (a thread lock controls this part).</p>
 
-<p>After analysis, I found this to better not as good as needed. The reason is: Besides the actual brute-forcing, the problems are:</p>
+<p>After analysis, I found this to be better, less as good as needed. The reason is: Besides the actual brute-forcing, the problems are:</p>
 
 <p>1- There should be a thread constantly unloading from the queue</p>
 
-<p>2- Checker for threads availability.</p>
+<p>2- Checker for thread availability.</p>
 
-<p>3- Locker for threads from being spawned until an available thread is there.</p>
+<p>3- Locker for threads from being spawned until an available thread exists.</p>
 
 <p>4- Have the queue unloaded linearly.</p>
 
-<p>Many factors are involved in this part that approached the algorithm not the most efficient one to use.</p>
+<p>Many factors are involved in this part that approached the algorithm not the most efficient.</p>
 
 <h3 id="second-approach">Second approach</h3>
 
-<p>I find this to be the correct method.</p>
+<p>This is the correct method.</p>
 
 <p>1- Split the entire wordlist into smaller queues.</p>
 
-<p>2- Spawn new threads, and then feed every queue to a unique thread.</p>
+<p>2- Spawn new threads and feed every queue to a unique thread.</p>
 
-<p>3- The thread is treated as a “worker”, and all the functions are synchronized with a global checker that checks if the key is found by other workers.</p>
+<p>3- The thread is treated as a “worker”, and all the functions are synchronized with a global checker that checks if other workers find the key.</p>
 
 <p>4- While the key is not found, all threads test values in the assigned queue.</p>
 
@@ -1667,9 +1667,9 @@ pre {
 
 <h3 id="second-script-jwt-cracker-go">Second Script: jwt-cracker-go</h3>
 
-<p>The script is a linear implementation of the jwt-cracker in Golang. It’s really fast compared to other tools, although it’s using a linear approach for password cracking, and reliable as it’s using the official Golang library for JWT in the process of validating tokens. This library should be relatively the same library being used by developers in real-world environments.</p>
+<p>The script is a linear implementation of the jwt-cracker in Golang. It’s really fast compared to other tools. However, it uses a linear approach for password cracking and is reliable as it uses the official Golang library for JWT to validate tokens. This library should be the same one developers use in real-world environments.</p>
 
-<p>I have also written another variant that uses goroutines which should be faster. The code for the multi-threaded variant is available in the project repository.</p>
+<p>I have also written another variant that uses goroutines, which should be faster. The code for the multi-threaded variant is available in the project repository.</p>
 
 <h3 id="third-script-jwt-decoderpy">Third script: jwt-decoder.py</h3>
 
@@ -1697,12 +1697,12 @@ pre {
 
 <ul>
   <li>Make sure you’re enforcing the algorithm used in the JWT validator.</li>
-  <li>Disallow unused algorithm (via whitelisting approach).</li>
-  <li>Always verify the JWT header, and verify the JWT “alg” key in the JWT header.</li>
+  <li>Disallow unused algorithms (via the allowlisting approach).</li>
+  <li>Always verify the JWT header and the JWT “alg” key in the JWT header.</li>
   <li>Never trust the “none” algorithm for signing.</li>
-  <li>Use a long and extremely difficult to recover secret keys. If the secret key is identified, the entire authentication will be broken.</li>
+  <li>Use a long and complicated key to make secret key recovery difficult. If the secret key is identified, the entire authentication will be broken.</li>
   <li>Rotate your signing keys periodically.</li>
-  <li>Don’t expose important client-data in JWT; it can be decoded. If there is sensitive data shared in the payload, any party that obtains the token would be able to see it.</li>
+  <li>Don’t expose important client data in JWT; it can be decoded. If sensitive data is shared in the payload, any party that obtains the token can see it.</li>
   <li>Add a claim for “Expiration” to overcome the non-expiration issue in the stateless protocol.</li>
 </ul>
 

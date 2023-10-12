@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1493,10 +1493,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1521,15 +1521,15 @@ pre {
 
 <hr />
 
-<p>In this post, I am going to share a new critical issue that I have identified on Instagram Mobile App. During my tests on their android app, I have set-up a lab to pentest the app. Then I started using the app on my phone, and monitoring the traffic in the network using WireShark, looking for evidence for unencrypted data that goes through the network or a technique to make this data unencrypted (if it was encrypted). As soon as I logged into my account on my phone, Wireshark has captured unencrypted data that goes through HTTP. This data includes: The pictures that the victims watching, The victim’s session cookies, the victim’s username and ID.</p>
+<p>In this post, I will share a new critical issue I identified on Instagram Mobile App. During my tests on their Android app, I set up a lab to pentest the app. Then, I started using the app on my phone and monitoring the traffic in the network using Wireshark, looking for evidence of unencrypted data that goes through the network or a technique to make this data unencrypted (if it was encrypted). As soon as I logged into my account on my phone, Wireshark captured unencrypted data that went through HTTP. This data includes The pictures the target is watching, the target’s session cookies, the username, and the ID.</p>
 
 <p><img src="/assets/static/146156cb-fb29-4665-9e3f-33c5ee400b24.png" alt="" /></p>
 
 <p><img src="/assets/static/fe087cad-f6a5-4eba-b87c-88e96bb5df7c.png" alt="" /></p>
 
-<p>I was shocked after seeing the results, it is unbelievable that Facebook, the company that is responsible for Instagram, did not ensure that the data is secured and goes through HTTPS.</p>
+<p>I was shocked after seeing the results, and it is unbelievable that Facebook, the company responsible for Instagram, did not ensure that the data is secured and goes through HTTPS.</p>
 
-<p>I took the session cookies and used it in my computer, and simply “the victim’s session has been hijacked”.</p>
+<p>I took the session cookies and used them on my computer. It worked successfully.</p>
 
 <p><img src="/assets/static/318f5afc-d558-4b23-962c-e081660be11e.png" alt="" /></p>
 
@@ -1537,23 +1537,23 @@ pre {
 
 <p><img src="/assets/static/a91e95ac-661b-4fa2-b443-887f4fa6a293.png" alt="" /></p>
 
-<p>The security member of Facebook stated: “Facebook accepts the risk of parts of Instagram communicating over HTTP not over HTTPS”.
-If this unencrypted data can lead to session hijacking and stalking Instagram users, this may raise an eye-brow of suspicious.</p>
+<p>The security member of Facebook stated: “Facebook accepts the risk of parts of Instagram communicating over HTTP, not over HTTPS.”
+If this unencrypted data can lead to session hijacking and stalking Instagram users, it’s a considerable risk.</p>
 
 <h3 id="timeline">Timeline:</h3>
 <ul>
-  <li>Jul 24, 2014 4:35am – Reported the issue.</li>
-  <li>Jul 24, 2014 4:38am – Received a confirmation email of receiving the submission.</li>
-  <li>Jul 24, 2014 9:45pm –  Received the first response from Facebook Security.</li>
-  <li>Jul 24, 2014 9:45pm – I Asked for a disclosure.</li>
-  <li>Jul 24, 2014 11:56pm – Received the second response from Facebook Security.</li>
+  <li>Jul 24, 2014, 4:35 am – Reported the issue.</li>
+  <li>Jul 24, 2014, 4:38 am – Received a confirmation email of receiving the submission.</li>
+  <li>Jul 24, 2014, 9:45 pm –  Received the first response from Facebook Security.</li>
+  <li>Jul 24, 2014, 9:45 pm – I Asked for a disclosure.</li>
+  <li>Jul 24, 2014, 11:56 pm – Received the second response from Facebook Security.</li>
 </ul>
 
 <h3 id="recommendation">Recommendation:</h3>
-<p>Until a patch is released (which there is no specific date for releasing a patch that has been assigned by Facebook), do not use Instagram mobile app. Instead, use the normal website, it is generally secured and encrypted.</p>
+<p>Until a patch is released (there is no specific date for releasing a patch that Facebook has assigned), do not use the Instagram mobile app; instead, use the typical website, which is generally secured and encrypted.</p>
 
-<h3 id="final-thoughts">Final Thoughts:</h3>
-<p>It is unbelievable that a company such as Facebook does not take the maximum measure to insure the security of their users. Right now, this issue might be exploited in the public by surveillance agencies and cybercriminals.</p>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>It is unbelievable that a company such as Facebook needs to take the maximum measures to ensure their users’ security. Right now, this issue might be exploited by threat actors, and users do not have a way to prevent it.</p>
 
 
 

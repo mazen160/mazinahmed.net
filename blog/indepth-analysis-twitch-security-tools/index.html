@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1517,24 +1517,24 @@ pre {
 
 
 
-<h2><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/banner%20-%20Twitch%20Internal%20Security%20Tools%20blog%20post.png" alt="" /></h2>
+<h2><img src="/assets/static/142c86db-2f34-4d6a-86fb-da11da640ed5.png" alt="" /></h2>
 
-<p>How Twitch was hacked? What security controls did Twitch build?</p>
+<p>How was Twitch hacked? What security controls did Twitch build?</p>
 
-<p>The Twitch breach revealed more than 120 internal security tools developed by the Twitch security team.</p>
+<p>The Twitch breach revealed more than 120 internal security tools developed by the Twitch Security team.</p>
 
 <p>I analyzed all the leaked security tools that were developed by Twitch Security. Check out the full research.</p>
 
 <h1 id="background">Background</h1>
-<p>Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted live-streaming from home.</p>
+<p>Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted to live-streaming from home.</p>
 
-<p>On October 6, 2021, it was announced that Twitch suffered a massive data breach that leaked their source-code, internal databases, revenue documents, and payouts documents of their members.</p>
+<p>On October 6, 2021, it was announced that Twitch suffered a massive data breach that leaked the source code, internal databases, revenue documents, and payout documents of their members.</p>
 
-<p>The security tools of Twitch were leaked during the breach. Twitch Security has clearly invested a lot of time and effort in building its security program. This can be seen from the tools published on the Internet; the majority of companies with mature security programs today do not have 50% of what Twitch security internally built over the years.</p>
+<p>The security tools of Twitch were leaked during the breach. Twitch Security has clearly invested a lot of time and effort in building its security program. This can be seen from the tools published on the Internet; the majority of companies with mature security programs today have less than 50% of what Twitch Security has internally built over the years.</p>
 
-<p>I analyzed all the security tools written by Twitch security. I thoroughly reviewed the source code, configurations, build config process, and everything that has been leaked and became public knowledge on the Internet within the breach.</p>
+<p>I analyzed all the security tools written by Twitch Security. I thoroughly reviewed the source code, configurations, build config process, and everything that has been leaked and became public knowledge on the Internet within the breach.</p>
 
-<p>In this blog post, I’m analyzing all the security tools that Twitch security built within their security program. I’m also tagging them based on the use case, services, and categories. This research should act as a reference to learn how modern security teams build their programs, and to hopefully get inspired into enhancing currently-running security programs.</p>
+<p>In this blog post, I’m analyzing all the security tools that Twitch Security built within its security program. I’m also tagging them based on the use case, services, and categories. This research should act as a reference to learn how modern security teams build their programs and to get inspired into enhancing currently-running security programs.</p>
 
 <p>At the end of the blog post, I will share my thoughts on the breach, how I feel about it, and what could have been done by Twitch to handle this breach in better ways.</p>
 
@@ -1553,7 +1553,7 @@ pre {
 
 <h1 id="who-am-i">Who Am I?</h1>
 
-<p>I’m a cyber security engineer that specializes in AppSec, InfraSec and building security programs. Read more about my previous work at <a href="https://mazinahmed.net">mazinahmed.net</a>. I also built <a href="https://fullhunt.io">FullHunt.io</a>, <a href="https://stressful.io">Stressful.io</a>, <a href="https://github.com/mazen160/tfquery">tfquery</a>, and few open-source security tools.</p>
+<p>I’m a cyber security engineer who specializes in AppSec, InfraSec, and building security programs. Read more about my previous work at <a href="https://mazinahmed.net">mazinahmed.net</a>. I also built <a href="https://fullhunt.io">FullHunt.io</a>, <a href="https://stressful.io">Stressful.io</a>, <a href="https://github.com/mazen160/tfquery">tfquery</a>, and few open-source security tools.</p>
 
 <hr />
 
@@ -1571,7 +1571,7 @@ pre {
 
 <p><strong>Description</strong>: Apache PingFederate Module Deb Package Builder.</p>
 
-<p>PingFederate is an enterprise federation server that enables user authentication and single sign-on. It serves as a global authentication authority that allows employees, customers, and partners to securely access all the applications they need from any device.</p>
+<p>PingFederate is an enterprise federation server that enables user authentication and single sign-on. It serves as a global authentication authority that allows employees, customers, and partners to access all the applications they need from any device securely.</p>
 
 <p>This module is a builder for integrating PingFederate with Apache.</p>
 
@@ -1615,7 +1615,7 @@ pre {
 
 <p><strong>Description</strong>: An internal Python Flask app for Security to run reports against Jira and Google Sheets to get team program reports and metrics.</p>
 
-<p>It also has a script to login to ECR using AWS aws role-assume with the duration of 900 seconds, and stores secrets within AWS Secrets Manager.</p>
+<p>It also has a script to login to ECR using AWS aws role-assume with a duration of 900 seconds, and stores secrets within AWS Secrets Manager.</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">reporting</code>, <code class="language-plaintext highlighter-rouge">automation</code>, <code class="language-plaintext highlighter-rouge">google-spreadsheets</code>, <code class="language-plaintext highlighter-rouge">jira</code></p>
 
@@ -1633,7 +1633,7 @@ pre {
 
 <p><strong>Description</strong>: This is a script to take zone files / DNS records, pull the CNAME, and determine what CDNs are in use based on the associated CNAME.</p>
 
-<p>The script has an SSL certificate parser, but the data pulling capability is manual. It has instructions on how to pull DNS records from Infoblox (a cloud product that runs DNS management services), and AWS Route53</p>
+<p>The script has an SSL certificate parser, but the data-pulling capability is manual. It has instructions on how to pull DNS records from Infoblox (a cloud product that runs DNS management services), and AWS Route53</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">automation</code>, <code class="language-plaintext highlighter-rouge">cdn</code></p>
 
@@ -1651,7 +1651,7 @@ pre {
 
 <p><strong>Description</strong>: A Lambda that continuously hits CloudFlare API, pulls requests logs, and pushes it to S3.</p>
 
-<p>CloudFlare supports by default automated archiving to S3. It’s not clear why this option was made instead of using the CloudFlare option.</p>
+<p>CloudFlare supports, by default, automated archiving to S3. It’s not clear why this option was made instead of using the CloudFlare option.</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">cloudflare</code>, <code class="language-plaintext highlighter-rouge">logging</code>, <code class="language-plaintext highlighter-rouge">automation</code></p>
 
@@ -1687,7 +1687,7 @@ pre {
 
 <p><strong>Description</strong>: A repo that stores a single AWS policy.</p>
 
-<p>The policy seems to be permissive and allows actions that can be insecure. Also, it’s set to “*” wildcard resources. It’s not clear who has this policy assigned to.</p>
+<p>The policy seems to be permissive and allows actions that can be insecure. Also, it’s set to “*” wildcard resources. It’s not clear who this policy has assigned to.</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">aws</code></p>
 
@@ -2308,7 +2308,7 @@ responsible for the low-level ACL changes.</li>
 
 <p><strong>Description</strong>: This script is made for continuous monitoring purposes of the DNS infrastructure of Twitch. Twitch has a service called “changelog” that contains the DNS records of Twitch, and can be called through a REST API.</p>
 
-<p>The script pulls all the changelog, and sends an alert for changes to Twitch security email that automatically creates a JIRA ticket based on the email.</p>
+<p>The script pulls all the changelog, and sends an alert for changes to Twitch Security email that automatically creates a JIRA ticket based on the email.</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">jira</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">smtp</code>, <code class="language-plaintext highlighter-rouge">dns</code>, <code class="language-plaintext highlighter-rouge">infrasec</code></p>
 
@@ -2368,7 +2368,7 @@ responsible for the low-level ACL changes.</li>
 
 <p><strong>92) Tool</strong>: sirt-report</p>
 
-<p><strong>Description</strong>: A script that pulls open incidents from JIRA and sends it as an email to Twitch security team as a report.</p>
+<p><strong>Description</strong>: A script that pulls open incidents from JIRA and sends it as an email to Twitch Security team as a report.</p>
 
 <p><strong>Tags</strong>: <code class="language-plaintext highlighter-rouge">jira</code>, <code class="language-plaintext highlighter-rouge">incident-response</code>, <code class="language-plaintext highlighter-rouge">reporting</code></p>
 
@@ -2684,7 +2684,7 @@ configure the ssh client to access production via a bastion host.</p>
 
 <h1 id="final-thoughts">Final Thoughts</h1>
 
-<p>Twitch Security invested thousands of hours in building its security tools and security program. I consider the tools developed internally to be advanced, well-thought and has done with excellent use-cases. At the time of writing the blog post, Twitch has not released a postmortem yet about the Twitch breach, how it happened, and technical details about the breach.</p>
+<p>Twitch Security invested thousands of hours in building its security tools and security program. I consider the tools developed internally to be advanced, well-thought, and have done with excellent use cases. At the time of writing the blog post, Twitch has not released a postmortem yet about the Twitch breach, how it happened, and technical details about the breach.</p>
 
 <p>Although the leaked security data covers the tools, it doesn’t cover the security architecture and the security program details. It’s hard to come up with a definite conclusion of how the breach could have happened.</p>
 
@@ -2692,12 +2692,12 @@ configure the ssh client to access production via a bastion host.</p>
 
 <p>The continuous security scanning from an AppSec perspective seems limited from seeing the developed tools. It’s possible that Twitch is running COTS tools instead of building their tools internally, but this also is not clear, as I haven’t seen ingestion for commercial DAST tools.</p>
 
-<p>The Twitch breach acts as a reality check on organizations and companies that are building their security program. The possibility of a breach is always there, organizations can take the next step and work in “assume-breach” playbooks and build additional security controls for their security program.</p>
+<p>The Twitch breach acts as a reality check on organizations and companies that are building their security program. The possibility of a breach is always there, and organizations can take the next step and work in “assume-breach” playbooks and build additional security controls for their security program.</p>
 
 <h1 id="about-fullhuntio">About FullHunt.io</h1>
-<p>FullHunt is the Next-Generation Attack Surface Management Platform. FullHunt enables companies to discover all of their attack surfaces, monitor them for exposure, and continuously scan them for the latest security vulnerabilities and risks. We help companies around the world in securing their external attack surface using our technologies that are scanning millions of Internet-connected assets and cloud resources.</p>
+<p>FullHunt is the Next-Generation Attack Surface Management Platform. FullHunt enables companies to discover all of their attack surfaces, monitor them for exposure, and continuously scan them for the latest security vulnerabilities and risks. We help companies around the world secure their external attack surface using our technologies that are scanning millions of Internet-connected assets and cloud resources.</p>
 
-<p><strong>Are you an enterprise that is looking to build security for their External Attack Surface? Please reach out to us at <a href="https://fullhunt.io">fullhunt.io</a>, and we will be happy to solve your challenges.</strong></p>
+<p><strong>Are you an enterprise that is looking to build security for its External Attack Surface? Please reach out to us at <a href="https://fullhunt.io">fullhunt.io</a>, and we will be happy to solve your challenges.</strong></p>
 
 <h1 id="references">References</h1>
 

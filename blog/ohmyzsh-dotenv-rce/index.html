@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -30,8 +30,8 @@
 <meta property="og:title" content="OhMyZsh dotenv Remote Code Execution" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="OhMyZsh dotenv RCE" />
-<meta property="og:description" content="OhMyZsh dotenv RCE" />
+<meta name="description" content="OhMyZsh dotenv RCE." />
+<meta property="og:description" content="OhMyZsh dotenv RCE." />
 <link rel="canonical" href="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","description":"OhMyZsh dotenv RCE","headline":"OhMyZsh dotenv Remote Code Execution","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"},"url":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","description":"OhMyZsh dotenv RCE.","headline":"OhMyZsh dotenv Remote Code Execution","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"},"url":"https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1523,26 +1523,26 @@ pre {
 
 <h1 id="abstract">Abstract</h1>
 
-<p>OhMyZsh was vulnerable to an RCE (Remote Code Execution) vulnerability due to arbitrary trusting ENV files at the dotenv plugin. Users who download a malicious repository or a compressed file can have their machines compromised as a result of the vulnerability.</p>
+<p>OhMyZsh was vulnerable to an RCE (Remote Code Execution) vulnerability due to arbitrarily trusting ENV files at the dotenv plugin. Users downloading a malicious repository or a compressed file can have their machines compromised due to the vulnerability.</p>
 
 <hr>
 
 <h1 id="background">Background</h1>
 
-<p><strong>OhMyZsh</strong> is a highly popular framework for managing ZSH configuration. It’s an extremely popular project in the open-source community. At the time of writing, it’s ranked in the top 10 Github repositories across all projects.</p>
+<p><strong>OhMyZsh</strong> is a highly popular framework for managing ZSH configuration. When writing, it’s ranked in the top 10 Github repositories across all projects.</p>
 
-<p>I enjoy automating my setup with different configurations to be more productive at work. OhMyZsh helps me automating tasks along with my scripts and dot-files.</p>
+<p>I enjoy automating my setup with different configurations to be more productive at work. OhMyZsh helps me automate tasks along with my scripts and dotfiles.</p>
 
-<p>I wanted to automate a specific scenario in my development environment, where I have multiple projects at the same machine, and each project has specific environment variables that need to be loaded before starting development. There is a popular plugin at OhMyZsh that supports this functionality, known as the dotenv plugin.</p>
+<p>I wanted to automate a specific scenario in my development environment, where I have multiple projects on the same machine, and each project has specific environment variables that need to be loaded before starting development. A popular plugin at OhMyZsh supports this functionality, known as the dotenv plugin.</p>
 
 <p>According to the documentation:</p>
 <blockquote>
-  <p>[OhMyZsh - dotenv plugin] automatically load your project ENV variables from <code class="language-plaintext highlighter-rouge">.env</code> file when you <code class="language-plaintext highlighter-rouge">cd</code> into project root directory.</p>
+  <p>[OhMyZsh - dotenv plugin] automatically loads your project ENV variables from the <code class="language-plaintext highlighter-rouge">.env</code> file when you <code class="language-plaintext highlighter-rouge">cd</code> into the project root directory.</p>
 </blockquote>
 
-<p>Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past 3 years.</p>
+<p>The Dotenv plugin loads environment variables when the user enters the project directory. It was made public in 2016, and the vulnerability has existed in the plugin for the past three years.</p>
 
-<p>I wanted to review the source-code before running it on my dev machine.</p>
+<p>I wanted to review the source code before running it on my dev machine.</p>
 
 <hr>
 
@@ -1574,13 +1574,13 @@ add-zsh-hook chpwd source_env
 <span class="k">fi</span>
 </code></pre></div></div>
 
-<p>The method used in the dotenv plugin to set the environment variables makes use of the <code class="language-plaintext highlighter-rouge">source</code> built-in command.</p>
+<p>The method used in the dotenv plugin to set the environment variables uses the <code class="language-plaintext highlighter-rouge">source</code> built-in command.</p>
 
-<p>Although the command is typically seen when loading environment variables, <code class="language-plaintext highlighter-rouge">source</code> <strong>executes the provided input in Shell</strong> - (within the same existing shell, that’s why the variables are loaded within the session).</p>
+<p>Although the command is typically seen when loading environment variables, <code class="language-plaintext highlighter-rouge">source</code> <strong>executes the provided input in Shell</strong> - (within the same existing shell; that’s why the variables are loaded within the session).</p>
 
-<p>In our case, whenever a user <code class="language-plaintext highlighter-rouge">cd</code> into a project directory, and that directory has a <code class="language-plaintext highlighter-rouge">.env</code> file, the file is passed to <code class="language-plaintext highlighter-rouge">source</code>, to load the variables - and <em>potentially more</em>.</p>
+<p>In our case, whenever a user <code class="language-plaintext highlighter-rouge">cd</code> into a project directory with a <code class="language-plaintext highlighter-rouge">.env</code> file, the file is passed to <code class="language-plaintext highlighter-rouge">source</code> to load the variables - and <em>potentially more</em>.</p>
 
-<h3 id="if-the-user-downloads-a-malicious-repository-or-compressed-file-then-working-with-this-material-leads-to-a-remote-code-execution-when-using-ohmyzsh">If the user downloads a malicious repository or compressed file, then working with this material leads to a remote code execution when using OhMyZsh.</h3>
+<h3 id="if-the-user-downloads-a-malicious-repository-or-compressed-file-working-with-this-material-leads-to-remote-code-execution-when-using-ohmyzsh">If the user downloads a malicious repository or compressed file, working with this material leads to remote code execution when using OhMyZsh.</h3>
 
 <hr>
 
@@ -1603,13 +1603,13 @@ root:x:0:0:root:/root:/usr/bin/zsh
 
 <h1 id="fix">Fix</h1>
 
-<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="language-plaintext highlighter-rouge">source</code> command to the <code class="language-plaintext highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use) where trusted paths can be set it be whitelisted. Users can make sure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
+<p>I made a PR to fix the vulnerability at <a href="https://github.com/ohmyzsh/ohmyzsh/pull/8606">ohmyzsh - PR #8606</a>. The simple fix to the issue is to prompt the user to confirm the issuance of the <code class="language-plaintext highlighter-rouge">source</code> command to the <code class="language-plaintext highlighter-rouge">.env</code> file. It was enhanced and pushed to OhMyZsh master branch now. The update introduces an option for TOFU (Trust on First Use), where trusted paths can be set to be allowed. Users can ensure they’re using an updated version to protect against the vulnerability when using the dotenv plugin.</p>
 
 <p><br></p>
 
 <h1 id="final-thoughts">Final Thoughts</h1>
 
-<p>It was an interesting session that occurred by coincidence when working on setting up a development environment. The outcome of the session resulted in finding a vulnerability in the ohmyzsh project.</p>
+<p>It was an interesting session that occurred by coincidence when working on setting up a development environment. The session outcome resulted in finding a vulnerability in the ohmyzsh project.</p>
 
 <p><br></p>
 
@@ -2563,7 +2563,7 @@ root:x:0:0:root:/root:/usr/bin/zsh
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/&amp;title=OhMyZsh dotenv Remote Code Execution&amp;summary=OhMyZsh dotenv RCE&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/&amp;title=OhMyZsh dotenv Remote Code Execution&amp;summary=OhMyZsh dotenv RCE.&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 

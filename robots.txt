@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /cv/
 Sitemap: https://mazinahmed.net/sitemap.xml

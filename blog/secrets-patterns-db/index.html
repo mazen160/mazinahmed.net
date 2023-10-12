@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -35,16 +35,16 @@
 <link rel="canonical" href="https://mazinahmed.net/blog/secrets-patterns-db/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/secrets-patterns-db/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
-<meta property="og:image" content="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" />
+<meta property="og:image" content="https://mazinahmed.net/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2023-02-07T00:00:00-06:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" />
+<meta property="twitter:image" content="https://mazinahmed.net/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" />
 <meta property="twitter:title" content="Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2023-02-07T00:00:00-06:00","datePublished":"2023-02-07T00:00:00-06:00","description":"Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection","headline":"Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection","image":"https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/secrets-patterns-db/"},"url":"https://mazinahmed.net/blog/secrets-patterns-db/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2023-02-07T00:00:00-06:00","datePublished":"2023-02-07T00:00:00-06:00","description":"Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection","headline":"Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection","image":"https://mazinahmed.net/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/secrets-patterns-db/"},"url":"https://mazinahmed.net/blog/secrets-patterns-db/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1493,10 +1493,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1521,11 +1521,11 @@ pre {
 
 <hr />
 
-<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/Secrets-Patterns-db-blog-post.png" alt="" /></p>
+<p><img src="/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" alt="" /></p>
 
-<p>Ensuring the security of your organization’s sensitive information is critical for any security team, and detecting secrets within your AppSec program is a crucial part of this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.</p>
+<p>Ensuring the security of your organization’s sensitive information is critical for any security team, and detecting secrets within your AppSec program is crucial to this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.</p>
 
-<p>Detecting secrets is possible and can be automated. There are open-source tools for it that do a good job of analyzing the Git tree for potential secrets through two approaches:</p>
+<p>Detecting secrets is possible and can be automated. There are open-source tools for it that do an excellent job of analyzing the Git tree for potential secrets through two approaches:</p>
 
 <h2 id="regular-expressions">Regular Expressions</h2>
 
@@ -1540,17 +1540,17 @@ pre {
 <p><strong>Cons</strong></p>
 
 <ul>
-  <li>It can only see a very limited and small side of the picture: If there’s an API Token, and the rules cover 40-80 patterns that do not cover this particular API Token, it would not be discovered.</li>
+  <li>It can only see a minimal side of the picture: If there’s an API Token, and the rules cover 40-80 patterns that do not cover this particular API Token, it would not be discovered.</li>
 </ul>
 
 <h2 id="shannons-entropy-checks">Shannon’s Entropy Checks</h2>
 
-<p>Shannon’s Entropy is an estimation of the average amount of information stored in a random value. Shannon’s entropy measures the predictable information contained in a message. It has a variety of use cases in Computer Science, including data compression, validating cryptography, and here, finding passwords and secrets.</p>
+<p>Shannon’s Entropy estimates the average amount of information stored in a random value. Shannon’s Entropy measures the predictable information contained in a message. It has a variety of use cases in Computer Science, including data compression, validating cryptography, and, here, finding passwords and secrets.</p>
 
 <p><strong>Pros</strong></p>
 
 <ul>
-  <li>Context-agnostic: The algorithm can be applied against any language, framework, or codebase, and is trivial to compute.</li>
+  <li>Context-agnostic: The algorithm can be applied against any language, framework, or codebase and is trivial to compute.</li>
   <li>Does not require the configuration of pre-defined Regular Expressions.</li>
   <li>Can find secrets that would have never been found with pre-defined Regular Expressions.</li>
 </ul>
@@ -1558,26 +1558,26 @@ pre {
 <p><strong>Cons</strong></p>
 
 <ul>
-  <li>The false-positive rate is high: It requires a manual validation of alerts before opening tickets about leaked secrets. Analysts would need to verify what type of secret it is. This will generate overhead in triaging findings.</li>
+  <li>The false-positive rate is high: It requires manually validating alerts before opening tickets about leaked secrets. Analysts would need to verify what type of secret it is. This will generate overhead in triaging findings.</li>
 </ul>
 
-<h1 id="were-doing-regex-scanning-wrong-lets-fix-this-together">We’re doing Regex scanning wrong. Let’s fix this, together</h1>
+<h1 id="were-doing-regex-scanning-wrong-lets-fix-this-together">We’re doing Regex scanning wrong. Let’s fix this together</h1>
 
-<p>While several open-source tools utilize regular expressions to detect secrets in codebases, the number of built-in rules for these tools is limited. TruffleHog v2 offers approximately 40 rules, TruffleHog v3 offers around 790 patterns, and GitLeaks offers approximately 60 rules. While it’s a good start, it’s not enough.</p>
+<p>While several open-source tools utilize regular expressions to detect secrets in codebases, the number of built-in rules for these tools is limited. TruffleHog v2 offers approximately 40 rules, TruffleHog v3 offers around 790 patterns, and GitLeaks offers about 60 rules. While it’s a good start, more is needed.</p>
 
-<p>This project was initially made before TruffleHog v3 was released. At that time, the largest rules database was GitLeaks with 60 rules available. TruffleHog v3 helped a lot in collecting large datasets, but it’s still in a format that can not be ingestible with other tools since the new detector format is placed as Golang modules for each detection rule. This means that we would have to use Trufflehog v3 if we would like to make use of their detection rules.</p>
+<p>This project was initially done before TruffleHog v3 was released. At that time, the largest rules database was GitLeaks, with 60 rules available. TruffleHog v3 helped a lot in collecting large datasets, but it still needs to be in a format that can not be ingestible with other tools since the new detector format is placed as Golang modules for each detection rule. This means we would have to use Trufflehog v3 if we would like to use their detection rules.</p>
 
-<p>I have compiled and curated a database of regular expression patterns for secrets, API tokens, keys, and passwords to improve the detection of secrets in codebases. This project I built, Secrets-Patterns-DB, contains over 1600 patterns and is being open-sourced in the hope that security teams will contribute to and improve it.</p>
+<p>I have compiled and curated a database of regular expression patterns for secrets, API tokens, keys, and passwords to improve the detection of secrets in codebases. This project I built, Secrets-Patterns-DB, contains over 1600 patterns and is open-sourced in the hope that security teams will contribute to and improve it.</p>
 
 <p>To ensure the quality and effectiveness of these patterns, I have written scripts to validate them against ReDoS attacks and created CI jobs to load and validate the patterns. I have also manually cleaned up any invalid patterns.</p>
 
 <p>I encourage security teams to use and contribute to Secrets-Patterns-DB to enhance the security of their codebases.</p>
 
-<p>The project is in Beta. There’s a lot of room for improvement on the project. I’m looking forward to your Pull Requests and Issues on Github to enhance Secrets-Patterns-DB for everyone.
+<p>The project is in Beta. There’s a lot of room for improvement on the project. I look forward to your Pull Requests and Issues on Github to enhance Secrets-Patterns-DB for everyone.
 Unified Pattern Format for all tools</p>
 
 <p>The Secrets-Patterns-DB has a unified pattern format that can be converted to all tools of choice.
-If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Patterns-DB can be exported to the format that your tool supports.</p>
+If you use TruffleHog, GitLeaks, or other tools in your organization, Secrets-Patterns-DB can be exported to the format your tool supports.</p>
 
 <h3 id="for-trufflehog-v2">For Trufflehog v2</h3>
 

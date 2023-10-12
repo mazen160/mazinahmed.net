@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -30,8 +30,8 @@
 <meta property="og:title" content="DDoS is not Dead: Building a Scalable DDoS Framework" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights." />
-<meta property="og:description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights." />
+<meta name="description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing free simulation to non-profit organizations and startups focused on privacy and digital rights." />
+<meta property="og:description" content="I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing free simulation to non-profit organizations and startups focused on privacy and digital rights." />
 <link rel="canonical" href="https://mazinahmed.net/blog/stressful-ddos-framework/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/stressful-ddos-framework/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -44,7 +44,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2021-04-13T00:00:00-05:00","datePublished":"2021-04-13T00:00:00-05:00","description":"I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights.","headline":"DDoS is not Dead: Building a Scalable DDoS Framework","image":"https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/stressful-ddos-framework/"},"url":"https://mazinahmed.net/blog/stressful-ddos-framework/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2021-04-13T00:00:00-05:00","datePublished":"2021-04-13T00:00:00-05:00","description":"I’m releasing my latest project, Stressful.io, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing free simulation to non-profit organizations and startups focused on privacy and digital rights.","headline":"DDoS is not Dead: Building a Scalable DDoS Framework","image":"https://mazinahmed.net/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/stressful-ddos-framework/"},"url":"https://mazinahmed.net/blog/stressful-ddos-framework/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1493,10 +1493,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1525,53 +1525,53 @@ pre {
 
 <h1 id="abstract">Abstract</h1>
 
-<p>I’m releasing my latest project, <a href="https://stressful.io">Stressful.io</a>, an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
+<p>I’m releasing my latest project, <a href="https://stressful.io">Stressful.io</a>, an advanced DDoS framework for testing DDoS defenses at scale. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
 
 <hr />
 
-<p>I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet, your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a real concern that needs to be put on the organization’s radar, not on a postmortem after an attack happens.</p>
+<p>I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a genuine concern that must be put on the organization’s radar, not on a postmortem after an attack.</p>
 
 <h2 id="time-is-money-especially-on-downtime">Time is Money, Especially on Downtime</h2>
 
-<p>The cost of downtime is high and expensive for businesses, and it varies from one industry to another. A payment gateway processor downtime can affect many customers that solely rely on the payment gateway to operate. An hour’s downtime costs millions of dollars in losses.</p>
+<p>The cost of downtime is high and expensive for businesses, and it varies from industry to industry. A payment gateway processor downtime can affect many customers who rely solely on the payment gateway. An hour’s downtime costs millions of dollars in losses.</p>
 
-<p>The same goes for an E-Commerce website, some E-Commerces have more than 30% of their revenue coming from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause major losses for the E-commerce business.</p>
+<p>The same goes for an E-Commerce website. Some E-commerce have more than 30% of their revenue from Black Friday each year. A DDoS attack that disrupts users from making purchases on Black Friday can cause significant losses for the E-commerce business.</p>
 
-<p>Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives around the world. Think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs that I’m using to write this blog post.</p>
+<p>Furthermore, when a DDoS attack hits a SAAS platform and causes an outage, it will indirectly disrupt thousands (if not millions) of businesses and people’s lives worldwide. Please think of this as your day-to-day email provider, a CDN that delivers JavaScript for your websites, or even Google Docs I’m using to write this blog post.</p>
 
 <h2 id="protonmail-ddos-attack-changed-my-perspective">ProtonMail DDoS Attack Changed My Perspective</h2>
 
-<p>Back when I was working at ProtonMail, I had the opportunity to witness one of the largest attacks that happened in Europe in 2015 <a href="https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/">1</a> and 2018 <a href="https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/">2</a>. These attacks were devastating and changed my perspective on DDoS attacks and their effectiveness.</p>
+<p>Back when I was working at ProtonMail, I had the opportunity to witness one of the most significant attacks that happened in Europe in 2015 <a href="https://www.techrepublic.com/article/exclusive-inside-the-protonmail-siege-how-two-small-companies-fought-off-one-of-europes-largest-ddos/">1</a> and 2018 <a href="https://techcrunch.com/2018/06/27/protonmail-suffers-ddos-attack-that-takes-its-email-service-down-for-minutes/">2</a>. These devastating attacks changed my perspective on DDoS attacks and their effectiveness.</p>
 
-<p>ProtonMail security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of all the amazing ProtonMail team.</p>
+<p>ProtonMail Security has some of the most talented people that I have had the chance to work with. I can’t imagine how this attack could have been handled without the work of the amazing ProtonMail team.</p>
 
-<p>We had built up awesome technologies to prevent attacks that could breach the data of ProtonMail, yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack is not capable of risking the security nor the privacy of ProtonMail, but it was effective to put us in a stressful situation to fight back and return the services back to normal.</p>
+<p>We built up awesome technologies to prevent attacks that could breach the data of ProtonMail. Yet, a massive DDoS attack allowed attackers to disrupt the availability of ProtonMail to users. A DDoS attack cannot risk the security or privacy of ProtonMail. Still, it effectively put us in a stressful situation to fight back and return the services to normal.</p>
 
-<p>If there is a main lesson I learned from this experience is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and possibly more ready to handle an attack with this size. Putting DDoS and availability risks on the map became important for me when building a security program of any size.</p>
+<p>If there is a primary lesson I learned from this experience, it is DDoS simulations matter. If we simulate a DDoS attack with similar capabilities and TTPs (tactics, techniques, and procedures), we would be prepared and more ready to handle an attack of this size. Putting DDoS and availability risks on the map became essential when building a security program of any size.</p>
 
 <h1 id="building-the-dream-product-stressful-framework">Building the Dream Product: Stressful Framework</h1>
 
-<p>I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My vision is clear: as a customer, I want to have a trusted platform where I can consult for verifying the existing DDoS defenses, to show me what’s wrong based on research and proven tests, and to show me how to patch weaknesses.</p>
+<p>I explored the current market and haven’t found a professional service that satisfies my vision of what should be available to companies. My idea is clear: as a customer, I want to have a trusted platform where I can consult to verify the existing DDoS defenses, show me what’s wrong based on research and proven tests, and how to patch weaknesses.</p>
 
-<p>Trusting a security vendor blindly is always a bad idea, companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product in preventing attacks.</p>
+<p>Trusting a security vendor blindly is always a bad idea. Companies in the market can easily sell snake oil, promising 100% protection. Without verification testing, I do not trust a security product to prevent attacks.</p>
 
-<h3 id="when-i-didnt-find-a-solution-i-started-the-journey-of-building-stressfulio">When I didn’t find a solution, I started the journey of building Stressful.io.</h3>
+<h3 id="when-i-didnt-find-a-solution-i-started-building-stressfulio">When I didn’t find a solution, I started building Stressful.io.</h3>
 
 <h2 id="researching-ttps">Researching TTPs</h2>
 
-<p>The most difficult part in having this project come to reality was the research part. I started collecting repositories and historical archives for attacks that have been witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate researches and techniques I have been seeing.</p>
+<p>The research was the most challenging part of having this project come to reality. I started collecting repositories and historical archives for attacks witnessed in the past 15 years. I also monitored darknet sources for new trends and techniques. Every new research that involves DDoS attacks has been passionately reviewed and analyzed, and I built up a lab in the cloud to replicate attacks and rate research and techniques I have been seeing.</p>
 
-<p>I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge-base for everything related to DDoS attacks.</p>
+<p>I also reverse-engineered tools published in the black market that are being used to conduct active attacks. I studied TTPs of different groups and built up my internal knowledge base for everything related to DDoS attacks.</p>
 
-<p>This was majorly a side project that I have been imagining over the years, and in 2020, I took serious focus to complete the product.</p>
+<p>This was majorly a side project that I had been imagining over the years, and in 2020, I took serious focus to complete the product.</p>
 
 <h2 id="quality-vs-quantity-attacks">Quality vs. Quantity Attacks</h2>
 
-<p>One factor that the market is fully relying on measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. A 50 GBPS DDoS attack today is much easier to generate than 10 years ago, where the cloud era wasn’t as huge as before. Infrastructure deployment 10 years ago wasn’t as accessible as today. Today, Infrastructure-as-code became the de-facto for deploying a fully scalable infrastructure within minutes. The same goes for defense, mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.</p>
+<p>One factor that the market is entirely relies on in measuring the complexity of DDoS attacks is the total quantity the threat group was able to generate against the target. The thing is, generating traffic today is much easier than before. Today, a 50 GBPS DDoS attack is much easier to generate than ten years ago when the cloud era wasn’t as huge as before. Infrastructure deployment ten years ago wasn’t as accessible as today. Infrastructure-as-code has become the de facto for deploying a fully scalable infrastructure within minutes. The same goes for defense. Mitigating quantity DDoS attacks became much better over the years with cloud and CDN providers.</p>
 
-<p>On the other side, DDoS attacks that focus on Application-layer exploitation were being dismissed by most deployments I have personally reviewed over the years. Additionally, DoS vectors that exploits and abuses a security vulnerability of a given product or application are patterns that I have been seeing.</p>
+<p>On the other side, DDoS attacks that focus on Application-layer exploitation were dismissed by most deployments I reviewed over the years. Additionally, DoS vectors that exploit and abuse a security vulnerability of a given product or application are patterns that I have been seeing.</p>
 
-<p>Application-layer DDoS attacks are harder to defend, much difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the <a href="https://stressful.io">Stressful.io</a> framework.</p>
+<p>Application-layer DDoS attacks are harder to defend and much more difficult to understand, and most security vendors do not protect against them. If a security vendor claims to protect against Application-layer DoS attacks, I would be happy to provide a demo to showcase all their weaknesses using the <a href="https://stressful.io">Stressful.io</a> framework.</p>
 
 <h2 id="stressfulio-architecture">Stressful.io Architecture</h2>
 
@@ -1583,7 +1583,7 @@ pre {
 
 <h4 id="language-of-choice">Language of Choice?</h4>
 
-<p>I wrote the framework in Golang as I have been seeing great potential for DDoS in Golang. The networking API in Golang is much reliable, and the concurrency and state management in projects are much promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by various features Golang allows and provides.</p>
+<p>I wrote the framework in Golang as I have seen great potential for DDoS in Golang. The networking API in Golang is much more reliable, and the concurrency and state management in projects are much more promising. Golang is the future for scalable and resource-extensive applications. I have been doing benchmarks on the Stressful, and I’m impressed by the various features Golang allows and provides.</p>
 
 <h3 id="modules">Modules</h3>
 
@@ -1614,14 +1614,14 @@ pre {
   <li>MySQL Resource Exhaustion</li>
 </ul>
 
-<p>This is just part of the modules I have developed. I also develop modules based on specific use-cases and scenarios. Lastly, I will be also keeping an up-to-date arsenal for DoS attacks and modules on the framework.</p>
+<p>This is just part of the modules I have developed. I also develop modules based on specific use cases and scenarios. Lastly, I will keep an up-to-date arsenal for DoS attacks and modules on the framework.</p>
 
 <h1 id="whats-next">What’s next?</h1>
 
-<p>Contact me on <a href="mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query">info@Stressful.io</a> to get a free consultation demo for your organization. I’m also providing a fully free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
+<p>Contact me at <a href="mailto:info@stressful.io?subject=DoS%20Simulation%20Demo%20-%20Query">info@Stressful.io</a> for a free consultation demo for your organization. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.</p>
 
 <p><br />
-Interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!</p>
+Are you interested in DDoS capabilities for your company? Let’s have a chat and see how I can help!</p>
 
 <h3 id="are-you-a-researcher-interested-in-the-ddos-market-and-ddos-defenses">Are you a researcher interested in the DDoS market and DDoS defenses?</h3>
 
@@ -2808,7 +2808,7 @@ Interested in DDoS capabilities for your company? Let’s have a chat and see ho
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/stressful-ddos-framework/&amp;title=DDoS is not Dead: Building a Scalable DDoS Framework&amp;summary=I’m releasing my latest project, [Stressful.io](https://stressful.io), an advanced DDoS framework for testing DDoS defenses at scale. I’m also providing fully free simulation to non-profit organizations and startups focused on privacy and digital rights.&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/stressful-ddos-framework/&amp;title=DDoS is not Dead: Building a Scalable DDoS Framework&amp;summary=I'm releasing my latest project, [Stressful.io](https://stressful.io), an advanced DDoS framework for testing DDoS defenses at scale. I'm also providing free simulation to non-profit organizations and startups focused on privacy and digital rights.&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 

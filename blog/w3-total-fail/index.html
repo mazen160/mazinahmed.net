@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1493,10 +1493,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1511,7 +1511,7 @@ pre {
     
 
     
-        5 mins
+        4 mins
     
 </span>
 
@@ -1521,29 +1521,29 @@ pre {
 
 <hr />
 
-<p>In this post, I will be talking about a critical vulnerability that affects W3 Total Cache, the most popular Wordpress plugin in the world. W3 Total Cache used by most of the major companies, as it provides a vital service that every Wordpress website needs.</p>
+<p>In this post, I will be talking about a critical vulnerability that affects W3 Total Cache, the most popular WordPress plugin in the world. Most major companies use W3 Total Cache, which provides a vital service that every WordPress website needs.</p>
 
 <h3 id="overview-on-w3-total-cache">Overview on W3 Total Cache</h3>
 
-<p>“W3 Total Cache improves the user experience of your site by increasing server performance, reducing the download times and providing transparent content delivery network (CDN) integration.”</p>
+<p>“W3 Total Cache improves your site’s user experience by increasing server performance, reducing the download times, and providing transparent content delivery network (CDN) integration.”</p>
 <ul>
   <li>source: https://wordpress.org/plugins/w3-total-cache/</li>
 </ul>
 
 <hr />
 
-<p>After I have downloaded the plugin (v0.9.4) on my testing wordpress site, I have started testing it for less than 15 minutes. In that duration, I have noticed that there is a CSRF token called “_wp_nonce”, so I started checking for bugs on it. I have noticed that the CSRF token is not being validated, and there is no additional methods is used to prevent CSRF issues. So by deleting it’s value from the request, a successful CSRF attack can be performed.</p>
+<p>After I downloaded the plugin (v0.9.4) on my testing WordPress site, I started testing it for less than 15 minutes. I noticed a CSRF token called “_wp_nonce” during that duration, so I started checking for bugs. I have seen that the CSRF token is not being validated, and no additional methods are used to prevent CSRF issues. So, by deleting its value from the request, a successful CSRF attack can be performed.</p>
 
-<p>Then I started verifying the issue, and I was able to reproduce the same issue in all the plugin’s requests.
-After that, I started making scenarios on how the CSRF issue can be used to make the biggest damage, and the highest impact on W3 Total Cache users.</p>
+<p>Then, I started verifying the issue, and I was able to reproduce the same issue in all the plugin’s requests.
+After that, I started making scenarios on how the CSRF issue can be used to cause the most significant damage and the highest impact on W3 Total Cache users.</p>
 
-<p>One of the features that W3 Total Cache is providing is the ability to redirect user-agents that contains a phrase that is mentioned in the plugin’s settings to a specified link. The feature is made so administrators can redirect users to mobile version of the site, or similar uses for example. It’s a nice feature, but it’s a a great feature to be used to in exploiting the bug and defacing websites.</p>
+<p>One of the features that W3 Total Cache provides is the ability to redirect user agents that contain a phrase mentioned in the plugin’s settings to a specified link. The feature is made so administrators can redirect users to the mobile version of the site or similar uses, for example. It’s a nice feature but an excellent feature for exploiting the bug and defacing websites.</p>
 
-<p>I have made a research to gather all the common phrases that is on most user-agents. The results of the research showed that the following phrases is used on more than %97 of all user-agents, and %100 of all checked user-agents.</p>
+<p>I have researched to gather all the common phrases on most user agents. The research results showed that the following expressions are used on more than %97 of all user agents and %100 of all checked user agents.</p>
 
 <p><img src="/assets/static/37784dfc-2da0-4b05-a7cf-6b6fdf91be20.png" alt="" /></p>
 
-<p>Then, I started writing an exploit for the issue. All authenticated wordpress users who loads the exploit, will setup a policy that all user-agents that contains the previous phrases will be redirected to a malicious page. Because of the phrases that I wrote exist on more than %97 of all user-agents, everyone will be redirected to the attacker’s page using the exploit.</p>
+<p>Then, I started writing an exploit for the issue. All authenticated WordPress users who load the exploit will set up a policy that all user agents that contain the previous phrases will be redirected to a malicious page. Because the terms I wrote exist on more than %97 of all user agents, everyone will be redirected to the attacker’s page using the exploit.</p>
 
 <p><strong>POC</strong>: http://packetstormsecurity.com/files/129512/W3-Total-Cache-0.9.4-Cross-Site-Request-Forgery.html</p>
 
@@ -1556,41 +1556,37 @@ After that, I started making scenarios on how the CSRF issue can be used to make
 
 <h3 id="steps-to-reproduce">Steps to Reproduce:</h3>
 
-<p>1- An attacker post a comment that contains a link of the exploit to the wordpress victim that uses W3 Total Cache</p>
+<p>1- An attacker posts a comment that contains a link to the exploit to the WordPress victim that uses W3 Total Cache</p>
 
 <p>2- The victim opens the comments section and clicks on the link.</p>
 
 <p>3- The exploit is loaded while the victim is authenticated with administration privileges.</p>
 
-<p>4- Anyone opens the victim’s website will be redirected to the attacker’s deface page.</p>
+<p>4- Anyone who opens the victim’s website will be redirected to the attacker’s deface page.</p>
 
 <h3 id="responsible-disclosure">Responsible Disclosure</h3>
 
-<p>I quickly contacted W3-Edge, the company who is responsible for W3 Total Cache, and the main developer of the project Fredrick Towns contacted me asking about the details  regarding vulnerability that exists on v0.9.4, and he replied that the fix will be released soon (the patch has been released now).</p>
+<p>I quickly contacted W3-Edge, the company responsible for W3 Total Cache, and the leading developer of the project, Fredrick Towns, contacted me asking about the details regarding the vulnerability that exists on v0.9.4, and he replied that the fix will be released soon (the patch has been released now).</p>
 
 <h3 id="recommendations">Recommendations</h3>
 
-<p>Update to the latest version of W3 Total Cache, (v0.9.4 is vulnerable, and all versions that released before might be vulnerable as well).</p>
+<p>Update to the latest version of W3 Total Cache (v0.9.4 is vulnerable, and all versions released before might also be vulnerable).</p>
 
 <h3 id="summary">Summary</h3>
 
 <ul>
-  <li>W3 Total Cache v0.9.4 is vulnerable to a critical CSRF vulnerability that may leads to full deface of users who are using the vulnerable plugin. Versions before 0.9.4 might be affected too.</li>
-  <li>The exploit can be used by researching all phrases that is used on most user-agents.</li>
-  <li>This issue is not difficult to exploit and can be used to cause different impacts on Wordpress users who are using a vulnerable version of W3 Total Cache.</li>
-  <li>The W3TotalFail vulnerability are easy to exploit, any malicious user a little experience can use the vulnerability to cause major damages and defaces.</li>
+  <li>W3 Total Cache v0.9.4 is vulnerable to a critical CSRF vulnerability that may lead to the full deface of users using the vulnerable plugin. Versions before 0.9.4 might be affected, too.</li>
+  <li>The exploit can be used by researching all phrases used on most user agents.</li>
+  <li>This issue is not complex to exploit and can be used to cause different impacts on WordPress users who are using a vulnerable version of W3 Total Cache.</li>
+  <li>The W3TotalFail vulnerability is easy to exploit; any malicious user with little experience can use the vulnerability to cause significant damage and deface.</li>
 </ul>
 
 <h3 id="final-thoughts">Final Thoughts</h3>
 
-<p>I didn’t expect that I will be finding a critical issue like this one in a popular plugin such as W3 Total Cache that easily. If that’s the condition of the most used Wordpress plugin, I believe there are many vulnerabilities on Wordpress plugins that might be publicly exploited on the black-hats community. Wordpress is secure by itself, but plugins are having the biggest impact on Wordpress security. Users should be careful about what plugin they are using, and how much effort they put to secure it.</p>
+<p>I didn’t expect to find a critical issue like this one in a popular plugin such as W3 Total Cache that easily. If that’s the condition of the most used Wordpress plugin, many vulnerabilities on Wordpress plugins might be publicly exploited by threat actors. Wordpress is secure by itself, but plugins have the most significant impact on Wordpress security. Users should be careful about what plugin they use and how much effort they put into securing it.</p>
 
-<p>Some companies don’t care about their security, neither are professional in handling a security vulnerability. W3-Edge was one of them in my opinion. When I reported the issue on October 7th, I expected that W3-Edge team will be patching the issue quickly, but instead, their responses were unkind at all, and they were not cooperating with me. I really have not appreciate that from them.</p>
+<p>Some companies don’t care about their security; neither are professional in handling a security vulnerability. W3-Edge was one of them. When I reported the issue on October 7th, I expected that the W3-Edge team would be patching the issue quickly, but instead, their responses were unkind, and they were not cooperating with me. I have not appreciated that from them.</p>
 
-<p>If you need any help securing your web-application or service, you can contact me by E-Mail, or Twitter.</p>
-
-<p>Best Regards,
-Mazin Ahmed</p>
 
 
 

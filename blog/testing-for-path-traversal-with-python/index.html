@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -30,8 +30,8 @@
 <meta property="og:title" content="The Path for Testing Path Traversal Vulnerabilities with Python" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path" />
-<meta property="og:description" content="The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path" />
+<meta name="description" content="The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path." />
+<meta property="og:description" content="The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path." />
 <link rel="canonical" href="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/" />
 <meta property="og:url" content="https://mazinahmed.net/blog/testing-for-path-traversal-with-python/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2020-04-12T00:00:00-05:00","datePublished":"2020-04-12T00:00:00-05:00","description":"The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path","headline":"The Path for Testing Path Traversal Vulnerabilities with Python","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/testing-for-path-traversal-with-python/"},"url":"https://mazinahmed.net/blog/testing-for-path-traversal-with-python/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2020-04-12T00:00:00-05:00","datePublished":"2020-04-12T00:00:00-05:00","description":"The Path for Testing Path Traversal Vulnerabilities with Python: It’s not a direct path.","headline":"The Path for Testing Path Traversal Vulnerabilities with Python","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/testing-for-path-traversal-with-python/"},"url":"https://mazinahmed.net/blog/testing-for-path-traversal-with-python/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1509,7 +1509,7 @@ pre {
     
 
     
-        3 mins
+        2 mins
     
 </span>
 
@@ -1519,21 +1519,21 @@ pre {
 
 <hr />
 
-<p>I have noticed an odd behavior in <code class="language-plaintext highlighter-rouge">requests</code> module in Python, which uses urllib3. I inspected the root cause via regression testing and I found that the root cause of the issue is a change that was introduced in urllib3.</p>
+<p>I have noticed an odd behavior in the <code class="language-plaintext highlighter-rouge">requests</code> module in Python, which uses urllib3. I inspected the root cause via regression testing, and I found that the root cause was a change introduced in urllib3.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"http://127.0.0.1/../../../../doing/certain/check"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Which should typically send the request to the following path: <code class="language-plaintext highlighter-rouge">/../../../doing/certain/check</code>. Instead, it’s requesting <code class="language-plaintext highlighter-rouge">/doing/certain/check</code> and modifying the specified input.</p>
+<p>Which should typically send the request to the following path: <code class="language-plaintext highlighter-rouge">/../../../doing/certain/check</code>. Instead, it requests <code class="language-plaintext highlighter-rouge">/doing/certain/check</code> and modifies the specified input.</p>
 
-<p>The reason is, dot segments escaping, following RFC3986.</p>
+<p>The reason is dot segments escaping, following RFC3986.</p>
 
 <p>The change to normalize URIs was introduced in this commit[1] to follow RFC3986[2]. The change is based on the “Remove Dot Segments” at the RFC.</p>
 
-<p>This breaks a lot of security tools that are performing fuzzing for path traversal vulnerabilities in web-applications.</p>
+<p>This breaks a lot of security tools that are performing fuzzing for path traversal vulnerabilities in web applications.</p>
 
-<p><strong>I have compiled a number of solutions for this issue.</strong></p>
+<p><strong>I have compiled several solutions for this issue.</strong></p>
 
 <p><br /></p>
 
@@ -1549,48 +1549,48 @@ pre {
 
 <p>Credit: <a href="https://twitter.com/buffaloverflow">Rich Warren</a> - [3] and [4].</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"https://example.com/../../../etc/passwd"</span>
-<span class="k">with</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">'GET'</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-    <span class="n">prep</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">prepare</span><span class="p">()</span>
-    <span class="n">prep</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
-    <span class="n">req</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<pre><code class="language-Python">url = "https://example.com/../../../etc/passwd"
+with requests.Session() as s:
+    r = requests.Request(method='GET', url=url, headers=headers)
+    prep = r.prepare()
+    prep.url = url
+    req = s.send(prep, verify=False)
 
-</code></pre></div></div>
+</code></pre>
 
 <p>And</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"https://example.com/../../../etc/passwd"</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">'GET'</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-<span class="n">prep</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">prepare</span><span class="p">()</span>
-<span class="n">prep</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
-</code></pre></div></div>
+<pre><code class="language-Python">url = "https://example.com/../../../etc/passwd"
+s = requests.Session()
+r = requests.Request(method='GET', url=url)
+prep = r.prepare()
+prep.url = url
+</code></pre>
 
 <h2 id="option-3-using-urllib3httpconnectionpool">Option 3: Using urllib3.HTTPConnectionPool</h2>
 
 <p>Credit: <a href="https://twitter.com/quentinpradet">Quentin Pradet</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib3</span>
+<pre><code class="language-Python">import urllib3
 
-<span class="n">pool</span> <span class="o">=</span> <span class="n">urllib3</span><span class="p">.</span><span class="n">HTTPConnectionPool</span><span class="p">(</span><span class="s">"localhost"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">)</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">pool</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="s">"/../../../../doing/certain/check"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">status</span><span class="p">)</span>
-</code></pre></div></div>
+pool = urllib3.HTTPConnectionPool("localhost", 8000)
+r = pool.urlopen("GET", "/../../../../doing/certain/check")
+print(r.status)
+</code></pre>
 
 <h2 id="option-4-downgrading-urllib3">Option 4: Downgrading urllib3</h2>
 
-<p>It’s possible to use previous versions of <code class="language-plaintext highlighter-rouge">requests</code> or <code class="language-plaintext highlighter-rouge">urllib3</code>.</p>
+<p>Using previous versions of <code class="language-plaintext highlighter-rouge">requests</code> or <code class="language-plaintext highlighter-rouge">urllib3</code> is possible.</p>
 
-<p>The option for current tools that use requests or urllib3 is to revert to <code class="language-plaintext highlighter-rouge">urllib3==1.24.3</code>. However, this may not be the best option from an engineering perspective.</p>
+<p>The option for current tools that use requests or urllib3 is to revert to <code class="language-plaintext highlighter-rouge">urllib3==1.24.3</code>. However, there may be better options from an engineering perspective.</p>
 
 <p><br /></p>
 
 <h1 id="final-additions">Final Additions</h1>
 
-<p>I started a discussion on Python Urllib3 Issue tracker on Github: <a href="https://github.com/urllib3/urllib3/issues/1790">https://github.com/urllib3/urllib3/issues/1790</a></p>
+<p>I started a discussion on the Python Urllib3 Issue tracker on Github: <a href="https://github.com/urllib3/urllib3/issues/1790">https://github.com/urllib3/urllib3/issues/1790</a></p>
 
-<p>I wanted to thank <a href="https://twitter.com/sethmlarson">Seth Michael Larson</a>, <a href="https://twitter.com/quentinpradet">Quentin Pradet</a>, and <a href="https://github.com/hodbn">https://github.com/hodbn</a>, for all their work on urllib3 and with the Python community!</p>
+<p>I wanted to thank <a href="https://twitter.com/sethmlarson">Seth Michael Larson</a>, <a href="https://twitter.com/quentinpradet">Quentin Pradet</a>, and <a href="https://github.com/hodbn">https://github.com/hodbn</a> for all their work on urllib3 and with the Python community!</p>
 
 <p><br /></p>
 
@@ -2490,7 +2490,7 @@ pre {
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/testing-for-path-traversal-with-python/&amp;title=The Path for Testing Path Traversal Vulnerabilities with Python&amp;summary=The Path for Testing Path Traversal Vulnerabilities with Python: It's not a direct path&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/testing-for-path-traversal-with-python/&amp;title=The Path for Testing Path Traversal Vulnerabilities with Python&amp;summary=The Path for Testing Path Traversal Vulnerabilities with Python: It's not a direct path.&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 

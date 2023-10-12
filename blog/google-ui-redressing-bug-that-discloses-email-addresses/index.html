@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1519,47 +1519,48 @@ pre {
 
 <hr />
 
-<p>In this post, I will be talking about an interesting bug that affects Google Blogger. This security bug has been left undiscovered since almost 2007.</p>
+<p>In this post, I will discuss an exciting bug affecting Google Blogger. This security bug has been left undiscovered since almost 2007.</p>
 
-<p>The bug allows an attacker to trick the victim into revealing his email address using UI-Redressing techniques.</p>
+<p>The bug allows an attacker to trick the victim into revealing his email address using UI-redressing techniques.</p>
 
 <h1 id="background">Background</h1>
 <p>We always see a header on blogs that is hosted on Google Blogger that looks like the following:</p>
 
-<p>for unauthenticated users:
+<p>For unauthenticated users:
 <img src="/assets/static/6f1d5c56-0c8c-41c9-9237-424e0de454eb.png" alt="" /></p>
 
-<p>for authenticated users:</p>
+<p>For authenticated users:</p>
 
 <p><img src="/assets/static/9f11976c-38a3-4839-ad62-4be63674906a.png" alt="" /></p>
 
-<p>As you can see, in the screenshot of an authenticated user, the user’s email address is shown. The challenge now is how can we use this feature on our side; to reveal users’s email address.</p>
+<p>As you can see, the user’s email address is shown in the screenshot of an authenticated user. The challenge is using this feature to reveal users’ email addresses.</p>
 
 <figure class="image">
   <img src="/assets/static/81a6647a-adce-4748-a0f4-7fd8d151bed1.png" />
 </figure>
 <figcaption>A screenshot that shows the lack of X-Frame-Options HTTP response header within the Blogger header's request.</figcaption>
 
-<p>After testing the issue, it appears that the response of the HTTP request holds the user’s email address lacks the usage of X-Frame-Options header. This means that anyone can make an HTTP request within an Iframe, and craft it in a way that can help the attacker in making unintended actions.</p>
+<p>After testing the issue, the response of the HTTP request holds the user’s email address and lacks the usage of the X-Frame-Options header. This means that anyone can make an HTTP request within an Iframe and craft it in a way that can help the attacker in making unintended actions.</p>
 
-<p>In most cases, we use UI-Redressing when we are allowed to perform “clicks”, and in that form, we would specify it as “Clickjacking”. This case is slightly different type of  UI-Redressing from an exploitation point of view.</p>
+<p>In most cases, we use UI-Redressing when we can perform “clicks”; in that form, we would specify it as “Clickjacking.” This case is a slightly different type of  UI-Redressing from an exploitation point of view.</p>
 
-<p>The idea that came to mind was to create a proof of concept that includes  an Iframe that responds with the user’s email address, and then force the user into pasting the email within the page, where it gets sent to an external server (eg.. the attacker’s sever).</p>
+<p>The idea that came to mind was to create a proof of concept that includes an Iframe that responds with the user’s email address and then forces the user into pasting the email within the page, where it gets sent to an external server (e.g., the attacker’s server).</p>
 
-<p>I have put this idea into code that does exactly that, you can watch the following demonstration video to see an example of the exploitation of the issue.</p>
+<p>I have put this idea into code that does that. You can watch the following demonstration video to see an example of the exploitation of the issue.</p>
 
 <iframe width="560" height="310" src="https://www.youtube.com/embed/pils4C7oNnU" frameborder="0" allowfullscreen=""></iframe>
 
-<p>A second idea which apparently failed to be performed due to strong Same-Origin Policy of modern browsers was to have an Iframe that responses with the user’s email address, and once the response is received, a Javascript within the same HTML page executes that take a screenshot of the Iframe, then send it to an external server, where there will be function running that takes the image and transform it into plain text. This issue was not possible due to the Same-Origin Policy, as the API of getscreenshot() is restricted to not be able to read pixels of none-same-origin Iframe.</p>
+<p>A second idea, which failed to be performed due to the robust Same-Origin Policy of modern browsers, was to have an Iframe that responds with the user’s email address. Once the response is received, a Javascript within the same HTML page executes that takes a screenshot of the Iframe and then sends it to an external server, where a function will run to transform the image into plain text. This issue was not possible due to the Same-Origin Policy, as the API of getscreenshot() is restricted to being unable to read pixels of a non-same-origin Iframe.</p>
 
-<h3 id="vendor-response">Vendor Response:</h3>
+<h3 id="vendor-response">Vendor Response</h3>
 
-<p>After a discussion with Google Security, Google has decided to not patch the issue.</p>
+<p>After a discussion with Google Security, Google decided not to patch the issue.</p>
 
-<h3 id="final-thoughts">Final Thoughts:</h3>
-<p>This was quite an interesting bug, yet, the impact of the issue is not very high. I would like to share it as this issue is almost 10 years old, and no one has discovered, exploited, or discussed it before.</p>
+<h3 id="final-thoughts">Final Thoughts</h3>
 
-<p>I would like to thank Google Security Team for their prompted and quick response regarding the issue.</p>
+<p>This was quite an interesting bug, yet the issue’s impact could be a lot higher. I want to share it as this issue is almost ten years old, and no one has discovered, exploited, or discussed it before.</p>
+
+<p>I thank the Google Security Team for their prompt and quick response.</p>
 
 
 

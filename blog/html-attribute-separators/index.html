@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1521,18 +1521,18 @@ pre {
 
 <h1 id="abstract">Abstract</h1>
 
-<p>This is an experiment I have done recently in order to identify and utilize attribute separators in constructing XSS vectors. The crafted vectors can be used in bypassing XSS filters on modern browsers. These characters can be used in bypassing WAF XSS filters.</p>
+<p>This is an experiment I have done to identify and utilize attribute separators in constructing XSS vectors. The crafted vectors can be used to bypass XSS filters on modern browsers. These characters can be used in bypassing WAF XSS filters.</p>
 
 <h1 id="background">Background</h1>
 
-<p>An example for a common XSS vector is:</p>
+<p>An example of a common XSS vector is:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">x</span> <span class="na">onerror=</span><span class="s">alert(1)</span><span class="nt">&gt;</span>
 </code></pre></div></div>
 
 <p>We will be using this vector as a baseline for the demonstration in this experiment.</p>
 
-<p>An image is requested at <code class="language-plaintext highlighter-rouge">./x</code>. If the image does not exist or invalid, the JavaScript event handler executes the JavaScript code as instructed. The space ` ` value is what is separating the attributes.</p>
+<p>An image is requested at <code class="language-plaintext highlighter-rouge">./x</code>. If the image is invalid, the JavaScript event handler executes the JavaScript code as instructed. The space ` ` value is what separates the attributes.</p>
 
 <p>A typical XSS regular expression that blocks this example vector checks for whitespaces.
 This can be bypassed via the exact vector by using the slash “/” character as an attribute separator (a well-known payload):</p>
@@ -1544,7 +1544,7 @@ This can be bypassed via the exact vector by using the slash “/” character a
 
 <h1 id="fuzzing-for-valid-attributes-separators-in-modern-browsers">Fuzzing for Valid Attributes Separators in Modern Browsers</h1>
 
-<p>HTML is a very flexible language. Browser engines render contents in numerous structures. I have written a simple fuzzing script in JavaScript that renders all Unicode values as attribute separators in a browser.</p>
+<p>HTML is a very flexible language. Browser engines render content in numerous structures. I have written a simple fuzzing script in JavaScript that generates all Unicode values as attribute separators in a browser.</p>
 
 <h2 id="results">Results</h2>
 
@@ -1567,18 +1567,18 @@ This can be bypassed via the exact vector by using the slash “/” character a
 
 <h3 id="notes-on-bypassing-wafs-using-identified-attributes-separators">Notes on Bypassing WAFs Using Identified Attributes Separators</h3>
 
-<p>In general, WAF rule sets are strict on blocking certain inputs. By utilizing odd attribute separators, it’s possible to bypass weakly written WAF rules. This is an aid to construct a valid XSS vector; I do not expect a vanilla <code class="language-plaintext highlighter-rouge">&lt;img(attribute-separator)src=x(attribute-separator)onerror=alert(1)&gt;</code> would be a straight payload that bypasses a WAF rule set directly. Instead, tweaking the payload can increase the potentials in writing a valid vector that bypass the WAF XSS filters.</p>
+<p>In general, WAF rule sets are strict on blocking specific inputs. It’s possible to bypass weakly written WAF rules by utilizing odd attribute separators. This is an aid to constructing a valid XSS vector; I do not expect a vanilla <code class="language-plaintext highlighter-rouge">&lt;img(attribute-separator)src=x(attribute-separator)onerror=alert(1)&gt;</code> would be a straight payload that bypasses a WAF rule set directly. Instead, tweaking the payload can increase the potential of writing a valid vector that bypasses the WAF XSS filters.</p>
 
-<p>Furthermore, I have demonstrated a number of payloads previously that utilizes attribute separators implicitly to bypass XSS filters of popular WAFs. You can read about my previous research at <a href="http://blog.mazinahmed.net/2015/09/evading-all-web-application-firewalls.html">Link</a>.</p>
+<p>Furthermore, I have demonstrated several payloads that utilize attribute separators implicitly to bypass XSS filters of popular WAFs. You can read my previous research at <a href="http://blog.mazinahmed.net/2015/09/evading-all-web-application-firewalls.html">Link</a>.</p>
 
 <p>The techniques were tested against Mod-Security CRS. The default installation blocks almost all variants; raising the Paranoia Level to 2 protects from the remaining payloads.
-I would like to thank Dr. Christian Folini for testing it against ModSecurity CRS.</p>
+I want to thank Dr. Christian Folini for testing it against ModSecurity CRS.</p>
 
 <h2 id="what-to-do">What to Do?</h2>
 
 <h3 id="penetration-testers">Penetration Testers</h3>
 
-<p>These characters can be used to craft better payloads to fuzz WAF XSS filters. Feel free to use them on your next WAF assessment.</p>
+<p>These characters can be used to craft better payloads to fuzz WAF XSS filters. Feel free to use them on your following WAF assessment.</p>
 
 <h3 id="defenders">Defenders</h3>
 

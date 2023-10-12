@@ -19,7 +19,7 @@
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <meta name=viewport content="width=device-width, initial-scale=1">
 
-    <meta name=description content="Cyber Security Engineer (Offensive Security)">
+    <meta name=description content="Application and Infrastructure Security Engineering">
     <meta name=author content="Mazin Ahmed">
     <meta property="og:image" content="https://mazinahmed.net/assets/images/image.jpg">
     <meta property="og:type" content="profile">
@@ -1491,10 +1491,10 @@ pre {
                 </li>
         
 
-        
-            <li class="item">
-                <a class="link" target="_blank" href="https://mazinahmed.net/cv">CV</a>
-            </li>
+        <li class="item">
+            <a class="link" href="https://mazinahmed.net/cv">CV</a>
+        </li>
+
         
     </ul>
 </nav>
@@ -1518,76 +1518,76 @@ pre {
 
 
 <hr />
-<p>In this post, I will be discussing why a professional penetration tester should not use OWASP Mantra nor HconSTF. I will also introduce “Firefox Security Toolkit”, a simple tool I have built that can be a very good replacement of these two projects, and provides a better security for the penetration tester too.</p>
+<p>This post will discuss why a professional penetration tester should not use OWASP Mantra or HconSTF. I will also introduce “The Firefox Security Toolkit,” a simple tool I have built that can be an excellent replacement for these two projects and provides better security for the penetration tester.</p>
 
 <h1 id="what-are-owasp-mantra-and-hconstf">What are OWASP Mantra and HconSTF?</h1>
 
-<p>OWASP Mantra &amp; HconSTF are browsers that is made specifically for penetration testers. It provides a large number of extensions that can help a penetration testers doing his/her daily work. It’s focused on the testing of web-applications. The concept of the project seems decent, but there are many issues that face those browsers.</p>
+<p>OWASP Mantra &amp; HconSTF are browsers that are explicitly made for penetration testers. It provides many extensions that can help penetration testers do their daily work. It’s focused on the testing of web applications. The concept of the project seems decent, but many issues face those browsers.</p>
 
 <h3 id="built-on-outdated-browsers">Built on Outdated Browsers:</h3>
-<p>These two projects are built on Firefox. The problem is, these two projects are built on Firefox v17-v18, which are both extremely old. From a simple security awareness point of view, no one should use a very critical vector such as browsers that are out-dated to interact with the public Internet.</p>
+<p>These two projects are built on Firefox. The problem is these two projects are built on Firefox v17-v18, which is extremely old. From a simple security awareness point of view, no one should use a critical vector such as outdated browsers to interact with the public Internet.</p>
 
 <h3 id="outdated-plugins">Outdated Plugins:</h3>
-<p>The main purpose of using OWASP Mantra or HconSTF is due to it’s large amount of provided plugins. Since those two projects are prebuilt browsers, it is expected that the browsers and plugins should be updated very frequently, to ensure the best results for penetration testers. Unfortunately, they are not being updated.</p>
+<p>The primary purpose of using OWASP Mantra or HconSTF is due to its large amount of provided plugins. Since those two projects are prebuilt browsers, it is expected that the browsers and plugins should be updated very frequently to ensure the best results for penetration testers. Unfortunately, they are not being updated.</p>
 
-<p><em>If those two projects are disconnected, and no updates would be released, they should announce this to prevent damages and issues.</em></p>
+<p><em>If those two projects are disconnected, and no updates are released, they should announce this to prevent damages and issues.</em></p>
 
 <h1 id="security-issues">Security Issues:</h1>
 
-<p>Since the latest version of OWASP Mantra is built on Firefox v18, there is a numerous exploits that are publicly available. There is no need to even tweak a public exploit or dig deeper. Some of exploits are included in Metasploit project.</p>
+<p>Since the latest version of OWASP Mantra is built on Firefox v18, numerous exploits are publicly available. There is no need even to tweak a public exploit or dig deeper. Some of the exploits are included in the Metasploit project.</p>
 
-<p>In this section, I will be demonstrating how to “hack” any penetration tester that is using the latest version of OWASP Mantra or the latest version of HconSTF.</p>
+<p>In this section, I will demonstrate how to compromise any penetration tester using the latest version of OWASP Mantra or the newest version of HconSTF.</p>
 
-<p>In 2013, a public exploit in Firefox core has been publicly disclosed that uses two different security issues, CVE-2013-1710 and CVE-2013-1670, in order to inject malicious Javascript code into a context running with chrome:// privileges, which eventually leads to arbitrary code execution into the target’s system.</p>
+<p>In 2013, a public exploit in Firefox core was publicly disclosed that uses two different security issues, CVE-2013-1710 and CVE-2013-1670, to inject malicious Javascript code into a context running with chrome:// privileges, which eventually leads to arbitrary code execution into the target’s system.</p>
 
 <p>As mentioned earlier, this exploit is publicly published in the Metasploit framework. You can find the module <a href="https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/browser/firefox_tostring_console_injection.rb">here</a>.</p>
 
-<p>What’s also great about this module is that it uses the Javascript XPCOM Shell, which is compatible with all systems that Firefox run on. OWASP Mantra, and Hkon STF are both available on Windows, Linux, and Mac. Using this Metasploit module, OWASP Mantra and HconSTF can be hacked on all these environments.</p>
+<p>What’s also great about this module is that it uses the Javascript XPCOM Shell, which is compatible with all Firefox systems. OWASP Mantra and Hkon STF are available on Windows, Linux, and Mac. Using this Metasploit module, OWASP Mantra and HconSTF can be hacked on all these environments.</p>
 
 <p>Example:
 <img src="/assets/static/ca9e1b35-a8ba-4be6-8a8c-1334a619e802.png" alt="" /></p>
 
-<p>Now, once the victim (aka the penetration tester) load this page via either one of those security projects, the victim (the penetration tester) will be compromised.</p>
+<p>Once the victim (aka the penetration tester) loads this page via either of those security projects, the victim (the penetration tester) will be compromised.</p>
 
-<p>When a penetration tester that using the latest version of OWASP Mantra, v0.92 to load the page, he/she would compromised.
+<p>When a penetration tester uses the latest version of OWASP Mantra, v0.92, to load the page, they would be compromised.
 <img src="/assets/static/d35ad005-a1ed-46d9-966a-b36a900f3c80.png" alt="" /></p>
 
-<p>The same would occur when the penetration teseter loads the page using the latest version of HconSTF, v0.5.
+<p>The same would occur when the penetration tester loads the page using the latest version of HconSTF, v0.5.
 <img src="/assets/static/c0ab1474-b062-4de9-b576-d3741b627ef0.png" alt="" /></p>
 
-<p>You can imagine how bad would it be if you have been compromised using a public exploit from 2013, while being a penetration tester/hacker. It’s also worth noting that this is the first public discussion regarding how OWASP Mantra and HconSTF are vulnerable.</p>
+<p>You can imagine how bad it would be if you had been compromised using a public exploit from 2013 while being a penetration tester/hacker. It’s also worth noting that this is the first general discussion regarding how OWASP Mantra and HconSTF are vulnerable.</p>
 
 <h2 id="the-major-issues-that-faced-owasp-mantra-and-hconstf-are-the-following">The major issues that faced OWASP Mantra and HconSTF are the following:</h2>
 
 <h4 id="both-are-not-frequently-updated">Both are not frequently updated</h4>
-<p>Both projects have not been updated for years. The latest version of OWASP Mantra has been released in January 2013, while the latest release of HconSTF has been released in April 2013. This is the main reason the that it can been hacked as shown earlier.</p>
+<p>Both projects have not been updated for years. OWASP Mantra’s latest version was released in January 2013, while the newest release of HconSTF was released in April 2013. This is the main reason it can be hacked, as shown earlier.</p>
 
 <h4 id="plugins-are-not-its-latest-version">Plugins are not it’s latest version</h4>
-<p>Since both projects are not well-updated, plugins are also not in it’s latest version.</p>
+<p>Since both projects are not well-updated, the plugins are also not in their latest version.</p>
 
 <h4 id="both-projects-are-full-of-unneeded-additions">Both projects are full of unneeded additions</h4>
-<p>There are many additions are that these projects provide, which are not necessary at all, and is not being used in real-life penetration tests.</p>
+<p>There are many additions that these projects provide, which are not necessary at all and are not being used in real-life penetration tests.</p>
 
 <h1 id="introducing-firefox-security-toolkit">Introducing Firefox Security Toolkit</h1>
 
-<p>After analyzing the issues that faces prebuilt browsers that is made for penetration testers, I came to conclusion that the best way to solve the issues would be by transforming a browser that is fully-updated into a browser that is made specifically for penetration testing.</p>
+<p>After analyzing the issues that face prebuilt browsers that are made for penetration testers, I concluded that the best way to solve the issues would be by transforming a fully-updated browser that is made specifically for penetration testing.</p>
 
-<p>Firefox Security Toolkit is a project that changes a normal Firefox browser into a penetration testing suite. This is done by downloading and installing the latest versions of the most popular extensions, it also provides few additions to enhance the testing experience of a penetration tester. The project is focuses on web-application security testing, as it provides all the essential additions for providing the a successful penetration testing.</p>
+<p>Firefox Security Toolkit is a project that changes a normal Firefox browser into a penetration testing suite. This is done by downloading and installing the latest versions of the most popular extensions; it also provides a few additions to enhance the testing experience of a penetration tester. The project focuses on web application security testing, as it allows for all the essential additions for successful penetration testing.</p>
 
 <h2 id="why-firefox-security-toolkit-would-be-better-than-owasp-mantra-or-hconstf">Why Firefox Security Toolkit would be better than OWASP Mantra or HconSTF?</h2>
 
 <ul>
   <li>
-    <p>You are responsible for the browser’s security: You are able to use Firefox Security Toolkit on the latest version of Mozilla Firefox, to ensure a better security of the penetration tester.</p>
+    <p>You are responsible for the browser’s security: You can use the Firefox Security Toolkit on the latest version of Mozilla Firefox to ensure better security of the penetration tester.</p>
   </li>
   <li>
-    <p>It does not include additional unwanted plugins: Firefox Security Toolkit only installs the most essential plugins that is known to provide the maximum efficiency. It also downloads the latest versions of these plugins.</p>
+    <p>It does not include additional unwanted plugins: Firefox Security Toolkit only installs the most essential plugins known to provide the maximum efficiency. It also downloads the latest versions of these plugins.</p>
   </li>
-  <li>Flexible method to download and install plugins: You are able to modify the default plugins, and add additional plugins to be downloaded automatically.</li>
-  <li>Very simple code: The code is very simple, you can easily modify it to meet your needs.</li>
+  <li>Flexible method to download and install plugins: You can modify the default plugins and add additional plugins to be downloaded automatically.</li>
+  <li>Straightforward code: The code is simple; you can easily modify it to meet your needs.</li>
 </ul>
 
-<p>Basically Firefox Security Toolkit provides the same value of OWASP Mantra and HconSTF in a secure, flexible, and clean way. It also does not need upgrading or larger maintaining, such as OWASP Mantra and HconSTF, as it relies on the installed version of Firefox in the system.</p>
+<p>Firefox Security Toolkit provides the exact value of OWASP Mantra and HconSTF securely, flexibly, and cleanly. It also does not need upgrading or more extensive maintenance, such as OWASP Mantra and HconSTF, as it relies on the installed version of Firefox in the system.</p>
 
 <p>The following video demonstrates how Firefox Security Toolkit transforms a normal Firefox browser into a penetration testing suite.
 Firefox Security Toolkit - Demo</p>
