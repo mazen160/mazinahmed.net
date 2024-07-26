@@ -25,24 +25,26 @@
     <meta property="og:type" content="profile">
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Scan Terraform plans and changes with tfquery via SQL-powered framework | Mazin Ahmed</title>
+<title>Engineering Learnings from the CrowdStrike Falcon Outage | Mazin Ahmed</title>
 <meta name="generator" content="Jekyll v3.9.5" />
-<meta property="og:title" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
+<meta property="og:title" content="Engineering Learnings from the CrowdStrike Falcon Outage" />
 <meta name="author" content="mazinahmed" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework." />
-<meta property="og:description" content="Scan Terraform plans and changes with tfquery via SQL-powered framework." />
-<link rel="canonical" href="https://mazinahmed.net/blog/tfplan-release/" />
-<meta property="og:url" content="https://mazinahmed.net/blog/tfplan-release/" />
+<meta name="description" content="Engineering Learnings from the CrowdStrike Falcon Outage" />
+<meta property="og:description" content="Engineering Learnings from the CrowdStrike Falcon Outage" />
+<link rel="canonical" href="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/" />
+<meta property="og:url" content="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/" />
 <meta property="og:site_name" content="Mazin Ahmed" />
+<meta property="og:image" content="https://mazin.s3.amazonaws.com/public/a75fb537-eaf4-402c-b70e-31ac172a3c54/crowdstrike-incident-banner-min-d9cfc0f4-2e22-469b-8a87-3fa8e37318e5.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-10-27T00:00:00-05:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Scan Terraform plans and changes with tfquery via SQL-powered framework" />
+<meta property="article:published_time" content="2024-07-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://mazin.s3.amazonaws.com/public/a75fb537-eaf4-402c-b70e-31ac172a3c54/crowdstrike-incident-banner-min-d9cfc0f4-2e22-469b-8a87-3fa8e37318e5.png" />
+<meta property="twitter:title" content="Engineering Learnings from the CrowdStrike Falcon Outage" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@mazinahmed" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2022-10-27T00:00:00-05:00","datePublished":"2022-10-27T00:00:00-05:00","description":"Scan Terraform plans and changes with tfquery via SQL-powered framework.","headline":"Scan Terraform plans and changes with tfquery via SQL-powered framework","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/tfplan-release/"},"url":"https://mazinahmed.net/blog/tfplan-release/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"mazinahmed"},"dateModified":"2024-07-26T00:00:00-05:00","datePublished":"2024-07-26T00:00:00-05:00","description":"Engineering Learnings from the CrowdStrike Falcon Outage","headline":"Engineering Learnings from the CrowdStrike Falcon Outage","image":"https://mazin.s3.amazonaws.com/public/a75fb537-eaf4-402c-b70e-31ac172a3c54/crowdstrike-incident-banner-min-d9cfc0f4-2e22-469b-8a87-3fa8e37318e5.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/"},"url":"https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -68,7 +70,7 @@
 <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
 
-    <link rel="canonical" href="https://mazinahmed.net/blog/tfplan-release/">
+    <link rel="canonical" href="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/">
     <link rel="alternate" type="application/rss+xml" title="" href="https://mazinahmed.net/feed.xml" />
 
     <style>
@@ -1501,15 +1503,15 @@ pre {
 
 
 
-<h1 class="title">Scan Terraform plans and changes with tfquery via SQL-powered framework</h1>
+<h1 class="title">Engineering Learnings from the CrowdStrike Falcon Outage</h1>
 
 <span class="date">
-    <time datetime="27-10-2022">Thursday. October 27, 2022</time>
+    <time datetime="26-07-2024">Friday. July 26, 2024</time>
      - <span class="reading-time" title="Estimated read time">
     
 
     
-        3 mins
+        10 mins
     
 </span>
 
@@ -1517,55 +1519,142 @@ pre {
 
 
 
-<p>New Release: tfquery now supports SQL queries for Terraform Plan Scanning</p>
+<hr />
 
-<h2><img src="/assets/static/3bceb92e-7fbb-422d-96b1-1c0f3b3e5405.png" alt="" /></h2>
+<p><img src="https://mazin.s3.amazonaws.com/public/a75fb537-eaf4-402c-b70e-31ac172a3c54/crowdstrike-incident-banner-min-d9cfc0f4-2e22-469b-8a87-3fa8e37318e5.png" alt="" /></p>
 
-<p>In case you’re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.</p>
+<h1 id="what-happened">What Happened?</h1>
 
-<p>Tfquery is a framework that allows running SQL queries on Terraform code. It’s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.</p>
+<p>On July 18, 2024, the world witnessed a global outage that disrupted major industries, including banking, airlines, healthcare, oil and gas, and governments. The outage was caused by a faulty software update by CrowdStrike that rendered Windows computers in a continuous BSOD (Blue Screen of Death).</p>
 
-<p>I developed it to solve an existing problem I’m facing: <strong>understanding large infrastructure quickly</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/times-square-crowdstrike-bsod-v0-06uchoze3kdd1.webp" alt="" /></p>
 
-<p><img src="/assets/static/3493b6fd-2b14-4d62-ba3b-ef787a0ab7a0.png" alt="" /></p>
+<p><em>(Banners of Time Square are showing Windows BSOD as a result of the CrowdStrike incident)</em></p>
 
-<p>Last year, I spoke at DEFCON about the risks of running Insecure Terraform environments and how attackers can make use of current Terraform Enterprise environments to compromise the entire infrastructure with normal employee access to Github.</p>
+<p>CrowdStrike agents are installed virtually everywhere. When this update happened, it negatively affected companies in a myriad of ways: some were forced to use paper, hundreds of thousands of medical devices were affected, putting people’s lives at risk, flights were canceled and delayed, some TV stations couldn’t air, and some banks couldn’t function.</p>
 
-<p>There was no patch or workaround released by HashiCorp to limit external providers or prevent local-exec data sources.</p>
+<p>This blog post focuses on engineering learnings from the CrowdStrike Falcon outage and reflects on how organizations can avoid this through engineering industry practices.</p>
 
-<p>Tfquery support was specific to tfstate. It was able to run SQL queries on the current Terraform workspace state - and also supports multi-workspaces when importing state files.</p>
+<p><img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/the-microsoft-crowdstrike-outage-has-taken-down-most-v0-ztpsv8xnofdd1.webp" alt="" /></p>
 
-<p>My plan is to add support for tfplan within tfquery to be able to scan Terraform plans and changes. This allows engineers to write Terraform misconfiguration checks as SQL queries.</p>
+<h1 id="what-is-this-post-about">What is this post about?</h1>
 
-<h3 id="semgrep-hcl-support-vs-tfquery">semgrep HCL support vs. tfquery</h3>
+<p>I will break down engineering practices and cultures that I have seen in my years of experience that, if implemented, would have prevented this incident.</p>
 
-<p>Semgrep announced in October 2021 the support for scanning HCL files. The challenge with semantic scanning of HCL code (a similar approach to what tfsec, checkov, and similar tools are doing) is that it’s limited to non-dynamic HCL code. Terraform is much more complex, and without having the final state of rendered infrastructure code, checks would not be as accurate as needed.</p>
+<p>Incidents happen very frequently in engineering organizations. We should promote engineering cultures where we take learnings of public incidents and use them as a lesson within organizations.</p>
 
-<p>Also, you may need to write a logic to make sure that findings are not alerted for a codebase already existing in your Terraform workspace. Otherwise, you would be blocking the CI pipeline where a member did not introduce any vulnerable code.</p>
+<p>The incident at CrowdStrike could have happened to virtually every organization globally (including other security vendors). I run a security startup myself on Attack Surface Management (FullHunt.io), and I know well that this kind of incident happens. The best take here is to reflect on your engineering culture and see how this could be prevented in the first place.</p>
 
-<h1 id="tfquery-approach-for-terraform-plan-scanning">tfquery approach for Terraform Plan scanning</h1>
+<p>YES - CrowdStrike could have prevented this incident and it should not have happened. Let’s just boldly state this fact.</p>
 
-<p>Whenever a PR is created for a Terraform change, you should be able to scan changes through tfquery.</p>
+<h1 id="background-how-did-this-incident-happen">Background: How did this incident happen?</h1>
 
-<p>You can now write SQL queries that are much more elegant to:</p>
+<p>The incident occurred due to pushing a global update on the CrowdStrike Falcon.</p>
 
-<ul>
-  <li>Check for providers if they do not match an allowed list.</li>
-  <li>Check for wildcard AWS Policies.</li>
-  <li>Check for new IAM users.</li>
-  <li>Check for an S3 bucket with versioning not being enabled.</li>
-  <li>etc.</li>
-</ul>
+<p>CrowdStrike released a sensor configuration update to Windows systems. This is a definition update that happens frequently in the background by endpoint security agents to enrich protected endpoints with new updates about rules, signatures, configurations, and instructions to detect anomalies and attacks.</p>
 
-<p><img src="/assets/static/85f15edc-dc7d-4a3c-90a6-5749298d6c3c.png" alt="" /></p>
+<p>CrowdStrike runs at the kernel-level, which makes potential updates more dangerous than they have to be - any error on the agent or the definitions could result in a system crash.</p>
 
-<p><img src="/assets/static/703f76c6-8f49-416a-8c7d-473be4e49f61.png" alt="" /></p>
+<p>According to CrowdStrike, which was also confirmed by researchers who reverse-engineered the update, CrowdStrike Falcon configuration updates introduced a change to a Channel File that controls how Falcon evaluates named pipe execution on Windows systems. The change was designed to block malicious named pipes used by common C2 (Command and Control) frameworks, which is actually a great goal. Name pipe execution is a novel evasion method, and CrowdStrike designed a rule to block malicious usage of named pipes.</p>
 
-<h3 id="try-tfquery-at-githubcommazen160tfquery">Try tfquery at <a href="https://github.com/mazen160/tfquery">github.com/mazen160/tfquery</a></h3>
+<p><img src="https://mazin.s3.amazonaws.com/public/f2c5d285-8334-40ce-bfbe-c42daf4c84df/diagram.png" alt="" /></p>
 
-<p>Find my DEFCON talk: <a href="https://mazinahmed.net/blog/attacking-terraform-environments/">mazinahmed.net/blog/attacking-terraform-environments</a></p>
+<p>However, the configuration update also introduced a logic error that resulted in an operating system crash. A call is made to access a memory address that does not exist from a kernel driver process. This introduces a BSOD (Blue Screen of Death) every time the CrowdStrike process is started.</p>
 
-<p>Thanks for reading!</p>
+<h1 id="engineering-cultures-are-important">Engineering Cultures are Important</h1>
+
+<p>Engineering cultures are important, especially for technology companies, especially when your product affects the lives of millions of people every day. At the end of the day, every engineer would like to “write code, ship code fast”, but does that mean it’s going to be reliable? Not always.</p>
+
+<p>Engineers from all levels of seniority make mistakes. Mistakes happen, often, and by everyone - we have to accept this fact. Humans make errors, AI introduces errors, and everything will eventually introduce errors at a certain point. That’s why there are standard engineering practices that need to be put in place, and that’s how you would prevent this error from reaching production.</p>
+
+<p>I will dive deeper into engineering cultures after sharing some examples I have seen and implemented in engineering organizations that could detect and prevent this CrowdStrike incident earlier in the development before it reached the production environment of millions of clients.</p>
+
+<h1 id="what-are-the-engineering-practises-crowdstrike-could-have-implemented">What are the Engineering Practises CrowdStrike could have implemented?</h1>
+
+<p>I’m writing these practices based on my experience, knowledge about the incident, and discussions with security engineering leaders about the CrowdStrike incident. While I do not have internal insights into how CrowdStrike maintains its Engineering program and Development Experience, we can safely assume that this is not implemented in a way that blocks faulty production releases, especially with the news that CrowdStrike had a very similar incident in April, where <a href="https://news.ycombinator.com/item?id=41018029">Debian and Rocky Linux builds where broken in production</a>.</p>
+
+<h2 id="end-to-end-tests">End-to-End Tests</h2>
+
+<p>While the CrowdStrike incident occurred due to the definition update, that does not mean that it can not be tested. If the code can be read or executed, it can be tested.</p>
+
+<p>End-to-end tests are standard development practices that could have prevented a change from happening.</p>
+
+<p>Test coverage is another practice based on end-to-end tests and test-driven development. With test coverage (also known as code coverage), you can make sure that the introduced change does not introduce logic errors. You can even write negative tests to make sure that logic functions under specific conditions.</p>
+
+<h2 id="integration-tests">Integration Tests</h2>
+
+<p>Integration tests are standard tests that should be ideally baked into the development cycle of definition updates. This works by deploying a disposable virtual machine with a CrowdStrike agent and then iterating through different malware, C2 implants, ransomware binaries, and regular software to see how the CrowdStrike agent with the latest definition update could react to it.</p>
+
+<p>This concept is being used everywhere, FullHunt.io implements it to monitor new vulnerability checks being introduced to our customers, and we’re a small and bootstrapped company. Financial institutions have dedicated teams that focus on integration tests, the aviation industry has been doing this for decades.</p>
+
+<h2 id="canary-builds-and-deployments">Canary Builds and Deployments</h2>
+
+<p>Canary deployments are a new concept that works as an additional layer to integration tests. Canary deployments run an additional layer of checks to see if the new release builds properly, and how it behaves once executed on a system, then wait for a period of time while running heavy observability to make sure that this change is not introducing critical errors. Canary deployments act as a gate to control releases from being pushed to production when an error or an issue is introduced.</p>
+
+<p>Canary deployments are not new; they have been an engineering practice for years. It takes time and effort to implement, but it’s not impossible to build.</p>
+
+<h1 id="engineering-culture-make-it-simple-to-write-quality-code">Engineering Culture: Make it simple to write quality code</h1>
+
+<p>As discussed earlier, humans make mistakes. Mistakes are inevitable, that’s why we build guardrails and controls to ensure mistakes do not reach production.</p>
+
+<h2 id="1-make-all-quality-checks-clear">1. Make all quality checks clear</h2>
+
+<p>Make all quality checks clear: all services, changes, and updates need to be written with automated end-to-end tests in mind. A Pull Request should never be merged without passing all checks. All engineering practices I have mentioned are automated and can be implemented today for any product or software.</p>
+
+<h2 id="2-gated-guardrails-make-it-hard-to-introduce-faulty-code">2. Gated Guardrails: Make it hard to introduce faulty code</h2>
+
+<p>This is not difficult; it’s an engineering culture practice.</p>
+
+<p>This is an engineering cultural matter, not a technical matter. Setting gated guardrails using current tools on GitHub and GitLab is pretty straightforward. You can set controls to block a definition or an agent update that does not function properly on a Windows machine. Code reviews should give an additional layer of confidence that introduced changes are safe to be merged.</p>
+
+<p>If the introduced change:</p>
+<ol>
+  <li>Includes and passes end-to-end tests with both positive and negative checks.</li>
+  <li>Includes integration tests that validate that the rules are running correctly on different support environments.</li>
+  <li>Includes canary builds that block releases from reaching production when a given update utilizes additional computing resources or fails wide open with a BSOD.</li>
+</ol>
+
+<p>Then this incident could have been much harder to introduce.</p>
+
+<h2 id="3-make-it-part-of-the-engineering-culture">3. Make it part of the engineering culture</h2>
+
+<p>Let’s face it, introducing tests on different levels can slow down builds and releases. Therefore, it may take significant engineering culture work to be introduced as normal within an organization.</p>
+
+<p>If a small startup needs to have this baked in place, it may not always be the best use of time and resources, unless they’re a small startup whose product is considered critical infrastructure. Also, if your company is producing a product that is used by hundreds of millions around the world, this is the minimum expectation.</p>
+
+<h2 id="4-make-it-elegant">4. Make it elegant</h2>
+
+<p>I have seen companies that invest time and effort into building this to be part of all engineering and development by making testing easy and streamlined.</p>
+
+<p>For example, abstracting all tests into GitHub Actions, Gitlab Runners, CircleCI, TravisCI, or similar CI pipelines, and then ensuring that all services have testing enabled is one way to start. A second step can be to introduce service scores on services and teams that implement these practices correctly. Gating updates are also simple and elegant today through branch protection on Github and Gitlab. Once these controls are gradually in place, it will slowly start to become part of the culture.</p>
+
+<p>Another example that reinforces this habit with engineers is making this part of the KPIs, bonus plans, and sending gifts and/or acknowledgements to team members that work on empowering these values.</p>
+
+<h2 id="5-do-not-make-it-hard">5. Do not make it hard</h2>
+
+<p>It’s the opposite of “Make it Clear” and “Make it Elegant”.</p>
+
+<p>Testing is important, but making it hard and time-consuming for people will result in an extremely bad developer experience and velocity.</p>
+
+<p>An example of this to avoid is having a dedicated team whose sole focus is testing new features developed by engineers, and having to approve every single pull request.</p>
+
+<p>With “Do not make it hard,” service owners should make sure that automated tests are in place, baked into the CI pipeline, and nearby and close to the developer’s eyes - on Github for example. If an engineer pushes a change, they should have a continuous feedback loop on whether this change can introduce breaking changes. This should be simple, and elegant, that’s all.</p>
+
+<p>If it’s hard for engineers to introduce changes, engineering and innovation will take a hit at first, followed by customers and users.</p>
+
+<h1 id="kernel-mode-vs-user-mode-architecture-for-endpoint-security">Kernel-Mode vs. User-Mode Architecture for Endpoint Security</h1>
+
+<p>My awesome friend, Matt Suiche, has written an excellent post here, <a href="https://www.msuiche.com/posts/bob-and-alice-in-kernel-land/">Bob and Alice in Kernel Land</a> (back story: I was introduced to kernel security architecture for the first time thanks to Matt!).</p>
+
+<p>The discussion on whether to run security software on Kernel-Mode vs. User-Mode depends on the software goal and decisions. Kernel-mode architecture provides additional access and faster detection. However, this will come at the cost of an extra security risk (a compromised security software on kernel mode can control everything on the machine), may introduce similar incidents, and will increase development and testing time.</p>
+
+<h1 id="thanks">Thanks</h1>
+
+<p>I would like to thank <a href="https://www.linkedin.com/in/ecoleenc/">E Coleen C</a>, <a href="https://www.linkedin.com/in/msuiche/">Matt Suiche</a>, and <a href="https://www.linkedin.com/in/morsyy/">Mohammed Morsy</a> for their great thoughts on this incident and about engineering learnings and lessons that we can take as a reflection.</p>
+
+<p>Best Regards,<br />
+Mazin Ahmed</p>
+
 
 
 
@@ -1585,26 +1674,6 @@ pre {
         
             
                 
-                    
-                    <h4>Related Posts</h4>
-                    <ul>
-                    
-                    <li class="relatedPost">
-                        <a href="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/">Engineering Learnings from the CrowdStrike Falcon Outage
-                        
-                        </a>
-                    </li>
-                    
-                    
-                
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -1618,23 +1687,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -1649,6 +1702,9 @@ pre {
             
                 
                     
+                    <h4>Related Posts</h4>
+                    <ul>
+                    
                     <li class="relatedPost">
                         <a href="https://mazinahmed.net/blog/secrets-patterns-db/">Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection
                         
@@ -1662,14 +1718,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -1678,23 +1726,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -1722,23 +1754,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -1766,7 +1782,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1782,7 +1798,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1798,55 +1814,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -1874,7 +1842,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1890,7 +1858,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1906,7 +1874,35 @@ pre {
             
                 
             
+        
+            
                 
+            
+                
+            
+                
+            
+        
+    
+        
+        
+            
+                
+                    
+                    <li class="relatedPost">
+                        <a href="https://mazinahmed.net/blog/tfplan-release/">Scan Terraform plans and changes with tfquery via SQL-powered framework
+                        
+                        </a>
+                    </li>
+                    
+                    
+                
+            
+                
+            
+                
+            
+        
             
                 
             
@@ -1922,7 +1918,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1938,14 +1934,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -1954,7 +1942,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1973,7 +1961,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -1989,7 +1977,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2005,71 +1993,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2088,7 +2012,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2104,7 +2028,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2120,55 +2044,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2187,7 +2063,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2203,7 +2079,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2219,14 +2095,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -2235,39 +2103,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2286,7 +2122,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2302,7 +2138,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2318,71 +2154,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2401,14 +2173,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -2417,71 +2181,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2500,14 +2200,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -2516,23 +2208,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2551,14 +2227,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -2567,23 +2235,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2602,14 +2254,9 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
+        
+    
+        
         
             
                 
@@ -2618,23 +2265,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2653,7 +2284,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2672,23 +2303,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2707,23 +2322,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2742,23 +2341,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2777,23 +2360,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2812,23 +2379,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2847,23 +2398,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2882,23 +2417,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2917,23 +2436,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -2952,14 +2455,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -2968,7 +2463,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -2987,14 +2482,9 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
+        
+    
+        
         
             
                 
@@ -3003,7 +2493,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -3022,39 +2512,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3073,7 +2531,18 @@ pre {
             
                 
             
+        
+    
+        
+        
+            
                 
+            
+                
+            
+                
+            
+        
             
                 
             
@@ -3092,23 +2561,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3127,23 +2580,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3162,7 +2599,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -3181,23 +2618,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3216,23 +2637,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3251,23 +2656,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3286,23 +2675,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3321,7 +2694,10 @@ pre {
             
                 
             
-                
+        
+    
+        
+        
             
                 
             
@@ -3337,7 +2713,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -3356,14 +2732,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
             
                 
@@ -3372,7 +2740,7 @@ pre {
             
                 
             
-                
+        
             
                 
             
@@ -3391,23 +2759,7 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3426,23 +2778,10 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
-            
-                
-            
-                
-            
-                
-            
-                
+    
+        
+        
             
                 
             
@@ -3461,14 +2800,6 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
         
     
         
@@ -3480,220 +2811,10 @@ pre {
             
                 
             
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
         
     
         
         
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-    
-        
-        
-            
-                
-            
-                
-            
-                
-            
-                
             
                 
             
@@ -3723,7 +2844,7 @@ pre {
         <div class="share">
             <!-- Note: Only use three share links if your site width is set to large -->
             <!-- If site width is set to normal, you may choose any two share links -->
-            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/tfplan-release/ - Scan Terraform plans and changes with tfquery via SQL-powered framework by @mazen160">
+            <a class="twitter" href="https://twitter.com/intent/tweet?text=https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/ - Engineering Learnings from the CrowdStrike Falcon Outage by @mazen160">
                 <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg><span class="icon-twitter">Tweet</span>
             </a>
 
@@ -3731,15 +2852,15 @@ pre {
                 <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg><span class="icon-facebook-rect">Share</span>
             </a>
 
-            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/tfplan-release/" target="_blank">
+            <!-- <a class="google-plus" href="https://plus.google.com/share?url=https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/" target="_blank">
                 <svg class="icon icon-google-plus"><use xlink:href="#icon-google-plus"></use></svg><span class="icon-google-plus">Share</span>
             </a> -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework&amp;summary=Scan Terraform plans and changes with tfquery via SQL-powered framework.&amp;source=https://mazinahmed.net" target="_blank">
+            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/&amp;title=Engineering Learnings from the CrowdStrike Falcon Outage&amp;summary=Engineering Learnings from the CrowdStrike Falcon Outage&amp;source=https://mazinahmed.net" target="_blank">
                 <svg class="icon icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg><span class="icon-linkedin">Share</span>
             </a> -->
 
-            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/tfplan-release/&amp;title=Scan Terraform plans and changes with tfquery via SQL-powered framework" target="_blank">
+            <!-- <a class="reddit" href="https://reddit.com/submit?url=https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/&amp;title=Engineering Learnings from the CrowdStrike Falcon Outage" target="_blank">
                 <svg class="icon icon-reddit"><use xlink:href="#icon-reddit"></use></svg><span class="icon-reddit">Share</span>
             </a> -->
         </div>
