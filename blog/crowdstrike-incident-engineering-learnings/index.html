@@ -1648,9 +1648,13 @@ pre {
 
 <p>The discussion on whether to run security software on Kernel-Mode vs. User-Mode depends on the software goal and decisions. Kernel-mode architecture provides additional access and faster detection. However, this will come at the cost of an extra security risk (a compromised security software on kernel mode can control everything on the machine), may introduce similar incidents, and will increase development and testing time.</p>
 
+<h1 id="automatically-disabling-the-kernel-component-on-recurring-bsod-events">Automatically disabling the kernel component on recurring BSOD events</h1>
+
+<p><a href="https://www.linkedin.com/in/naveedhamid/">Naveed Hamid</a> shared an excellent idea that the CrowdStrike Falcon should have a capability to disable kernel-based access on a subsequent reboot when Kernel-based bugs occur and causes a BSOD. This concept allows a room for CrowdStrike and its partners to have a stable environments to resolve the incidents. Kernel-based changes can cause BSOD (Blue Screen of Death). It is possible to identify recurring BSOD events. In cases where the machine lands on safe-mood, the architecture can also be designed to disable kernel-level component and run safely on the user-level. FortiEDR has implemented this concept – here is a longer read about the approach <a href="https://community.fortinet.com/t5/Blogs/FortiEDR-s-software-and-content-update-release-process/ba-p/327255">link</a>.</p>
+
 <h1 id="thanks">Thanks</h1>
 
-<p>I would like to thank <a href="https://www.linkedin.com/in/ecoleenc/">E Coleen C</a>, <a href="https://www.linkedin.com/in/msuiche/">Matt Suiche</a>, and <a href="https://www.linkedin.com/in/morsyy/">Mohammed Morsy</a> for their great thoughts on this incident and about engineering learnings and lessons that we can take as a reflection.</p>
+<p>I would like to thank <a href="https://www.linkedin.com/in/ecoleenc/">E Coleen C</a>, <a href="https://www.linkedin.com/in/naveedhamid/">Naveed Hamid</a>, <a href="https://www.linkedin.com/in/msuiche/">Matt Suiche</a>, and <a href="https://www.linkedin.com/in/morsyy/">Mohammed Morsy</a> for their great thoughts on this incident and about engineering learnings and lessons that we can take as a reflection.</p>
 
 <p>Best Regards,<br />
 Mazin Ahmed</p>
