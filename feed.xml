@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2025-01-06T09:47:01-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Application and Infrastructure Security Engineering</subtitle><entry><title type="html">Engineering Learnings from the CrowdStrike Falcon Outage</title><link href="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/" rel="alternate" type="text/html" title="Engineering Learnings from the CrowdStrike Falcon Outage" /><published>2024-07-26T00:00:00-05:00</published><updated>2024-07-26T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings</id><content type="html" xml:base="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2025-01-13T12:21:31-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Application and Infrastructure Security Engineering</subtitle><entry><title type="html">Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates</title><link href="https://mazinahmed.net/blog/llmquery-project/" rel="alternate" type="text/html" title="Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates" /><published>2025-01-13T00:00:00-06:00</published><updated>2025-01-13T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/llmquery-project</id><content type="html" xml:base="https://mazinahmed.net/blog/llmquery-project/"><![CDATA[<hr />
+
+<p><img src="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" alt="" /></p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" alt="llmquery logo" />
+</p>
+
+<p>Large Language Models have completely changed how we automate, create, and solve problems.</p>
+
+<p>Integrating and experimenting these models with different providers, along with optimizing LLM Prompts and benchmarking them with available providers can feel overwhelming. That’s why I’m excited to introduce llmquery, a project I’ve started this year to make interacting with Large Language Models and prototyping new GenAI-powered applications simpler, faster, and more scalable.</p>
+
+<p>Llmquery is all about making it easier to prototype new applications and use cases. It just starts with writing a single YAML template (or using one of the built-in YAML templates available) where the YAML template handles all the overhead of integrating with commercial and local providers, helping with validating models, calculating tokens, setting limits, rendering templates, and other checks.</p>
+
+<p>Imagine this: I want to scale LLMQuery to be a singular framework for engineering teams to prototype applications. Every new application, SOP, or process can be simplified in a YAML template, and you can reference a template ID to execute a template with all validations out-of-the-box. I see this as writing 1 YAML template being equivalent to developing 1 AI Application use case.</p>
+
+<p>For example, let’s say you would like to build a Pull Request Code Review AI application. You can use the built-in YAML template (pr-review-feedback) to get constructive feedback about your Pull Request in a parsable format (eg. JSON).</p>
+
+<p>Another use case I automated is running SAST security scanning with AI through LLMQuery. The template is called <code class="language-plaintext highlighter-rouge">detect-security-vulnerabilities1</code> and you can find it in the templates library.</p>
+
+<p>Here is how the results look like:</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/mazen160/public/refs/heads/master/static/images/llmquery-example-code-security-1.png" alt="llmquery logo" />
+</p>
+
+<h3 id="why-i-built-llmquery"><strong>Why I Built llmquery</strong></h3>
+
+<p>As an engineer who always experiments new automation approaches, whenever I use LLMs in my projects, I run into the same problems over and over: managing prompts, dealing with different providers, hitting token limits, and getting inconsistent outputs. I also had to repeat myself on every experiment, where I would rewrite the integration and tests again. I wanted a solution that could handle all these issues without adding extra overhead. That’s how llmquery came to reality.</p>
+
+<p>llmquery can do:</p>
+
+<ul>
+  <li><strong>Works with Multiple Providers</strong>: OpenAI, Anthropic, Google Gemini, and Ollama are all supported.</li>
+  <li>Has extensible built-in templates: llmquery comes with a templates library of well-tested production LLM Prompts that can be integrated for various use-cases, including Application Security, AI Security, Code Quality, and general use cases.</li>
+  <li><strong>Dynamic YAML Templates</strong>: You can create prompts once and reuse them for different tasks by just swapping out variables.</li>
+  <li><strong>Built-In Validation</strong>: It sets client-side token limits, preventing limits and cost errors, and catches other common issues upfront.</li>
+  <li><strong>Developer-Friendly</strong>: Whether you prefer Python or a CLI, llmquery fits into your workflow.</li>
+</ul>
+
+<h3 id="how-it-works"><strong>How It Works</strong></h3>
+
+<p>At its core, llmquery uses YAML templates to define prompts. These templates make it easy to customize queries while keeping them organized and reusable.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="n">code</span> <span class="o">=</span> <span class="s">"""
+def index
+ @users = User.where("name LIKE '%#{params[:search]}%'") if params[:search].present?
+ @users ||= User.all
+end
+"""</span>
+
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">LLMQuery</span><span class="p">(</span>
+   <span class="n">provider</span><span class="o">=</span><span class="s">"ANTHROPIC"</span><span class="p">,</span>
+   <span class="n">templates_path</span><span class="o">=</span><span class="n">llmquery</span><span class="p">.</span><span class="n">TEMPLATES_PATH</span><span class="p">,</span>
+   <span class="n">template_id</span><span class="o">=</span><span class="s">"detect-security-vulnerabilities"</span>
+   <span class="n">variables</span><span class="o">=</span><span class="p">{</span><span class="s">"code"</span><span class="p">:</span> <span class="n">code</span><span class="p">},</span>
+   <span class="n">anthropic_api_key</span><span class="o">=</span><span class="s">"your-api-key"</span><span class="p">,</span>
+   <span class="n">model</span><span class="o">=</span><span class="s">"claude-3-5-sonnet-latest"</span>
+<span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">query</span><span class="p">.</span><span class="n">Query</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>You can view the template from here: 
+<a href="https://github.com/mazen160/llmquery/tree/main/llmquery-templates">https://github.com/mazen160/llmquery/tree/main/llmquery-templates</a></p>
+
+<p>The API documentation is available here: <a href="https://github.com/mazen160/llmquery/blob/master/docs/api-reference.md">https://github.com/mazen160/llmquery/blob/master/docs/api-reference.md</a></p>
+
+<h3 id="what-can-you-use-llmquery-for"><strong>What Can You Use llmquery For?</strong></h3>
+
+<p>There are so many ways to use llmquery, but here are a few examples to get you started:</p>
+
+<ol>
+  <li><strong>Code Analysis</strong>: Automate security reviews or find bugs with structured prompts.</li>
+  <li><strong>Security Scanning:</strong> Use LLMQuery’s templates to scan for security vulnerabilities, identify code secrets, and classify PII data in unstructured formats.</li>
+  <li><strong>Data Analysis:</strong> Build automation and workflows for analyzing data with LLMs, and experiment results within different providers and models.</li>
+  <li><strong>AI Security:</strong> Use available templates to build security defenses against AI attacks, such as Prompt Injection.</li>
+  <li><strong>PR Summaries</strong>: Generate quick, clear summaries for pull request changes.</li>
+  <li><strong>Content Creation</strong>: Write marketing copy, technical documentation, or anything else you need.</li>
+  <li><strong>Translations</strong>: Build workflows that support multiple languages with ease.</li>
+</ol>
+
+<h3 id="lets-build-together"><strong>Let’s Build Together!</strong></h3>
+
+<p>llmquery is open source. If you’ve got ideas for new features, templates, or providers, I’d love to hear from you. Check out the GitHub repository to contribute or give feedback.</p>
+
+<p>This is just the beginning. I’m looking forward to seeing how you use llmquery to build amazing things. Let’s make working with LLMs simpler and more accessible for everyone.</p>
+
+<h2 id="github-repository-githubcommazen160llmquery">Github Repository: <a href="https://github.com/mazen160/llmquery">github.com/mazen160/llmquery</a></h2>
+
+<p>Best Regards,<br />
+Mazin Ahmed</p>]]></content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="research" /><category term="project" /><summary type="html"><![CDATA[Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" /><media:content medium="image" url="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Engineering Learnings from the CrowdStrike Falcon Outage</title><link href="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/" rel="alternate" type="text/html" title="Engineering Learnings from the CrowdStrike Falcon Outage" /><published>2024-07-26T00:00:00-05:00</published><updated>2024-07-26T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings</id><content type="html" xml:base="https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/"><![CDATA[<hr />
 
 <p><img src="https://mazin.s3.amazonaws.com/public/0dfa779e-5cee-4bb8-9906-18c8a0cbf34f/crowdstrike-incident-banner-min-2-1622d2d5-c8b3-426a-9bc6-9c5468f8501f.png" alt="" /></p>
 
@@ -1676,18 +1770,4 @@ I will also cover detection and prevention methods for each attack vector discus
 
 <h3 id="listen-on-spotify"><a href="https://open.spotify.com/episode/0bojnJd6kyBOomojMFXKgX?si=d394stezSfWAfsSwy3MKNA">Listen on Spotify</a></h3>
 
-<h3 id="listen-on-apple-podcast"><a href="https://podcasts.apple.com/us/podcast/mazin-ahmed-terraform-security/id1154351685?i=1000537757479">Listen on Apple Podcast</a></h3>]]></content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="interview" /><category term="podcast" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"><![CDATA[Interview with the AppSec PodCast: We discussed Terraform, its security, and threat modeling Terraform approaches on your organization.]]></summary></entry><entry><title type="html">tfquery: Run SQL queries on your Terraform infrastructure</title><link href="https://mazinahmed.net/blog/tfquery-project-release/" rel="alternate" type="text/html" title="tfquery: Run SQL queries on your Terraform infrastructure" /><published>2021-04-28T00:00:00-05:00</published><updated>2021-04-28T00:00:00-05:00</updated><id>https://mazinahmed.net/blog/tfquery-project-release</id><content type="html" xml:base="https://mazinahmed.net/blog/tfquery-project-release/"><![CDATA[<hr />
-
-<p><img src="/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png" alt="" /></p>
-
-<p>Have you ever tried analyzing the Terraform environment with thousands of cloud resources for security and DevOps? It used to be hard, until now!</p>
-
-<p>I’m open-sourcing my newest project, tfquery: a framework that allows running SQL queries on Terraform code. It saved me dozens of hours in analysis.</p>
-
-<p>Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing their configuration using a SQL-powered framework.</p>
-
-<p>I built it from a real-world problem where I needed to understand an extremely large Terraform environment. It has been beneficial in making work easier.</p>
-
-<p>This is a starting point for an awesome project. Feel free to read more at the Github repository.</p>
-
-<h3 id="github-repository-httpsgithubcommazen160tfquery">Github Repository: <a href="https://github.com/mazen160/tfquery">https://github.com/mazen160/tfquery</a></h3>]]></content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="project" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"><![CDATA[Have you ever tried analyzing the Terraform environment with thousands of cloud resources for security and DevOps? It's used to be hard, until now!]]></summary></entry></feed>
+<h3 id="listen-on-apple-podcast"><a href="https://podcasts.apple.com/us/podcast/mazin-ahmed-terraform-security/id1154351685?i=1000537757479">Listen on Apple Podcast</a></h3>]]></content><author><name>mazinahmed</name></author><category term="blog" /><category term="blog" /><category term="interview" /><category term="podcast" /><category term="terraform" /><category term="devops" /><category term="devsecops" /><category term="cloudsecurity" /><summary type="html"><![CDATA[Interview with the AppSec PodCast: We discussed Terraform, its security, and threat modeling Terraform approaches on your organization.]]></summary></entry></feed>
