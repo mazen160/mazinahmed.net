@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2025-01-13T12:28:27-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Application and Infrastructure Security Engineering</subtitle><entry><title type="html">Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates</title><link href="https://mazinahmed.net/blog/llmquery-project/" rel="alternate" type="text/html" title="Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates" /><published>2025-01-13T00:00:00-06:00</published><updated>2025-01-13T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/llmquery-project</id><content type="html" xml:base="https://mazinahmed.net/blog/llmquery-project/"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mazinahmed.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mazinahmed.net/" rel="alternate" type="text/html" /><updated>2025-01-13T12:47:45-06:00</updated><id>https://mazinahmed.net/feed.xml</id><title type="html">Mazin Ahmed</title><subtitle>Application and Infrastructure Security Engineering</subtitle><entry><title type="html">Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates</title><link href="https://mazinahmed.net/blog/llmquery-project/" rel="alternate" type="text/html" title="Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates" /><published>2025-01-13T00:00:00-06:00</published><updated>2025-01-13T00:00:00-06:00</updated><id>https://mazinahmed.net/blog/llmquery-project</id><content type="html" xml:base="https://mazinahmed.net/blog/llmquery-project/"><![CDATA[<hr />
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" alt="llmquery logo" />
@@ -63,9 +63,9 @@ end
 </code></pre></div></div>
 
 <p>You can view the template from here: 
-<a href="https://github.com/mazen160/llmquery/tree/main/llmquery-templates">https://github.com/mazen160/llmquery/tree/main/llmquery-templates</a></p>
+<a href="https://github.com/mazen160/llmquery/tree/main/llmquery-templates">llmquery-templates library</a></p>
 
-<p>The API documentation is available here: <a href="https://github.com/mazen160/llmquery/blob/master/docs/api-reference.md">https://github.com/mazen160/llmquery/blob/master/docs/api-reference.md</a></p>
+<p>The API documentation is available here: <a href="https://github.com/mazen160/llmquery/blob/master/docs/api-reference.md">api-reference.md</a></p>
 
 <h3 id="what-can-you-use-llmquery-for"><strong>What Can You Use llmquery For?</strong></h3>
 
