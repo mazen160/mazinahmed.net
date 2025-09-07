@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Mazin Ahmed</title><link>https://mazinahmed.net/posts/</link><description>Recent content in Posts on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/6ea2bdf1-1f8f-44c8-a164-714f9dbe5db5/Preventing%20Prompt%20Injection%20Attacks%20at%20Scale.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Prompt injection attacks are one of the most common LLM security threats we have all seen while reviewing LLM implementations, integrations, and AI-powered systems.&lt;/p&gt;
+&lt;p&gt;I have identified Prompt Injection attacks in numerous implementations and applications, and I’ve decided to write a blog post to recommend different methodologies I experimented with that can prevent prompt injection at scale.&lt;/p&gt;
+&lt;p&gt;I will also share a LangChain Prompt Injection attack vector, vulnerabilities in example MCP implementations, and practical ways to prevent prompt injection attacks.&lt;/p&gt;</description></item><item><title>Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates</title><link>https://mazinahmed.net/blog/llmquery-project/</link><pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/llmquery-project/</guid><description>&lt;hr&gt;
+&lt;p align="center"&gt;
+ &lt;img src="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" alt="llmquery logo"&gt;
+&lt;/p&gt;
+&lt;p&gt;Large Language Models have completely changed how we automate, create, and solve problems.&lt;/p&gt;
+&lt;p&gt;Integrating and experimenting these models with different providers, along with optimizing LLM Prompts and benchmarking them with available providers can feel overwhelming. That’s why I’m excited to introduce llmquery, a project I’ve started this year to make interacting with Large Language Models and prototyping new GenAI-powered applications simpler, faster, and more scalable.&lt;/p&gt;
+&lt;p&gt;Llmquery is all about making it easier to prototype new applications and use cases. It just starts with writing a single YAML template (or using one of the built-in YAML templates available) where the YAML template handles all the overhead of integrating with commercial and local providers, helping with validating models, calculating tokens, setting limits, rendering templates, and other checks.&lt;/p&gt;</description></item><item><title>Engineering Learnings from the CrowdStrike Falcon Outage</title><link>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/</link><pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/0dfa779e-5cee-4bb8-9906-18c8a0cbf34f/crowdstrike-incident-banner-min-2-1622d2d5-c8b3-426a-9bc6-9c5468f8501f.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="what-happened" class="relative group"&gt;What Happened? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-happened" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;On July 18, 2024, the world witnessed a global outage that disrupted major industries, including banking, airlines, healthcare, oil and gas, and governments. The outage was caused by a faulty software update by CrowdStrike that rendered Windows computers in a continuous BSOD (Blue Screen of Death).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/times-square-crowdstrike-bsod-v0-06uchoze3kdd1.webp" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Banners of Time Square are showing Windows BSOD as a result of the CrowdStrike incident)&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection</title><link>https://mazinahmed.net/blog/secrets-patterns-db/</link><pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/secrets-patterns-db/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Ensuring the security of your organization&amp;rsquo;s sensitive information is critical for any security team, and detecting secrets within your AppSec program is crucial to this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.&lt;/p&gt;</description></item><item><title>Speaking at BlakcHat MEA 2022</title><link>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/</link><pubDate>Mon, 05 Dec 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/0e8d0273-9732-4eeb-9c93-65d03a686da1.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Riyadh, Saudi Arabia, recently hosted BlackHat MEA (Middle East &amp;amp; Africa), the largest security conference in the Middle East and Africa region.&lt;/p&gt;
+&lt;p&gt;BlackHat MEA featured various events, including an Executive Summit, Technical tracks, a Drone Hacking village, a Car Hacking village, a live Tesla hacking event, and a startup competition.&lt;/p&gt;
+&lt;h2 id="my-talk" class="relative group"&gt;My Talk &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#my-talk" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;I have had the opportunity to speak this year at BlackHat, where I presented my latest research, &amp;ldquo;Demystifying Practical DDoS Attacks&amp;rdquo;.&lt;/p&gt;</description></item><item><title>DoS Attacks are Dead: Demystifying Practical DoS Attacks</title><link>https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/</link><pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I recently spoke at BlackHat MEA 2022, the largest security conference in the Middle East and Africa region. My talk, titled &amp;ldquo;Demystifying Practical DDoS Attacks&amp;rdquo;, focused on the increasing threat of DoS attacks and the need for improved defense solutions and to practically validate current DDoS prevention solutions.&lt;/p&gt;
+&lt;p&gt;In my presentation, I shared my research on practical DoS attacks, including recent Application-Level DoS attacks and evasion techniques. I also discussed the discovery of unique DoS vectors in modern APIs and demonstrated how to simulate the most significant Layer 7 DDoS attack that Google Cloud experienced in August 2022.&lt;/p&gt;</description></item><item><title>Shennina Framework - Automating Host Exploitation with AI</title><link>https://mazinahmed.net/blog/shennina-exploitation-framework/</link><pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/shennina-exploitation-framework/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/0e77a1c3-5aa9-4683-9dc6-4b83d221b5ca.png" alt="Banner" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In 2019, &lt;a href="https://www.linkedin.com/in/khaledfarah/" target="_blank" rel="noreferrer"&gt;Khaled Farah&lt;/a&gt; and I participated in a security competition for developing offensive security tools.&lt;/p&gt;
+&lt;p&gt;I enjoy building security tools, and this competition was funded by HITB (Hack-in-the-Box) with a reward of $100,000 for the winners. It would be an exciting challenge to work on as a side project.&lt;/p&gt;
+&lt;p&gt;I met my friend, Khalid, he was also interested in winning this competition. We signed up, and once accepted, we started meeting regularly to build this project.&lt;/p&gt;</description></item><item><title>Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link>https://mazinahmed.net/blog/tfplan-release/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/tfplan-release/</guid><description>&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+&lt;h2 id="" class="relative group"&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/3bceb92e-7fbb-422d-96b1-1c0f3b3e5405.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+ &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;In case you&amp;rsquo;re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.&lt;/p&gt;
+&lt;p&gt;Tfquery is a framework that allows running SQL queries on Terraform code. It&amp;rsquo;s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.&lt;/p&gt;</description></item><item><title>Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/</link><pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/</guid><description>&lt;h2 id="" class="relative group"&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/142c86db-2f34-4d6a-86fb-da11da640ed5.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+ &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;How was Twitch hacked? What security controls did Twitch build?&lt;/p&gt;
+&lt;p&gt;The Twitch breach revealed more than 120 internal security tools developed by the Twitch Security team.&lt;/p&gt;
+&lt;p&gt;I analyzed all the leaked security tools that were developed by Twitch Security. Check out the full research.&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted to live-streaming from home.&lt;/p&gt;</description></item><item><title>Attacking Modern Environments Series: Attack Vectors on Terraform Environments</title><link>https://mazinahmed.net/blog/attacking-terraform-environments/</link><pubDate>Sat, 29 Jan 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/attacking-terraform-environments/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have given a talk about my latest research, &amp;ldquo;Attack Vectors on Terraform Environments&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id="about-the-talk" class="relative group"&gt;About the talk &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#about-the-talk" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Have you ever encountered an environment in an engagement that uses Terraform for IAAC (infrastructure-as-code) management?
+Almost every modern company does now.&lt;/p&gt;
+&lt;p&gt;In this talk, I will share techniques and attack vectors to exploit and compromise Terraform environments in engagements and patterns that I have seen that achieve successful infrastructure takeover against companies.
+I will also cover detection and prevention methods for each attack vector discussed in my talk.&lt;/p&gt;</description></item><item><title>Interview With the AppSec Podcast: Terraform Security</title><link>https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/</link><pubDate>Sun, 17 Oct 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/interview-with-appsec-podcast-terraform-security/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/dd31ccbf-b8e2-4d56-9c5b-ae3a2d2bd65a.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I interviewed with the AppSec Podcast to talk about IAC and Terraform. We discussed Terraform, why IAAC is important to your organization, technical risks brought when running Terraform on your environment, and a few discussions related to my &lt;a href="https://www.youtube.com/watch?v=d4V75rrVrL4" target="_blank" rel="noreferrer"&gt;DEFCON talk about Attack Vectors on Terraform Environments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/81b656d7-20eb-41c9-9fd1-0338125186a6.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/jdh-yHKLAWU" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h2 id="listen-to-the-podcast" class="relative group"&gt;Listen to the Podcast &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#listen-to-the-podcast" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;h3 id="watch-on-youtube" class="relative group"&gt;&lt;a href="https://www.youtube.com/watch?v=jdh-yHKLAWU" target="_blank" rel="noreferrer"&gt;Watch on Youtube&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#watch-on-youtube" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 id="listen-on-spotify" class="relative group"&gt;&lt;a href="https://open.spotify.com/episode/0bojnJd6kyBOomojMFXKgX?si=d394stezSfWAfsSwy3MKNA" target="_blank" rel="noreferrer"&gt;Listen on Spotify&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#listen-on-spotify" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 id="listen-on-apple-podcast" class="relative group"&gt;&lt;a href="https://podcasts.apple.com/us/podcast/mazin-ahmed-terraform-security/id1154351685?i=1000537757479" target="_blank" rel="noreferrer"&gt;Listen on Apple Podcast&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#listen-on-apple-podcast" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;</description></item><item><title>tfquery: Run SQL queries on your Terraform infrastructure</title><link>https://mazinahmed.net/blog/tfquery-project-release/</link><pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/tfquery-project-release/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Have you ever tried analyzing the Terraform environment with thousands of cloud resources for security and DevOps? It used to be hard, until now!&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m open-sourcing my newest project, tfquery: a framework that allows running SQL queries on Terraform code. It saved me dozens of hours in analysis.&lt;/p&gt;
+&lt;p&gt;Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing their configuration using a SQL-powered framework.&lt;/p&gt;</description></item><item><title>DDoS is not Dead: Building a Scalable DDoS Framework</title><link>https://mazinahmed.net/blog/stressful-ddos-framework/</link><pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/stressful-ddos-framework/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I&amp;rsquo;m releasing my latest project, &lt;a href="https://stressful.io" target="_blank" rel="noreferrer"&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a genuine concern that must be put on the organization&amp;rsquo;s radar, not on a postmortem after an attack.&lt;/p&gt;</description></item><item><title>Interview with Sectastic Podcast: How I started, What is FullHunt, and How are Security Startups in the GCC Region</title><link>https://mazinahmed.net/blog/interview-with-sectastic-podcast/</link><pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/interview-with-sectastic-podcast/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/739a0909-9cc2-47d1-896d-2c727121881f.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I did an interview with &lt;a href="https://www.linkedin.com/in/miladca/" target="_blank" rel="noreferrer"&gt;Milad Aslaner&lt;/a&gt; about how I started in cyber security, what I have been building at FullHunt, the concept of assets discovery and continuous security, and how I started on of the first cyber security startups in the GCC region.&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/qJjERXwM5wo" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;h3 id="watch-on-youtube" class="relative group"&gt;&lt;a href="https://www.youtube.com/watch?v=qJjERXwM5wo" target="_blank" rel="noreferrer"&gt;Watch on YouTube&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#watch-on-youtube" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 id="listen-on-spotify" class="relative group"&gt;&lt;a href="https://open.spotify.com/episode/5wFfNabozVKdwNfVpMNTm3" target="_blank" rel="noreferrer"&gt;Listen on Spotify&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#listen-on-spotify" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;</description></item><item><title>Hacking Zoom: Uncovering Tales of Security Vulnerabilities in Zoom</title><link>https://mazinahmed.net/blog/hacking-zoom/</link><pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/hacking-zoom/</guid><description>&lt;hr&gt;
+&lt;h1 id="hacking-zoom" class="relative group"&gt;Hacking Zoom &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#hacking-zoom" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;h2 id="uncovering-tales-of-security-vulnerabilities-in-zoom" class="relative group"&gt;Uncovering Tales of Security Vulnerabilities in Zoom &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#uncovering-tales-of-security-vulnerabilities-in-zoom" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;This blog post discusses my experiments in testing and hacking Zoom.&lt;/p&gt;
+&lt;p&gt;Zoom has become one of the most high-performing tech companies of 2020. Zoom is a digital video conferencing software that went public in IPO last year&lt;a href="https://www.cnbc.com/2019/04/18/zoom-ipo-stock-begins-trading-on-nasdaq.html" target="_blank" rel="noreferrer"&gt;1&lt;/a&gt;, a few months before the global pandemic.&lt;/p&gt;</description></item><item><title>Bad Marketing: COVID-19 and Cyber Security</title><link>https://mazinahmed.net/blog/covid19-and-cybersecurity/</link><pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/covid19-and-cybersecurity/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/930cf461-8dc4-4a43-9f98-3519cdda7004.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Cyber Security, as well as many industries, is trying to use COVID-19 for marketing purposes. As sad as it sounds, it&amp;rsquo;s true.&lt;/p&gt;
+&lt;p&gt;COVID-19-themed attacks by threat actors are actual. However, this has been familiar to the security world. We have always seen APTs utilizing global (and local) events and situations to their benefit. Threat Intelligence is the way to understand and protect against these attacks quickly.&lt;/p&gt;</description></item><item><title>The Path for Testing Path Traversal Vulnerabilities with Python</title><link>https://mazinahmed.net/blog/testing-for-path-traversal-with-python/</link><pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/testing-for-path-traversal-with-python/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have noticed an odd behavior in the &lt;code&gt;requests&lt;/code&gt; module in Python, which uses urllib3. I inspected the root cause via regression testing, and I found that the root cause was a change introduced in urllib3.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; requests
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;requests&lt;span style="color:#f92672"&gt;.&lt;/span&gt;get(&lt;span style="color:#e6db74"&gt;&amp;#34;http://127.0.0.1/../../../../doing/certain/check&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Which should typically send the request to the following path: &lt;code&gt;/../../../doing/certain/check&lt;/code&gt;. Instead, it requests &lt;code&gt;/doing/certain/check&lt;/code&gt; and modifies the specified input.&lt;/p&gt;
+&lt;p&gt;The reason is dot segments escaping, following RFC3986.&lt;/p&gt;
+&lt;p&gt;The change to normalize URIs was introduced in this commit[1] to follow RFC3986[2]. The change is based on the &amp;ldquo;Remove Dot Segments&amp;rdquo; at the RFC.&lt;/p&gt;</description></item><item><title>OhMyZsh dotenv Remote Code Execution</title><link>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/</link><pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/ohmyzsh-dotenv-rce/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/91389496-77d3-4dbe-941b-180403841f58.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;OhMyZsh was vulnerable to an RCE (Remote Code Execution) vulnerability due to arbitrarily trusting ENV files at the dotenv plugin. Users downloading a malicious repository or a compressed file can have their machines compromised due to the vulnerability.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;OhMyZsh&lt;/strong&gt; is a highly popular framework for managing ZSH configuration. When writing, it&amp;rsquo;s ranked in the top 10 Github repositories across all projects.&lt;/p&gt;</description></item><item><title>Book Review: WASEC By Alessandro Nadalin</title><link>https://mazinahmed.net/blog/wasec-book-review/</link><pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/wasec-book-review/</guid><description>&lt;img src="https://mazinahmed.net/uploads/assets/static/ae2ef466-b717-4a53-8a79-e2dafdf54faf.jpeg" style="margin: 0 auto;display: block;"&gt;
+&lt;p&gt;This blog post reviews the WASEC (Web Application Security for the Everyday Software Engineer) book by Alessandro Nadalin.&lt;/p&gt;
+&lt;p&gt;First, I have worked with Alessandro to build the security program for Namshi (an Emaar-acquired company in Dubai, United Arab Emirates). It was an excellent experience with great talents I had the chance to work with. Alessandro was the CTO of Namshi, with a high record of achievements in the tech industry. Visit &lt;a href="https://odino.org" target="_blank" rel="noreferrer"&gt;Alessandro&amp;rsquo;s website&lt;/a&gt; or &lt;a href="https://tech.namshi.io/" target="_blank" rel="noreferrer"&gt;Namshi blog&lt;/a&gt; to read more.&lt;/p&gt;</description></item><item><title>Practical Approaches for Testing and Breaking JWT Authentication</title><link>https://mazinahmed.net/blog/breaking-jwt/</link><pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/breaking-jwt/</guid><description>&lt;hr&gt;
+&lt;h1 id="introduction" class="relative group"&gt;Introduction &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;JWT (JSON Web Token) is a popular authentication/authorization protocol. It integrates cryptographic signatures into JSON objects to verify the object&amp;rsquo;s integrity.&lt;/p&gt;
+&lt;p&gt;The approach of JWT is systematic and relatively simple. Several pieces of research covered the security aspects of JWT authentication.&lt;/p&gt;
+&lt;p&gt;Several tools were also previously developed. However, after assessing the quality of the public tools, I concluded that we need better tools to perform testing against JWT. I have developed a set of scripts I call &amp;ldquo;jwt-pwn&amp;rdquo; that aims to test JWT authentication with stability, simplicity, and efficiency in mind. The script set is straightforward, integrating directly with the JWT Python library.&lt;/p&gt;</description></item><item><title>[Research] Overview of the Application-Level Security of the Swiss Evoting System</title><link>https://mazinahmed.net/blog/swiss-evoting-system-security/</link><pubDate>Tue, 16 Apr 2019 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/swiss-evoting-system-security/</guid><description>&lt;hr&gt;
+&lt;p&gt;I&amp;rsquo;m publishing my security research on the overview of the application-level security of the Swiss E-voting system.&lt;/p&gt;
+&lt;p&gt;You can find the download the report at the following link:&lt;/p&gt;
+&lt;p&gt;Download: &lt;a href="https://mazinahmed.net/uploads/Overview%20of%20the%20Application-Level%20Security%20of%20the%20Swiss%20Evoting%20System.pdf" target="_blank" rel="noreferrer"&gt;Overview of the Application-Level Security of the Swiss Evoting System&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Best Regards,&lt;br&gt;
+Mazin Ahmed&lt;/p&gt;</description></item><item><title>Backchannel Leaks on Strict Content-Security Policy</title><link>https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/</link><pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/backchannel-leaks-on-strict-csp-policy/</guid><description>&lt;hr&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Content-Security Policy (CSP) is one of the most vital protection layers in client-side web security. A strict policy should not allow external communications to non-permitted hosts. This blog post demonstrates a bypass I found in Chrome and Firefox that permits backchannel communication leaks by requesting non-permitted domains.&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I recently discussed how CSP can secure web applications against backchannel leaks. The concept sounded reasonable at first sight; CSP is designed to block unauthorized content from loading, which generically blocks XSS attacks and unsafe loading of remote JavaScript (and various resources and contents) from unauthorized origins.&lt;/p&gt;</description></item><item><title>Practical Protection Against DNS Rebinding Attacks</title><link>https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/</link><pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/practical-protection-against-dns-rebinding-attacks/</guid><description>&lt;hr&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;DNS rebinding is a known attack against the same origin policy of modern browsers.&lt;/p&gt;
+&lt;p&gt;The attack abuses DNS, where a request with a small TTL is set. After the TTL is reached, another query resolves to another IP address (a local or internal IP address in typical cases). This way, an unauthorized party can bypass the same origin policy by loading malicious code on browsers and executing it against local or internal networks. Theoretically speaking, SOP prevents this from happening. However, DNS rebinding can bypass this protection in certain circumstances.&lt;/p&gt;</description></item><item><title>Creating an Emojis PHP WebShell</title><link>https://mazinahmed.net/blog/creating-emojis-php-webshell/</link><pubDate>Mon, 23 Jul 2018 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/creating-emojis-php-webshell/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/a276f6eb-bfeb-443e-b6c7-dccfec992f53.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I recently came across an interesting behavior on PHP. PHP permits the usage of Unicode characters as variable names. Therefore, friendly emojis can be used as a PHP variable.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-php" data-lang="php"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;&amp;lt;?&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;php&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$😶&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;echo&lt;/span&gt;($😶);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="output" class="relative group"&gt;Output: &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#output" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;&amp;gt;&amp;gt; Hello World!
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which is valid.&lt;/p&gt;
+&lt;p&gt;I thought about making a fancy example of a PHP Web-Shell using emojis. This is made for entertainment purposes. No real advantage is gained by using Emojis Webshell. It may disturb/confuse a WAF or back-end parser, but it&amp;rsquo;s not confirmed against a real-world environment.&lt;/p&gt;</description></item><item><title>Using HTML Attribute Separators for Bypassing WAF XSS Filters</title><link>https://mazinahmed.net/blog/html-attribute-separators/</link><pubDate>Tue, 17 Jul 2018 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/html-attribute-separators/</guid><description>&lt;hr&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;This is an experiment I have done to identify and utilize attribute separators in constructing XSS vectors. The crafted vectors can be used to bypass XSS filters on modern browsers. These characters can be used in bypassing WAF XSS filters.&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;An example of a common XSS vector is:&lt;/p&gt;</description></item><item><title>Bypassing CSP by Abusing JSONP Endpoints</title><link>https://mazinahmed.net/blog/bypassing-csp-by-abusing-jsonp-endpoints/</link><pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/bypassing-csp-by-abusing-jsonp-endpoints/</guid><description>&lt;hr&gt;
+&lt;p&gt;This blog post discusses a technique that can be used to bypass CSP (Content Security Policy).&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;h2 id="what-is-csp" class="relative group"&gt;What is CSP? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-is-csp" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&amp;ldquo;&lt;strong&gt;Content Security Policy&lt;/strong&gt; (&lt;a href="https://developer.mozilla.org/en-US/docs/Glossary/CSP" target="_blank" rel="noreferrer"&gt;CSP&lt;/a&gt;) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (&lt;a href="https://developer.mozilla.org/en-US/docs/Glossary/XSS" target="_blank" rel="noreferrer"&gt;XSS&lt;/a&gt;) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.&amp;rdquo; — Mozilla Developer Documentations.&lt;/p&gt;</description></item><item><title>[Book Review] ModSecurity Handbook - 2nd Edition</title><link>https://mazinahmed.net/blog/modsecurity-handbook-2nd-edition-review/</link><pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/modsecurity-handbook-2nd-edition-review/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/91ac0927-44a2-443c-8e87-739b4e5203f0.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;This blog post briefly reviews the ModSecurity Handbook - 2nd edition.&lt;/p&gt;
+&lt;p&gt;I have been working in the WAF industry for quite a long time. My main interest is WAF evasions, where I worked on the popular &lt;a href="http://blog.mazinahmed.net/2015/09/evading-all-web-application-firewalls.html" target="_blank" rel="noreferrer"&gt;&amp;ldquo;Evading All WAF XSS Filters&amp;rdquo;&lt;/a&gt; research. In 2015, the research results showed that ModSecurity (with CRS) is the most difficult to evade, according to my testing.&lt;/p&gt;
+&lt;p&gt;After I finished my research, I became interested in ModSecurity and the OWASP Core Rule Set.&lt;/p&gt;</description></item><item><title>Starting in InfoSec - 101</title><link>https://mazinahmed.net/blog/starting-in-infosec-101/</link><pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/starting-in-infosec-101/</guid><description>&lt;hr&gt;
+&lt;p&gt;This blog post is written as a list of tips and notes on starting the field of Information Security.&lt;/p&gt;
+&lt;h1 id="question" class="relative group"&gt;Question &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#question" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;How do you Start in the field of information security?&lt;/p&gt;
+&lt;p&gt;I want to become a bug bounty hunter, ethical hacker, web-app tester, or to have better knowledge in security testing. How to start?&lt;/p&gt;
+&lt;h1 id="answer" class="relative group"&gt;Answer &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#answer" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;The following are tips and points that should be followed when getting into the field of Information Security in general and security testing in specific.&lt;/p&gt;</description></item><item><title>Using Ubuntu .DESKTOP as a Malware Vector</title><link>https://mazinahmed.net/blog/using-ubuntu-desktop-as-malware-vector/</link><pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/using-ubuntu-desktop-as-malware-vector/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/uploads/assets/static/75c2ca9d-ec40-4cde-a948-5be0a6ed48f2.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I have noticed a weird behavior in .DESKTOP file extensions that can be used as a malware vector. This issue is not detected as malware by all known AVs, and the way it behaves makes it a rich resource for spreading malware against Ubuntu and Linux Desktop users in general. I will focus on Ubuntu Desktop in this blog post.&lt;/p&gt;
+&lt;h2 id="introduction" class="relative group"&gt;Introduction &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#introduction" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;File managers on Ubuntu (Nautilus, Caja, and Thunar are tested) specially treat .desktop. It parses .desktop and views the files as saved on their .desktop entry. In addition, it also changes the file icon to the one specified in the .desktop entry.&lt;/p&gt;</description></item><item><title>Exploiting Misconfigured Apache server-status Instances with server-status_PWN</title><link>https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/</link><pubDate>Fri, 13 Jan 2017 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/exploiting-misconfigured-apache-server-status-instances/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/f0694bab-0351-4288-a5ff-085730be33b3.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;One of the things that my clients like in my work is that I always like to do my best in providing technical Proof of Concepts in findings I discover. This makes it easier for technical departments to reproduce the issues and is also an excellent way to show how bugs and issues can be exploited.&lt;/p&gt;
+&lt;p&gt;I recently had an assessment where I discovered several publicly exposed Apache server-status instances. If you are unfamiliar with Apache server-status, please read this &lt;a href="https://httpd.apache.org/docs/2.4/mod/mod_status.html" target="_blank" rel="noreferrer"&gt;document&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Bug Bounty Hunting - Swiss Cyber Storm 2016</title><link>https://mazinahmed.net/blog/bug-bounty-hunting-swiss-cyber-storm/</link><pubDate>Sun, 23 Oct 2016 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/bug-bounty-hunting-swiss-cyber-storm/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/4923cd92-ef3a-482d-9896-c68fd70a74cb.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In October 2016, I was pleased to speak at the Swiss Cyber Storm 2016 conference about Bug Bounty Hunting and my experience as a Bug Bounty Hunter.&lt;/p&gt;
+&lt;h2 id="about-the-talk" class="relative group"&gt;About the Talk &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#about-the-talk" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;The talk discusses Bug Bounty Programs from various domains. The talk discusses the usage of Bug Bounty Programs for companies and how it can be implemented within a company to have a better security cycle. I also explained common pitfalls done by companies and how they can affect their Bug Bounty Program.&lt;/p&gt;</description></item><item><title>Backup-File Artifacts: The Underrated Web-Danger</title><link>https://mazinahmed.net/blog/backup-file-artifacts/</link><pubDate>Thu, 18 Aug 2016 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/backup-file-artifacts/</guid><description>&lt;hr&gt;
+&lt;h1 id="testing-and-exploiting-backup-file-artifacts-with-bfac" class="relative group"&gt;Testing and Exploiting Backup-File Artifacts with BFAC &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#testing-and-exploiting-backup-file-artifacts-with-bfac" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;On August 13th, 2016, I talked about Backup-File Artifacts. This attacking vector is not commonly known or being tested by penetration testers, yet it can be critical to the security of the web environment. At the end of the talk, I released BFAC, an automated security tool that tests for backup file Artifacts missed on web servers and can disclose the web application&amp;rsquo;s source code.&lt;/p&gt;</description></item><item><title>Google UI-Redressing Bug That Discloses The User's Email Address</title><link>https://mazinahmed.net/blog/google-ui-redressing-bug-that-discloses-email-addresses/</link><pubDate>Fri, 08 Apr 2016 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/google-ui-redressing-bug-that-discloses-email-addresses/</guid><description>&lt;hr&gt;
+&lt;p&gt;In this post, I will discuss an exciting bug affecting Google Blogger. This security bug has been left undiscovered since almost 2007.&lt;/p&gt;
+&lt;p&gt;The bug allows an attacker to trick the victim into revealing his email address using UI-redressing techniques.&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;We always see a header on blogs that is hosted on Google Blogger that looks like the following:&lt;/p&gt;
+&lt;p&gt;For unauthenticated users:
+
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/6f1d5c56-0c8c-41c9-9237-424e0de454eb.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Bypassing NoScript Security Suite Using Cross-Site Scripting and MITM Attacks</title><link>https://mazinahmed.net/blog/bypassing-noscript-security-suite/</link><pubDate>Thu, 17 Mar 2016 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/bypassing-noscript-security-suite/</guid><description>&lt;hr&gt;
+&lt;p&gt;Recently, I have been working on research that discusses various techniques for bypassing the protection of the NoScript Security Suite.&lt;/p&gt;
+&lt;p&gt;In this paper, I have demonstrated techniques that can be used to bypass the NoScript Security Suite using MITM attacks. I have also provided a valid proof of concept that can be used in real-world attacks. Furthermore, I have shown how bypassing NoScript Security is possible using a single cross-site scripting vulnerability against the default allowlisted sites.&lt;/p&gt;</description></item><item><title>Why Prebuilt Security Browsers are Bad: Introducing Firefox Security Toolkit</title><link>https://mazinahmed.net/blog/firefox-security-toolkit/</link><pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/firefox-security-toolkit/</guid><description>&lt;hr&gt;
+&lt;p&gt;This post will discuss why a professional penetration tester should not use OWASP Mantra or HconSTF. I will also introduce &amp;ldquo;The Firefox Security Toolkit,&amp;rdquo; a simple tool I have built that can be an excellent replacement for these two projects and provides better security for the penetration tester.&lt;/p&gt;
+&lt;h1 id="what-are-owasp-mantra-and-hconstf" class="relative group"&gt;What are OWASP Mantra and HconSTF? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-are-owasp-mantra-and-hconstf" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;OWASP Mantra &amp;amp; HconSTF are browsers that are explicitly made for penetration testers. It provides many extensions that can help penetration testers do their daily work. It&amp;rsquo;s focused on the testing of web applications. The concept of the project seems decent, but many issues face those browsers.&lt;/p&gt;</description></item><item><title>Evading All Web-Application Firewalls XSS Filters</title><link>https://mazinahmed.net/blog/evading-all-web-application-firewalls/</link><pubDate>Wed, 09 Sep 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/evading-all-web-application-firewalls/</guid><description>&lt;hr&gt;
+&lt;p&gt;During recent months, I have been working on research that proves that all web application firewalls do not protect against attacks as expected. The research focuses on evading the XSS filters of all popular Web-Application Firewalls, such as F5 Big IP, Imperva Incapsula, AQTRONIX WebKnight, PHP-IDS, Mod-Security, Sucuri, QuickDefense, Barracuda WAF, and they were all evaded within the research.&lt;/p&gt;
+&lt;p&gt;After evading the products, I have worked with vendors to patch all the discovered issues. The research should have been published in July 2015, but as a supporter of the responsible disclosure concept, I waited for companies to patch the bypasses and get their final responses.&lt;/p&gt;</description></item><item><title>Bypassing Google Password Alert with One Line of Code</title><link>https://mazinahmed.net/blog/bypassing-google-password-alert/</link><pubDate>Sat, 25 Jul 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/bypassing-google-password-alert/</guid><description>&lt;p&gt;Google Password Alert has become very popular recently. It&amp;rsquo;s practical and a great defensive way to mitigate phishing damages against Google users.&lt;/p&gt;
+&lt;p&gt;It has been bypassed several times as soon as it arrives, and Google has patched all the known techniques.
+After hearing that Google had patched all known techniques, I thought about testing it to see how long it would take me to bypass it.&lt;/p&gt;
+&lt;p&gt;My first idea was to use documents.write and encode the phishing page in Unicode, and see the results. The method worked successfully in v1.12.&lt;/p&gt;</description></item><item><title>Facebook Messenger Multiple CSRF Vulnerabilities</title><link>https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/</link><pubDate>Tue, 09 Jun 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/facebook-messenger-multiple-csrf/</guid><description>&lt;hr&gt;
+&lt;p&gt;In this post, I will demonstrate the findings of multiple interesting cross-site request forgery vulnerabilities I identified on Facebook. These vulnerabilities allow an attacker to force the victim to do various actions.&lt;/p&gt;
+&lt;p&gt;In April 2015, Facebook officially launched messenger.com, a stand-alone messenger for the web. After hearing about the launch, I started to test it in my spare time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="sending-unrestricted-messages-to-any-user-via-csrf" class="relative group"&gt;Sending Unrestricted Messages to Any User via CSRF &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#sending-unrestricted-messages-to-any-user-via-csrf" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Using this issue, I could force any user to send messages to other users without the user&amp;rsquo;s knowledge.&lt;/p&gt;</description></item><item><title>Summary of HSTS Support in Modern Browsers</title><link>https://mazinahmed.net/blog/summary-of-hsts-support-in-modern-browsers/</link><pubDate>Fri, 29 May 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/summary-of-hsts-support-in-modern-browsers/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have recently released an article about HSTS Policy in Modern Browsers. It has been released on ProtonMail Blog.&lt;/p&gt;
+&lt;h4 id="title-summary-of-hsts-support-in-modern-browsers" class="relative group"&gt;Title: Summary of HSTS Support in Modern Browsers &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#title-summary-of-hsts-support-in-modern-browsers" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;h4 id="date-of-publish--may-28th-2015" class="relative group"&gt;Date of Publish: May 28th, 2015 &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#date-of-publish--may-28th-2015" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;h4 id="link-httpsblogprotonmailchsummary-of-hsts-support-in-modern-browsers" class="relative group"&gt;Link: &lt;a href="https://blog.protonmail.ch/summary-of-hsts-support-in-modern-browsers/" target="_blank" rel="noreferrer"&gt;https://blog.protonmail.ch/summary-of-hsts-support-in-modern-browsers/&lt;/a&gt; &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#link-httpsblogprotonmailchsummary-of-hsts-support-in-modern-browsers" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;In case there are any issues in viewing the article, you can download the article in PDF via the following links:&lt;/p&gt;</description></item><item><title>My Experience with eBay Bug Bounty Program</title><link>https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/</link><pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/my-experience-with-ebay-bug-bounty/</guid><description>&lt;hr&gt;
+&lt;p&gt;In January 2015, I participated in the eBay bug bounty program. At that time, bug bounty programs were not the same as now. The bug bounty programs industry has increased by almost %100 to last year, and every week, a new bug bounty program starts on bug bounty platforms.&lt;/p&gt;
+&lt;p&gt;I typically report a single issue (the first finding), and based on the bug bounty program communication, I then decide if I would like to test their services further.&lt;/p&gt;</description></item><item><title>W3 Total Cache's W3TotalFail Vulnerability That Leads to Full Defacement (CVE-2014-9414)</title><link>https://mazinahmed.net/blog/w3-total-fail/</link><pubDate>Thu, 11 Dec 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/w3-total-fail/</guid><description>&lt;hr&gt;
+&lt;p&gt;In this post, I will be talking about a critical vulnerability that affects W3 Total Cache, the most popular WordPress plugin in the world. Most major companies use W3 Total Cache, which provides a vital service that every WordPress website needs.&lt;/p&gt;
+&lt;h3 id="overview-on-w3-total-cache" class="relative group"&gt;Overview on W3 Total Cache &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#overview-on-w3-total-cache" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;&amp;ldquo;W3 Total Cache improves your site&amp;rsquo;s user experience by increasing server performance, reducing the download times, and providing transparent content delivery network (CDN) integration.&amp;rdquo;&lt;/p&gt;</description></item><item><title>Session Hijacking in Instagram Mobile App via MITM Attack [0-DAY]</title><link>https://mazinahmed.net/blog/session-hijacking-in-instagram-mobile/</link><pubDate>Sat, 26 Jul 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/session-hijacking-in-instagram-mobile/</guid><description>&lt;hr&gt;
+&lt;p&gt;In this post, I will share a new critical issue I identified on Instagram Mobile App. During my tests on their Android app, I set up a lab to pentest the app. Then, I started using the app on my phone and monitoring the traffic in the network using Wireshark, looking for evidence of unencrypted data that goes through the network or a technique to make this data unencrypted (if it was encrypted). As soon as I logged into my account on my phone, Wireshark captured unencrypted data that went through HTTP. This data includes The pictures the target is watching, the target&amp;rsquo;s session cookies, the username, and the ID.&lt;/p&gt;</description></item><item><title>My Story with Onavo (a Facebook's Acquisition)</title><link>https://mazinahmed.net/blog/my-story-with-onavo/</link><pubDate>Mon, 09 Jun 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/my-story-with-onavo/</guid><description>&lt;hr&gt;
+&lt;p&gt;When I was checking the Facebook WhiteHat page, I realized that they added a new target to the scope: Onavo.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/ea205f89-3c1b-4439-aca1-7f4f7641f0e3.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I downloaded their apps and started to intercept the links that I found.&lt;/p&gt;
+&lt;p&gt;One of the links raised an eyebrow. I said to myself that this looks vulnerable.&lt;/p&gt;
+&lt;p&gt;The link looks something like this:
+&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=https://mazinahmed.net/somethingthatIforget/&amp;amp;seed=1394953248&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/25c568fb-c3a4-4861-bf08-cf46d9a2b63d.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;It seems vulnerable to Open Redirect.&lt;/p&gt;
+&lt;p&gt;I executed the link this:
+&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=http://bing.com&amp;amp;seed=1394953248&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Cross-Site Scripting on Wikileaks</title><link>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</link><pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have reported a Cross-Site Scripting vulnerability on WikiLeak&amp;rsquo;s new search engine. WikiLeaks has fixed the vulnerability promptly.&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/7a5H2kdoqFY" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;UPDATE: Read this article for more info:
+&lt;a href="https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml" target="_blank" rel="noreferrer"&gt;https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PHP Code Execution on Bugcrowd</title><link>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</link><pubDate>Thu, 13 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have identified a PHP code execution vulnerability on Bugcrowd. Bugcrowd is the premier marketplace for security testing on web, mobile, source code, and client-side applications, with over 7000 security researchers participating on their bug bounty platform.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/8b2bb906-f4de-402f-8721-9291fc41248b.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Acknowledged By Oracle</title><link>https://mazinahmed.net/blog/acknowledged-by-oracle/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/acknowledged-by-oracle/</guid><description>&lt;hr&gt;
+&lt;p&gt;Oracle has acknowledged me for finding a Cross-Site Scripting Vulnerability.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/6d9dc43f-139e-46ee-9ec0-18dc9270bc1d.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+
+
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/6bc7bc29-1bed-495e-b7a9-688648b690a1.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Open Redirector on Google.com</title><link>https://mazinahmed.net/blog/open-redirector-on-google/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/open-redirector-on-google/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have found and reported an Open Redirector vulnerability on google.com.&lt;/p&gt;
+&lt;p&gt;The response of the security team was the following:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/bfc6ff58-678b-497a-9a71-41ff9707e26a.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;To demonstrate the impact of the vulnerability, I have made this video:&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/AvyeA7w1WPk" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</description></item><item><title>SQL Injection and Cross-site Scripting at the website of the University of Calgary</title><link>https://mazinahmed.net/blog/university-of-calgary/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/university-of-calgary/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have reported several critical vulnerabilities, such as SQL Injection and Cross-site Scripting, to the IT support center of the University of Calgary. The university has fixed the issues successfully.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/b038fefc-1ecf-442d-b1f3-fbe4ca625f5f.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>
