@@ -1,0 +1,65 @@
+# Mazin Ahmed
+
+> Cybersecurity engineer specializing in product security, security tools, AI security, cloud security, web application security, and penetration testing. Founder of FullHunt.io.
+
+This site contains cybersecurity research, security tools, blog posts, conference talks, and publications by Mazin Ahmed, a security engineer who has worked on building security programs, automated security tools, and contributed to the open-source security community. Key areas include AI security, cloud security, application security, penetration testing, and security automation.
+
+## Overview
+- [About](/about): Background, skills, and contact information
+- [Projects](/projects): Products, open-source tools, research, and CVEs
+- [Blog](/blog): Security research and technical articles
+- [Hire Me](/hire-me): Security consulting and engineering services
+
+## Featured Projects
+- [FullHunt.io](https://fullhunt.io/): Attack surface database and management platform
+- [Log4j-scan](https://github.com/fullhunt/log4j-scan): Automated scanner for Log4Shell (CVE-2021-44228)
+- [BFAC](https://github.com/mazen160/bfac): Backup File Artifacts Checker
+- [llmquery](https://github.com/mazen160/llmquery): Framework for interacting with Language Model APIs
+- [Secrets-patterns-db](https://github.com/mazen160/secrets-patterns-db): Largest open-source database for detecting secrets
+- [Tfquery](https://github.com/mazen160/tfquery): SQL queries on Terraform infrastructure
+- [Firefox Security Toolkit](https://github.com/mazen160/Firefox-Security-Toolkit): Transform Firefox into a penetration testing suite
+
+## Featured Research
+- [Hacking Zoom (2020)](/blog/hacking-zoom/): Security vulnerabilities in Zoom
+- [Breaking JWT (2019)](/blog/breaking-jwt/): Practical approaches for testing JWT authentication
+- [Attacking Terraform Environments (2021)](/blog/attacking-terraform-environments/): Attack vectors on Terraform
+- [DoS Attacks are Dead (2022)](/blog/demystfying-practical-dos-attacks-talk/): Demystifying practical DoS attacks
+- [Secrets Patterns DB (2023)](/blog/secrets-patterns-db/): Building open-source regex database for secret detection
+- [Preventing Prompt Injection Attacks at Scale](/blog/preventing-prompt-injection-attacks-at-scale/): AI security research
+- [Publishing Malicious VSCode Extensions](/blog/publishing-malicious-vscode-extensions/): Supply chain security research
+- [Twitch Security Tools Analysis (2022)](/blog/indepth-analysis-twitch-security-tools/): Analysis of leaked Twitch security tools
+
+## Conference Talks
+- [DEF CON 28 (2020)](https://www.youtube.com/watch?v=PUR7sk4mjLo): Hacking Zoom security vulnerabilities
+- [Hack in The Box (2019)](https://www.youtube.com/watch?v=nM8kibRciJQ): Testing and breaking JWT authentication
+- [DEF CON Cloud Village (2021)](https://www.youtube.com/watch?v=2mb12QDytP4): Attack vectors on Terraform environments
+- [OPCDE (2020)](https://www.youtube.com/watch?v=ILJozDEQ-aw): Using serverless to build pentesting toolset
+
+## Notable Blog Posts
+- [Bypassing CSP by Abusing JSONP Endpoints](/blog/bypassing-csp-by-abusing-jsonp-endpoints/): CSP bypass techniques
+- [OhMyZsh dotenv RCE](/blog/ohmyzsh-dotenv-rce/): Remote code execution vulnerability
+- [Backup File Artifacts](/blog/backup-file-artifacts/): Web application security research
+- [Creating Emojis PHP Webshell](/blog/creating-emojis-php-webshell/): Novel webshell technique
+- [Bypassing Google Password Alert](/blog/bypassing-google-password-alert/): Password alert bypass
+- [Firefox Security Toolkit](/blog/firefox-security-toolkit/): Browser-based security toolkit
+- [Swiss eVoting System Security](/blog/swiss-evoting-system-security/): Security analysis of voting systems
+- [CrowdStrike Incident Engineering Learnings](/blog/crowdstrike-incident-engineering-learnings/): Incident response insights
+- [Starting in InfoSec 101](/blog/starting-in-infosec-101/): Getting started in cybersecurity
+
+## Open Source Tools
+- [struts-pwn](https://github.com/mazen160/struts-pwn): Apache Struts CVE-2017-5638 exploit
+- [struts-pwn_CVE-2017-9805](https://github.com/mazen160/struts-pwn_CVE-2017-9805): Apache Struts CVE-2017-9805 exploit
+- [GithubCloner](https://github.com/mazen160/GithubCloner): Clone GitHub repositories of users and organizations
+- [JWT-pwn](https://github.com/mazen160/jwt-pwn): Security testing scripts for JWT
+- [ct-monitor](https://github.com/ProtonMail/ct-monitor): Certificate transparency monitoring tool
+- [server-status_PWN](https://github.com/mazen160/server-status_PWN): Exploit Apache server-status instances
+- [xless](https://github.com/mazen160/xless): Serverless blind XSS app
+- [Shennina](https://github.com/mazen160/shennina): AI-driven automated host exploitation framework
+- [aws-bedrock-proxy-server](https://github.com/mazen160/aws-bedrock-proxy-server): OLLAMA-compatible API for AWS Bedrock
+- [detect_passive_secrets](https://github.com/mazen160/detect_passive_secrets): Detect secrets through Shannon entropy
+- [whatsapp-chat-parser](https://github.com/mazen160/whatsapp-chat-parser): Module to parse WhatsApp chats
+
+## Optional
+- [Press](/press): Media coverage and interviews
+- [CV](/cv): Professional experience and resume
+- [PGP Key](/pgp.asc): Public PGP key for secure communication
