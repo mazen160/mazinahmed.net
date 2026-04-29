@@ -1,355 +1,1211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mazin Ahmed - Application and Infrastructure Security Engineering</title>
-    
-    <!-- Open Graph meta tags for social media sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Mazin Ahmed - Application and Infrastructure Security Engineering" />
-    <meta property="og:description" content="Application and Infrastructure Security Engineering" />
-    <meta property="og:url" content="https://mazinahmed.net/links/" />
-    <meta property="og:image" content="https://mazinahmed.net/author.jpg" />
-    <meta property="og:image:secure_url" content="https://mazinahmed.net/author.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mazin Ahmed - Application and Infrastructure Security Engineering" />
-    <meta property="og:image:type" content="image/jpeg" />
-    
-    <!-- Twitter Card meta tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@mazen160" />
-    <meta name="twitter:creator" content="@mazen160" />
-    <meta name="twitter:title" content="Mazin Ahmed - Application and Infrastructure Security Engineering" />
-    <meta name="twitter:description" content="Application and Infrastructure Security Engineering" />
-    <meta name="twitter:image" content="https://mazinahmed.net/author.jpg" />
-    <meta name="twitter:image:alt" content="Mazin Ahmed - Application and Infrastructure Security Engineering" />
-    
-    <!-- Additional meta tags -->
-    <meta name="description" content="Application and Infrastructure Security Engineering" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'gray': {
-                            750: '#3f4853',
-                            850: '#1f2937',
-                            950: '#0f172a'
-                        },
-                        bugcrowd: '#F26822',
-                        hackerone: '#000000',
-                        intigriti: '#6366f1',
-                        yeswehack: '#dc2626',
-                        medium: '#000000',
-                        github: '#333333',
-                        twitter: '#000000',
-                        linkedin: '#0077B5',
-                        telegram: '#0088cc'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-        
-        .link-button {
-            transition: all 0.2s ease;
-            background: white;
-            border: none;
-            border-radius: 12px;
-        }
-        
-        .link-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .link-button:active {
-            transform: translateY(0);
-            transition: all 0.1s ease;
-        }
-        
-        .social-icon {
-            transition: all 0.2s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-2px);
-        }
-        
-        .icon-fallback {
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Mazin Ahmed</title>
+<meta name="description" content="Mazin Ahmed — Application & Infrastructure Security Engineer." />
+<meta name="theme-color" content="#ece6d6" />
+
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="Mazin Ahmed — Application & Infrastructure Security" />
+<meta property="og:description" content="Application & Infrastructure Security Engineer." />
+<meta property="og:url" content="https://mazinahmed.net/links/" />
+<meta property="og:image" content="https://mazinahmed.net/author.jpg" />
+<meta property="og:image:secure_url" content="https://mazinahmed.net/author.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Mazin Ahmed" />
+<meta property="profile:first_name" content="Mazin" />
+<meta property="profile:last_name" content="Ahmed" />
+<meta property="profile:username" content="mazen160" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@mazen160" />
+<meta name="twitter:creator" content="@mazen160" />
+<meta name="twitter:title" content="Mazin Ahmed" />
+<meta name="twitter:description" content="Application & Infrastructure Security Engineer." />
+<meta name="twitter:image" content="https://mazinahmed.net/author.jpg" />
+<meta name="twitter:image:alt" content="Mazin Ahmed" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
+
+<style>
+  :root {
+    --paper:        #ece6d6;
+    --paper-soft:   #f3eee0;
+    --paper-deep:   #e0d8c2;
+    --ink:          #181510;
+    --ink-soft:     #2c2820;
+    --rule:         rgba(24, 21, 16, 0.18);
+    --muted:        #6a6354;
+    --signal:       #cb3a1d;
+    --signal-ink:   #fbf6e8;
+    --col:          480px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+  body {
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(rgba(24,21,16,0.022) 1px, transparent 1.4px),
+      radial-gradient(rgba(24,21,16,0.014) 1px, transparent 1.4px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1.5px 1.5px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(80, 55, 20, 0.05)),
+      radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(80, 55, 20, 0.06));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  ::selection { background: var(--signal); color: var(--signal-ink); }
+
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 12px; z-index: 100;
+  }
+  .skip:focus { left: 8px; top: 8px; }
+
+  /* ─── Top status bar ─── */
+  .status-bar {
+    background: var(--ink);
+    color: var(--paper-soft);
+    padding: 10px 22px;
+    text-align: center;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ─── Floating share button (top right) ─── */
+  .share-fab {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    top: max(14px, env(safe-area-inset-top));
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: var(--ink-soft);
+    color: var(--paper-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    box-shadow: 0 4px 14px rgba(24, 21, 16, 0.25);
+    transition: background 200ms ease, transform 100ms ease;
+  }
+  .share-fab:hover { background: var(--signal); }
+  .share-fab:active { transform: translateY(1px); }
+  .share-fab svg { width: 16px; height: 16px; }
+
+  /* ─── Section frame ─── */
+  .band { position: relative; z-index: 2; }
+  .band > .inner {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    text-align: center;
+    padding: 48px 22px 32px;
+  }
+  .hero .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .avatar {
+    width: 148px; height: 148px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--ink);
+    position: relative;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .avatar .initials {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-size: 64px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-size: clamp(56px, 18vw, 96px);
+    line-height: 0.88;
+    letter-spacing: -0.038em;
+    font-variation-settings: "opsz" 144;
+    margin-top: 6px;
+  }
+  h1 .last { font-style: italic; font-weight: 400; }
+  h1 .dot { color: var(--signal); }
+
+  .role {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    max-width: 32ch;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .role .accent { color: var(--signal); font-weight: 600; }
+
+  .tags {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .tags .dot { color: var(--signal); margin: 0 2px; font-style: normal; }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .meta .stamp {
+    color: var(--signal);
+    border: 1px solid var(--signal);
+    padding: 3px 7px 4px;
+    letter-spacing: 0.22em;
+    transform: rotate(-1.2deg);
+  }
+  .meta .sep { color: var(--rule); }
+
+  /* ─── Primary CTAs ─── */
+  .cta-band { padding: 8px 22px 0; }
+  .cta-band .inner { display: flex; flex-direction: column; gap: 10px; }
+  .cta {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    transition: background 200ms ease, color 200ms ease, transform 90ms ease;
+  }
+  .cta:hover { background: var(--ink); color: var(--paper); }
+  .cta:active { transform: translate(1px, 1px); }
+  .cta--primary { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
+  .cta--primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .cta .arrow { font-family: "IBM Plex Mono", monospace; font-size: 16px; }
+  .cta .ornament {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 17px;
+    letter-spacing: 0;
+  }
+
+  /* ─── Group (each labeled section) ─── */
+  .group { padding: 36px 22px; }
+  .group-head {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .group-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .group-line {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 17.5px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--ink-soft);
+  }
+  .group-line em { font-style: italic; color: var(--signal); font-weight: 400; }
+
+  /* ─── Connected link list ─── */
+  .list {
+    list-style: none;
+    border: 1px solid var(--rule);
+    background: var(--paper-soft);
+  }
+  .list li + li { border-top: 1px solid var(--rule); }
+  .list a {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    transition: background 160ms ease;
+  }
+  .list a:hover { background: var(--paper); }
+  .list a:hover .row-arrow { transform: translate(3px, -3px); color: var(--signal); }
+
+  .row-icon {
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink);
+  }
+  .row-icon svg { width: 22px; height: 22px; }
+
+  .row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .row-name {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .row-sub {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .row-arrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--muted);
+    transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1), color 160ms ease;
+  }
+  .row-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-left: 6px;
+    vertical-align: 2px;
+  }
+
+  /* ─── Built cards (FullHunt, Stressful) ─── */
+  .built-stack { display: flex; flex-direction: column; gap: 12px; }
+  .product {
+    display: block;
+    border: 1px solid var(--ink);
+    background: var(--paper-soft);
+    padding: 22px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .product::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--signal);
+  }
+  .product:hover { background: var(--ink); color: var(--paper-soft); }
+  .product:hover .product-handle { color: rgba(243, 238, 224, 0.6); }
+  .product:hover .product-tagline { color: rgba(243, 238, 224, 0.78); }
+  .product:hover .monogram { border-color: var(--signal); color: var(--signal); }
+  .product:hover .product-arrow { color: var(--signal); transform: translate(3px, -3px); }
+
+  .product-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .monogram {
+    width: 40px; height: 40px;
+    border: 1px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+  .product-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--signal);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.018em;
+    margin-bottom: 8px;
+  }
+  .product-tagline {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    transition: color 200ms ease;
+  }
+  .product-handle {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    transition: color 200ms ease;
+  }
+  .product-arrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
+    color: var(--signal);
+    transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1), color 200ms ease;
+  }
+
+  /* ─── Share & footer ─── */
+  .share-band { padding: 12px 22px 22px; }
+  .share-band .inner { display: flex; justify-content: center; }
+  .share-btn {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 160ms ease;
+  }
+  .share-btn:hover { color: var(--signal); }
+  .share-btn svg { width: 14px; height: 14px; }
+
+  footer {
+    padding: 28px 22px 36px;
+    padding-bottom: max(36px, env(safe-area-inset-bottom));
+    text-align: center;
+  }
+  footer .inner { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+
+  .socials {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .socials a {
+    width: 38px; height: 38px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 200ms ease, transform 90ms ease;
+  }
+  .socials a:hover { background: var(--signal); }
+  .socials a:active { transform: translateY(1px); }
+  .socials svg { width: 16px; height: 16px; }
+  .signoff {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.2;
+  }
+  .doc-id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .copy {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* focus */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  /* reveal animation */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 800ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* toast */
+  .toast {
+    position: fixed;
+    bottom: 24px; left: 50%;
+    transform: translate(-50%, 12px);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 11px 16px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    z-index: 100;
+    border: 1px solid var(--ink);
+    max-width: calc(100vw - 32px);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ─── Save Contact modal ─── */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(24, 21, 16, 0.72);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+  }
+  .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+
+  .modal {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 30px 26px 26px;
+    width: 100%;
+    max-width: 420px;
+    max-width: min(420px, 94vw);
+    position: relative;
+    text-align: center;
+    transform: translateY(10px);
+    transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(24, 21, 16, 0.4);
+  }
+  .modal-backdrop.show .modal { transform: none; }
+  .modal-close {
+    position: absolute;
+    top: 10px; right: 12px;
+    width: 32px; height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
+    transition: color 160ms ease;
+  }
+  .modal-close:hover { color: var(--signal); }
+  .modal-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .modal-title {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .modal-qr {
+    width: 360px;
+    height: 360px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background: var(--paper-soft);
+    padding: 0;
+    border: 1px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-qr svg, .modal-qr img { width: 100%; height: 100%; display: block; }
+  .modal-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 16px auto 18px;
+    line-height: 1.5;
+    max-width: 28ch;
+  }
+  .modal .cta { font-size: 12.5px; padding: 14px 16px; }
+</style>
 </head>
-<body class="bg-gray-800 min-h-screen">
-    <!-- Share button -->
-    <div class="fixed top-4 right-4 z-10">
-        <button onclick="shareProfile()" class="p-2 rounded-full bg-gray-700 hover:bg-gray-600 shadow-lg transition-all duration-300">
-            <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
-            </svg>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <!-- ─────────── Floating share button ─────────── -->
+  <button class="share-fab" id="share-fab" type="button" aria-label="Share this page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+  </button>
+
+  <!-- ─────────── Top header ─────────── -->
+  <header class="status-bar" role="banner">
+    Dossier · No. 0x6D617A
+  </header>
+
+  <main id="main">
+
+    <!-- ─────────── Hero ─────────── -->
+    <section class="band hero reveal" aria-label="Profile">
+      <div class="inner">
+        <div class="avatar">
+          <img src="https://mazinahmed.net/author.jpg" alt="Mazin Ahmed" onerror="this.remove()" />
+          <span class="initials" aria-hidden="true">MA</span>
+        </div>
+        <h1>
+          Mazin<br />
+          <span class="last">Ahmed<span class="dot">.</span></span>
+        </h1>
+        <p class="role">
+          <span class="accent">——</span> Application &amp; Infrastructure Security Engineer.
+          Building, breaking, and reviewing production systems.
+        </p>
+        <p class="tags">Cyber Security <span class="dot">•</span> Entrepreneurship <span class="dot">•</span> Arts</p>
+        <div class="meta">
+          <span class="stamp">Public Profile</span>
+          <span class="sep">·</span>
+          <span id="issued"></span>
+          <span class="sep">·</span>
+          <span>Rev. 011</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── Primary CTAs ─────────── -->
+    <section class="band cta-band reveal" style="animation-delay: 80ms" aria-label="Primary actions">
+      <div class="inner">
+        <a class="cta cta--primary" data-mailto="primary" href="#">
+          <span><span class="ornament">✦</span> &nbsp;Email me directly</span>
+          <span class="arrow">→</span>
+        </a>
+        <button class="cta" id="vcard-btn" type="button">
+          <span>Save Contact</span>
+          <span class="arrow">⬇</span>
         </button>
-    </div>
+      </div>
+    </section>
 
-    <!-- Main container -->
-    <div class="container mx-auto px-4 py-8 max-w-md">
-        <!-- Profile section -->
-        <div class="text-center mb-8">
-            <!-- Profile picture -->
-            <div class="relative inline-block mb-6">
-                <div class="w-28 h-28 rounded-full p-1 bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-600 shadow-2xl">
-                    <img src="https://mazinahmed.net/author.jpg" 
-                         alt="Mazin Ahmed Profile Picture" 
-                         class="w-full h-full rounded-full bg-white object-cover"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-purple-500 hidden items-center justify-center">
-                        <span class="text-white text-2xl font-bold">MA</span>
-                    </div>
-                </div>
+    <!-- ─────────── § 01 — Index ─────────── -->
+    <section class="band group reveal" style="animation-delay: 140ms" aria-label="Public profiles">
+      <div class="inner">
+        <header class="group-head">
+          <span class="group-num">§ 01 — Index</span>
+          <p class="group-line">Open channels, in <em>no particular</em> order.</p>
+        </header>
+
+        <ul class="list" role="list">
+
+          <li><a href="https://mazinahmed.net" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="1.5"/>
+                <path d="M3 8.5h18" stroke-linecap="round"/>
+                <circle cx="6.2" cy="6.25" r="0.6" fill="currentColor" stroke="none"/>
+                <circle cx="8.4" cy="6.25" r="0.6" fill="currentColor" stroke="none"/>
+                <circle cx="10.6" cy="6.25" r="0.6" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">Website</span>
+              <span class="row-sub">mazinahmed.net</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://mazinahmed.net/blog/" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 3.5l6 6L9 21H3v-6z"/>
+                <path d="M13 5l6 6"/>
+              </svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">Blog</span>
+              <span class="row-sub">mazinahmed.net/blog</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://github.com/mazen160" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">GitHub</span>
+              <span class="row-sub">@mazen160</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://twitter.com/mazen160" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">X (Twitter)</span>
+              <span class="row-sub">@mazen160</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://linkedin.com/in/infosecmazinahmed" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.063 2.063 0 110-4.127 2.063 2.063 0 010 4.127zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">LinkedIn</span>
+              <span class="row-sub">/in/infosecmazinahmed</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://instagram.com/mazin.official" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">Instagram <span class="row-tag">[Private]</span></span>
+              <span class="row-sub">@mazin.official</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+          <li><a href="https://medium.com/@mazin.ahmed" target="_blank" rel="noreferrer">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.21 0A4.201 4.201 0 000 4.21v15.58A4.201 4.201 0 004.21 24h15.58A4.201 4.201 0 0024 19.79V4.21A4.201 4.201 0 0019.79 0H4.21Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254v10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">Medium</span>
+              <span class="row-sub">@mazin.ahmed · essays &amp; write-ups</span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </a></li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─────────── § 02 — Built ─────────── -->
+    <section class="band group reveal" style="animation-delay: 180ms" aria-label="Built — products">
+      <div class="inner">
+        <header class="group-head">
+          <span class="group-num">§ 02 — Built</span>
+          <p class="group-line">What I <em>built</em>, when I wasn't breaking things.</p>
+        </header>
+
+        <div class="built-stack">
+          <a class="product" href="https://fullhunt.io" target="_blank" rel="noreferrer">
+            <div class="product-top">
+              <span class="monogram">FH</span>
+              <span class="product-arrow">↗</span>
             </div>
-            
-            <!-- Name -->
-            <h1 class="text-4xl font-bold text-white mb-3 tracking-tight">Mazin Ahmed</h1>
-            
-            <!-- Tagline -->
-            <p class="text-gray-400 text-base max-w-sm mx-auto leading-relaxed">
-                Application and Infrastructure Security Engineering
+            <span class="product-tag">External Attack Surface Management</span>
+            <div class="product-name">FullHunt</div>
+            <p class="product-tagline">
+              Continuously discover, monitor, and secure your external
+              attack surface. Expose what's exposed. Stop what's
+              exploitable.
             </p>
+            <span class="product-handle">fullhunt.io</span>
+          </a>
+
+          <a class="product" href="https://stressful.fullhunt.io" target="_blank" rel="noreferrer">
+            <div class="product-top">
+              <span class="monogram">S</span>
+              <span class="product-arrow">↗</span>
+            </div>
+            <span class="product-tag">DDoS Simulation Platform</span>
+            <div class="product-name">Stressful</div>
+            <p class="product-tagline">
+              Controlled DDoS simulation and stress testing at scale.
+              Validate defenses against the attacks you'd rather not
+              meet for the first time in production.
+            </p>
+            <span class="product-handle">stressful.fullhunt.io</span>
+          </a>
         </div>
+      </div>
+    </section>
 
-        <!-- Links container -->
-        <div class="space-y-3">
-            <!-- Website -->
-            <a href="https://mazinahmed.net" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9" stroke-width="2"/>
-                            <path d="M3 12h18" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 3c3 3 3 15 0 18" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 3c-3 3-3 15 0 18" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Website</span>
-                </div>
-            </a>
+    <!-- ─────────── § 03 — Contact ─────────── -->
+    <section class="band group reveal" style="animation-delay: 220ms" aria-label="Contact">
+      <div class="inner">
+        <header class="group-head">
+          <span class="group-num">§ 03 — Contact</span>
+          <p class="group-line">Direct lines, <em>preferred</em> in this order.</p>
+        </header>
 
-            <!-- Blog -->
-            <a href="https://mazinahmed.net/blog/" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3v6h6"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6M9 17h6"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Blog</span>
-                </div>
-            </a>
+        <ul class="list" role="list">
+          <li><a data-mailto="primary" href="#">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="1"/>
+                <path d="M3 7l9 6 9-6"/>
+              </svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">Email</span>
+              <span class="row-sub" data-email="primary"></span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">→</span>
+          </a></li>
 
-            <!-- GitHub -->
-            <a href="https://github.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">GitHub</span>
-                </div>
-            </a>
+          <li><a data-mailto="proton" href="#">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="m15.24 8.998 3.656-3.073v15.81H2.482C1.11 21.735 0 20.609 0 19.223V6.944l7.58 6.38a2.186 2.186 0 002.871-.042l4.792-4.284h-.003zm-5.456 3.538 1.809-1.616a2.438 2.438 0 01-1.178-.533L.905 2.395A.552.552 0 000 2.826v2.811l8.226 6.923a1.186 1.186 0 001.558-.024zM23.871 2.463a.551.551 0 00-.776-.068l-3.199 2.688v16.653h1.623c1.371 0 2.481-1.127 2.481-2.513V2.824a.551.551 0 00-.129-.36z"/></svg>
+            </span>
+            <span class="row-text">
+              <span class="row-name">ProtonMail <span class="row-tag">[Encrypted]</span></span>
+              <span class="row-sub" data-email="proton"></span>
+            </span>
+            <span class="row-arrow" aria-hidden="true">→</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
 
-            <!-- Twitter/X -->
-            <a href="https://twitter.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Twitter / X</span>
-                </div>
-            </a>
+    <!-- ─────────── Share ─────────── -->
+    <section class="band share-band">
+      <div class="inner">
+        <button class="share-btn" id="share-btn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/>
+            <path d="M16 6l-4-4-4 4"/>
+            <path d="M12 2v14"/>
+          </svg>
+          Share this page
+        </button>
+      </div>
+    </section>
 
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/in/infosecmazinahmed" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">LinkedIn</span>
-                </div>
-            </a>
+  </main>
 
-            <!-- Email -->
-            <a href="mailto:mazin@mazinahmed.net" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Email</span>
-                </div>
-            </a>
-
-            <!-- ProtonMail -->
-            <a href="mailto:mazin@protonmail.com" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="m15.24 8.998 3.656-3.073v15.81H2.482C1.11 21.735 0 20.609 0 19.223V6.944l7.58 6.38a2.186 2.186 0 0 0 2.871-.042l4.792-4.284h-.003zm-5.456 3.538 1.809-1.616a2.438 2.438 0 0 1-1.178-.533L.905 2.395A.552.552 0 0 0 0 2.826v2.811l8.226 6.923a1.186 1.186 0 0 0 1.558-.024zM23.871 2.463a.551.551 0 0 0-.776-.068l-3.199 2.688v16.653h1.623c1.371 0 2.481-1.127 2.481-2.513V2.824a.551.551 0 0 0-.129-.36z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">ProtonMail</span>
-                </div>
-            </a>
-            
-            <!-- Medium -->
-            <a href="https://medium.com/@mazin.ahmed" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/>
-                        </svg>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Medium</span>
-                </div>
-            </a>
-
-            <!-- Bugcrowd -->
-            <a href="https://bugcrowd.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">b</span>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">Bugcrowd</span>
-                </div>
-            </a>
-
-            <!-- HackerOne -->
-            <a href="https://hackerone.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="link-button flex items-center w-full p-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">H1</span>
-                    </div>
-                    <span class="text-gray-800 font-medium text-lg">HackerOne</span>
-                </div>
-            </a>
-
-        </div>
-
-        <!-- Social Icons -->
-        <div class="flex justify-center space-x-6 mt-8">
-            <!-- Twitter/X -->
-            <a href="https://twitter.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
-            
-            <!-- GitHub -->
-            <a href="https://github.com/mazen160" target="_blank" rel="noopener noreferrer"
-               class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-            </a>
-            
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/in/infosecmazinahmed" target="_blank" rel="noopener noreferrer"
-               class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-            
-            <!-- Email -->
-            <a href="mailto:mazin@mazinahmed.net" target="_blank" rel="noopener noreferrer"
-               class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-            </a>
-            
-            <!-- Medium -->
-            <a href="https://medium.com/@mazin.ahmed" target="_blank" rel="noopener noreferrer"
-               class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/>
-                </svg>
-            </a>
-        </div>
+  <footer class="band">
+    <div class="inner">
+      <div class="socials" aria-label="Social links">
+        <a href="https://twitter.com/mazen160" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://github.com/mazen160" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/infosecmazinahmed" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.063 2.063 0 110-4.127 2.063 2.063 0 010 4.127zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a data-mailto="primary" href="#" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+        </a>
+      </div>
+      <div class="signoff">— end of file —</div>
+      <div class="doc-id">Document 0x6D617A.011</div>
+      <div class="copy">© <span id="year">2026</span> · Mazin Ahmed · mazinahmed.net/links/</div>
     </div>
+  </footer>
 
-    <script>
-        // Share profile functionality
-        function shareProfile() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Mazin Ahmed - Security Researcher',
-                    text: 'Check out Mazin Ahmed\'s security research and bug bounty profiles',
-                    url: window.location.href
-                });
-            } else {
-                // Fallback - copy to clipboard
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Profile link copied to clipboard!');
-                });
-            }
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ─────────── Save Contact modal ─────────── -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">✕</button>
+      <div class="modal-eyebrow">Save Contact</div>
+      <div class="modal-title" id="modal-title">Scan or download.</div>
+      <div class="modal-qr" id="modal-qr" aria-label="Contact card QR code"></div>
+      <p class="modal-hint">Point your phone camera at the code, or download the file.</p>
+      <button class="cta cta--primary" id="modal-download" type="button">
+        <span>Download .vcf</span>
+        <span class="arrow">⬇</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- contact details stored as base64; decoded in JS at runtime -->
+  <meta id="x-t" name="x-contact-tel-b64" content="KzE2NzI4MzM0MzM3" />
+  <meta id="x-t2" name="x-contact-tel2-b64" content="Kzk3MTUwNjAyMTMzNw==" />
+  <meta id="x-e1" name="x-contact-e1-b64" content="bWF6aW5AbWF6aW5haG1lZC5uZXQ=" />
+  <meta id="x-e2" name="x-contact-e2-b64" content="bWF6aW5AcHJvdG9ubWFpbC5jaA==" />
+  <meta id="x-e3" name="x-contact-e3-b64" content="bWF6aW5AZnVsbGh1bnQuaW8=" />
+
+  <script>
+    (function () {
+      function pad(n) { return String(n).padStart(2, '0'); }
+      const today = new Date();
+      const stamp = `${today.getFullYear()}.${pad(today.getMonth() + 1)}.${pad(today.getDate())}`;
+      document.getElementById('issued').textContent = `Issued ${stamp}`;
+      document.getElementById('year').textContent = today.getFullYear();
+
+      // Decode contact details from base64 meta tags
+      const TEL     = atob(document.getElementById('x-t').content);
+      const TEL_UAE = atob(document.getElementById('x-t2').content);
+      const EMAILS = {
+        primary:  atob(document.getElementById('x-e1').content),
+        proton:   atob(document.getElementById('x-e2').content),
+        fullhunt: atob(document.getElementById('x-e3').content),
+      };
+
+      // Populate mailto: hrefs and visible email text from decoded values
+      document.querySelectorAll('[data-mailto]').forEach((el) => {
+        const key = el.dataset.mailto;
+        if (EMAILS[key]) el.href = `mailto:${EMAILS[key]}`;
+      });
+      document.querySelectorAll('[data-email]').forEach((el) => {
+        const key = el.dataset.email;
+        if (EMAILS[key]) el.textContent = EMAILS[key];
+      });
+
+      // ─── Toast ───
+      const toast = document.getElementById('toast');
+      let toastTimer;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+      }
+
+      // ─── Share ───
+      async function sharePage() {
+        const data = {
+          title: 'Mazin Ahmed',
+          text: 'Mazin Ahmed — Application & Infrastructure Security Engineer',
+          url: window.location.href,
+        };
+        if (navigator.share) {
+          try { await navigator.share(data); return; } catch {}
+        }
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('Link copied');
+        } catch { showToast('Share unavailable'); }
+      }
+      document.getElementById('share-btn').addEventListener('click', sharePage);
+      document.getElementById('share-fab').addEventListener('click', sharePage);
+
+      // ─── vCard generation ───
+      function buildVCard() {
+        // Apple's vCard parser (iOS Contacts) needs item-grouped fields with
+        // X-ABLabel to render custom labels (otherwise URL types like
+        // "GitHub" appear empty in the contact card after import).
+        // Social profiles use the formal X-SOCIALPROFILE format with
+        // `type` and `x-user` parameters so iOS shows the correct icon
+        // and tappable handle.
+        const labeled = (n, line, label) =>
+          [`item${n}.${line}`, `item${n}.X-ABLabel:${label}`];
+
+        return [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'N:Ahmed;Mazin;;;',
+          'FN:Mazin Ahmed',
+          'PHOTO;VALUE=URI:https://mazinahmed.net/author.jpg',
+
+          // Phones — second number labeled "UAE" via item-grouping
+          `TEL;TYPE=CELL,VOICE:${TEL}`,
+          ...labeled(1, `TEL;TYPE=CELL,VOICE:${TEL_UAE}`, 'UAE'),
+
+          // Emails
+          `EMAIL;TYPE=INTERNET,PREF:${EMAILS.primary}`,
+
+          'TZ:America/Vancouver',
+          'KEY;TYPE=PGP:https://mazinahmed.net/pgp.asc',
+
+          // Primary website (no label needed)
+          'URL:https://mazinahmed.net',
+
+          // Labeled URLs (item-grouped — iOS now renders the label correctly)
+          ...labeled(2, 'URL:https://mazinahmed.net/blog/',              'Blog'),
+          ...labeled(3, 'URL:https://github.com/mazen160',               'GitHub'),
+          ...labeled(4, 'URL:https://twitter.com/mazen160',              'X (Twitter)'),
+          ...labeled(5, 'URL:https://linkedin.com/in/infosecmazinahmed', 'LinkedIn'),
+          ...labeled(6, 'URL:https://instagram.com/mazin.official',      'Instagram'),
+
+          // Social profiles — Apple format with type + x-user
+          'X-SOCIALPROFILE;type=twitter;x-user=mazen160:https://twitter.com/mazen160',
+          'X-SOCIALPROFILE;type=Github;x-user=mazen160:https://github.com/mazen160',
+          'X-SOCIALPROFILE;type=linkedin;x-user=infosecmazinahmed:https://linkedin.com/in/infosecmazinahmed',
+          'X-SOCIALPROFILE;type=instagram;x-user=mazin.official:https://instagram.com/mazin.official',
+
+          'NOTE:Personal links page — https://mazinahmed.net/links/',
+          `REV:${new Date().toISOString()}`,
+          'END:VCARD',
+          '',
+        ].join('\r\n');
+      }
+
+      function downloadVCard() {
+        const blob = new Blob([buildVCard()], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'mazin-ahmed.vcf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast('Contact downloaded');
+      }
+
+      // ─── QR code modal ───
+      const modal = document.getElementById('modal-backdrop');
+      const qrContainer = document.getElementById('modal-qr');
+
+      function makeQR(data, ec) {
+        const qr = qrcode(0, ec);
+        qr.addData(data);
+        qr.make();
+        return qr;
+      }
+
+      function renderStyledQR(qr) {
+        // Ornate "dossier seal" frame around a clean, scannable QR.
+        const count = qr.getModuleCount();
+
+        // Canvas / layout (in viewBox units)
+        const VB = 110;            // 110 × 110 viewBox
+        const C = VB / 2;          // center
+        const QR_AREA = 82;        // QR occupies an 82×82 zone (was 70 — enlarged)
+        const QR_OFF = (VB - QR_AREA) / 2;       // 14  — top/left of QR area
+        const QR_INNER_PAD = 1;                  // quiet zone inside the white plate
+        const QR_INNER = QR_AREA - 2 * QR_INNER_PAD;
+        const cell = QR_INNER / count;
+
+        const INK = '#181510';
+        const PAPER = '#f3eee0';
+        const PAPER_DEEP = '#e0d8c2';
+        const WHITE = '#ffffff';
+        const RED = '#cb3a1d';
+
+        // ── 1. QR modules (rounded squares for a refined look) ──
+        let modules = '';
+        for (let r = 0; r < count; r++) {
+          for (let c = 0; c < count; c++) {
+            if (!qr.isDark(r, c)) continue;
+            const x = QR_OFF + QR_INNER_PAD + c * cell;
+            const y = QR_OFF + QR_INNER_PAD + r * cell;
+            modules += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="${cell * 0.18}"/>`;
+          }
         }
 
-        // Load dark mode preference on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Always start in dark mode for this theme
-            document.documentElement.classList.add('dark');
-            const savedMode = localStorage.getItem('darkMode');
-            if (savedMode === 'false') {
-                document.documentElement.classList.remove('dark');
-            }
-        });
+        // ── 2. Eye motif (drawn at a given center, scaled) ──
+        // Used at top + bottom of the seal as a watcher / dossier mark.
+        const eye = (ex, ey, scale = 1) => {
+          const w = 5 * scale, h = 2.3 * scale;
+          return `
+            <g transform="translate(${ex},${ey})" stroke="${INK}" stroke-width="${0.32 * scale}" stroke-linecap="round" fill="none">
+              <path d="M ${-w} 0 Q 0 ${-h * 1.05} ${w} 0 Q 0 ${h * 1.05} ${-w} 0 Z"/>
+              <circle cx="0" cy="0" r="${0.95 * scale}" fill="${INK}"/>
+              <circle cx="${0.32 * scale}" cy="${-0.32 * scale}" r="${0.32 * scale}" fill="${PAPER}" stroke="none"/>
+            </g>
+          `;
+        };
 
-        // Add smooth scrolling for better UX
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // ── 3. Corner filigree (curls + red dot) ──
+        const filigree = (x, y, sx, sy) => `
+          <g transform="translate(${x},${y}) scale(${sx},${sy})" stroke="${INK}" stroke-width="0.4" fill="none" stroke-linecap="round">
+            <path d="M 0 0 Q 4 0.5 4.5 4 Q 5 7 8 7.5"/>
+            <path d="M 0 0 Q 0.5 4 4 4.5 Q 7 5 7.5 8"/>
+            <circle cx="6" cy="6" r="0.6" fill="${RED}" stroke="none"/>
+            <circle cx="2.6" cy="2.6" r="0.35" fill="${INK}" stroke="none"/>
+          </g>
+        `;
 
-        // Add click analytics (optional - replace with your analytics)
-        document.querySelectorAll('.link-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Track clicks here
-                console.log('Link clicked:', this.href);
-            });
-        });
-    </script>
+        // ── 4. Diamond ornament for inline use (between text and rules) ──
+        const diamond = (cx, cy, s, color) =>
+          `<polygon points="${cx},${cy - s} ${cx + s},${cy} ${cx},${cy + s} ${cx - s},${cy}" fill="${color}"/>`;
+
+        // ── 5. Compose ──
+        return `
+        <svg viewBox="0 0 ${VB} ${VB}" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+
+          <!-- Paper background -->
+          <rect width="${VB}" height="${VB}" fill="${PAPER}"/>
+
+          <!-- Outer thick frame + inner thin frame (double border) -->
+          <rect x="3"   y="3"   width="${VB - 6}"  height="${VB - 6}"  fill="none" stroke="${INK}" stroke-width="1.0"/>
+          <rect x="5.4" y="5.4" width="${VB - 10.8}" height="${VB - 10.8}" fill="none" stroke="${INK}" stroke-width="0.25"/>
+
+          <!-- Corner filigree -->
+          ${filigree(7,        7,         1,  1)}
+          ${filigree(VB - 7,   7,        -1,  1)}
+          ${filigree(7,        VB - 7,    1, -1)}
+          ${filigree(VB - 7,   VB - 7,   -1, -1)}
+
+          <!-- Top label: name in Fraunces italic -->
+          <text x="${C}" y="9.6" text-anchor="middle"
+                font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="400"
+                font-size="4.5" fill="${INK}">Mazin Ahmed</text>
+
+          <!-- Top divider with eye watcher -->
+          <line x1="22" y1="12.6" x2="${C - 6}" y2="12.6" stroke="${INK}" stroke-width="0.28"/>
+          <line x1="${C + 6}" y1="12.6" x2="${VB - 22}" y2="12.6" stroke="${INK}" stroke-width="0.28"/>
+          ${eye(C, 12.6, 0.78)}
+          ${diamond(20, 12.6, 0.6, RED)}
+          ${diamond(VB - 20, 12.6, 0.6, RED)}
+
+          <!-- QR plate: white background + red border -->
+          <rect x="${QR_OFF - 1.4}" y="${QR_OFF - 1.4}" width="${QR_AREA + 2.8}" height="${QR_AREA + 2.8}" fill="${INK}"/>
+          <rect x="${QR_OFF - 1.0}" y="${QR_OFF - 1.0}" width="${QR_AREA + 2.0}" height="${QR_AREA + 2.0}" fill="${RED}"/>
+          <rect x="${QR_OFF}"        y="${QR_OFF}"        width="${QR_AREA}"       height="${QR_AREA}"       fill="${WHITE}"/>
+
+          <!-- QR modules -->
+          <g fill="${INK}">${modules}</g>
+
+          <!-- Bottom divider with eye -->
+          <line x1="22" y1="${VB - 12.6}" x2="${C - 6}" y2="${VB - 12.6}" stroke="${INK}" stroke-width="0.28"/>
+          <line x1="${C + 6}" y1="${VB - 12.6}" x2="${VB - 22}" y2="${VB - 12.6}" stroke="${INK}" stroke-width="0.28"/>
+          ${eye(C, VB - 12.6, 0.78)}
+          ${diamond(20, VB - 12.6, 0.6, RED)}
+          ${diamond(VB - 20, VB - 12.6, 0.6, RED)}
+
+          <!-- Bottom mono label -->
+          <text x="${C}" y="${VB - 8}" text-anchor="middle"
+                font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500"
+                font-size="2.4" letter-spacing="0.38" fill="${INK}">DOSSIER · No. 0x6D617A</text>
+
+        </svg>`;
+      }
+
+      function renderQR() {
+        qrContainer.innerHTML = '';
+        if (typeof qrcode === 'undefined') {
+          qrContainer.textContent = 'QR library still loading…';
+          return;
+        }
+        let qr;
+        try {
+          // M error correction (15%) — no logo overlay, so we don't need H.
+          // Smaller QR version = larger cells = easier to scan at this size.
+          qr = makeQR(buildVCard(), 'M');
+        } catch (err) {
+          // Full vCard exceeded capacity — fall back to compact
+          const compact = [
+            'BEGIN:VCARD','VERSION:3.0',
+            'FN:Mazin Ahmed',
+            `TEL:${TEL}`,
+            `EMAIL:${EMAILS.primary}`,
+            'URL:https://mazinahmed.net/links/',
+            'END:VCARD',''
+          ].join('\r\n');
+          qr = makeQR(compact, 'M');
+        }
+        qrContainer.innerHTML = renderStyledQR(qr);
+      }
+
+      function openModal() {
+        renderQR();
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+      function closeModal() {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      document.getElementById('vcard-btn').addEventListener('click', openModal);
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      document.getElementById('modal-download').addEventListener('click', () => {
+        downloadVCard();
+        closeModal();
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
