@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Conference on Mazin Ahmed</title><link>https://mazinahmed.net/tags/conference/</link><description>Recent content in Conference on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 05 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/conference/index.xml" rel="self" type="application/rss+xml"/><item><title>Speaking at BlackHat MEA 2022</title><link>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/</link><pubDate>Mon, 05 Dec 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/speaking-at-blackhat-mea-2022/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/0e8d0273-9732-4eeb-9c93-65d03a686da1.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Riyadh, Saudi Arabia, recently hosted BlackHat MEA (Middle East &amp;amp; Africa), the largest security conference in the Middle East and Africa region.&lt;/p&gt;
+&lt;p&gt;BlackHat MEA featured various events, including an Executive Summit, Technical tracks, a Drone Hacking village, a Car Hacking village, a live Tesla hacking event, and a startup competition.&lt;/p&gt;
+&lt;h2 id="my-talk" class="relative group"&gt;My Talk &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#my-talk" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;I have had the opportunity to speak this year at BlackHat, where I presented my latest research, &amp;ldquo;Demystifying Practical DDoS Attacks&amp;rdquo;.&lt;/p&gt;</description></item><item><title>DoS Attacks are Dead: Demystifying Practical DoS Attacks</title><link>https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/</link><pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/demystfying-practical-dos-attacks-talk/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/0c5514f9-e535-4678-a082-d2fba612105c.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/9e146db4-7fcb-46b9-bab2-31bd40afc700.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I recently spoke at BlackHat MEA 2022, the largest security conference in the Middle East and Africa region. My talk, titled &amp;ldquo;Demystifying Practical DDoS Attacks&amp;rdquo;, focused on the increasing threat of DoS attacks and the need for improved defense solutions and to practically validate current DDoS prevention solutions.&lt;/p&gt;
+&lt;p&gt;In my presentation, I shared my research on practical DoS attacks, including recent Application-Level DoS attacks and evasion techniques. I also discussed the discovery of unique DoS vectors in modern APIs and demonstrated how to simulate the most significant Layer 7 DDoS attack that Google Cloud experienced in August 2022.&lt;/p&gt;</description></item></channel></rss>

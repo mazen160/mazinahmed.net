@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stressful on Mazin Ahmed</title><link>https://mazinahmed.net/tags/stressful/</link><description>Recent content in Stressful on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/stressful/index.xml" rel="self" type="application/rss+xml"/><item><title>DDoS is not Dead: Building a Scalable DDoS Framework</title><link>https://mazinahmed.net/blog/stressful-ddos-framework/</link><pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/stressful-ddos-framework/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I&amp;rsquo;m releasing my latest project, &lt;a href="https://stressful.io" target="_blank" rel="noreferrer"&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a genuine concern that must be put on the organization&amp;rsquo;s radar, not on a postmortem after an attack.&lt;/p&gt;</description></item></channel></rss>

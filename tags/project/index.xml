@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Project on Mazin Ahmed</title><link>https://mazinahmed.net/tags/project/</link><description>Recent content in Project on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/project/index.xml" rel="self" type="application/rss+xml"/><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/6ea2bdf1-1f8f-44c8-a164-714f9dbe5db5/Preventing%20Prompt%20Injection%20Attacks%20at%20Scale.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Prompt injection attacks are one of the most common LLM security threats we have all seen while reviewing LLM implementations, integrations, and AI-powered systems.&lt;/p&gt;
+&lt;p&gt;I have identified Prompt Injection attacks in numerous implementations and applications, and I’ve decided to write a blog post to recommend different methodologies I experimented with that can prevent prompt injection at scale.&lt;/p&gt;
+&lt;p&gt;I will also share a LangChain Prompt Injection attack vector, vulnerabilities in example MCP implementations, and practical ways to prevent prompt injection attacks.&lt;/p&gt;</description></item><item><title>Introducing LLMQuery Framework: Scaling GenAI Automation with Prompt Templates</title><link>https://mazinahmed.net/blog/llmquery-project/</link><pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/llmquery-project/</guid><description>&lt;hr&gt;
+&lt;p align="center"&gt;
+ &lt;img src="https://raw.githubusercontent.com/mazen160/llmquery/refs/heads/main/docs/llmquery-logo-4.png" alt="llmquery logo"&gt;
+&lt;/p&gt;
+&lt;p&gt;Large Language Models have completely changed how we automate, create, and solve problems.&lt;/p&gt;
+&lt;p&gt;Integrating and experimenting these models with different providers, along with optimizing LLM Prompts and benchmarking them with available providers can feel overwhelming. That’s why I’m excited to introduce llmquery, a project I’ve started this year to make interacting with Large Language Models and prototyping new GenAI-powered applications simpler, faster, and more scalable.&lt;/p&gt;
+&lt;p&gt;Llmquery is all about making it easier to prototype new applications and use cases. It just starts with writing a single YAML template (or using one of the built-in YAML templates available) where the YAML template handles all the overhead of integrating with commercial and local providers, helping with validating models, calculating tokens, setting limits, rendering templates, and other checks.&lt;/p&gt;</description></item><item><title>Engineering Learnings from the CrowdStrike Falcon Outage</title><link>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/</link><pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/crowdstrike-incident-engineering-learnings/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/0dfa779e-5cee-4bb8-9906-18c8a0cbf34f/crowdstrike-incident-banner-min-2-1622d2d5-c8b3-426a-9bc6-9c5468f8501f.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="what-happened" class="relative group"&gt;What Happened? &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#what-happened" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;On July 18, 2024, the world witnessed a global outage that disrupted major industries, including banking, airlines, healthcare, oil and gas, and governments. The outage was caused by a faulty software update by CrowdStrike that rendered Windows computers in a continuous BSOD (Blue Screen of Death).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://raw.githubusercontent.com/mazen160/public/master/static/images/times-square-crowdstrike-bsod-v0-06uchoze3kdd1.webp" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Banners of Time Square are showing Windows BSOD as a result of the CrowdStrike incident)&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Secrets Patterns DB: Building Open-Source Regex Database for Secret Detection</title><link>https://mazinahmed.net/blog/secrets-patterns-db/</link><pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/secrets-patterns-db/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/e573dd16-b649-432a-9173-df248e64b3af.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Ensuring the security of your organization&amp;rsquo;s sensitive information is critical for any security team, and detecting secrets within your AppSec program is crucial to this effort. However, even if you have implemented advanced security controls, your program may still be at risk if passwords and API keys are committed to GitHub and subsequently exposed in a production environment, whether through a live web application, a compiled mobile app, or minified JavaScript code. To mitigate this risk, it is essential to properly secure and manage these secrets at every stage of the development process.&lt;/p&gt;</description></item><item><title>tfquery: Run SQL queries on your Terraform infrastructure</title><link>https://mazinahmed.net/blog/tfquery-project-release/</link><pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/tfquery-project-release/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/7150a8dc-f101-423c-934a-ffa24a396e66.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Have you ever tried analyzing the Terraform environment with thousands of cloud resources for security and DevOps? It used to be hard, until now!&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m open-sourcing my newest project, tfquery: a framework that allows running SQL queries on Terraform code. It saved me dozens of hours in analysis.&lt;/p&gt;
+&lt;p&gt;Tfquery is made to help in answering questions that are hard to answer about your infrastructure-as-code. It allows querying resources and analyzing their configuration using a SQL-powered framework.&lt;/p&gt;</description></item><item><title>DDoS is not Dead: Building a Scalable DDoS Framework</title><link>https://mazinahmed.net/blog/stressful-ddos-framework/</link><pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/stressful-ddos-framework/</guid><description>&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/cb37c2ae-5496-4f73-8e32-3e97a2bf736e.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h1 id="abstract" class="relative group"&gt;Abstract &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#abstract" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;I&amp;rsquo;m releasing my latest project, &lt;a href="https://stressful.io" target="_blank" rel="noreferrer"&gt;Stressful.io&lt;/a&gt;, an advanced DDoS framework for testing DDoS defenses at scale. I also provide a free simulation to non-profit organizations and startups focused on privacy and digital rights.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I have always been fascinated by DDoS attacks. You may have the most sophisticated defenses, yet your organization can be directly affected by a DDoS attack that takes down your payment gateway for 3 hours. DDoS attacks are a genuine concern that must be put on the organization&amp;rsquo;s radar, not on a postmortem after an attack.&lt;/p&gt;</description></item></channel></rss>

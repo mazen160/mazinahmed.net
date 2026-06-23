@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Mazin Ahmed</title>
 <meta name="description" content="Mazin Ahmed — Application & Infrastructure Security Engineer." />
-<meta name="theme-color" content="#ece6d6" />
+<meta name="theme-color" content="#ffffff" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="https://mazinahmed.net/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="https://mazinahmed.net/favicon-16x16.png" />
@@ -33,31 +33,41 @@
 <meta name="twitter:description" content="Application & Infrastructure Security Engineer." />
 <meta name="twitter:image" content="https://mazinahmed.net/author.jpg" />
 <meta name="twitter:image:alt" content="Mazin Ahmed" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
 
 <style>
   :root {
-    --paper:        #ece6d6;
-    --paper-soft:   #f3eee0;
-    --paper-deep:   #e0d8c2;
-    --ink:          #181510;
-    --ink-soft:     #2c2820;
-    --rule:         rgba(24, 21, 16, 0.18);
-    --muted:        #6a6354;
-    --signal:       #cb3a1d;
-    --signal-ink:   #fbf6e8;
+    --paper:        #ffffff;
+    --paper-soft:   #fafafa;
+    --paper-deep:   #f4f4f5;
+    --ink:          #18181b;
+    --ink-soft:     #27272a;
+    --rule:         rgba(24, 24, 27, 0.12);
+    --muted:        #71717a;
+    --signal:       #7c3aed;
+    --signal-ink:   #ffffff;
     --col:          480px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #27272a;
+      --paper-soft: #3f3f46;
+      --paper-deep: #52525b;
+      --ink:        #fafafa;
+      --ink-soft:   #d4d4d8;
+      --rule:       rgba(255, 255, 255, 0.14);
+      --muted:      #a1a1aa;
+      --signal:     #a78bfa;
+      --signal-ink: #18181b;
+    }
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
   body {
-    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: var(--ink);
     background: var(--paper);
     line-height: 1.55;
@@ -65,22 +75,6 @@
     min-height: 100svh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(rgba(24,21,16,0.022) 1px, transparent 1.4px),
-      radial-gradient(rgba(24,21,16,0.014) 1px, transparent 1.4px);
-    background-size: 3px 3px, 7px 7px;
-    background-position: 0 0, 1.5px 1.5px;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(80, 55, 20, 0.05)),
-      radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(80, 55, 20, 0.06));
-    pointer-events: none;
-    z-index: 1;
   }
 
   ::selection { background: var(--signal); color: var(--signal-ink); }
@@ -101,7 +95,7 @@
     color: var(--paper-soft);
     padding: 10px 22px;
     text-align: center;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -124,7 +118,7 @@
     align-items: center;
     justify-content: center;
     z-index: 50;
-    box-shadow: 0 4px 14px rgba(24, 21, 16, 0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     transition: background 200ms ease, transform 100ms ease;
   }
   .share-fab:hover { background: var(--signal); }
@@ -163,7 +157,7 @@
   .avatar .initials {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 300;
     font-size: 64px;
     letter-spacing: -0.03em;
@@ -171,9 +165,9 @@
   }
 
   h1 {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 300;
-    font-size: clamp(56px, 18vw, 96px);
+    font-size: clamp(42px, 12vw, 64px);
     line-height: 0.88;
     letter-spacing: -0.038em;
     font-variation-settings: "opsz" 144;
@@ -183,7 +177,7 @@
   h1 .dot { color: var(--signal); }
 
   .role {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 500;
     font-size: 14.5px;
     color: var(--ink-soft);
@@ -194,7 +188,7 @@
   .role .accent { color: var(--signal); font-weight: 600; }
 
   .tags {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: 16px;
@@ -210,7 +204,7 @@
     justify-content: center;
     gap: 12px;
     margin-top: 14px;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -235,7 +229,7 @@
     border: 1px solid var(--ink);
     background: transparent;
     color: var(--ink);
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.06em;
@@ -250,9 +244,9 @@
   .cta:active { transform: translate(1px, 1px); }
   .cta--primary { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
   .cta--primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .cta .arrow { font-family: "IBM Plex Mono", monospace; font-size: 16px; }
+  .cta .arrow { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 16px; }
   .cta .ornament {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-style: italic;
     font-weight: 400;
     text-transform: none;
@@ -269,14 +263,14 @@
     gap: 6px;
   }
   .group-num {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10.5px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .group-line {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 17.5px;
@@ -313,14 +307,14 @@
 
   .row-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .row-name {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--ink);
     line-height: 1.2;
   }
   .row-sub {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 11.5px;
     color: var(--muted);
     line-height: 1.2;
@@ -329,13 +323,13 @@
     white-space: nowrap;
   }
   .row-arrow {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 14px;
     color: var(--muted);
     transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1), color 160ms ease;
   }
   .row-tag {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 9.5px;
     font-weight: 500;
     letter-spacing: 0.16em;
@@ -364,8 +358,8 @@
     background: var(--signal);
   }
   .product:hover { background: var(--ink); color: var(--paper-soft); }
-  .product:hover .product-handle { color: rgba(243, 238, 224, 0.6); }
-  .product:hover .product-tagline { color: rgba(243, 238, 224, 0.78); }
+  .product:hover .product-handle { color: rgba(255, 255, 255, 0.62); }
+  .product:hover .product-tagline { color: rgba(255, 255, 255, 0.82); }
   .product:hover .monogram { border-color: var(--signal); color: var(--signal); }
   .product:hover .product-arrow { color: var(--signal); transform: translate(3px, -3px); }
 
@@ -381,14 +375,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 600;
     font-size: 15px;
     letter-spacing: 0.02em;
     transition: color 200ms ease, border-color 200ms ease;
   }
   .product-tag {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -397,7 +391,7 @@
     margin-bottom: 6px;
   }
   .product-name {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 400;
     font-size: 30px;
     line-height: 1;
@@ -405,7 +399,7 @@
     margin-bottom: 8px;
   }
   .product-tagline {
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-size: 13.5px;
     color: var(--ink-soft);
     line-height: 1.5;
@@ -413,13 +407,13 @@
     transition: color 200ms ease;
   }
   .product-handle {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 11.5px;
     color: var(--muted);
     transition: color 200ms ease;
   }
   .product-arrow {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 16px;
     color: var(--signal);
     transition: transform 240ms cubic-bezier(0.2, 0.7, 0.2, 1), color 200ms ease;
@@ -429,7 +423,7 @@
   .share-band { padding: 12px 22px 22px; }
   .share-band .inner { display: flex; justify-content: center; }
   .share-btn {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -469,7 +463,7 @@
   .socials a:active { transform: translateY(1px); }
   .socials svg { width: 16px; height: 16px; }
   .signoff {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: 17px;
@@ -477,14 +471,14 @@
     line-height: 1.2;
   }
   .doc-id {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .copy {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -500,7 +494,7 @@
 
   /* reveal animation */
   @media (prefers-reduced-motion: no-preference) {
-    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 800ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    .reveal { opacity: 1; transform: none; }  /* entrance animation removed */
     @keyframes reveal { to { opacity: 1; transform: none; } }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -518,7 +512,7 @@
     background: var(--ink);
     color: var(--paper);
     padding: 11px 16px;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -535,7 +529,7 @@
   .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(24, 21, 16, 0.72);
+    background: rgba(9, 9, 11, 0.6);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -559,7 +553,7 @@
     text-align: center;
     transform: translateY(10px);
     transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
-    box-shadow: 0 30px 80px rgba(24, 21, 16, 0.4);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
   }
   .modal-backdrop.show .modal { transform: none; }
   .modal-close {
@@ -570,13 +564,13 @@
     align-items: center;
     justify-content: center;
     color: var(--muted);
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 16px;
     transition: color 160ms ease;
   }
   .modal-close:hover { color: var(--signal); }
   .modal-eyebrow {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -584,7 +578,7 @@
     margin-bottom: 6px;
   }
   .modal-title {
-    font-family: "Fraunces", serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 26px;
@@ -1066,11 +1060,11 @@
         const QR_INNER = QR_AREA - 2 * QR_INNER_PAD;
         const cell = QR_INNER / count;
 
-        const INK = '#181510';
-        const PAPER = '#f3eee0';
-        const PAPER_DEEP = '#e0d8c2';
+        const INK = '#18181b';
+        const PAPER = '#fafafa';
+        const PAPER_DEEP = '#f4f4f5';
         const WHITE = '#ffffff';
-        const RED = '#cb3a1d';
+        const RED = '#7c3aed';
 
         // ── 1. QR modules (rounded squares for a refined look) ──
         let modules = '';
@@ -1127,9 +1121,9 @@
           ${filigree(7,        VB - 7,    1, -1)}
           ${filigree(VB - 7,   VB - 7,   -1, -1)}
 
-          <!-- Top label: name in Fraunces italic -->
+          <!-- Top label: name -->
           <text x="${C}" y="9.6" text-anchor="middle"
-                font-family="Fraunces, Georgia, serif" font-style="italic" font-weight="400"
+                font-family="-apple-system, system-ui, sans-serif" font-style="italic" font-weight="400"
                 font-size="4.5" fill="${INK}">Mazin Ahmed</text>
 
           <!-- Top divider with eye watcher -->
@@ -1156,7 +1150,7 @@
 
           <!-- Bottom mono label -->
           <text x="${C}" y="${VB - 8}" text-anchor="middle"
-                font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500"
+                font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-weight="500"
                 font-size="2.4" letter-spacing="0.38" fill="${INK}">DOSSIER · No. 0x6D617A</text>
 
         </svg>`;

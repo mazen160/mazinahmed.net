@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog-Archive-2014 on Mazin Ahmed</title><link>https://mazinahmed.net/tags/blog-archive-2014/</link><description>Recent content in Blog-Archive-2014 on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/blog-archive-2014/index.xml" rel="self" type="application/rss+xml"/><item><title>My Story with Onavo (a Facebook's Acquisition)</title><link>https://mazinahmed.net/blog/my-story-with-onavo/</link><pubDate>Mon, 09 Jun 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/my-story-with-onavo/</guid><description>&lt;hr&gt;
+&lt;p&gt;When I was checking the Facebook WhiteHat page, I realized that they added a new target to the scope: Onavo.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/ea205f89-3c1b-4439-aca1-7f4f7641f0e3.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I downloaded their apps and started to intercept the links that I found.&lt;/p&gt;
+&lt;p&gt;One of the links raised an eyebrow. I said to myself that this looks vulnerable.&lt;/p&gt;
+&lt;p&gt;The link looks something like this:
+&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=https://mazinahmed.net/somethingthatIforget/&amp;amp;seed=1394953248&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/25c568fb-c3a4-4861-bf08-cf46d9a2b63d.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;It seems vulnerable to Open Redirect.&lt;/p&gt;
+&lt;p&gt;I executed the link this:
+&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=http://bing.com&amp;amp;seed=1394953248&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Cross-Site Scripting on Wikileaks</title><link>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</link><pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have reported a Cross-Site Scripting vulnerability on WikiLeak&amp;rsquo;s new search engine. WikiLeaks has fixed the vulnerability promptly.&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/7a5H2kdoqFY" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;UPDATE: Read this article for more info:
+&lt;a href="https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml" target="_blank" rel="noreferrer"&gt;https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PHP Code Execution on Bugcrowd</title><link>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</link><pubDate>Thu, 13 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have identified a PHP code execution vulnerability on Bugcrowd. Bugcrowd is the premier marketplace for security testing on web, mobile, source code, and client-side applications, with over 7000 security researchers participating on their bug bounty platform.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/8b2bb906-f4de-402f-8721-9291fc41248b.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Acknowledged By Oracle</title><link>https://mazinahmed.net/blog/acknowledged-by-oracle/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/acknowledged-by-oracle/</guid><description>&lt;hr&gt;
+&lt;p&gt;Oracle has acknowledged me for finding a Cross-Site Scripting Vulnerability.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/6d9dc43f-139e-46ee-9ec0-18dc9270bc1d.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+
+
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/6bc7bc29-1bed-495e-b7a9-688648b690a1.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Open Redirector on Google.com</title><link>https://mazinahmed.net/blog/open-redirector-on-google/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/open-redirector-on-google/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have found and reported an Open Redirector vulnerability on google.com.&lt;/p&gt;
+&lt;p&gt;The response of the security team was the following:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/bfc6ff58-678b-497a-9a71-41ff9707e26a.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;To demonstrate the impact of the vulnerability, I have made this video:&lt;/p&gt;
+&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/AvyeA7w1WPk" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</description></item><item><title>SQL Injection and Cross-site Scripting at the website of the University of Calgary</title><link>https://mazinahmed.net/blog/university-of-calgary/</link><pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/university-of-calgary/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have reported several critical vulnerabilities, such as SQL Injection and Cross-site Scripting, to the IT support center of the University of Calgary. The university has fixed the issues successfully.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/b038fefc-1ecf-442d-b1f3-fbe4ca625f5f.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>

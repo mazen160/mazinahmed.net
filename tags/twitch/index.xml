@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Twitch on Mazin Ahmed</title><link>https://mazinahmed.net/tags/twitch/</link><description>Recent content in Twitch on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 01 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/twitch/index.xml" rel="self" type="application/rss+xml"/><item><title>Twitch Internal Security Tools: In-depth Analysis of the Leaked Twitch Security Tools</title><link>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/</link><pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/indepth-analysis-twitch-security-tools/</guid><description>&lt;h2 id="" class="relative group"&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/142c86db-2f34-4d6a-86fb-da11da640ed5.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+ &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;How was Twitch hacked? What security controls did Twitch build?&lt;/p&gt;
+&lt;p&gt;The Twitch breach revealed more than 120 internal security tools developed by the Twitch Security team.&lt;/p&gt;
+&lt;p&gt;I analyzed all the leaked security tools that were developed by Twitch Security. Check out the full research.&lt;/p&gt;
+&lt;h1 id="background" class="relative group"&gt;Background &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#background" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Twitch is an interactive live-streaming service for content, gaming, entertainment, sports, and music. In 2015, Amazon acquired Twitch for $970 million, and after COVID-19 time, its market value skyrocketed as more people adapted to live-streaming from home.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tfquery on Mazin Ahmed</title><link>https://mazinahmed.net/tags/tfquery/</link><description>Recent content in Tfquery on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 27 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/tfquery/index.xml" rel="self" type="application/rss+xml"/><item><title>Scan Terraform plans and changes with tfquery via SQL-powered framework</title><link>https://mazinahmed.net/blog/tfplan-release/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/tfplan-release/</guid><description>&lt;p&gt;New Release: tfquery now supports SQL queries for Terraform Plan Scanning&lt;/p&gt;
+&lt;h2 id="" class="relative group"&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/3bceb92e-7fbb-422d-96b1-1c0f3b3e5405.png" alt="" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+ &lt;span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"&gt;&lt;a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#" aria-label="Anchor"&gt;#&lt;/a&gt;&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;In case you&amp;rsquo;re an Infrastructure security engineer and have not tried tfquery yet, this will be a great blog post for you.&lt;/p&gt;
+&lt;p&gt;Tfquery is a framework that allows running SQL queries on Terraform code. It&amp;rsquo;s made to analyze your Terraform infrastructure, locate resources, run security compliance checks, spot misconfigured resources, develop CI benchmarks, and much more.&lt;/p&gt;</description></item></channel></rss>
