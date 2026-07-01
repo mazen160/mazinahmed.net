@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog-Archive-2014 on Mazin Ahmed</title><link>https://mazinahmed.net/tags/blog-archive-2014/</link><description>Recent content in Blog-Archive-2014 on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/blog-archive-2014/index.xml" rel="self" type="application/rss+xml"/><item><title>My Story with Onavo (a Facebook's Acquisition)</title><link>https://mazinahmed.net/blog/my-story-with-onavo/</link><pubDate>Mon, 09 Jun 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/my-story-with-onavo/</guid><description>&lt;hr&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog-Archive-2014 on Mazin Ahmed</title><link>https://mazinahmed.net/tags/blog-archive-2014/</link><description>Recent content in Blog-Archive-2014 on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/blog-archive-2014/index.xml" rel="self" type="application/rss+xml"/><item><title>My Story with Onavo (Acquired by Facebook)</title><link>https://mazinahmed.net/blog/my-story-with-onavo/</link><pubDate>Mon, 09 Jun 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/my-story-with-onavo/</guid><description>&lt;hr&gt;
 &lt;p&gt;When I was checking the Facebook WhiteHat page, I realized that they added a new target to the scope: Onavo.&lt;/p&gt;
 &lt;p&gt;
 
@@ -29,13 +29,13 @@
 &lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;It seems vulnerable to Open Redirect.&lt;/p&gt;
-&lt;p&gt;I executed the link this:
-&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=http://bing.com&amp;amp;seed=1394953248&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Cross-Site Scripting on Wikileaks</title><link>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</link><pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</guid><description>&lt;hr&gt;
-&lt;p&gt;I have reported a Cross-Site Scripting vulnerability on WikiLeak&amp;rsquo;s new search engine. WikiLeaks has fixed the vulnerability promptly.&lt;/p&gt;
+&lt;p&gt;I executed the link like this:
+&lt;code&gt;http://cf.onavo.com/iphone/mc/deactivate.html?url=http://bing.com&amp;amp;seed=1394953248&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Cross-Site Scripting on WikiLeaks</title><link>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</link><pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/cross-site-scripting-on-wikileaks/</guid><description>&lt;hr&gt;
+&lt;p&gt;I have reported a Cross-Site Scripting vulnerability on WikiLeaks&amp;rsquo; new search engine. WikiLeaks has fixed the vulnerability promptly.&lt;/p&gt;
 &lt;iframe width="560" height="310" src="https://www.youtube.com/embed/7a5H2kdoqFY" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;UPDATE: Read this article for more info:
 &lt;a href="https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml" target="_blank" rel="noreferrer"&gt;https://news.softpedia.com/news/XSS-Vulnerability-Found-in-WikiLeaks-Internal-Search-Engine-428166.shtml&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PHP Code Execution on Bugcrowd</title><link>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</link><pubDate>Thu, 13 Feb 2014 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/code-execution-on-bugcrowd/</guid><description>&lt;hr&gt;
-&lt;p&gt;I have identified a PHP code execution vulnerability on Bugcrowd. Bugcrowd is the premier marketplace for security testing on web, mobile, source code, and client-side applications, with over 7000 security researchers participating on their bug bounty platform.&lt;/p&gt;
+&lt;p&gt;I have identified a PHP code execution vulnerability on Bugcrowd. Bugcrowd is the premier marketplace for security testing on web, mobile, source code, and client-side applications, with over 7000 security researchers participating in their bug bounty platform.&lt;/p&gt;
 &lt;p&gt;
 
 
