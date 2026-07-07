@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Llm on Mazin Ahmed</title><link>https://mazinahmed.net/tags/llm/</link><description>Recent content in Llm on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/llm/index.xml" rel="self" type="application/rss+xml"/><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Llm on Mazin Ahmed</title><link>https://mazinahmed.net/tags/llm/</link><description>Recent content in Llm on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 07 Jul 2026 11:28:35 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/llm/index.xml" rel="self" type="application/rss+xml"/><item><title>Backlog: A Local-First Task and Context Manager for Humans and AI</title><link>https://mazinahmed.net/blog/backlog-project/</link><pubDate>Tue, 07 Jul 2026 11:28:35 +0000</pubDate><guid>https://mazinahmed.net/blog/backlog-project/</guid><description>&lt;p&gt;
+
+
+
+
+
+
+ 
+ 
+&lt;figure&gt;&lt;img src="https://mazinahmed.net/uploads/assets/static/backlog-project/backlog-blog-banner.webp" alt="Backlog: a local-first task and context manager for humans and AI" class="mx-auto my-0 rounded-md" /&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been working with agentic AI for the past two years, and I kept hitting the same wall: managing the tasks and to-dos it generates. Moving what it learns between sessions. Improving a product without keeping one session open for days.&lt;/p&gt;
+&lt;p&gt;Keeping a session open for days builds up context, and I get billed for all of it on every request to Claude. Caching helps, but it&amp;rsquo;s still expensive. The agent forgets what happened, especially the small details, and there&amp;rsquo;s no real way to hold onto it.&lt;/p&gt;</description></item><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;
 &lt;p&gt;
 
 
