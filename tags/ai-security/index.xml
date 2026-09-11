@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ai-Security on Mazin Ahmed</title><link>https://mazinahmed.net/tags/ai-security/</link><description>Recent content in Ai-Security on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/ai-security/index.xml" rel="self" type="application/rss+xml"/><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;
-&lt;p&gt;
-
-
-
-
-
-
- 
- 
-&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/6ea2bdf1-1f8f-44c8-a164-714f9dbe5db5/Preventing%20Prompt%20Injection%20Attacks%20at%20Scale.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;
-&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;Prompt injection attacks are one of the most common LLM security threats we have all seen while reviewing LLM implementations, integrations, and AI-powered systems.&lt;/p&gt;
-&lt;p&gt;I have identified Prompt Injection attacks in numerous implementations and applications, and I’ve decided to write a blog post to recommend different methodologies I experimented with that can prevent prompt injection at scale.&lt;/p&gt;
-&lt;p&gt;I will also share a LangChain Prompt Injection attack vector, vulnerabilities in example MCP implementations, and practical ways to prevent prompt injection attacks.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ai-Security on Mazin Ahmed</title><link>https://mazinahmed.net/tags/ai-security/</link><description>Recent content in Ai-Security on Mazin Ahmed</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mazinahmed.net/tags/ai-security/index.xml" rel="self" type="application/rss+xml"/><item><title>Preventing Prompt Injection Attacks at Scale</title><link>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://mazinahmed.net/blog/preventing-prompt-injection-attacks-at-scale/</guid><description>&lt;hr&gt;&#10;&lt;p&gt;&#10;&#10;&#10;&#10;&#10;&#10;&#10; &#10; &#10;&lt;figure&gt;&lt;img src="https://mazin.s3.amazonaws.com/public/6ea2bdf1-1f8f-44c8-a164-714f9dbe5db5/Preventing%20Prompt%20Injection%20Attacks%20at%20Scale.jpg" alt="" class="mx-auto my-0 rounded-md" /&gt;&#10;&lt;/figure&gt;&#10;&lt;/p&gt;&#10;&lt;p&gt;Prompt injection attacks are one of the most common LLM security threats we have all seen while reviewing LLM implementations, integrations, and AI-powered systems.&lt;/p&gt;&#10;&lt;p&gt;I have identified Prompt Injection attacks in numerous implementations and applications, and I’ve decided to write a blog post to recommend different methodologies I experimented with that can prevent prompt injection at scale.&lt;/p&gt;&#10;&lt;p&gt;I will also share a LangChain Prompt Injection attack vector, vulnerabilities in example MCP implementations, and practical ways to prevent prompt injection attacks.&lt;/p&gt;</description></item></channel></rss>
